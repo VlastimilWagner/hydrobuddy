@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common, hb_ph;
+  StdCtrls, Buttons, Dbf, db, Dbf_Common, hb_ph, DOM, XMLRead, XMLWrite;
 
 type
 
@@ -54,6 +54,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    SaveToXMLButton: TSpeedButton;
+    LoadFromXMLButton: TSpeedButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
@@ -61,6 +63,7 @@ type
     procedure Button5Click(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
+    procedure SaveToXMLButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -270,6 +273,26 @@ begin
 
 
 
+end;
+
+procedure TForm6.SaveToXMLButtonClick(Sender: TObject);
+var  MyXML: TXMLDocument;
+     RootNode, Node, Value: TDOMNode;
+begin
+     try
+        MyXML := TXMLDocument.Create;
+
+        RootNode := MyXML.CreateElement('waterquality');
+        MyXML.Appendchild(RootNode);                           // save root node
+
+        Node := MyXML.CreateElement('Name');
+        Value := MyXML.CreateTextNode('Fernando');         // insert a value to node
+        RootNode.Appendchild(Value);                         // save node
+
+        writeXMLFile(MyXML, 'test.xml');
+     finally
+       MyXML.Free;
+     end;
 end;
 
 

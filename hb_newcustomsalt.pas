@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common ;
+  StdCtrls, Buttons, Dbf, db, Dbf_Common, DOM, XMLRead, XMLWrite ;
 
 type
 
@@ -66,12 +66,17 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    LoadFromXMLButton: TSpeedButton;
+    SaveToXMLButton: TSpeedButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
+    procedure AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
+    procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
+    procedure SaveToXMLButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -378,6 +383,85 @@ currentVal := ComboBox3.ItemIndex;
 
       end ;
 
+end;
+
+procedure TForm3.AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
+var Node: TDOMNode;
+begin
+  Node := ObjXML.CreateElement(NodeName);
+  Node.AppendChild(ObjXML.CreateTextNode(NodeValue));
+  TDOMElement(Node).SetAttribute(AtribName, AtribValue);
+  ParentNode.Appendchild(Node);
+end;
+
+
+
+procedure TForm3.AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
+var Node: TDOMNode;
+begin
+  Node := ObjXML.CreateElement(NodeName);
+  Node.AppendChild(ObjXML.CreateTextNode(NodeValue));
+  ParentNode.Appendchild(Node);
+end;
+
+procedure TForm3.SaveToXMLButtonClick(Sender: TObject);
+var  MyXML: TXMLDocument;
+     RootNode, Node, Value: TDOMNode;
+     currentValP, currentValK, currentValSi: string;
+begin
+     try
+        MyXML := TXMLDocument.Create;
+
+        RootNode := MyXML.CreateElement('substance');
+        MyXML.Appendchild(RootNode);                           // save root node
+        AddNodeToXML(MyXML, RootNode, 'Name', Edit15.Text);
+        AddNodeToXML(MyXML, RootNode, 'Formula', Edit17.Text);
+        AddNodeToXML(MyXML, RootNode, 'Source', Edit23.Text);
+        AddNodeToXML(MyXML, RootNode, 'Purity', Edit16.Text);
+        AddNodeToXML(MyXML, RootNode, 'N_NO3', Edit1.Text);
+        AddNodeToXML(MyXML, RootNode, 'N_NH4', Edit2.Text);
+
+        if ComboBox1.ItemIndex=0 then currentValP := 'P' else currentValP := 'P2O5';
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'P', Edit3.Text, 'Val', currentValP);
+
+        if ComboBox2.ItemIndex=0 then currentValK := 'K' else currentValK := 'K2O';
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'K', Edit4.Text, 'Val', currentValK);
+
+        if ComboBox3.ItemIndex=0 then currentValSi := 'Si' else currentValSi := 'SiO2';
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'Si', Edit13.Text, 'Val', currentValSi);
+
+{
+        if CheckBox2.Checked = false then
+        MyDbf.FieldByName('IsLiquid').AsInteger:=0;
+
+
+       if CheckBox2.Checked  then
+       MyDbf.FieldByName('IsLiquid').AsInteger:=1;
+       }
+
+       AddNodeToXML(MyXML, RootNode, 'N_NH4', Edit2.Text);
+       AddNodeToXML(MyXML, RootNode, 'Mg', Edit5.Text);
+       AddNodeToXML(MyXML, RootNode, 'Ca', Edit6.Text);
+       AddNodeToXML(MyXML, RootNode, 'S', Edit7.Text);
+
+       AddNodeToXML(MyXML, RootNode, 'Fe', Edit8.Text);
+       AddNodeToXML(MyXML, RootNode, 'Mn', Edit9.Text);
+       AddNodeToXML(MyXML, RootNode, 'Zn', Edit10.Text);
+       AddNodeToXML(MyXML, RootNode, 'B', Edit11.Text);
+       AddNodeToXML(MyXML, RootNode, 'Cu', Edit12.Text);
+       AddNodeToXML(MyXML, RootNode, 'Mo', Edit14.Text);
+       AddNodeToXML(MyXML, RootNode, 'Na', Edit18.Text);
+       AddNodeToXML(MyXML, RootNode, 'Cl', Edit19.Text);
+
+       AddNodeToXML(MyXML, RootNode, 'Cost', Edit21.Text);
+
+       AddNodeToXML(MyXML, RootNode, 'ConcType', Edit20.Text;
+       AddNodeToXML(MyXML, RootNode, 'Density', Edit22.Text;
+
+        writeXMLFile(MyXML, 'test.xml');
+     finally
+       MyXML.Free;
+     end;
 end;
 
 initialization
