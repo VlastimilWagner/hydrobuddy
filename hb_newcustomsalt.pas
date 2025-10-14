@@ -6,66 +6,61 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common, DOM, XMLRead, XMLWrite ;
+  StdCtrls, Buttons, Dbf, db, Dbf_Common, DOM, XMLRead, XMLWrite, CustomHelpFunctions ;
 
 type
 
-  { TForm3 }
+  { TCustomSaltForm }
 
-  TForm3 = class(TForm)
+  TCustomSaltForm = class(TForm)
     Button1: TBitBtn;
     Button2: TBitBtn;
     CheckBox2: TCheckBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
-    Edit1: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    Edit15: TEdit;
-    Edit16: TEdit;
-    Edit17: TEdit;
-    Edit18: TEdit;
-    Edit19: TEdit;
-    Edit2: TEdit;
+    ConcentratedTypeComboBox: TComboBox;
+    N_NO3Edit: TEdit;
+    ZnEdit: TEdit;
+    BEdit: TEdit;
+    CuEdit: TEdit;
+    SiEdit: TEdit;
+    MoEdit: TEdit;
+    NameEdit: TEdit;
+    PurityEdit: TEdit;
+    FormulaEdit: TEdit;
+    NaEdit: TEdit;
+    ClEdit: TEdit;
+    N_NH4Edit: TEdit;
     Edit20: TEdit;
-    Edit21: TEdit;
-    Edit22: TEdit;
-    Edit23: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Label1: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Formula: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label2: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
+    CostEdit: TEdit;
+    PEdit: TEdit;
+    KEdit: TEdit;
+    MgEdit: TEdit;
+    CaEdit: TEdit;
+    SEdit: TEdit;
+    FeEdit: TEdit;
+    MnEdit: TEdit;
+    N_NO3Label: TLabel;
+    CuLabel: TLabel;
+    MoLabel: TLabel;
+    NaLabel: TLabel;
+    SiLabel: TLabel;
+    ClLabel: TLabel;
+    NameLabel: TLabel;
+    PurityLabel: TLabel;
+    FormulaLabel: TLabel;
+    MnLabel: TLabel;
+    N_NH4Label: TLabel;
+    ConcentratedTypeLabel: TLabel;
+    CostLabel: TLabel;
+    PleaseLabel: TLabel;
+    MgLabel: TLabel;
+    CaLabel: TLabel;
+    SLabel: TLabel;
+    FeLabel: TLabel;
+    ZnLabel: TLabel;
+    BLabel: TLabel;
     LoadFromXMLButton: TSpeedButton;
     SaveToXMLButton: TSpeedButton;
     procedure Button1Click(Sender: TObject);
@@ -74,25 +69,24 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
-    procedure AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
-    procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
     procedure SaveToXMLButtonClick(Sender: TObject);
   private
     { private declarations }
   public
+    SaltDBName: string;
     { public declarations }
     end;
 
 var
-  Form3: TForm3; 
+  CustomSaltForm: TCustomSaltForm;
 
 implementation
 
 uses HB_Main ;
 
-{ TForm3 }
+{ TCustomSaltForm }
 
-procedure TForm3.Button1Click(Sender: TObject);
+procedure TCustomSaltForm.Button1Click(Sender: TObject);
 var
 MyDbf: TDbf;
 currentValP: integer;
@@ -112,28 +106,27 @@ MyDbf.Active := true ;
 
 MyDbf.Insert ;
 
-MyDbf.FieldByName('Name').AsString:= Edit15.Text ;
-MyDbf.FieldByName('Formula').AsString:= Edit17.Text;
-MyDbf.FieldByName('Source').AsString:= Edit23.Text;
-MyDbf.FieldByName('Purity').AsFloat:=StrtoFloat(Edit16.Text)/100 ;
+MyDbf.FieldByName('Name').AsString:= NameEdit.Text ;
+MyDbf.FieldByName('Formula').AsString:= FormulaEdit.Text;
+MyDbf.FieldByName('Purity').AsFloat:=StrtoFloatAnySeparator(PurityEdit.Text)/100 ;
 
 if currentValP = 0 then
-MyDbf.FieldByName('P').AsFloat:=StrtoFloat(Edit3.Text);
+MyDbf.FieldByName('P').AsFloat:=StrtoFloatAnySeparator(PEdit.Text);
 
 if currentValK = 0 then
-MyDbf.FieldByName('K').AsFloat:=StrtoFloat(Edit4.Text);
+MyDbf.FieldByName('K').AsFloat:=StrtoFloatAnySeparator(KEdit.Text);
 
 if currentValSi = 0 then
-MyDbf.FieldByName('Si').AsFloat:=StrtoFloat(Edit13.Text);
+MyDbf.FieldByName('Si').AsFloat:=StrtoFloatAnySeparator(SiEdit.Text);
 
 if currentValP = 1 then
-MyDbf.FieldByName('P').AsFloat:=(StrtoFloat(Edit3.Text)*0.4364);
+MyDbf.FieldByName('P').AsFloat:=(StrtoFloatAnySeparator(PEdit.Text)*0.4364);
 
 if currentValK = 1 then
-MyDbf.FieldByName('K').AsFloat:=(StrtoFloat(Edit4.Text)*0.8301);
+MyDbf.FieldByName('K').AsFloat:=(StrtoFloatAnySeparator(KEdit.Text)*0.8301);
 
 if currentValSi = 1 then
-MyDbf.FieldByName('Si').AsFloat:=(StrtoFloat(Edit13.Text)*0.4684);
+MyDbf.FieldByName('Si').AsFloat:=(StrtoFloatAnySeparator(SiEdit.Text)*0.4684);
 
 
 if CheckBox2.Checked = false then
@@ -143,23 +136,22 @@ if CheckBox2.Checked = false then
 if CheckBox2.Checked  then
    MyDbf.FieldByName('IsLiquid').AsInteger:=1;
 
-MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloat(Edit1.Text);
-MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloat(Edit2.Text);
-MyDbf.FieldByName('Mg').AsFloat:=StrtoFloat(Edit5.Text);
-MyDbf.FieldByName('Ca').AsFloat:=StrtoFloat(Edit6.Text);
-MyDbf.FieldByName('S').AsFloat:=StrtoFloat(Edit7.Text);
-MyDbf.FieldByName('Fe').AsFloat:=StrtoFloat(Edit8.Text);
-MyDbf.FieldByName('Mn').AsFloat:=StrtoFloat(Edit9.Text);
-MyDbf.FieldByName('Zn').AsFloat:=StrtoFloat(Edit10.Text);
-MyDbf.FieldByName('B').AsFloat:=StrtoFloat(Edit11.Text);
-MyDbf.FieldByName('Cu').AsFloat:=StrtoFloat(Edit12.Text);
-MyDbf.FieldByName('Mo').AsFloat:=StrtoFloat(Edit14.Text);
-MyDbf.FieldByName('Na').AsFloat:=StrtoFloat(Edit18.Text);
-MyDbf.FieldByName('Cl').AsFloat:=StrtoFloat(Edit19.Text);
+MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloatAnySeparator(N_NO3Edit.Text);
+MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloatAnySeparator(N_NH4Edit.Text);
+MyDbf.FieldByName('Mg').AsFloat:=StrtoFloatAnySeparator(MgEdit.Text);
+MyDbf.FieldByName('Ca').AsFloat:=StrtoFloatAnySeparator(CaEdit.Text);
+MyDbf.FieldByName('S').AsFloat:=StrtoFloatAnySeparator(SEdit.Text);
+MyDbf.FieldByName('Fe').AsFloat:=StrtoFloatAnySeparator(FeEdit.Text);
+MyDbf.FieldByName('Mn').AsFloat:=StrtoFloatAnySeparator(MnEdit.Text);
+MyDbf.FieldByName('Zn').AsFloat:=StrtoFloatAnySeparator(ZnEdit.Text);
+MyDbf.FieldByName('B').AsFloat:=StrtoFloatAnySeparator(BEdit.Text);
+MyDbf.FieldByName('Cu').AsFloat:=StrtoFloatAnySeparator(CuEdit.Text);
+MyDbf.FieldByName('Mo').AsFloat:=StrtoFloatAnySeparator(MoEdit.Text);
+MyDbf.FieldByName('Na').AsFloat:=StrtoFloatAnySeparator(NaEdit.Text);
+MyDbf.FieldByName('Cl').AsFloat:=StrtoFloatAnySeparator(ClEdit.Text);
 
-MyDbf.FieldByName('Cost').AsFloat:=StrtoFloat(Edit21.Text);
-MyDbf.FieldByName('ConcType').AsString:=Edit20.Text;
-MyDbf.FieldByName('Density').AsString:=Edit22.Text;
+MyDbf.FieldByName('Cost').AsFloat:=StrtoFloatAnySeparator(CostEdit.Text);
+MyDbf.FieldByName('ConcType').AsString:=ConcentratedTypeComboBox.Text;
 
 MyDbf.Post ;
 
@@ -184,11 +176,11 @@ ComboBox2.ItemIndex := 0 ;
 
 ComboBox3.ItemIndex := 0 ;
 
-Form3.Visible := False ;
+CustomSaltForm.Visible := False ;
 
 end;
 
-procedure TForm3.Button2Click(Sender: TObject);
+procedure TCustomSaltForm.Button2Click(Sender: TObject);
 var
 MyDbf: TDbf;
 currentValP: integer;
@@ -206,37 +198,36 @@ MyDbf.TableName := Form1.substances_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
-MyDbf.Filter := 'Name=' + QuotedStr(Label23.Caption) ;
+MyDbf.Filter := 'Name=' + QuotedStr(SaltDbName) ;
 
     MyDbf.Filtered := true;       // This selects the filtered set
     MyDbf.First;
 
     MyDbf.Edit;
 
-    MyDbf.FieldByName('Name').AsString:= Edit15.Text ;
-    MyDbf.FieldByName('Formula').AsString:= Edit17.Text;
-    MyDbf.FieldByName('Source').AsString:= Edit23.Text;
-    MyDbf.FieldByName('Purity').AsFloat:=StrtoFloat(Edit16.Text)/100 ;
-    MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloat(Edit1.Text);
-    MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloat(Edit2.Text);
+    MyDbf.FieldByName('Name').AsString:= NameEdit.Text ;
+    MyDbf.FieldByName('Formula').AsString:= FormulaEdit.Text;
+    MyDbf.FieldByName('Purity').AsFloat:=StrtoFloatAnySeparator(PurityEdit.Text)/100 ;
+    MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloatAnySeparator(N_NO3Edit.Text);
+    MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloatAnySeparator(N_NH4Edit.Text);
 
     if currentValP = 0 then
-    MyDbf.FieldByName('P').AsFloat:=StrtoFloat(Edit3.Text);
+    MyDbf.FieldByName('P').AsFloat:=StrtoFloatAnySeparator(PEdit.Text);
 
     if currentValK = 0 then
-    MyDbf.FieldByName('K').AsFloat:=StrtoFloat(Edit4.Text);
+    MyDbf.FieldByName('K').AsFloat:=StrtoFloatAnySeparator(KEdit.Text);
 
     if currentValSi = 0 then
-    MyDbf.FieldByName('Si').AsFloat:=StrtoFloat(Edit13.Text);
+    MyDbf.FieldByName('Si').AsFloat:=StrtoFloatAnySeparator(SiEdit.Text);
 
     if currentValP = 1 then
-    MyDbf.FieldByName('P').AsFloat:=(StrtoFloat(Edit3.Text)*0.4364);
+    MyDbf.FieldByName('P').AsFloat:=(StrtoFloatAnySeparator(PEdit.Text)*0.4364);
 
     if currentValK = 1 then
-    MyDbf.FieldByName('K').AsFloat:=(StrtoFloat(Edit4.Text)*0.8301);
+    MyDbf.FieldByName('K').AsFloat:=(StrtoFloatAnySeparator(KEdit.Text)*0.8301);
 
     if currentValSi = 1 then
-    MyDbf.FieldByName('Si').AsFloat:=(StrtoFloat(Edit13.Text)*0.4684);
+    MyDbf.FieldByName('Si').AsFloat:=(StrtoFloatAnySeparator(SiEdit.Text)*0.4684);
 
     if CheckBox2.Checked = false then
     MyDbf.FieldByName('IsLiquid').AsInteger:=0;
@@ -245,23 +236,22 @@ MyDbf.Filter := 'Name=' + QuotedStr(Label23.Caption) ;
    if CheckBox2.Checked  then
    MyDbf.FieldByName('IsLiquid').AsInteger:=1;
 
-   MyDbf.FieldByName('Mg').AsFloat:=StrtoFloat(Edit5.Text);
-   MyDbf.FieldByName('Ca').AsFloat:=StrtoFloat(Edit6.Text);
-   MyDbf.FieldByName('S').AsFloat:=StrtoFloat(Edit7.Text);
+   MyDbf.FieldByName('Mg').AsFloat:=StrtoFloatAnySeparator(MgEdit.Text);
+   MyDbf.FieldByName('Ca').AsFloat:=StrtoFloatAnySeparator(CaEdit.Text);
+   MyDbf.FieldByName('S').AsFloat:=StrtoFloatAnySeparator(SEdit.Text);
 
-   MyDbf.FieldByName('Fe').AsFloat:=StrtoFloat(Edit8.Text);
-   MyDbf.FieldByName('Mn').AsFloat:=StrtoFloat(Edit9.Text);
-   MyDbf.FieldByName('Zn').AsFloat:=StrtoFloat(Edit10.Text);
-   MyDbf.FieldByName('B').AsFloat:=StrtoFloat(Edit11.Text);
-   MyDbf.FieldByName('Cu').AsFloat:=StrtoFloat(Edit12.Text);
-   MyDbf.FieldByName('Mo').AsFloat:=StrtoFloat(Edit14.Text);
-   MyDbf.FieldByName('Na').AsFloat:=StrtoFloat(Edit18.Text);
-   MyDbf.FieldByName('Cl').AsFloat:=StrtoFloat(Edit19.Text);
+   MyDbf.FieldByName('Fe').AsFloat:=StrtoFloatAnySeparator(FeEdit.Text);
+   MyDbf.FieldByName('Mn').AsFloat:=StrtoFloatAnySeparator(MnEdit.Text);
+   MyDbf.FieldByName('Zn').AsFloat:=StrtoFloatAnySeparator(ZnEdit.Text);
+   MyDbf.FieldByName('B').AsFloat:=StrtoFloatAnySeparator(BEdit.Text);
+   MyDbf.FieldByName('Cu').AsFloat:=StrtoFloatAnySeparator(CuEdit.Text);
+   MyDbf.FieldByName('Mo').AsFloat:=StrtoFloatAnySeparator(MoEdit.Text);
+   MyDbf.FieldByName('Na').AsFloat:=StrtoFloatAnySeparator(NaEdit.Text);
+   MyDbf.FieldByName('Cl').AsFloat:=StrtoFloatAnySeparator(ClEdit.Text);
 
-   MyDbf.FieldByName('Cost').AsFloat:=StrtoFloat(Edit21.Text);
+   MyDbf.FieldByName('Cost').AsFloat:=StrtoFloatAnySeparator(CostEdit.Text);
 
-   MyDbf.FieldByName('ConcType').AsString:=Edit20.Text;
-   MyDbf.FieldByName('Density').AsString:=Edit22.Text;
+   MyDbf.FieldByName('ConcType').AsString:=ConcentratedTypeComboBox.Text;
 
     MyDbf.Post ;
 
@@ -277,39 +267,23 @@ ComboBox3.ItemIndex := 0 ;
 
 HB_Main.Form1.UpdateList ;
 
-Form3.Visible := False ;
-
-
+CustomSaltForm.Visible := False ;
 
 end;
 
 
-procedure TForm3.CheckBox2Change(Sender: TObject);
+procedure TCustomSaltForm.CheckBox2Change(Sender: TObject);
 begin
 
-if Checkbox2.Checked then
-
-   begin
-
-   //Edit22.Visible := true ;
-   //Label22.Visible := true ;
-   Label21.Caption := 'Please input values as W/V%';
-
-   end;
-
-    if Checkbox2.Checked = false then
-
-   begin
-
-   //Edit22.Visible := false ;
-   //Label22.Visible := false ;
-   Label21.Caption := 'Please input values as W/W%';
-
-   end;
+if Checkbox2.Checked
+   then
+       PleaseLabel.Caption := 'Please input values as W/V%'
+   else
+       PleaseLabel.Caption := 'Please input values as W/W%';
 
 end;
 
-procedure TForm3.ComboBox1Change(Sender: TObject);
+procedure TCustomSaltForm.ComboBox1Change(Sender: TObject);
 var
 currentVal: integer;
 begin
@@ -321,7 +295,7 @@ currentVal := ComboBox1.ItemIndex;
 
        begin
 
-       Edit3.Text := FloattoStr(Form1.round2(StrtoFloat(Edit3.Text)*2.2915, 3))   ;
+       PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))   ;
 
        end ;
 
@@ -329,13 +303,13 @@ currentVal := ComboBox1.ItemIndex;
 
       begin
 
-      Edit3.Text := FloattoStr(Form1.round2(StrtoFloat(Edit3.Text)*(1/2.2915), 3))   ;
+      PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3))   ;
 
       end ;
 
 end;
 
-procedure TForm3.ComboBox2Change(Sender: TObject);
+procedure TCustomSaltForm.ComboBox2Change(Sender: TObject);
 var
 currentVal: integer;
 begin
@@ -346,7 +320,7 @@ currentVal := ComboBox2.ItemIndex;
 
       begin
 
-      Edit4.Text := FloattoStr(Form1.round2(StrtoFloat(Edit4.Text)*1.2047, 3))   ;
+      KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))   ;
 
       end ;
 
@@ -354,13 +328,13 @@ currentVal := ComboBox2.ItemIndex;
 
       begin
 
-      Edit4.Text := FloattoStr(Form1.round2(StrtoFloat(Edit4.Text)*(1/1.2047), 3))   ;
+      KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3))   ;
 
       end ;
 
 end;
 
-procedure TForm3.ComboBox3Change(Sender: TObject);
+procedure TCustomSaltForm.ComboBox3Change(Sender: TObject);
 var
 currentVal: integer;
 begin
@@ -371,7 +345,7 @@ currentVal := ComboBox3.ItemIndex;
 
       begin
 
-      Edit13.Text := FloattoStr(Form1.round2(StrtoFloat(Edit13.Text)*2.1348, 3))   ;
+      SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))   ;
 
       end ;
 
@@ -379,32 +353,14 @@ currentVal := ComboBox3.ItemIndex;
 
       begin
 
-      Edit13.Text := FloattoStr(Form1.round2(StrtoFloat(Edit13.Text)*(1/2.1348), 3))   ;
+      SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3))   ;
 
       end ;
 
 end;
 
-procedure TForm3.AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
-var Node: TDOMNode;
-begin
-  Node := ObjXML.CreateElement(NodeName);
-  Node.AppendChild(ObjXML.CreateTextNode(NodeValue));
-  TDOMElement(Node).SetAttribute(AtribName, AtribValue);
-  ParentNode.Appendchild(Node);
-end;
 
-
-
-procedure TForm3.AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
-var Node: TDOMNode;
-begin
-  Node := ObjXML.CreateElement(NodeName);
-  Node.AppendChild(ObjXML.CreateTextNode(NodeValue));
-  ParentNode.Appendchild(Node);
-end;
-
-procedure TForm3.SaveToXMLButtonClick(Sender: TObject);
+procedure TCustomSaltForm.SaveToXMLButtonClick(Sender: TObject);
 var  MyXML: TXMLDocument;
      RootNode, Node, Value: TDOMNode;
      currentValP, currentValK, currentValSi: string;
@@ -414,49 +370,41 @@ begin
 
         RootNode := MyXML.CreateElement('substance');
         MyXML.Appendchild(RootNode);                           // save root node
-        AddNodeToXML(MyXML, RootNode, 'Name', Edit15.Text);
-        AddNodeToXML(MyXML, RootNode, 'Formula', Edit17.Text);
-        AddNodeToXML(MyXML, RootNode, 'Source', Edit23.Text);
-        AddNodeToXML(MyXML, RootNode, 'Purity', Edit16.Text);
-        AddNodeToXML(MyXML, RootNode, 'N_NO3', Edit1.Text);
-        AddNodeToXML(MyXML, RootNode, 'N_NH4', Edit2.Text);
+        AddNodeToXML(MyXML, RootNode, 'Name', NameEdit.Text);
+        AddNodeToXML(MyXML, RootNode, 'Formula', FormulaEdit.Text);
+        AddNodeToXML(MyXML, RootNode, 'Purity', PurityEdit.Text);
+        AddNodeToXML(MyXML, RootNode, 'N_NO3', N_NO3Edit.Text);
+        AddNodeToXML(MyXML, RootNode, 'N_NH4', N_NH4Edit.Text);
 
         if ComboBox1.ItemIndex=0 then currentValP := 'P' else currentValP := 'P2O5';
-        AddNodeWithAttributeToXML(MyXML, RootNode, 'P', Edit3.Text, 'Val', currentValP);
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'P', PEdit.Text, 'Val', currentValP);
 
         if ComboBox2.ItemIndex=0 then currentValK := 'K' else currentValK := 'K2O';
-        AddNodeWithAttributeToXML(MyXML, RootNode, 'K', Edit4.Text, 'Val', currentValK);
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'K', KEdit.Text, 'Val', currentValK);
 
         if ComboBox3.ItemIndex=0 then currentValSi := 'Si' else currentValSi := 'SiO2';
-        AddNodeWithAttributeToXML(MyXML, RootNode, 'Si', Edit13.Text, 'Val', currentValSi);
+        AddNodeWithAttributeToXML(MyXML, RootNode, 'Si', SiEdit.Text, 'Val', currentValSi);
 
-{
-        if CheckBox2.Checked = false then
-        MyDbf.FieldByName('IsLiquid').AsInteger:=0;
+        if CheckBox2.Checked = false
+           then TDOMElement(RootNode).SetAttribute('IsLiquid', '0')
+           else TDOMElement(RootNode).SetAttribute('IsLiquid', '1');
 
+       AddNodeToXML(MyXML, RootNode, 'Mg', MgEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Ca', CaEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'S', SEdit.Text);
 
-       if CheckBox2.Checked  then
-       MyDbf.FieldByName('IsLiquid').AsInteger:=1;
-       }
+       AddNodeToXML(MyXML, RootNode, 'Fe', FeEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Mn', MnEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Zn', ZnEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'B', BEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Cu', CuEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Mo', MoEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Na', NaEdit.Text);
+       AddNodeToXML(MyXML, RootNode, 'Cl', ClEdit.Text);
 
-       AddNodeToXML(MyXML, RootNode, 'N_NH4', Edit2.Text);
-       AddNodeToXML(MyXML, RootNode, 'Mg', Edit5.Text);
-       AddNodeToXML(MyXML, RootNode, 'Ca', Edit6.Text);
-       AddNodeToXML(MyXML, RootNode, 'S', Edit7.Text);
+       AddNodeToXML(MyXML, RootNode, 'Cost', CostEdit.Text);
 
-       AddNodeToXML(MyXML, RootNode, 'Fe', Edit8.Text);
-       AddNodeToXML(MyXML, RootNode, 'Mn', Edit9.Text);
-       AddNodeToXML(MyXML, RootNode, 'Zn', Edit10.Text);
-       AddNodeToXML(MyXML, RootNode, 'B', Edit11.Text);
-       AddNodeToXML(MyXML, RootNode, 'Cu', Edit12.Text);
-       AddNodeToXML(MyXML, RootNode, 'Mo', Edit14.Text);
-       AddNodeToXML(MyXML, RootNode, 'Na', Edit18.Text);
-       AddNodeToXML(MyXML, RootNode, 'Cl', Edit19.Text);
-
-       AddNodeToXML(MyXML, RootNode, 'Cost', Edit21.Text);
-
-       AddNodeToXML(MyXML, RootNode, 'ConcType', Edit20.Text;
-       AddNodeToXML(MyXML, RootNode, 'Density', Edit22.Text;
+       AddNodeToXML(MyXML, RootNode, 'ConcType', ConcentratedTypeComboBox.Text);
 
         writeXMLFile(MyXML, 'test.xml');
      finally

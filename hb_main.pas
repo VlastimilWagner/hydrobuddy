@@ -347,8 +347,8 @@ var
   j:     integer;
 begin
 
-  Form2.ListBox1.Items.Clear;
-  Form2.ListBox2.Items.Clear;
+  SubstanceSelectionForm.ListBox1.Items.Clear;
+  SubstanceSelectionForm.ListBox2.Items.Clear;
 
   MyDbf := TDbf.Create(nil);
   MyDbf.FilePathFull := '';
@@ -360,7 +360,7 @@ begin
 
   while not MyDbf.EOF do
   begin
-    hb_load_salts.Form2.ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString);
+    hb_load_salts.SubstanceSelectionForm.ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString);
     MyDbf.Next;                                     // use .next here NOT .findnext!
   end;
 
@@ -376,7 +376,7 @@ begin
 
   while not MyDbf.EOF do
   begin
-    hb_load_salts.Form2.ListBox2.Items.Add(MyDbf.FieldByName('Name').AsString);
+    hb_load_salts.SubstanceSelectionForm.ListBox2.Items.Add(MyDbf.FieldByName('Name').AsString);
     MyDbf.Next;                                     // use .next here NOT .findnext!
   end;
 
@@ -384,20 +384,20 @@ begin
 
   MyDbf.Free;
 
-  for i := 0 to Form2.ListBox2.Items.Count - 1 do
+  for i := 0 to SubstanceSelectionForm.ListBox2.Items.Count - 1 do
 
   begin
 
     j := 0;
 
-    while j <= Form2.ListBox1.Items.Count - 1 do
+    while j <= SubstanceSelectionForm.ListBox1.Items.Count - 1 do
 
     begin
 
-      if (Form2.ListBox1.Items[j] = Form2.ListBox2.Items[i]) then
+      if (SubstanceSelectionForm.ListBox1.Items[j] = SubstanceSelectionForm.ListBox2.Items[i]) then
 
       begin
-        Form2.ListBox1.Items.Delete(j);
+        SubstanceSelectionForm.ListBox1.Items.Delete(j);
         j := j + 1;
       end;
 
@@ -409,8 +409,8 @@ begin
 
 
   // sort listboxes
-  hb_load_salts.Form2.ListBox2.Sorted := true ;
-  hb_load_salts.Form2.ListBox1.Sorted := true ;
+  hb_load_salts.SubstanceSelectionForm.ListBox2.Sorted := true ;
+  hb_load_salts.SubstanceSelectionForm.ListBox1.Sorted := true ;
 
 end;
 
@@ -419,7 +419,7 @@ begin
 
   UpdateList;
 
-  Form2.Visible := True;
+  SubstanceSelectionForm.Visible := True;
 end;
 
 procedure TForm1.Button20Click(Sender: TObject);
@@ -735,7 +735,7 @@ begin
 
   UpdateList;
 
-  arraysize := Form2.ListBox2.Items.Count;
+  arraysize := SubstanceSelectionForm.ListBox2.Items.Count;
 
   // define volume taking into account radio box setting for units
   // the end input volume is always converted to cubic meters
@@ -756,7 +756,7 @@ begin
   if RadioButton6.Checked then
   Volume := Volume * StrToFloat(Edit17.Text);
 
-  array_size := Form2.ListBox2.Items.Count;
+  array_size := SubstanceSelectionForm.ListBox2.Items.Count;
 
   varcount := 0;
 
@@ -1776,7 +1776,7 @@ begin
 
   UpdateList;
 
-  arraysize := Form2.ListBox2.Items.Count;
+  arraysize := SubstanceSelectionForm.ListBox2.Items.Count;
 
   // define volume taking into account radio box setting for units
   // the end input volume is always converted to cubic meters
@@ -1793,7 +1793,7 @@ begin
   if Radiobutton2.Checked then
     Volume := Volume * 3.78541178 / 1000;
 
-  array_size := Form2.ListBox2.Items.Count;
+  array_size := SubstanceSelectionForm.ListBox2.Items.Count;
 
   varcount := 0;
 
@@ -3596,7 +3596,7 @@ begin
     Sett.WriteBool('Main', 'Form1.Checkbox3', Checkbox3.Checked);
     Sett.WriteBool('Main', 'Form1.Checkbox5', Checkbox5.Checked);
     Sett.WriteInteger('Main', 'Form1.ComboBox3', ComboBox3.ItemIndex);
-    Sett.WriteBool('Main', 'Form2.CheckBox1', hb_load_salts.Form2.Checkbox1.checked);
+    Sett.WriteBool('Main', 'SubstanceSelectionForm.CheckBox1', hb_load_salts.SubstanceSelectionForm.Checkbox1.checked);
 
     hb_comparison.Form15.StringGrid1.SavetoCSVFile('hb_comparison.csv');
     hb_stockanalysis.Form8.StringGrid1.SavetoCSVFile('hb_stockanalysis.csv');
@@ -3633,7 +3633,7 @@ begin
     Checkbox3.Checked := Sett.ReadBool('Main', 'Form1.Checkbox3', Checkbox3.Checked);
     Checkbox5.Checked := Sett.ReadBool('Main', 'Form1.Checkbox5', Checkbox3.Checked);
     ComboBox3.ItemIndex := Sett.ReadInteger('Main', 'Form1.ComboBox3', ComboBox3.ItemIndex);
-    hb_load_salts.Form2.Checkbox1.checked := Sett.ReadBool('Main', 'Form2.CheckBox1', hb_load_salts.Form2.Checkbox1.checked);
+    hb_load_salts.SubstanceSelectionForm.Checkbox1.checked := Sett.ReadBool('Main', 'SubstanceSelectionForm.CheckBox1', hb_load_salts.SubstanceSelectionForm.Checkbox1.checked);
 
     if FileExists('hb_comparison.csv') then hb_comparison.Form15.StringGrid1.LoadFromCSVFile('hb_comparison.csv');
     if FileExists('hb_stockanalysis.csv') then hb_stockanalysis.Form8.StringGrid1.LoadFromCSVFile('hb_stockanalysis.csv');

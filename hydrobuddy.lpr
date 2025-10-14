@@ -12,7 +12,7 @@ uses
   hb_newcustomsalt, densesolver, hb_addweight, hb_commercialnutrient,
   hb_waterquality, hb_insprecision, hb_stockanalysis, Dbf, db, hb_persubstance,
   hb_datasetname, hb_analysis, hb_freedom, dbf_fields, hb_ph, hb_ratios,
-  hb_comparison, hb_tissue_analysis;
+  hb_comparison, hb_tissue_analysis, customhelpfunctions;
 
 procedure AssignValues ;
 
@@ -79,8 +79,8 @@ begin
 
     // set active tab and ensure all forms are visible
     Form1.PageControl1.ActivePage := Form1.TabSheet4 ;
-    Form2.Position := poMainFormCenter;
-    Form3.Position := poMainFormCenter;
+    SubstanceSelectionForm.Position := poMainFormCenter;
+    CustomSaltForm.Position := poMainFormCenter;
     Form4.Position := poMainFormCenter;
     Form5.Position := poMainFormCenter;
     Form6.Position := poMainFormCenter;
@@ -140,9 +140,8 @@ begin
   Form1.substances_used_db := 'substances_used_win.dbf' ;
   Form1.tissue_analysis_db := 'tissue_analysis_win.dbf' ;
   {$ENDIF}
-
-  Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TSubstanceSelectionForm, SubstanceSelectionForm);
+  Application.CreateForm(TCustomSaltForm, CustomSaltForm);
   Application.CreateForm(TForm4, Form4);
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TForm6, Form6);
