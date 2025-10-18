@@ -476,45 +476,10 @@ procedure TSubstanceSelectionForm.Button3Click(Sender: TObject);
 var
    i: integer;
 begin
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox1.ItemIndex := 0;
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox2.ItemIndex := 0 ;
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox3.ItemIndex := 0 ;
-
-  hb_newcustomsalt.CustomSaltForm.CheckBox2.Checked := false;
-
-  hb_newcustomsalt.CustomSaltForm.Button1.Enabled := True ;
-
-  hb_newcustomsalt.CustomSaltForm.Button2.Enabled := False ;
-
-  hb_newcustomsalt.CustomSaltForm.NameEdit.Text := 'Input Fertilizer Name Here' ;
-  hb_newcustomsalt.CustomSaltForm.FormulaEdit.Text := 'Input Formula Here' ;
-  hb_newcustomsalt.CustomSaltForm.CostEdit.Text := '100' ;
-  hb_newcustomsalt.CustomSaltForm.PurityEdit.Text := '100' ;
-
-  hb_newcustomsalt.CustomSaltForm.N_NO3Edit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.ClEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.PEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.N_NH4Edit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.KEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.MgEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.CaEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.SEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.FeEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.MnEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.ZnEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.BEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.CuEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.SiEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.MoEdit.Text := '0' ;
-  hb_newcustomsalt.CustomSaltForm.NaEdit.Text := '0' ;
-
+  hb_newcustomsalt.CustomSaltForm.InsertPrepare;
   hb_newcustomsalt.CustomSaltForm.Visible := true ;
-
-
 end;
+
 
 procedure TSubstanceSelectionForm.Button4Click(Sender: TObject);
 var
@@ -575,70 +540,8 @@ begin
                                end;
          end;
 
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.substances_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
-
-         MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_item]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-    hb_newcustomsalt.CustomSaltForm.NameEdit.text := MyDbf.FieldByName('Name').AsString;
-    hb_newcustomsalt.CustomSaltForm.FormulaEdit.text := MyDbf.FieldByName('Formula').AsString;
-    hb_newcustomsalt.CustomSaltForm.PurityEdit.text := FloattoStr(MyDbf.FieldByName('Purity').AsFloat*100) ;
-    hb_newcustomsalt.CustomSaltForm.N_NO3Edit.text := MyDbf.FieldByName('N (NO3-)').AsString ;
-    hb_newcustomsalt.CustomSaltForm.N_NH4Edit.text := MyDbf.FieldByName('N (NH4+)').AsString ;
-    hb_newcustomsalt.CustomSaltForm.PEdit.text := MyDbf.FieldByName('P').AsString ;
-    hb_newcustomsalt.CustomSaltForm.KEdit.text := MyDbf.FieldByName('K').AsString ;
-    hb_newcustomsalt.CustomSaltForm.MgEdit.text := MyDbf.FieldByName('Mg').AsString ;
-    hb_newcustomsalt.CustomSaltForm.CaEdit.text := MyDbf.FieldByName('Ca').AsString ;
-    hb_newcustomsalt.CustomSaltForm.SEdit.text := MyDbf.FieldByName('S').AsString ;
-    hb_newcustomsalt.CustomSaltForm.FeEdit.text := MyDbf.FieldByName('Fe').AsString ;
-    hb_newcustomsalt.CustomSaltForm.MnEdit.text := MyDbf.FieldByName('Mn').AsString ;
-    hb_newcustomsalt.CustomSaltForm.ZnEdit.text := MyDbf.FieldByName('Zn').AsString ;
-    hb_newcustomsalt.CustomSaltForm.BEdit.text := MyDbf.FieldByName('B').AsString ;
-    hb_newcustomsalt.CustomSaltForm.CuEdit.text := MyDbf.FieldByName('Cu').AsString ;
-    hb_newcustomsalt.CustomSaltForm.SiEdit.text := MyDbf.FieldByName('Si').AsString ;
-    hb_newcustomsalt.CustomSaltForm.MoEdit.text := MyDbf.FieldByName('Mo').AsString ;
-    hb_newcustomsalt.CustomSaltForm.NaEdit.text := MyDbf.FieldByName('Na').AsString ;
-    hb_newcustomsalt.CustomSaltForm.ClEdit.text := MyDbf.FieldByName('Cl').AsString ;
-    hb_newcustomsalt.CustomSaltForm.CostEdit.text := MyDbf.FieldByName('Cost').AsString ;
-
-    hb_newcustomsalt.CustomSaltForm.ConcentratedTypeComboBox.text := MyDbf.FieldByName('ConcType').AsString ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
-    hb_newcustomsalt.CustomSaltForm.CheckBox2.Checked := false ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 1 then
-    hb_newcustomsalt.CustomSaltForm.CheckBox2.Checked := true ;
-
-    MyDbf.Close ;
-
-    MyDbf.Free ;
-
-    if hb_newcustomsalt.CustomSaltForm.Checkbox2.Checked = false then
-
-   begin
-
-   end;
-
-  hb_newcustomsalt.CustomSaltForm.Button1.Enabled := False ;
-
-  hb_newcustomsalt.CustomSaltForm.Button2.Enabled := True;
-
-  hb_newcustomsalt.CustomSaltForm.SaltDBName := ListBox1.Items[selected_item] ;
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox1.ItemIndex := 0;
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox2.ItemIndex := 0 ;
-
-  hb_newcustomsalt.CustomSaltForm.ComboBox3.ItemIndex := 0 ;
-
-  hb_newcustomsalt.CustomSaltForm.Visible := True ;
+  CustomSaltForm.UpdatePrepare(ListBox1.Items[selected_item]);
+  CustomSaltForm.Visible := True ;
 
 end;
 

@@ -13,13 +13,15 @@ type
   { TCustomSaltForm }
 
   TCustomSaltForm = class(TForm)
-    Button1: TBitBtn;
-    Button2: TBitBtn;
+    OKButton: TBitBtn;
+    CancelButton: TBitBtn;
     CheckBox2: TCheckBox;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     ComboBox3: TComboBox;
     ConcentratedTypeComboBox: TComboBox;
+    SourceEdit: TEdit;
+    SourceLabel: TLabel;
     N_NO3Edit: TEdit;
     ZnEdit: TEdit;
     BEdit: TEdit;
@@ -32,7 +34,6 @@ type
     NaEdit: TEdit;
     ClEdit: TEdit;
     N_NH4Edit: TEdit;
-    Edit20: TEdit;
     CostEdit: TEdit;
     PEdit: TEdit;
     KEdit: TEdit;
@@ -63,18 +64,21 @@ type
     BLabel: TLabel;
     LoadFromXMLButton: TSpeedButton;
     SaveToXMLButton: TSpeedButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure OKButtonClick(Sender: TObject);
+    procedure CancelButtonClick(Sender: TObject);
     procedure CheckBox2Change(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
     procedure SaveToXMLButtonClick(Sender: TObject);
+    procedure InsertPrepare;
+    procedure UpdatePrepare(ItemName: string);
   private
     { private declarations }
   public
-    SaltDBName: string;
     { public declarations }
+    SaltDBName: string;
+    EditMode: boolean;
     end;
 
 var
@@ -86,7 +90,93 @@ uses HB_Main ;
 
 { TCustomSaltForm }
 
-procedure TCustomSaltForm.Button1Click(Sender: TObject);
+procedure TCustomSaltForm.InsertPrepare;
+begin
+  ComboBox1.ItemIndex := 0;
+  ComboBox2.ItemIndex := 0 ;
+    ComboBox3.ItemIndex := 0 ;
+    CheckBox2.Checked := false;
+    OKButton.Enabled := True ;
+    CancelButton.Enabled := False ;
+    NameEdit.Text := '';
+    FormulaEdit.Text := '';
+    SourceEdit.Text := '';
+    CostEdit.Text := '100' ;
+    PurityEdit.Text := '100' ;
+    N_NO3Edit.Text := '0' ;
+    ClEdit.Text := '0' ;
+    PEdit.Text := '0' ;
+    N_NH4Edit.Text := '0' ;
+    KEdit.Text := '0' ;
+    MgEdit.Text := '0' ;
+    CaEdit.Text := '0' ;
+    SEdit.Text := '0' ;
+    FeEdit.Text := '0' ;
+    MnEdit.Text := '0' ;
+    ZnEdit.Text := '0' ;
+    BEdit.Text := '0' ;
+    CuEdit.Text := '0' ;
+    SiEdit.Text := '0' ;
+    MoEdit.Text := '0' ;
+    NaEdit.Text := '0' ;
+
+    EditMode := False;
+end;
+
+procedure TCustomSaltForm.UpdatePrepare(ItemName: string);
+var
+   MyDbf: TDbf;
+begin
+   MyDbf := TDbf.Create(nil) ;
+   MyDbf.FilePathFull := '';
+   MyDbf.TableName := Form1.substances_db;
+   MyDbf.Open             ;
+   MyDbf.Active := true ;
+   MyDbf.Filter := 'Name=' + QuotedStr(ItemName) ;
+   MyDbf.Filtered := true;       // This selects the filtered set
+   MyDbf.First;                  // moves the the first filtered data
+
+   NameEdit.text := MyDbf.FieldByName('Name').AsString;
+   FormulaEdit.text := MyDbf.FieldByName('Formula').AsString;
+   SourceEdit.text := MyDbf.FieldByName('Source').AsString;
+   PurityEdit.text := FloattoStr(MyDbf.FieldByName('Purity').AsFloat*100) ;
+   N_NO3Edit.text := MyDbf.FieldByName('N (NO3-)').AsString ;
+   N_NH4Edit.text := MyDbf.FieldByName('N (NH4+)').AsString ;
+   PEdit.text := MyDbf.FieldByName('P').AsString ;
+   KEdit.text := MyDbf.FieldByName('K').AsString ;
+   MgEdit.text := MyDbf.FieldByName('Mg').AsString ;
+   CaEdit.text := MyDbf.FieldByName('Ca').AsString ;
+   SEdit.text := MyDbf.FieldByName('S').AsString ;
+   FeEdit.text := MyDbf.FieldByName('Fe').AsString ;
+   MnEdit.text := MyDbf.FieldByName('Mn').AsString ;
+   ZnEdit.text := MyDbf.FieldByName('Zn').AsString ;
+   BEdit.text := MyDbf.FieldByName('B').AsString ;
+   CuEdit.text := MyDbf.FieldByName('Cu').AsString ;
+   SiEdit.text := MyDbf.FieldByName('Si').AsString ;
+   MoEdit.text := MyDbf.FieldByName('Mo').AsString ;
+   NaEdit.text := MyDbf.FieldByName('Na').AsString ;
+   ClEdit.text := MyDbf.FieldByName('Cl').AsString ;
+   CostEdit.text := MyDbf.FieldByName('Cost').AsString ;
+
+   ConcentratedTypeComboBox.text := MyDbf.FieldByName('ConcType').AsString;
+
+   if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
+      CheckBox2.Checked := false
+   else
+      CheckBox2.Checked := true ;
+
+   MyDbf.Close ;
+   MyDbf.Free ;
+
+   SaltDBName := ItemName;
+   ComboBox1.ItemIndex := 0;
+   ComboBox2.ItemIndex := 0 ;
+   ComboBox3.ItemIndex := 0 ;
+
+   EditMode := True;
+end;
+
+procedure TCustomSaltForm.OKButtonClick(Sender: TObject);
 var
 MyDbf: TDbf;
 currentValP: integer;
@@ -168,7 +258,7 @@ if currentValK = 1  then
 ShowMessage('K will be converted and saved as K%, to see K2O again in the future simply select it from the dropbox for automatic conversion');
 
 if currentValSi = 1  then
-ShowMessage('Si willconverted and be saved as Si%, to see SiO2 again in the future simply select it from the dropbox for automatic conversion');
+ShowMessage('Si will be converted and saved as Si%, to see SiO2 again in the future simply select it from the dropbox for automatic conversion');
 
 ComboBox1.ItemIndex := 0;
 
@@ -180,7 +270,7 @@ CustomSaltForm.Visible := False ;
 
 end;
 
-procedure TCustomSaltForm.Button2Click(Sender: TObject);
+procedure TCustomSaltForm.CancelButtonClick(Sender: TObject);
 var
 MyDbf: TDbf;
 currentValP: integer;
@@ -285,84 +375,44 @@ end;
 
 procedure TCustomSaltForm.ComboBox1Change(Sender: TObject);
 var
-currentVal: integer;
+   currentVal: integer;
 begin
-
-currentVal := ComboBox1.ItemIndex;
-
-
-    if (currentVal = 1) and (Button2.Enabled) then
-
-       begin
-
-       PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))   ;
-
-       end ;
-
-   if (currentVal = 0) and (Button2.Enabled) then
-
-      begin
-
-      PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3))   ;
-
-      end ;
-
+   currentVal := ComboBox1.ItemIndex;
+   if EditMode then
+        if currentVal = 1 then
+           PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
+        else
+           PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox2Change(Sender: TObject);
 var
-currentVal: integer;
+   currentVal: integer;
 begin
-
-currentVal := ComboBox2.ItemIndex;
-
-   if (currentVal = 1) and (Button2.Enabled) then
-
-      begin
-
-      KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))   ;
-
-      end ;
-
-   if (currentVal = 0) and (Button2.Enabled) then
-
-      begin
-
-      KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3))   ;
-
-      end ;
-
+   currentVal := ComboBox2.ItemIndex;
+   if EditMode then
+        if currentVal = 1 then
+            KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
+        else
+            KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox3Change(Sender: TObject);
 var
-currentVal: integer;
+   currentVal: integer;
 begin
-
-currentVal := ComboBox3.ItemIndex;
-
-   if (currentVal = 1) and (Button2.Enabled) then
-
-      begin
-
-      SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))   ;
-
-      end ;
-
-   if (currentVal = 0) and (Button2.Enabled) then
-
-      begin
-
-      SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3))   ;
-
-      end ;
-
+   currentVal := ComboBox2.ItemIndex;
+   if EditMode then
+        if currentVal = 1 then
+             SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
+        else
+             SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3));
 end;
 
 
 procedure TCustomSaltForm.SaveToXMLButtonClick(Sender: TObject);
 var  MyXML: TXMLDocument;
-     RootNode, Node, Value: TDOMNode;
+     RootNode: TDOMNode;
      currentValP, currentValK, currentValSi: string;
 begin
      try
