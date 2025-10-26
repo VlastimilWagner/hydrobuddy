@@ -1,0 +1,4 @@
+LazarusResources.Add('dbsubstances_used','CSV',[
+  'NAME,FORMULA,SOURCE,PURITY,N(NO3-),N(NH4+),P,K,MG,CA,S,B,FE,ZN,MN,CU,MO,NA,S'
+  +'I,CL,ISLIQUID,DENSITY,COST,WEIGHT,CONCTYPE'#13#10
+]);
