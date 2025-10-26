@@ -7,9 +7,9 @@ object Form16: TForm16
   Caption = 'Tissue Analysis'
   ClientHeight = 717
   ClientWidth = 549
-  OnCreate = FormCreate
   Position = poMainFormCenter
-  LCLVersion = '2.0.13.0'
+  LCLVersion = '4.2.0.0'
+  OnCreate = FormCreate
   object Label1: TLabel
     Left = 33
     Height = 15
@@ -286,10 +286,10 @@ object Form16: TForm16
     Top = 319
     Width = 216
     ItemHeight = 0
-    OnClick = ListBox1Click
-    OnSelectionChange = ListBox1SelectionChange
     Sorted = True
     TabOrder = 16
+    OnClick = ListBox1Click
+    OnSelectionChange = ListBox1SelectionChange
   end
   object Label30: TLabel
     Left = 24
@@ -411,8 +411,8 @@ object Form16: TForm16
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button1Click
     TabOrder = 18
+    OnClick = Button1Click
   end
   object Button2: TBitBtn
     Left = 256
@@ -503,8 +503,8 @@ object Form16: TForm16
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button2Click
     TabOrder = 19
+    OnClick = Button2Click
   end
   object Button5: TBitBtn
     Left = 256
@@ -595,8 +595,8 @@ object Form16: TForm16
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button5Click
     TabOrder = 20
+    OnClick = Button5Click
   end
   object Button4: TBitBtn
     Left = 256
@@ -761,8 +761,8 @@ object Form16: TForm16
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button4Click
     TabOrder = 21
+    OnClick = Button4Click
   end
   object Button3: TBitBtn
     Left = 256
@@ -853,8 +853,8 @@ object Form16: TForm16
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button3Click
     TabOrder = 22
+    OnClick = Button3Click
   end
   object StringGrid1: TStringGrid
     Left = 400

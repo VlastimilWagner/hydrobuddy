@@ -9,15 +9,15 @@ object Form14: TForm14
   ClientWidth = 320
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.13.0'
+  LCLVersion = '4.2.0.0'
   object Button1: TButton
     Left = 40
     Height = 25
     Top = 296
     Width = 131
     Caption = 'Add Custom Ratio'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 176
@@ -25,8 +25,8 @@ object Form14: TForm14
     Top = 296
     Width = 120
     Caption = 'Close'
-    OnClick = Button2Click
     TabOrder = 1
+    OnClick = Button2Click
   end
   object ComboBox1: TComboBox
     Left = 40

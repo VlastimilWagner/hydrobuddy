@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm12 }
+  { TFreedomForm }
 
-  TForm12 = class(TForm)
+  TFreedomForm = class(TForm)
     Button1: TButton;
     ComboBox1: TComboBox;
     Label1: TLabel;
@@ -25,15 +25,15 @@ type
   end; 
 
 var
-  Form12: TForm12; 
+  FreedomForm: TFreedomForm;
 
 implementation
 
-{ TForm12 }
+{ TFreedomForm }
 
-procedure TForm12.Button1Click(Sender: TObject);
+procedure TFreedomForm.Button1Click(Sender: TObject);
 begin
-  Form12.Visible := false ;
+  FreedomForm.Visible := false ;
 end;
 
 initialization

@@ -56,7 +56,7 @@ begin
   names[2] := ComboBox3.Items[ComboBox3.ItemIndex] ;
 
   StringGrid1.Cells[0, StringGrid1.RowCount-1] := (names[0] + ': ' + names[1] + ': ' + names[2]) ;
-  StringGrid1.Cells[1, StringGrid1.RowCount-2] := (HB_Main.Form1.getratio(names[0], names[1], names[2], 3)) ;
+  StringGrid1.Cells[1, StringGrid1.RowCount-2] := (MainForm.getratio(names[0], names[1], names[2], 3)) ;
 
 end;
 

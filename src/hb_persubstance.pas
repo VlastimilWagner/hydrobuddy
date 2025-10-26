@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm9 }
+  { TPerSubstanceForm }
 
-  TForm9 = class(TForm)
+  TPerSubstanceForm = class(TForm)
     Button1: TButton;
     StringGrid1: TStringGrid;
     procedure Button1Click(Sender: TObject);
@@ -23,16 +23,16 @@ type
   end; 
 
 var
-  Form9: TForm9; 
+  PerSubstanceForm: TPerSubstanceForm;
 
 implementation
 
-{ TForm9 }
+{ TPerSubstanceForm }
 
-procedure TForm9.Button1Click(Sender: TObject);
+procedure TPerSubstanceForm.Button1Click(Sender: TObject);
 begin
 
-Form9.Visible := false ;
+PerSubstanceForm.Visible := false ;
 
 end;
 

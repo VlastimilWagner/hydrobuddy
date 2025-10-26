@@ -13,6 +13,7 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
   ClientWidth = 689
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 66

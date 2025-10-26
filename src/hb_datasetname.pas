@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm10 }
+  { TDatasetNameForm }
 
-  TForm10 = class(TForm)
+  TDatasetNameForm = class(TForm)
     Button1: TButton;
     Edit1: TEdit;
     Label1: TLabel;
@@ -24,15 +24,15 @@ type
   end; 
 
 var
-  Form10: TForm10; 
+  DatasetNameForm: TDatasetNameForm;
 
 implementation
 
 uses HB_Main ;
 
-{ TForm10 }
+{ TDatasetNameForm }
 
-procedure TForm10.Button1Click(Sender: TObject);
+procedure TDatasetNameForm.Button1Click(Sender: TObject);
 
 begin
 
@@ -40,7 +40,7 @@ datasetname := Edit1.Text ;
 
 ShowMessage('Data Set name set to ' + Edit1.Text + '. Database creation will finish when you add a data point');
 
-Form10.Visible := False ;
+DatasetNameForm.Visible := False ;
 
 end;
 

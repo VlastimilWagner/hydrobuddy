@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm5 }
+  { TCommercialNutrientForm }
 
-  TForm5 = class(TForm)
+  TCommercialNutrientForm = class(TForm)
     Button1: TBitBtn;
     Button2: TButton;
     Button3: TButton;
@@ -69,16 +69,16 @@ type
   end; 
 
 var
-  Form5: TForm5; 
+  CommercialNutrientForm: TCommercialNutrientForm;
 
 implementation
 
 uses HB_Main ;
 
-{ TForm5 }
+{ TCommercialNutrientForm }
 
 
-procedure TForm5.Button1Click(Sender: TObject);
+procedure TCommercialNutrientForm.Button1Click(Sender: TObject);
 var
 i : integer ;
 j : integer ;
@@ -112,12 +112,12 @@ for i := 1 to 16 do
     begin
 
       test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-      result[i - 1] := Form1.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
+      result[i - 1] := MainForm.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
 
     end;
 
-    HB_Main.Form1.cleanresults ;
-    HB_Main.Form1.RadioButton10.Checked := true ;
+    MainForm.cleanresults ;
+    MainForm.RadioButton10.Checked := true ;
 
 
     // finally copy values to edit boxes
@@ -128,22 +128,22 @@ for i := 1 to 16 do
 
            begin
 
-          HB_Main.Form1.Edit1.Text := FloattoStr(result[0]) ;
-          HB_Main.Form1.Edit3.Text := FloattoStr(result[2]) ;
-          HB_Main.Form1.Edit2.Text := FloattoStr(result[1]) ;
-          HB_Main.Form1.Edit14.Text := FloattoStr(result[13]) ;
-          HB_Main.Form1.Edit4.Text := FloattoStr(result[3]) ;
-          HB_Main.Form1.Edit5.Text := FloattoStr(result[4]) ;
-          HB_Main.Form1.Edit6.Text := FloattoStr(result[5]) ;
-          HB_Main.Form1.Edit7.Text := FloattoStr(result[6]) ;
-          HB_Main.Form1.Edit8.Text := FloattoStr(result[7]) ;
-          HB_Main.Form1.Edit9.Text := FloattoStr(result[8]) ;
-          HB_Main.Form1.Edit10.Text := FloattoStr(result[9]) ;
-          HB_Main.Form1.Edit11.Text := FloattoStr(result[10]) ;
-          HB_Main.Form1.Edit12.Text := FloattoStr(result[11]) ;
-          HB_Main.Form1.Edit13.Text := FloattoStr(result[12]) ;
-          HB_Main.Form1.Edit15.Text := FloattoStr(result[14]) ;
-          HB_Main.Form1.Edit16.Text := FloattoStr(result[15]) ;
+          MainForm.Edit1.Text := FloattoStr(result[0]) ;
+          MainForm.Edit3.Text := FloattoStr(result[2]) ;
+          MainForm.Edit2.Text := FloattoStr(result[1]) ;
+          MainForm.Edit14.Text := FloattoStr(result[13]) ;
+          MainForm.Edit4.Text := FloattoStr(result[3]) ;
+          MainForm.Edit5.Text := FloattoStr(result[4]) ;
+          MainForm.Edit6.Text := FloattoStr(result[5]) ;
+          MainForm.Edit7.Text := FloattoStr(result[6]) ;
+          MainForm.Edit8.Text := FloattoStr(result[7]) ;
+          MainForm.Edit9.Text := FloattoStr(result[8]) ;
+          MainForm.Edit10.Text := FloattoStr(result[9]) ;
+          MainForm.Edit11.Text := FloattoStr(result[10]) ;
+          MainForm.Edit12.Text := FloattoStr(result[11]) ;
+          MainForm.Edit13.Text := FloattoStr(result[12]) ;
+          MainForm.Edit15.Text := FloattoStr(result[14]) ;
+          MainForm.Edit16.Text := FloattoStr(result[15]) ;
 
           end ;
 
@@ -154,40 +154,40 @@ for i := 1 to 16 do
 
           begin
 
-          HB_Main.Form1.Edit1.Text := FloattoStr(result[0]+ StrtoFloat(HB_Main.Form1.Edit1.Text)) ;
+          MainForm.Edit1.Text := FloattoStr(result[0]+ StrtoFloat(MainForm.Edit1.Text)) ;
 
-          HB_Main.Form1.Edit3.Text := FloattoStr(result[2]+ StrtoFloat(HB_Main.Form1.Edit3.Text)) ;
+          MainForm.Edit3.Text := FloattoStr(result[2]+ StrtoFloat(MainForm.Edit3.Text)) ;
 
-          HB_Main.Form1.Edit2.Text := FloattoStr(result[1]+ StrtoFloat(HB_Main.Form1.Edit2.Text)) ;  ;
+          MainForm.Edit2.Text := FloattoStr(result[1]+ StrtoFloat(MainForm.Edit2.Text)) ;  ;
 
-          HB_Main.Form1.Edit13.Text := FloattoStr(result[13]+ StrtoFloat(HB_Main.Form1.Edit13.Text)) ;
-
-
+          MainForm.Edit13.Text := FloattoStr(result[13]+ StrtoFloat(MainForm.Edit13.Text)) ;
 
 
-          HB_Main.Form1.Edit4.Text := FloattoStr(result[3]+ StrtoFloat(HB_Main.Form1.Edit4.Text)) ;
-          HB_Main.Form1.Edit5.Text := FloattoStr(result[4]+ StrtoFloat(HB_Main.Form1.Edit5.Text)) ;
-          HB_Main.Form1.Edit6.Text := FloattoStr(result[5]+ StrtoFloat(HB_Main.Form1.Edit6.Text)) ;
-          HB_Main.Form1.Edit7.Text := FloattoStr(result[6]+ StrtoFloat(HB_Main.Form1.Edit7.Text)) ;
-          HB_Main.Form1.Edit8.Text := FloattoStr(result[7]+ StrtoFloat(HB_Main.Form1.Edit8.Text)) ;
-          HB_Main.Form1.Edit9.Text := FloattoStr(result[8]+ StrtoFloat(HB_Main.Form1.Edit9.Text)) ;
-          HB_Main.Form1.Edit10.Text := FloattoStr(result[9]+ StrtoFloat(HB_Main.Form1.Edit10.Text)) ;
-          HB_Main.Form1.Edit11.Text := FloattoStr(result[10]+ StrtoFloat(HB_Main.Form1.Edit11.Text));
-          HB_Main.Form1.Edit12.Text := FloattoStr(result[11]+ StrtoFloat(HB_Main.Form1.Edit12.Text));
-          HB_Main.Form1.Edit13.Text := FloattoStr(result[12]+ StrtoFloat(HB_Main.Form1.Edit13.Text));
-          HB_Main.Form1.Edit14.Text := FloattoStr(result[13]+ StrtoFloat(HB_Main.Form1.Edit14.Text));
-          HB_Main.Form1.Edit15.Text := FloattoStr(result[14]+ StrtoFloat(HB_Main.Form1.Edit15.Text));
-          HB_Main.Form1.Edit16.Text :=FloattoStr(result[15]+ StrtoFloat(HB_Main.Form1.Edit16.Text));
-
-          end ;
 
 
-          Form5.Visible := false ;
-
+          MainForm.Edit4.Text := FloattoStr(result[3]+ StrtoFloat(MainForm.Edit4.Text)) ;
+          MainForm.Edit5.Text := FloattoStr(result[4]+ StrtoFloat(MainForm.Edit5.Text)) ;
+          MainForm.Edit6.Text := FloattoStr(result[5]+ StrtoFloat(MainForm.Edit6.Text)) ;
+          MainForm.Edit7.Text := FloattoStr(result[6]+ StrtoFloat(MainForm.Edit7.Text)) ;
+          MainForm.Edit8.Text := FloattoStr(result[7]+ StrtoFloat(MainForm.Edit8.Text)) ;
+          MainForm.Edit9.Text := FloattoStr(result[8]+ StrtoFloat(MainForm.Edit9.Text)) ;
+          MainForm.Edit10.Text := FloattoStr(result[9]+ StrtoFloat(MainForm.Edit10.Text)) ;
+          MainForm.Edit11.Text := FloattoStr(result[10]+ StrtoFloat(MainForm.Edit11.Text));
+          MainForm.Edit12.Text := FloattoStr(result[11]+ StrtoFloat(MainForm.Edit12.Text));
+          MainForm.Edit13.Text := FloattoStr(result[12]+ StrtoFloat(MainForm.Edit13.Text));
+          MainForm.Edit14.Text := FloattoStr(result[13]+ StrtoFloat(MainForm.Edit14.Text));
+          MainForm.Edit15.Text := FloattoStr(result[14]+ StrtoFloat(MainForm.Edit15.Text));
+          MainForm.Edit16.Text :=FloattoStr(result[15]+ StrtoFloat(MainForm.Edit16.Text));
 
           end ;
 
-procedure TForm5.Button2Click(Sender: TObject);
+
+          CommercialNutrientForm.Visible := false ;
+
+
+          end ;
+
+procedure TCommercialNutrientForm.Button2Click(Sender: TObject);
 var
 i : integer ;
 j : integer ;
@@ -230,7 +230,7 @@ for i := 1 to 16 do
     begin
 
     test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-    result[i - 1] := Form1.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
+    result[i - 1] := MainForm.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
 
     end;
 
@@ -267,12 +267,12 @@ for i := 1 to 16 do
     hb_comparison.Form15.StringGrid1.DefaultTextStyle := s;
 end;
 
-procedure TForm5.Button3Click(Sender: TObject);
+procedure TCommercialNutrientForm.Button3Click(Sender: TObject);
 begin
   hb_comparison.Form15.Visible := true ;
 end;
 
-procedure TForm5.ComboBox4Change(Sender: TObject);
+procedure TCommercialNutrientForm.ComboBox4Change(Sender: TObject);
   var
 i : integer ;
 selected_item : integer ;
@@ -283,7 +283,7 @@ begin
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.substances_db;
+   MyDbf.TableName := MainForm.substances_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 

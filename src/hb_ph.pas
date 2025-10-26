@@ -48,19 +48,19 @@ begin
   if ComboBox1.ItemIndex = 0 then
   begin
         ppm_contribution := total_alkalinity*0.7*(0.033814/1)*(25.6);
-        Form1.Edit3.Text := FloatToStr(StrToFloat(Form1.Edit3.Text)+ppm_contribution);
+        MainForm.Edit3.Text := FloatToStr(StrToFloat(MainForm.Edit3.Text)+ppm_contribution);
   end;
 
   if ComboBox1.ItemIndex = 1 then
   begin
        ppm_contribution := total_alkalinity*0.23*(0.033814/1)*(43.6);
-       Form1.Edit7.Text := FloatToStr(StrToFloat(Form1.Edit7.Text)+ppm_contribution);
+       MainForm.Edit7.Text := FloatToStr(StrToFloat(MainForm.Edit7.Text)+ppm_contribution);
   end;
 
   if ComboBox1.ItemIndex = 2 then
   begin
        ppm_contribution := total_alkalinity*0.56*(0.033814/1)*(14.6);
-       Form1.Edit1.Text := FloatToStr(StrToFloat(Form1.Edit1.Text)+ppm_contribution);
+       MainForm.Edit1.Text := FloatToStr(StrToFloat(MainForm.Edit1.Text)+ppm_contribution);
   end;
 
 

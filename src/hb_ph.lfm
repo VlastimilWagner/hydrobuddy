@@ -9,7 +9,7 @@ object Form13: TForm13
   ClientWidth = 353
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.13.0'
+  LCLVersion = '4.2.0.0'
   object Label18: TLabel
     Left = 25
     Height = 15
@@ -33,10 +33,10 @@ object Form13: TForm13
     Top = 96
     Width = 311
     Caption = 'Add acid nutrient contribution to targets'
-    OnClick = Button1Click
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
+    OnClick = Button1Click
   end
   object Label1: TLabel
     Left = 25
@@ -58,9 +58,9 @@ object Form13: TForm13
       'Sulfuric acid'
       'Nitric acid'
     )
-    OnChange = ComboBox1Change
     Style = csDropDownList
     TabOrder = 2
     Text = 'Phosphoric acid'
+    OnChange = ComboBox1Change
   end
 end

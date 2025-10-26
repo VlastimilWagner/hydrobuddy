@@ -1,4 +1,4 @@
-object Form8: TForm8
+object StockAnalysisForm: TStockAnalysisForm
   Left = 844
   Height = 395
   Top = 278
@@ -12,7 +12,6 @@ object Form8: TForm8
   ClientHeight = 395
   ClientWidth = 368
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.13.0'
   object Label3: TLabel
     Left = 16
     Height = 15
@@ -27,8 +26,8 @@ object Form8: TForm8
     Top = 360
     Width = 96
     Caption = 'Close'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
     Left = 16

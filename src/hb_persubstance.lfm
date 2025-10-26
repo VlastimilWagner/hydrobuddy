@@ -1,4 +1,4 @@
-object Form9: TForm9
+object PerSubstanceForm: TPerSubstanceForm
   Left = 216
   Height = 479
   Top = 425
@@ -12,15 +12,14 @@ object Form9: TForm9
   ClientHeight = 479
   ClientWidth = 531
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.13.0'
   object Button1: TButton
     Left = 392
     Height = 25
     Top = 424
     Width = 96
     Caption = 'Close'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
     Left = 40

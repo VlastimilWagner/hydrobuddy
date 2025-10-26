@@ -107,7 +107,7 @@ begin
 
     MyDbf := TDbf.Create(nil) ;
     MyDbf.FilePathFull := '';
-    MyDbf.TableName := Form1.substances_db;
+    MyDbf.TableName := MainForm.substances_db;
     MyDbf.Open             ;
     MyDbf.Active := true ;
     MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
@@ -196,7 +196,7 @@ for i := 0 to ListBox1.Items.Count - 1 do
 
     MyDbf := TDbf.Create(nil) ;
     MyDbf.FilePathFull := '';
-    MyDbf.TableName := Form1.substances_used_db;
+    MyDbf.TableName := MainForm.substances_used_db;
     MyDbf.Open             ;
     MyDbf.Active := true ;
     MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_idx]) ;
@@ -266,13 +266,13 @@ SetLength(values_to_copy, 20) ;
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_db;
+MyDbf.TableName := MainForm.substances_db;
 MyDbf.ReadOnly := False ;
 MyDbf.Open;
 
 MyDbf_used := TDbf.Create(nil) ;
 MyDbf_used.FilePathFull := '';
-MyDbf_used.TableName := Form1.substances_used_db;
+MyDbf_used.TableName := MainForm.substances_used_db;
 MyDbf_used.Open             ;
 MyDbf_used.Active := true ;
 
@@ -378,7 +378,7 @@ begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_used_db;
+MyDbf.TableName := MainForm.substances_used_db;
 MyDbf.Open;
 MyDbf.ReadOnly := False;
 MyDbf.Active := true ;
@@ -402,7 +402,7 @@ MyDbf.Close ;
 
 MyDbf.Free ;
 
-HB_Main.Form1.Button10.Enabled := false ;
+MainForm.Button10.Enabled := false ;
 
 For i := 0 to Length(selected_items)-1 do
 begin
@@ -429,7 +429,7 @@ if ListBox2.SelCount = 0 then // No ítems selected
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_used_db;
+MyDbf.TableName := MainForm.substances_used_db;
 MyDbf.Open;
 MyDbf.ReadOnly := False;
 MyDbf.Active := true ;
@@ -457,7 +457,7 @@ MyDbf.Close ;
 
 MyDbf.Free ;
 
-HB_Main.Form1.Button10.Enabled := false ;
+MainForm.Button10.Enabled := false ;
 
 For i := 0 to Length(selected_items)-1 do
 begin
@@ -490,7 +490,7 @@ begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_db;
+MyDbf.TableName := MainForm.substances_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -566,7 +566,7 @@ begin
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.substances_used_db;
+   MyDbf.TableName := MainForm.substances_used_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 
@@ -575,20 +575,20 @@ begin
     MyDbf.Filtered := true;       // This selects the filtered set
     MyDbf.First;                  // moves the the first filtered data
 
-    hb_addweight.Form4.Edit1.text := MyDbf.FieldByName('Weight').AsString;
-    hb_addweight.Form4.is_liquid := MyDbf.FieldByName('IsLiquid').AsInteger;
+    AddWeightForm.Edit1.text := MyDbf.FieldByName('Weight').AsString;
+    AddWeightForm.is_liquid := MyDbf.FieldByName('IsLiquid').AsInteger;
 
     MyDbf.Close ;
 
     MyDbf.Free ;
 
-if (hb_addweight.Form4.is_liquid = 0) and (hb_main.Form1.RadioButton9.checked) then hb_addweight.Form4.Label1.Caption := 'Mass of substance (oz)';
-if (hb_addweight.Form4.is_liquid = 0) and (hb_main.Form1.RadioButton8.checked) then hb_addweight.Form4.Label1.Caption := 'Mass of substance (g)';
-if (hb_addweight.Form4.is_liquid = 1) then hb_addweight.Form4.Label1.Caption := 'Volume of substance (mL)';
+if (AddWeightForm.is_liquid = 0) and (MainForm.RadioButton9.checked) then AddWeightForm.Label1.Caption := 'Mass of substance (oz)';
+if (AddWeightForm.is_liquid = 0) and (MainForm.RadioButton8.checked) then AddWeightForm.Label1.Caption := 'Mass of substance (g)';
+if (AddWeightForm.is_liquid = 1) then AddWeightForm.Label1.Caption := 'Volume of substance (mL)';
 
-hb_addweight.Form4.Label2.Caption := ListBox2.Items[selected_item] ;
+AddWeightForm.Label2.Caption := ListBox2.Items[selected_item] ;
 
-hb_addweight.Form4.Visible := True ;
+AddWeightForm.Visible := True ;
 
 end;
 
@@ -602,7 +602,7 @@ begin
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.substances_used_db;
+   MyDbf.TableName := MainForm.substances_used_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 
@@ -669,7 +669,7 @@ begin
 
     MyDbf := TDbf.Create(nil) ;
     MyDbf.FilePathFull := '';
-    MyDbf.TableName := Form1.substances_used_db;
+    MyDbf.TableName := MainForm.substances_used_db;
     MyDbf.Open;
     MyDbf.ReadOnly := False;
     MyDbf.Active := true ;
@@ -692,7 +692,7 @@ begin
     MyDbf.Close ;
     MyDbf.Free ;
 
-    HB_Main.Form1.Button10.Enabled := false ;
+    MainForm.Button10.Enabled := false ;
 
     For i := 0 to Length(selected_items2)-1 do
     begin
@@ -729,13 +729,13 @@ end;
 
   MyDbf := TDbf.Create(nil) ;
   MyDbf.FilePathFull := '';
-  MyDbf.TableName := Form1.substances_db;
+  MyDbf.TableName := MainForm.substances_db;
   MyDbf.ReadOnly := False ;
   MyDbf.Open;
 
   MyDbf_used := TDbf.Create(nil) ;
   MyDbf_used.FilePathFull := '';
-  MyDbf_used.TableName := Form1.substances_used_db;
+  MyDbf_used.TableName := MainForm.substances_used_db;
   MyDbf_used.Open             ;
   MyDbf_used.Active := true ;
 

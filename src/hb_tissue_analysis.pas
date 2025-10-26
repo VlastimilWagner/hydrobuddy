@@ -90,7 +90,7 @@ begin
 
   MyDbf := TDbf.Create(nil);
   MyDbf.FilePathFull := '';
-  MyDbf.TableName := Form1.tissue_analysis_db ;
+  MyDbf.TableName := MainForm.tissue_analysis_db ;
   MyDbf.Open;
   MyDbf.Active := True;
 
@@ -147,7 +147,7 @@ begin
 
     MyDbf := TDbf.Create(nil) ;
     MyDbf.FilePathFull := '';
-    MyDbf.TableName := Form1.tissue_analysis_db;
+    MyDbf.TableName := MainForm.tissue_analysis_db;
     MyDbf.Open             ;
     MyDbf.Active := true ;
     MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
@@ -238,7 +238,7 @@ begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.tissue_analysis_db;
+MyDbf.TableName := MainForm.tissue_analysis_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -280,7 +280,7 @@ procedure TForm16.Button2Click(Sender: TObject);
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.tissue_analysis_db;
+   MyDbf.TableName := MainForm.tissue_analysis_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 
@@ -340,28 +340,28 @@ procedure TForm16.Button3Click(Sender: TObject);
 
        MyDbf := TDbf.Create(nil) ;
        MyDbf.FilePathFull := '';
-       MyDbf.TableName := Form1.tissue_analysis_db;
+       MyDbf.TableName := MainForm.tissue_analysis_db;
        MyDbf.Open             ;
        MyDbf.Active := true ;
        MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
        MyDbf.Filtered := true;       // This selects the filtered set
        MyDbf.First;                  // moves the the first filtered data
 
-       HB_Main.Form1.Edit1.Text :=  FloattoStr((MyDbf.FieldByName('N').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.Form1.Edit3.Text :=  FloattoStr((MyDbf.FieldByName('P').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.Form1.Edit4.Text :=  FloattoStr((MyDbf.FieldByName('K').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.Form1.Edit5.Text :=  FloattoStr((MyDbf.FieldByName('Mg').AsFloat/100.0)*(wue*1000));
-       HB_Main.Form1.Edit6.Text :=  FloattoStr((MyDbf.FieldByName('Ca').AsFloat/100.0)*(wue*1000))   ;
-       HB_Main.Form1.Edit7.Text :=  FloattoStr((MyDbf.FieldByName('S').AsFloat/100.0)*(wue*1000));
-       HB_Main.Form1.Edit13.Text :=  FloattoStr((MyDbf.FieldByName('Si').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.Form1.Edit8.Text :=  FloattoStr((MyDbf.FieldByName('Fe').AsFloat/(10000*100.0))*(wue*1000))   ;
-       HB_Main.Form1.Edit9.Text :=  FloattoStr((MyDbf.FieldByName('Mn').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.Form1.Edit10.Text :=  FloattoStr((MyDbf.FieldByName('Zn').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.Form1.Edit11.Text :=  FloattoStr((MyDbf.FieldByName('B').AsFloat/(10000*100.0))*(wue*1000));
-       HB_Main.Form1.Edit12.Text :=  FloattoStr((MyDbf.FieldByName('Cu').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.Form1.Edit14.Text :=  FloattoStr((MyDbf.FieldByName('Mo').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.Form1.Edit15.Text :=  FloattoStr((MyDbf.FieldByName('Na').AsFloat/(10000*100.0))*(wue*1000));
-       HB_Main.Form1.Edit16.Text :=  FloattoStr((MyDbf.FieldByName('Cl').AsFloat/(10000*100.0))*(wue*1000)) ;
+       HB_Main.MainForm.Edit1.Text :=  FloattoStr((MyDbf.FieldByName('N').AsFloat/100.0)*(wue*1000)) ;
+       HB_Main.MainForm.Edit3.Text :=  FloattoStr((MyDbf.FieldByName('P').AsFloat/100.0)*(wue*1000)) ;
+       HB_Main.MainForm.Edit4.Text :=  FloattoStr((MyDbf.FieldByName('K').AsFloat/100.0)*(wue*1000)) ;
+       HB_Main.MainForm.Edit5.Text :=  FloattoStr((MyDbf.FieldByName('Mg').AsFloat/100.0)*(wue*1000));
+       HB_Main.MainForm.Edit6.Text :=  FloattoStr((MyDbf.FieldByName('Ca').AsFloat/100.0)*(wue*1000))   ;
+       HB_Main.MainForm.Edit7.Text :=  FloattoStr((MyDbf.FieldByName('S').AsFloat/100.0)*(wue*1000));
+       HB_Main.MainForm.Edit13.Text :=  FloattoStr((MyDbf.FieldByName('Si').AsFloat/100.0)*(wue*1000)) ;
+       HB_Main.MainForm.Edit8.Text :=  FloattoStr((MyDbf.FieldByName('Fe').AsFloat/(10000*100.0))*(wue*1000))   ;
+       HB_Main.MainForm.Edit9.Text :=  FloattoStr((MyDbf.FieldByName('Mn').AsFloat/(10000*100.0))*(wue*1000)) ;
+       HB_Main.MainForm.Edit10.Text :=  FloattoStr((MyDbf.FieldByName('Zn').AsFloat/(10000*100.0))*(wue*1000)) ;
+       HB_Main.MainForm.Edit11.Text :=  FloattoStr((MyDbf.FieldByName('B').AsFloat/(10000*100.0))*(wue*1000));
+       HB_Main.MainForm.Edit12.Text :=  FloattoStr((MyDbf.FieldByName('Cu').AsFloat/(10000*100.0))*(wue*1000)) ;
+       HB_Main.MainForm.Edit14.Text :=  FloattoStr((MyDbf.FieldByName('Mo').AsFloat/(10000*100.0))*(wue*1000)) ;
+       HB_Main.MainForm.Edit15.Text :=  FloattoStr((MyDbf.FieldByName('Na').AsFloat/(10000*100.0))*(wue*1000));
+       HB_Main.MainForm.Edit16.Text :=  FloattoStr((MyDbf.FieldByName('Cl').AsFloat/(10000*100.0))*(wue*1000)) ;
 
        MyDbf.Close ;
        MyDbf.Free ;
@@ -434,7 +434,7 @@ procedure TForm16.Button5Click(Sender: TObject);
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.tissue_analysis_db;
+   MyDbf.TableName := MainForm.tissue_analysis_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 

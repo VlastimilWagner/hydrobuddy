@@ -1,4 +1,4 @@
-object Form1: TForm1
+object MainForm: TMainForm
   Left = 401
   Height = 670
   Top = 496
@@ -345,7 +345,6 @@ object Form1: TForm1
   }
   ParentBiDiMode = False
   Position = poDesktopCenter
-  LCLVersion = '4.2.0.0'
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
@@ -365,12 +364,12 @@ object Form1: TForm1
       ClientHeight = 645
       ClientWidth = 826
       object PageControl2: TPageControl
-        Left = 0
+        Left = 8
         Height = 648
         Top = 0
         Width = 828
-        ActivePage = TabSheet6
-        TabIndex = 1
+        ActivePage = TabSheet7
+        TabIndex = 2
         TabOrder = 0
         object TabSheet5: TTabSheet
           Caption = 'Introduction'
@@ -23154,18 +23153,6 @@ object Form1: TForm1
           OnChange = RadioButton3Change
         end
       end
-      object Button5: TButton
-        Left = 462
-        Height = 25
-        Top = 7
-        Width = 88
-        Caption = 'Create DB'
-        Enabled = False
-        ParentFont = False
-        TabOrder = 19
-        Visible = False
-        OnClick = Button5Click
-      end
       object Edit11: TEdit
         Left = 132
         Height = 23
@@ -23183,7 +23170,7 @@ object Form1: TForm1
         Caption = 'Add Field DB'
         Enabled = False
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 19
         Visible = False
         OnClick = Button3Click
       end
@@ -23194,7 +23181,7 @@ object Form1: TForm1
         Width = 71
         Caption = 'Enable DB'
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 20
         Visible = False
         OnChange = CheckBox1Change
       end
@@ -23215,7 +23202,7 @@ object Form1: TForm1
         ClientHeight = 72
         ClientWidth = 153
         ParentFont = False
-        TabOrder = 22
+        TabOrder = 21
         object Label19: TLabel
           Left = 41
           Height = 15
@@ -23255,7 +23242,7 @@ object Form1: TForm1
         ClientHeight = 176
         ClientWidth = 481
         ParentFont = False
-        TabOrder = 23
+        TabOrder = 22
         object Button7: TButton
           Left = 224
           Height = 25
@@ -23370,7 +23357,7 @@ object Form1: TForm1
         Width = 104
         Caption = 'Disable Pop-ups'
         ParentFont = False
-        TabOrder = 24
+        TabOrder = 23
         OnChange = CheckBox3Change
       end
       object CheckBox5: TCheckBox
@@ -23380,7 +23367,7 @@ object Form1: TForm1
         Top = 73
         Width = 94
         Caption = 'Small Window'
-        TabOrder = 25
+        TabOrder = 24
         OnChange = CheckBox5Change
       end
       object Panel8: TPanel
@@ -23390,7 +23377,7 @@ object Form1: TForm1
         Width = 120
         ClientHeight = 112
         ClientWidth = 120
-        TabOrder = 26
+        TabOrder = 25
         object Label34: TLabel
           Left = 0
           Height = 15
@@ -23444,7 +23431,7 @@ object Form1: TForm1
         Top = 7
         Width = 75
         Caption = 'Add field S'
-        TabOrder = 27
+        TabOrder = 26
         Visible = False
         OnClick = Button23Click
       end
@@ -23454,7 +23441,7 @@ object Form1: TForm1
         Top = 7
         Width = 75
         Caption = 'SetValues'
-        TabOrder = 28
+        TabOrder = 27
         Visible = False
         OnClick = Button24Click
       end
@@ -23470,7 +23457,7 @@ object Form1: TForm1
           'SiO2'
         )
         Style = csDropDownList
-        TabOrder = 29
+        TabOrder = 28
         Text = 'Si'
         OnChange = ComboBox3Change
       end
@@ -23724,7 +23711,7 @@ object Form1: TForm1
           FFFF0099FFFF0099FFFF039AFFFF0099FFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFF
           FFFF
         }
-        TabOrder = 30
+        TabOrder = 29
         OnClick = Button26Click
       end
       object Button15: TButton
@@ -23733,7 +23720,7 @@ object Form1: TForm1
         Top = 74
         Width = 120
         Caption = 'Zero all targets'
-        TabOrder = 31
+        TabOrder = 30
         OnClick = Button15Click
       end
       object Panel9: TPanel
@@ -23744,7 +23731,7 @@ object Form1: TForm1
         ClientHeight = 55
         ClientWidth = 153
         ParentFont = False
-        TabOrder = 32
+        TabOrder = 31
         object Label25: TLabel
           Left = 41
           Height = 15
@@ -24134,7 +24121,7 @@ object Form1: TForm1
       end
       object Button20: TButton
         Left = 200
-        Height = 34
+        Height = 32
         Hint = 'Copies the "Result (ppm)" fields to the targets on the Main Page'
         Top = 600
         Width = 144

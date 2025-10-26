@@ -1,4 +1,4 @@
-object Form10: TForm10
+object DatasetNameForm: TDatasetNameForm
   Left = 2499
   Height = 121
   Top = 637
@@ -8,7 +8,6 @@ object Form10: TForm10
   ClientHeight = 121
   ClientWidth = 258
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.13.0'
   object Label1: TLabel
     Left = 32
     Height = 15
@@ -23,8 +22,8 @@ object Form10: TForm10
     Top = 72
     Width = 75
     Caption = 'OK'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Edit1: TEdit
     Left = 32

@@ -6,195 +6,148 @@ interface
 
 
 uses
-  Classes, SysUtils, Dbf, db, Dbf_Common, LResources, csvdocument, customhelpfunctions;
+  Classes, SysUtils, Dbf, db, Dbf_Common, LResources, csvdocument, db_base, customhelpfunctions;
 
 type
-  TDBtissue_analysis = object
-  private
-    const DBName = 'tissue_analysis.dbf';
-    procedure BasicPost(var MyDbf: TDbf);
-    procedure Createdb;
-    procedure InsertDataFromXMLRes(var MyDbf: TDbf);
-    procedure InsertDataFromDBVer100(var MyDbf: TDbf);
-  public
-    RowData : RECORD
-        NAME: string;
-        N: double;
-        P: double;
-        K: double;
-        Mg: double;
-        Ca: double;
-        S: double;
-        B: double;
-        Fe: double;
-        Zn: double;
-        Mn: double;
-        Cu: double;
-        Mo: double;
-        Na: double;
-        Si: double;
-        Cl: double;
-    end;
-    constructor Init;
-    procedure Insert;
-    procedure Update;
-    procedure Delete;
-    function SearchByName(Name: string):boolean;
+  TTissueAnalysisRecord = record
+      NAME: string;
+      N: double;
+      P: double;
+      K: double;
+      Mg: double;
+      Ca: double;
+      S: double;
+      B: double;
+      Fe: double;
+      Zn: double;
+      Mn: double;
+      Cu: double;
+      Mo: double;
+      Na: double;
+      Si: double;
+      Cl: double;
   end;
 
-  var DBtissue_analysis: TDBtissue_analysis;
+
+  TDBTissueAnalysis = class(TDBBase)
+  private
+    FRowData: TTissueAnalysisRecord;
+    procedure Createdb; override;
+    procedure AssignFields; override;
+    procedure AssignRowData; override;
+    procedure InsertDataFromCSVRes;
+    procedure InsertDataFromDBVer100;
+  public
+    constructor Create;
+    property RowData: TTissueAnalysisRecord read FRowData write FRowData;
+  end;
+
+  var DBTissueAnalysis: TDBTissueAnalysis;
 
 
 implementation
 
-constructor TDBtissue_analysis.Init;
+constructor TDBTissueAnalysis.Create;
 begin
-  Createdb;
+  inherited Create('tissue_analysis.dbf');
 end;
 
 
-procedure TDBtissue_analysis.BasicPost(var MyDbf: TDbf);
+
+procedure TDBTissueAnalysis.Createdb;
 begin
-   MyDbf.FieldByName('NAME').AsString:= RowData.NAME;
-   MyDbf.FieldByName('N').AsFloat:= RowData.N;
-   MyDbf.FieldByName('P').AsFloat:= RowData.P;
-   MyDbf.FieldByName('K').AsFloat:= RowData.K;
-   MyDbf.FieldByName('Mg').AsFloat:= RowData.Mg;
-   MyDbf.FieldByName('Ca').AsFloat:= RowData.Ca;
-   MyDbf.FieldByName('S').AsFloat:= RowData.S;
-   MyDbf.FieldByName('B').AsFloat:= RowData.B;
-   MyDbf.FieldByName('Fe').AsFloat:= RowData.Fe;
-   MyDbf.FieldByName('Zn').AsFloat:= RowData.Zn;
-   MyDbf.FieldByName('Mn').AsFloat:= RowData.Mn;
-   MyDbf.FieldByName('Cu').AsFloat:= RowData.Cu;
-   MyDbf.FieldByName('Mo').AsFloat:= RowData.Mo;
-   MyDbf.FieldByName('Na').AsFloat:= RowData.Na;
-   MyDbf.FieldByName('Si').AsFloat:= RowData.Si;
-   MyDbf.FieldByName('Cl').AsFloat:= RowData.Cl;
-   MyDbf.Post ;
+  Dbf.fielddefs.Clear;
+  Dbf.TableLevel := 7;
+  With Dbf.FieldDefs do begin
+    Add('NAME', ftString, 80, True);
+    Add('N', ftFloat, 0, False);
+    Add('P', ftFloat, 0, False);
+    Add('K', ftFloat, 0, False);
+    Add('Mg', ftFloat, 0, False);
+    Add('Ca', ftFloat, 0, False);
+    Add('S', ftFloat, 0, False);
+    Add('B', ftFloat, 0, False);
+    Add('Fe', ftFloat, 0, False);
+    Add('Zn', ftFloat, 0, False);
+    Add('Mn', ftFloat, 0, False);
+    Add('Cu', ftFloat, 0, False);
+    Add('Mo', ftFloat, 0, False);
+    Add('Na', ftFloat, 0, False);
+    Add('Si', ftFloat, 0, False);
+    Add('Cl', ftFloat, 0, False);
+  End;
+  Dbf.CreateTable;
+  Dbf.Open;
+  Dbf.AddIndex('name', 'Name', [ixCaseInsensitive]);
+  Dbf.Active := true ;
+  InsertDataFromCSVRes;
 end;
 
-procedure TDBtissue_analysis.Insert;
-var
-   MyDbf: TDbf;
+procedure TDBTissueAnalysis.AssignFields;
 begin
-  MyDbf := TDbf.Create(nil);
   try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Insert ;
-    BasicPost(MyDbf);
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
+    Dbf.FieldByName('NAME').AsString:= fRowData.NAME;
+    Dbf.FieldByName('N').AsFloat:= fRowData.N;
+    Dbf.FieldByName('P').AsFloat:= fRowData.P;
+    Dbf.FieldByName('K').AsFloat:= fRowData.K;
+    Dbf.FieldByName('Mg').AsFloat:= fRowData.Mg;
+    Dbf.FieldByName('Ca').AsFloat:= fRowData.Ca;
+    Dbf.FieldByName('S').AsFloat:= fRowData.S;
+    Dbf.FieldByName('B').AsFloat:= fRowData.B;
+    Dbf.FieldByName('Fe').AsFloat:= fRowData.Fe;
+    Dbf.FieldByName('Zn').AsFloat:= fRowData.Zn;
+    Dbf.FieldByName('Mn').AsFloat:= fRowData.Mn;
+    Dbf.FieldByName('Cu').AsFloat:= fRowData.Cu;
+    Dbf.FieldByName('Mo').AsFloat:= fRowData.Mo;
+    Dbf.FieldByName('Na').AsFloat:= fRowData.Na;
+    Dbf.FieldByName('Si').AsFloat:= fRowData.Si;
+    Dbf.FieldByName('Cl').AsFloat:= fRowData.Cl;
+  except
+    on E:Exception do
+       raise Exception.CreateFmt('Assign DBF data Error: %s', [E.Message]);
   end;
 end;
 
-procedure TDBtissue_analysis.Update;
-var
-   MyDbf: TDbf;
+procedure TDBTissueAnalysis.AssignRowData;
 begin
-  MyDbf := TDbf.Create(nil);
   try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(RowData.NAME) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-    MyDbf.Edit ;
-    BasicPost(MyDbf);
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
+    fRowData.NAME := Dbf.FieldByName('NAME').AsString;
+    fRowData.N := Dbf.FieldByName('N').AsFloat;
+    fRowData.P := Dbf.FieldByName('P').AsFloat;
+    fRowData.K := Dbf.FieldByName('K').AsFloat;
+    fRowData.Mg := Dbf.FieldByName('Mg').AsFloat;
+    fRowData.Ca := Dbf.FieldByName('Ca').AsFloat;
+    fRowData.S := Dbf.FieldByName('S').AsFloat;
+    fRowData.B := Dbf.FieldByName('B').AsFloat;
+    fRowData.Fe := Dbf.FieldByName('Fe').AsFloat;
+    fRowData.Zn := Dbf.FieldByName('Zn').AsFloat;
+    fRowData.Mn := Dbf.FieldByName('Mn').AsFloat;
+    fRowData.Cu := Dbf.FieldByName('Cu').AsFloat;
+    fRowData.Mo := Dbf.FieldByName('Mo').AsFloat;
+    fRowData.Na := Dbf.FieldByName('Na').AsFloat;
+    fRowData.Si := Dbf.FieldByName('Si').AsFloat;
+    fRowData.Cl := Dbf.FieldByName('Cl').AsFloat;
+  except
+    on E:Exception do
+       raise Exception.CreateFmt('Assign from DBF Error: %s', [E.Message]);
   end;
 end;
 
-procedure TDBtissue_analysis.Delete;
-var
-   MyDbf: TDbf;
-begin
-  MyDbf := TDbf.Create(nil);
-  try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(RowData.NAME) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-    MyDbf.Delete ;
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
-  end;
-end;
+{===Public methods===}
 
-
-function TDBtissue_analysis.SearchByName(Name: string):boolean;
-var
-   MyDbf: TDbf;
-   Res: boolean;
-begin
-  MyDbf := TDbf.Create(nil);
-  Res := False;
-  try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(Name) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-
-    if not MyDbf.EOF then begin
-      RowData.NAME := MyDbf.FieldByName('NAME').AsString;
-      RowData.N := MyDbf.FieldByName('N').AsFloat;
-      RowData.P := MyDbf.FieldByName('P').AsFloat;
-      RowData.K := MyDbf.FieldByName('K').AsFloat;
-      RowData.Mg := MyDbf.FieldByName('Mg').AsFloat;
-      RowData.Ca := MyDbf.FieldByName('Ca').AsFloat;
-      RowData.S := MyDbf.FieldByName('S').AsFloat;
-      RowData.B := MyDbf.FieldByName('B').AsFloat;
-      RowData.Fe := MyDbf.FieldByName('Fe').AsFloat;
-      RowData.Zn := MyDbf.FieldByName('Zn').AsFloat;
-      RowData.Mn := MyDbf.FieldByName('Mn').AsFloat;
-      RowData.Cu := MyDbf.FieldByName('Cu').AsFloat;
-      RowData.Mo := MyDbf.FieldByName('Mo').AsFloat;
-      RowData.Na := MyDbf.FieldByName('Na').AsFloat;
-      RowData.Si := MyDbf.FieldByName('Si').AsFloat;
-      RowData.Cl := MyDbf.FieldByName('Cl').AsFloat;
-      Res:=True;
-    end else begin
-      Res:=False;
-    end;
-
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
-  end;
-  SearchByName := Res;
-end;
-
-procedure TDBtissue_analysis.InsertDataFromDBVer100(var MyDbf: TDbf);
+procedure TDBTissueAnalysis.InsertDataFromDBVer100;
 begin
 
 
 end;
 
-procedure TDBtissue_analysis.InsertDataFromXMLRes(var MyDbf: TDbf);
+procedure TDBTissueAnalysis.InsertDataFromCSVRes;
 var
    S: TLazarusResourceStream;
    Doc: TCSVDocument;
    ListFields: array[0..100] of string;
    i:integer;
+   IsLiquid: boolean;
 begin
    S := TLazarusResourceStream.Create('dbtissue_analysis', 'CSV');
    Doc := TCSVDocument.Create;
@@ -204,24 +157,24 @@ begin
      for i:= 0 to Doc.ColCount[0]-1 do ListFields[i] := Doc.Cells[i,0];
 
      for i:= 1 to Doc.RowCount-1 do begin
-       MyDbf.Insert ;
-       RowData.NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
-       RowData.N := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N',0),i]);
-       RowData.P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
-       RowData.K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
-       RowData.MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
-       RowData.CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
-       RowData.S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
-       RowData.B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
-       RowData.FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
-       RowData.ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
-       RowData.MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
-       RowData.CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
-       RowData.MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
-       RowData.NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
-       RowData.SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
-       RowData.CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
-       BasicPost(MyDbf);
+       if Doc.Cells[Doc.IndexOfCol('ISLIQUID',0),i]='True' then IsLiquid := True else IsLiquid := False;
+       fRowData.NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
+       fRowData.N := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N',0),i]);
+       fRowData.P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
+       fRowData.K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
+       fRowData.MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
+       fRowData.CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
+       fRowData.S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
+       fRowData.B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
+       fRowData.FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
+       fRowData.ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
+       fRowData.MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
+       fRowData.CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
+       fRowData.MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
+       fRowData.NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
+       fRowData.SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
+       fRowData.CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
+       Insert;
      end;
 
    finally
@@ -230,51 +183,9 @@ begin
 end;
 
 
-procedure TDBtissue_analysis.Createdb;
-var
-  MyDbf: TDbf;
-begin
-  if not fileexists(DBName) then begin
-    MyDbf := TDbf.Create(nil);
-    try
-      MyDbf.FilePath := '';
-      MyDbf.TableLevel := 7;
-      MyDbf.Exclusive := True;
-      MyDbf.TableName := DBName;
-      With MyDbf.FieldDefs do begin
-        Add('NAME', ftString, 80, True);
-        Add('N', ftFloat, 0, False);
-        Add('P', ftFloat, 0, False);
-        Add('K', ftFloat, 0, False);
-        Add('Mg', ftFloat, 0, False);
-        Add('Ca', ftFloat, 0, False);
-        Add('S', ftFloat, 0, False);
-        Add('B', ftFloat, 0, False);
-        Add('Fe', ftFloat, 0, False);
-        Add('Zn', ftFloat, 0, False);
-        Add('Mn', ftFloat, 0, False);
-        Add('Cu', ftFloat, 0, False);
-        Add('Mo', ftFloat, 0, False);
-        Add('Na', ftFloat, 0, False);
-        Add('Si', ftFloat, 0, False);
-        Add('Cl', ftFloat, 0, False);
-      End;
-      MyDbf.CreateTable;
-      MyDbf.Open;
-      MyDbf.AddIndex('name', 'Name', [ixCaseInsensitive]);
-      MyDbf.Active := true ;
-
-      InsertDataFromXMLRes(MyDbf);
-
-      MyDbf.Close;
-    finally
-      MyDbf.Free;
-    end;
-  end;
-end;
 
 begin
   {$I db_tissue_analysis_csv.lrs}
-  DBtissue_analysis.Init;
+  DBTissueAnalysis := TDbTissueAnalysis.Create;
 end.
 

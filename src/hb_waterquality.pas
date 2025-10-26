@@ -6,13 +6,13 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common, hb_ph, DOM, XMLRead, XMLWrite;
+  StdCtrls, Buttons, Dbf, db, Dbf_Common, hb_ph, DOM, XMLRead, XMLWrite, db_watterquality;
 
 type
 
-  { TForm6 }
+  { TWatterQualityForm }
 
-  TForm6 = class(TForm)
+  TWatterQualityForm = class(TForm)
     Button1: TBitBtn;
     Button2: TBitBtn;
     Button3: TBitBtn;
@@ -72,20 +72,20 @@ type
   end; 
 
 var
-  Form6: TForm6; 
+  WatterQualityForm: TWatterQualityForm;
 
 implementation
 
 uses HB_Main;
 
-procedure TForm6.Button1Click(Sender: TObject);
+procedure TWatterQualityForm.Button1Click(Sender: TObject);
  var
 MyDbf: TDbf;
 begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.water_quality_db;
+MyDbf.TableName := MainForm.water_quality_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -122,7 +122,7 @@ MyDbf.Free ;
 
 ShowMessage('Water Quality data named ' + Edit25.Text + ' has been saved to the Database');
 
-Form6.UpdateComboBox ;
+WatterQualityForm.UpdateComboBox ;
 
 Button3.Enabled := True ;
 
@@ -130,7 +130,7 @@ Button2.Enabled := true ;
 
 end;
 
-procedure TForm6.Button2Click(Sender: TObject);
+procedure TWatterQualityForm.Button2Click(Sender: TObject);
   var
 MyDbf: TDbf;
 i : integer ;
@@ -139,7 +139,7 @@ begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.water_quality_db;
+MyDbf.TableName := MainForm.water_quality_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -166,14 +166,14 @@ if ComboBox1.Items.Count = 0 then
 
 end;
 
-procedure TForm6.Button3Click(Sender: TObject);
+procedure TWatterQualityForm.Button3Click(Sender: TObject);
   var
 MyDbf: TDbf;
 begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.water_quality_db;
+MyDbf.TableName := MainForm.water_quality_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -210,25 +210,25 @@ ShowMessage(Edit25.Text + ' set as default water quality set') ;
 
 end;
 
-procedure TForm6.Button4Click(Sender: TObject);
+procedure TWatterQualityForm.Button4Click(Sender: TObject);
 begin
 
-Form6.Visible := false ;
+WatterQualityForm.Visible := false ;
 
 end;
 
-procedure TForm6.Button5Click(Sender: TObject);
+procedure TWatterQualityForm.Button5Click(Sender: TObject);
 begin
   hb_ph.Form13.Visible := true ;
 end;
 
-procedure TForm6.ComboBox1Change(Sender: TObject);
+procedure TWatterQualityForm.ComboBox1Change(Sender: TObject);
 begin
 
 end;
 
 
-procedure TForm6.ComboBox1Select(Sender: TObject);
+procedure TWatterQualityForm.ComboBox1Select(Sender: TObject);
 var
 i : integer ;
 selected_item : integer ;
@@ -237,7 +237,7 @@ begin
 
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.water_quality_db;
+   MyDbf.TableName := MainForm.water_quality_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
 
@@ -275,7 +275,7 @@ begin
 
 end;
 
-procedure TForm6.SaveToXMLButtonClick(Sender: TObject);
+procedure TWatterQualityForm.SaveToXMLButtonClick(Sender: TObject);
 var  MyXML: TXMLDocument;
      RootNode, Node, Value: TDOMNode;
 begin
@@ -296,18 +296,24 @@ begin
 end;
 
 
-procedure TForm6.UpdateComboBox ;
+procedure TWatterQualityForm.UpdateComboBox ;
 var
 MyDbf: TDbf;
 i : integer ;
 j : integer ;
 begin
 
-ComboBox1.Items.Clear ;
+  ComboBox1.Items.Clear ;
+
+  DBWatterQuality.SearchFirst;
+  ComboBox1.Items.Add(DBWatterQuality.RowData.Name);
+  while DBWatterQuality.Next do ComboBox1.Items.Add(DBWatterQuality.RowData.Name);
+
+{
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.water_quality_db;
+MyDbf.TableName := MainForm.water_quality_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -323,7 +329,7 @@ MyDbf.Close ;
 
 MyDbf.Free ;
 
-
+ }
 
 end ;
 

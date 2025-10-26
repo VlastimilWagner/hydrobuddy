@@ -1,4 +1,4 @@
-object Form12: TForm12
+object FreedomForm: TFreedomForm
   Left = 1018
   Height = 285
   Top = 245
@@ -8,7 +8,6 @@ object Form12: TForm12
   ClientHeight = 285
   ClientWidth = 342
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.13.0'
   object Label1: TLabel
     Left = 24
     Height = 15
@@ -33,8 +32,8 @@ object Form12: TForm12
     Top = 240
     Width = 104
     Caption = 'OK'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object ComboBox1: TComboBox
     Left = 28

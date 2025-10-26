@@ -129,7 +129,7 @@ var
 begin
    MyDbf := TDbf.Create(nil) ;
    MyDbf.FilePathFull := '';
-   MyDbf.TableName := Form1.substances_db;
+   MyDbf.TableName := MainForm.substances_db;
    MyDbf.Open             ;
    MyDbf.Active := true ;
    MyDbf.Filter := 'Name=' + QuotedStr(ItemName) ;
@@ -190,7 +190,7 @@ currentValSi := ComboBox3.ItemIndex;
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_db ;
+MyDbf.TableName := MainForm.substances_db ;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -249,7 +249,7 @@ MyDbf.Close ;
 
 MyDbf.Free ;
 
-Form1.UpdateList ;
+MainForm.UpdateList ;
 
 if currentValP = 1  then
 ShowMessage('P will be converted and saved as P%, to see P2O5 again in the future simply select it from the dropbox for automatic conversion');
@@ -284,7 +284,7 @@ currentValSi := ComboBox3.ItemIndex;
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_db;
+MyDbf.TableName := MainForm.substances_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -355,7 +355,7 @@ ComboBox2.ItemIndex := 0 ;
 
 ComboBox3.ItemIndex := 0 ;
 
-HB_Main.Form1.UpdateList ;
+MainForm.UpdateList ;
 
 CustomSaltForm.Visible := False ;
 
@@ -380,9 +380,9 @@ begin
    currentVal := ComboBox1.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-           PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
+           PEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
         else
-           PEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
+           PEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox2Change(Sender: TObject);
@@ -392,9 +392,9 @@ begin
    currentVal := ComboBox2.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-            KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
+            KEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
         else
-            KEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
+            KEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox3Change(Sender: TObject);
@@ -404,9 +404,9 @@ begin
    currentVal := ComboBox2.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-             SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
+             SiEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
         else
-             SiEdit.Text := FloattoStr(Form1.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3));
+             SiEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3));
 end;
 
 

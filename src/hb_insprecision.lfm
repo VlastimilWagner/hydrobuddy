@@ -1,4 +1,4 @@
-object Form7: TForm7
+object InsPrecisionForm: TInsPrecisionForm
   Left = 306
   Height = 204
   Top = 240
@@ -13,7 +13,6 @@ object Form7: TForm7
   ClientWidth = 290
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
-  LCLVersion = '2.0.8.0'
   object Label1: TLabel
     Left = 40
     Height = 15
@@ -36,8 +35,8 @@ object Form7: TForm7
     Top = 160
     Width = 75
     Caption = 'OK'
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Edit1: TEdit
     Left = 40

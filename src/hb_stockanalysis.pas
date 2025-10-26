@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm8 }
+  { TStockAnalysisForm }
 
-  TForm8 = class(TForm)
+  TStockAnalysisForm = class(TForm)
     Button1: TButton;
     Label3: TLabel;
     StringGrid1: TStringGrid;
@@ -24,16 +24,16 @@ type
   end; 
 
 var
-  Form8: TForm8; 
+  StockAnalysisForm: TStockAnalysisForm;
 
 implementation
 
-{ TForm8 }
+{ TStockAnalysisForm }
 
-procedure TForm8.Button1Click(Sender: TObject);
+procedure TStockAnalysisForm.Button1Click(Sender: TObject);
 begin
 
-Form8.Visible := false ;
+StockAnalysisForm.Visible := false ;
 
 end;
 

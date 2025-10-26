@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm4 }
+  { TAddWeightForm }
 
-  TForm4 = class(TForm)
+  TAddWeightForm = class(TForm)
     Button1: TButton;
     Edit1: TEdit;
     Label1: TLabel;
@@ -26,22 +26,22 @@ type
   end; 
 
 var
-  Form4: TForm4; 
+  AddWeightForm: TAddWeightForm;
 
 implementation
 
-{ TForm4 }
+{ TAddWeightForm }
 
 uses HB_Main;
 
-procedure TForm4.Button1Click(Sender: TObject);
+procedure TAddWeightForm.Button1Click(Sender: TObject);
 var
 MyDbf: TDbf;
 begin
 
 MyDbf := TDbf.Create(nil) ;
 MyDbf.FilePathFull := '';
-MyDbf.TableName := Form1.substances_used_db;
+MyDbf.TableName := MainForm.substances_used_db;
 MyDbf.Open             ;
 MyDbf.Active := true ;
 
@@ -60,7 +60,7 @@ MyDbf.Close ;
 
 MyDbf.Free ;
 
-Form4.Visible := False ;
+AddWeightForm.Visible := False ;
 
 
 

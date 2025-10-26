@@ -1,4 +1,4 @@
-object Form6: TForm6
+object WatterQualityForm: TWatterQualityForm
   Left = 4330
   Height = 416
   Top = 288
@@ -12,7 +12,6 @@ object Form6: TForm6
   ClientHeight = 416
   ClientWidth = 448
   FormStyle = fsStayOnTop
-  LCLVersion = '4.2.0.0'
   object Label1: TLabel
     Left = 19
     Height = 15

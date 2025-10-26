@@ -10,9 +10,9 @@ uses
 
 type
 
-  { TForm7 }
+  { TInsPrecisionForm }
 
-  TForm7 = class(TForm)
+  TInsPrecisionForm = class(TForm)
     Button1: TButton;
     Edit1: TEdit;
     Edit2: TEdit;
@@ -27,20 +27,20 @@ type
   end; 
 
 var
-  Form7: TForm7; 
+  InsPrecisionForm: TInsPrecisionForm;
 
 implementation
 
-{ TForm7 }
+{ TInsPrecisionForm }
 
-procedure TForm7.Button1Click(Sender: TObject);
+procedure TInsPrecisionForm.Button1Click(Sender: TObject);
 begin
 
-Form7.Visible := false ;
+InsPrecisionForm.Visible := false ;
 
 end;
 
-procedure TForm7.FormCreate(Sender: TObject);
+procedure TInsPrecisionForm.FormCreate(Sender: TObject);
 begin
 
 end;

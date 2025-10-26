@@ -6,42 +6,42 @@ interface
 
 
 uses
-  Classes, SysUtils, Dbf, db, Dbf_Common, LResources, csvdocument, customhelpfunctions;
+  Classes, SysUtils, Dbf, db, Dbf_Common, LResources, csvdocument, db_base, customhelpfunctions;
 
 type
-  TDBformulations = object
+  TformulationRecord = record
+      NAME: string;
+      N_NO3: double;
+      N_NH4: double;
+      P: double;
+      K: double;
+      Mg: double;
+      Ca: double;
+      S: double;
+      B: double;
+      Fe: double;
+      Zn: double;
+      Mn: double;
+      Cu: double;
+      Mo: double;
+      Na: double;
+      Si: double;
+      Cl: double;
+      UNITS: string;
+  end;
+
+
+  TDBformulations = class(TDBBase)
   private
-    const DBName = 'formulations.dbf';
-    procedure BasicPost(var MyDbf: TDbf);
-    procedure Createdb;
-    procedure InsertDataFromXMLRes(var MyDbf: TDbf);
-    procedure InsertDataFromDBVer100(var MyDbf: TDbf);
+    FRowData: TFormulationRecord;
+    procedure Createdb; override;
+    procedure AssignFields; override;
+    procedure AssignRowData; override;
+    procedure InsertDataFromCSVRes;
+    procedure InsertDataFromDBVer100;
   public
-    RowData : RECORD
-        NAME: string;
-        N_NO3: double;
-        N_NH4: double;
-        P: double;
-        K: double;
-        Mg: double;
-        Ca: double;
-        S: double;
-        B: double;
-        Fe: double;
-        Zn: double;
-        Mn: double;
-        Cu: double;
-        Mo: double;
-        Na: double;
-        Si: double;
-        Cl: double;
-        UNITS: string;
-    end;
-    constructor Init;
-    procedure Insert;
-    procedure Update;
-    procedure Delete;
-    function SearchByName(Name: string):boolean;
+    constructor Create;
+    property RowData: TformulationRecord read FRowData write FRowData;
   end;
 
   var DBformulations: TDBformulations;
@@ -49,153 +49,107 @@ type
 
 implementation
 
-constructor TDBformulations.Init;
+constructor TDBformulations.Create;
 begin
-  Createdb;
+  inherited Create('formulations.dbf');
 end;
 
 
-procedure TDBformulations.BasicPost(var MyDbf: TDbf);
+
+procedure TDBformulations.Createdb;
 begin
-   MyDbf.FieldByName('NAME').AsString:= RowData.NAME;
-   MyDbf.FieldByName('N(NO3-)').AsFloat:= RowData.N_NO3;
-   MyDbf.FieldByName('N(NH4+)').AsFloat:= RowData.N_NH4;
-   MyDbf.FieldByName('P').AsFloat:= RowData.P;
-   MyDbf.FieldByName('K').AsFloat:= RowData.K;
-   MyDbf.FieldByName('Mg').AsFloat:= RowData.Mg;
-   MyDbf.FieldByName('Ca').AsFloat:= RowData.Ca;
-   MyDbf.FieldByName('S').AsFloat:= RowData.S;
-   MyDbf.FieldByName('B').AsFloat:= RowData.B;
-   MyDbf.FieldByName('Fe').AsFloat:= RowData.Fe;
-   MyDbf.FieldByName('Zn').AsFloat:= RowData.Zn;
-   MyDbf.FieldByName('Mn').AsFloat:= RowData.Mn;
-   MyDbf.FieldByName('Cu').AsFloat:= RowData.Cu;
-   MyDbf.FieldByName('Mo').AsFloat:= RowData.Mo;
-   MyDbf.FieldByName('Na').AsFloat:= RowData.Na;
-   MyDbf.FieldByName('Si').AsFloat:= RowData.Si;
-   MyDbf.FieldByName('Cl').AsFloat:= RowData.Cl;
-   MyDbf.FieldByName('UNITS').AsString:= RowData.UNITS;
-   MyDbf.Post ;
+  Dbf.fielddefs.Clear;
+  Dbf.TableLevel := 7;
+  With Dbf.FieldDefs do begin
+    Add('NAME', ftString, 80, True);
+    Add('N(NO3-)', ftFloat, 0, False);
+    Add('N(NH4+)', ftFloat, 0, False);
+    Add('P', ftFloat, 0, False);
+    Add('K', ftFloat, 0, False);
+    Add('Mg', ftFloat, 0, False);
+    Add('Ca', ftFloat, 0, False);
+    Add('S', ftFloat, 0, False);
+    Add('B', ftFloat, 0, False);
+    Add('Fe', ftFloat, 0, False);
+    Add('Zn', ftFloat, 0, False);
+    Add('Mn', ftFloat, 0, False);
+    Add('Cu', ftFloat, 0, False);
+    Add('Mo', ftFloat, 0, False);
+    Add('Na', ftFloat, 0, False);
+    Add('Si', ftFloat, 0, False);
+    Add('Cl', ftFloat, 0, False);
+    Add('UNITS', ftString, 80, False);
+  End;
+  Dbf.CreateTable;
+  Dbf.Open;
+  Dbf.AddIndex('name', 'Name', [ixCaseInsensitive]);
+  Dbf.Active := true ;
+  InsertDataFromCSVRes;
 end;
 
-procedure TDBformulations.Insert;
-var
-   MyDbf: TDbf;
+procedure TDBformulations.AssignFields;
 begin
-  MyDbf := TDbf.Create(nil);
   try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Insert ;
-    BasicPost(MyDbf);
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
+    Dbf.FieldByName('NAME').AsString:= FRowData.NAME;
+    Dbf.FieldByName('N(NO3-)').AsFloat:= FRowData.N_NO3;
+    Dbf.FieldByName('N(NH4+)').AsFloat:= FRowData.N_NH4;
+    Dbf.FieldByName('P').AsFloat:= FRowData.P;
+    Dbf.FieldByName('K').AsFloat:= FRowData.K;
+    Dbf.FieldByName('Mg').AsFloat:= FRowData.Mg;
+    Dbf.FieldByName('Ca').AsFloat:= FRowData.Ca;
+    Dbf.FieldByName('S').AsFloat:= FRowData.S;
+    Dbf.FieldByName('B').AsFloat:= FRowData.B;
+    Dbf.FieldByName('Fe').AsFloat:= FRowData.Fe;
+    Dbf.FieldByName('Zn').AsFloat:= FRowData.Zn;
+    Dbf.FieldByName('Mn').AsFloat:= FRowData.Mn;
+    Dbf.FieldByName('Cu').AsFloat:= FRowData.Cu;
+    Dbf.FieldByName('Mo').AsFloat:= FRowData.Mo;
+    Dbf.FieldByName('Na').AsFloat:= FRowData.Na;
+    Dbf.FieldByName('Si').AsFloat:= FRowData.Si;
+    Dbf.FieldByName('Cl').AsFloat:= FRowData.Cl;
+    Dbf.FieldByName('UNITS').AsString:= FRowData.UNITS;
+  except
+    on E:Exception do
+       raise Exception.CreateFmt('Assign DBF data Error: %s', [E.Message]);
   end;
 end;
 
-procedure TDBformulations.Update;
-var
-   MyDbf: TDbf;
+procedure TDBformulations.AssignRowData;
 begin
-  MyDbf := TDbf.Create(nil);
   try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(RowData.NAME) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-    MyDbf.Edit ;
-    BasicPost(MyDbf);
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
+    FRowData.NAME := Dbf.FieldByName('NAME').AsString;
+    FRowData.N_NO3 := Dbf.FieldByName('N(NO3-)').AsFloat;
+    FRowData.N_NH4 := Dbf.FieldByName('N(NH4+)').AsFloat;
+    FRowData.P := Dbf.FieldByName('P').AsFloat;
+    FRowData.K := Dbf.FieldByName('K').AsFloat;
+    FRowData.Mg := Dbf.FieldByName('Mg').AsFloat;
+    FRowData.Ca := Dbf.FieldByName('Ca').AsFloat;
+    FRowData.S := Dbf.FieldByName('S').AsFloat;
+    FRowData.B := Dbf.FieldByName('B').AsFloat;
+    FRowData.Fe := Dbf.FieldByName('Fe').AsFloat;
+    FRowData.Zn := Dbf.FieldByName('Zn').AsFloat;
+    FRowData.Mn := Dbf.FieldByName('Mn').AsFloat;
+    FRowData.Cu := Dbf.FieldByName('Cu').AsFloat;
+    FRowData.Mo := Dbf.FieldByName('Mo').AsFloat;
+    FRowData.Na := Dbf.FieldByName('Na').AsFloat;
+    FRowData.Si := Dbf.FieldByName('Si').AsFloat;
+    FRowData.Cl := Dbf.FieldByName('Cl').AsFloat;
+    FRowData.UNITS := Dbf.FieldByName('UNITS').AsString;
+  except
+    on E:Exception do
+       raise Exception.CreateFmt('Assign from DBF Error: %s', [E.Message]);
   end;
 end;
 
-procedure TDBformulations.Delete;
-var
-   MyDbf: TDbf;
-begin
-  MyDbf := TDbf.Create(nil);
-  try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(RowData.NAME) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-    MyDbf.Delete ;
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
-  end;
-end;
+{===Public methods===}
 
-
-function TDBformulations.SearchByName(Name: string):boolean;
-var
-   MyDbf: TDbf;
-   Res: boolean;
-begin
-  MyDbf := TDbf.Create(nil);
-  Res := False;
-  try
-    MyDbf.FilePath := '';
-    MyDbf.Exclusive := True;
-    MyDbf.TableName := DBName;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(Name) ;
-    MyDbf.Filtered := true;
-    MyDbf.First;
-
-    if not MyDbf.EOF then begin
-      RowData.NAME := MyDbf.FieldByName('NAME').AsString;
-      RowData.N_NO3 := MyDbf.FieldByName('N(NO3-)').AsFloat;
-      RowData.N_NH4 := MyDbf.FieldByName('N(NH4+)').AsFloat;
-      RowData.P := MyDbf.FieldByName('P').AsFloat;
-      RowData.K := MyDbf.FieldByName('K').AsFloat;
-      RowData.Mg := MyDbf.FieldByName('Mg').AsFloat;
-      RowData.Ca := MyDbf.FieldByName('Ca').AsFloat;
-      RowData.S := MyDbf.FieldByName('S').AsFloat;
-      RowData.B := MyDbf.FieldByName('B').AsFloat;
-      RowData.Fe := MyDbf.FieldByName('Fe').AsFloat;
-      RowData.Zn := MyDbf.FieldByName('Zn').AsFloat;
-      RowData.Mn := MyDbf.FieldByName('Mn').AsFloat;
-      RowData.Cu := MyDbf.FieldByName('Cu').AsFloat;
-      RowData.Mo := MyDbf.FieldByName('Mo').AsFloat;
-      RowData.Na := MyDbf.FieldByName('Na').AsFloat;
-      RowData.Si := MyDbf.FieldByName('Si').AsFloat;
-      RowData.Cl := MyDbf.FieldByName('Cl').AsFloat;
-      RowData.UNITS := MyDbf.FieldByName('UNITS').AsString;
-      Res:=True;
-    end else begin
-      Res:=False;
-    end;
-
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
-  end;
-  SearchByName := Res;
-end;
-
-procedure TDBformulations.InsertDataFromDBVer100(var MyDbf: TDbf);
+procedure TDBformulations.InsertDataFromDBVer100;
 begin
 
 
 end;
 
-procedure TDBformulations.InsertDataFromXMLRes(var MyDbf: TDbf);
+procedure TDBformulations.InsertDataFromCSVRes;
 var
    S: TLazarusResourceStream;
    Doc: TCSVDocument;
@@ -210,26 +164,25 @@ begin
      for i:= 0 to Doc.ColCount[0]-1 do ListFields[i] := Doc.Cells[i,0];
 
      for i:= 1 to Doc.RowCount-1 do begin
-       MyDbf.Insert ;
-       RowData.NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
-       RowData.N_NO3 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NO3-)',0),i]);
-       RowData.N_NH4 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NH4+)',0),i]);
-       RowData.P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
-       RowData.K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
-       RowData.MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
-       RowData.CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
-       RowData.S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
-       RowData.B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
-       RowData.FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
-       RowData.ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
-       RowData.MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
-       RowData.CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
-       RowData.MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
-       RowData.NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
-       RowData.SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
-       RowData.CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
-       RowData.UNITS := Doc.Cells[Doc.IndexOfCol('UNITS',0),i];
-       BasicPost(MyDbf);
+       FRowData.NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
+       FRowData.N_NO3 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NO3-)',0),i]);
+       FRowData.N_NH4 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NH4+)',0),i]);
+       FRowData.P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
+       FRowData.K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
+       FRowData.MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
+       FRowData.CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
+       FRowData.S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
+       FRowData.B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
+       FRowData.FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
+       FRowData.ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
+       FRowData.MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
+       FRowData.CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
+       FRowData.MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
+       FRowData.NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
+       FRowData.SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
+       FRowData.CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
+       FRowData.UNITS := Doc.Cells[Doc.IndexOfCol('UNITS',0),i];
+       Insert;
      end;
 
    finally
@@ -238,53 +191,9 @@ begin
 end;
 
 
-procedure TDBformulations.Createdb;
-var
-  MyDbf: TDbf;
-begin
-  if not fileexists(DBName) then begin
-    MyDbf := TDbf.Create(nil);
-    try
-      MyDbf.FilePath := '';
-      MyDbf.TableLevel := 7;
-      MyDbf.Exclusive := True;
-      MyDbf.TableName := DBName;
-      With MyDbf.FieldDefs do begin
-        Add('NAME', ftString, 80, True);
-        Add('N(NO3-)', ftFloat, 0, False);
-        Add('N(NH4+)', ftFloat, 0, False);
-        Add('P', ftFloat, 0, False);
-        Add('K', ftFloat, 0, False);
-        Add('Mg', ftFloat, 0, False);
-        Add('Ca', ftFloat, 0, False);
-        Add('S', ftFloat, 0, False);
-        Add('B', ftFloat, 0, False);
-        Add('Fe', ftFloat, 0, False);
-        Add('Zn', ftFloat, 0, False);
-        Add('Mn', ftFloat, 0, False);
-        Add('Cu', ftFloat, 0, False);
-        Add('Mo', ftFloat, 0, False);
-        Add('Na', ftFloat, 0, False);
-        Add('Si', ftFloat, 0, False);
-        Add('Cl', ftFloat, 0, False);
-        Add('UNITS', ftString, 80, False);
-      End;
-      MyDbf.CreateTable;
-      MyDbf.Open;
-      MyDbf.AddIndex('name', 'Name', [ixCaseInsensitive]);
-      MyDbf.Active := true ;
-
-      InsertDataFromXMLRes(MyDbf);
-
-      MyDbf.Close;
-    finally
-      MyDbf.Free;
-    end;
-  end;
-end;
 
 begin
   {$I db_formulations_csv.lrs}
-  DBformulations.Init;
+  DBformulations := TDbFormulations.Create;
 end.
 

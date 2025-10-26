@@ -1,4 +1,4 @@
-object Form11: TForm11
+object AnalysisForm: TAnalysisForm
   Left = 284
   Height = 440
   Top = 414
@@ -9,15 +9,14 @@ object Form11: TForm11
   ClientWidth = 266
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '2.0.13.0'
   object Button1: TButton
     Left = 181
     Height = 25
     Top = 408
     Width = 75
     Caption = 'Close '
-    OnClick = Button1Click
     TabOrder = 0
+    OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
     Left = 16

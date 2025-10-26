@@ -1,4 +1,4 @@
-object Form5: TForm5
+object CommercialNutrientForm: TCommercialNutrientForm
   Left = 842
   Height = 336
   Top = 376
@@ -12,7 +12,6 @@ object Form5: TForm5
   ClientHeight = 336
   ClientWidth = 750
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.13.0'
   object Label1: TLabel
     Left = 22
     Height = 15
@@ -305,7 +304,7 @@ object Form5: TForm5
       Left = 16
       Height = 19
       Top = 89
-      Width = 60
+      Width = 58
       Caption = 'Per liter'
       Checked = True
       TabOrder = 1
@@ -315,7 +314,7 @@ object Form5: TForm5
       Left = 88
       Height = 19
       Top = 89
-      Width = 73
+      Width = 71
       Caption = 'Per gallon'
       TabOrder = 2
     end
@@ -323,7 +322,7 @@ object Form5: TForm5
       Left = 16
       Height = 19
       Top = 121
-      Width = 161
+      Width = 159
       Caption = 'Add to current ppm values'
       TabOrder = 3
     end
@@ -491,8 +490,8 @@ object Form5: TForm5
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000000000000000000000000000
     }
-    OnClick = Button1Click
     TabOrder = 17
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 48
@@ -500,8 +499,8 @@ object Form5: TForm5
     Top = 271
     Width = 184
     Caption = 'Add product for comparison'
-    OnClick = Button2Click
     TabOrder = 18
+    OnClick = Button2Click
   end
   object Button3: TButton
     Left = 248
@@ -509,8 +508,8 @@ object Form5: TForm5
     Top = 272
     Width = 187
     Caption = 'See all compared products'
-    OnClick = Button3Click
     TabOrder = 19
+    OnClick = Button3Click
   end
   object ComboBox4: TComboBox
     Left = 480
@@ -518,9 +517,9 @@ object Form5: TForm5
     Top = 32
     Width = 256
     ItemHeight = 15
-    OnChange = ComboBox4Change
     Style = csDropDownList
     TabOrder = 20
+    OnChange = ComboBox4Change
   end
   object Label17: TLabel
     Left = 481
