@@ -6,51 +6,52 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, PopupNotifier, Dbf, db, Dbf_Common, hb_newcustomsalt;
+  StdCtrls, Buttons, PopupNotifier, Dbf, hb_newcustomsalt, db_substances, db_substances_used, CustomHelpFunctions;
 
 type
 
   { TSubstanceSelectionForm }
 
   TSubstanceSelectionForm = class(TForm)
-    Button1: TBitBtn;
-    Button10: TBitBtn;
-    Button2: TBitBtn;
-    Button3: TBitBtn;
-    Button4: TBitBtn;
-    Button5: TBitBtn;
-    Button6: TBitBtn;
-    Button7: TBitBtn;
-    Button8: TBitBtn;
-    Button9: TBitBtn;
-    CheckBox1: TCheckBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    ListBox1: TListBox;
-    ListBox2: TListBox;
-    OpenDialog1: TOpenDialog;
-    PopupNotifier1: TPopupNotifier;
-    SaveDialog1: TSaveDialog;
-    procedure Button10Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
-    procedure Button6Click(Sender: TObject);
-    procedure Button7Click(Sender: TObject);
-    procedure Button8Click(Sender: TObject);
-    procedure Button9Click(Sender: TObject);
-    procedure CheckBox1Change(Sender: TObject);
+    AddToUsedButton: TBitBtn;
+    DoNotUseAllButton: TBitBtn;
+    DoNotUseButton: TBitBtn;
+    AddNewButton: TBitBtn;
+    DeleteFromDBButton: TBitBtn;
+    EditSelectButton: TBitBtn;
+    SetAmountButton: TBitBtn;
+    ResetAmountsButton: TBitBtn;
+    SaveToFileButton: TBitBtn;
+    LoadFromFileButton: TBitBtn;
+    SummaryPopupsCheckBox: TCheckBox;
+    SubstanceDatabaseLabel: TLabel;
+    SubstancesUsedLabel: TLabel;
+    SubstanceDatabaseListBox: TListBox;
+    SubstancesUsedListBox: TListBox;
+    OpenDialog: TOpenDialog;
+    PopupNotifier: TPopupNotifier;
+    SaveDialog: TSaveDialog;
+    procedure DoNotUseAllButtonClick(Sender: TObject);
+    procedure AddToUsedButtonClick(Sender: TObject);
+    procedure DoNotUseButtonClick(Sender: TObject);
+    procedure AddNewButtonClick(Sender: TObject);
+    procedure DeleteFromDBButtonClick(Sender: TObject);
+    procedure EditSelectButtonClick(Sender: TObject);
+    procedure SetAmountButtonClick(Sender: TObject);
+    procedure ResetAmountsButtonClick(Sender: TObject);
+    procedure SaveToFileButtonClick(Sender: TObject);
+    procedure LoadFromFileButtonClick(Sender: TObject);
+    procedure SummaryPopupsCheckBoxChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
-    procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
-    procedure ListBox2SelectionChange(Sender: TObject; User: boolean);
+    procedure SubstanceDatabaseListBoxSelectionChange(Sender: TObject);
+    procedure SubstancesUsedListBoxSelectionChange(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
-  end; 
+    procedure UpdateLists;
+  end;
 
 var
   SubstanceSelectionForm: TSubstanceSelectionForm;
@@ -71,745 +72,392 @@ begin
 
 end;
 
-procedure TSubstanceSelectionForm.ListBox1SelectionChange(Sender: TObject; User: boolean);
+procedure TSubstanceSelectionForm.SubstanceDatabaseListBoxSelectionChange(Sender: TObject);
 var
   i,selected_idx : integer ;
   item_selected : boolean ;
-  MyDbf: TDbf;
 begin
+  item_selected := false ;
 
-item_selected := false ;
-
-for i := 0 to ListBox1.Items.Count - 1 do
-
-    begin
-
-    if (ListBox1.Selected [i]) then
-    begin
-         selected_idx := i;
-         item_selected := true ;
+  for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+    if (SubstanceDatabaseListBox.Selected [i]) then begin
+       selected_idx := i;
+       item_selected := true ;
     end;
+  end ;
 
+  if item_selected then  begin
+    for i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+        if (SubstancesUsedListBox.Selected [i]) then SubstancesUsedListBox.Selected [i] := false ;
     end ;
+    DBSubstances.SearchByField('NAME', SubstanceDatabaseListBox.Items[selected_idx], True);
 
-if item_selected then
+    PopupNotifier.Title := SubstanceDatabaseListBox.Items[selected_idx] + ' - '+ 'ConcType ' + DBSubstances.CONCTYPE;
+    if DBSubstances.ISLIQUID then PopupNotifier.Text := 'Liquid, composition is in %W/V'
+     else PopupNotifier.Text := 'Solid, composition is in %W/W';
 
-begin
+    PopupNotifier.Text := PopupNotifier.Text + LineEnding + ' Purity ' + FloattoStr(DBSubstances.PURITY*100) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| N (NO3-)' + ' - ' + FloattoStr(DBSubstances.N_NO3)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| N (NH4+)' + ' - ' + FloattoStr(DBSubstances.N_NH4)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| K' + ' - ' + FloattoStr(DBSubstances.K) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| P' + ' - ' + FloattoStr(DBSubstances.P)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mg' + ' - ' + FloattoStr(DBSubstances.Mg)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Ca' + ' - ' + FloattoStr(DBSubstances.Ca)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| S' + ' - ' + FloattoStr(DBSubstances.S) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Fe' + ' - ' + FloattoStr(DBSubstances.Fe)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| B' + ' - ' + FloattoStr(DBSubstances.B) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Zn' + ' - ' + FloattoStr(DBSubstances.Zn) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mn' + ' - ' + FloattoStr(DBSubstances.Mn)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Cu' + ' - ' + FloattoStr(DBSubstances.Cu) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mo' + ' - ' + FloattoStr(DBSubstances.Mo) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Si' + ' - ' + FloattoStr(DBSubstances.Si)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Cl' + ' - ' + FloattoStr(DBSubstances.Cl) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Na' + ' - ' + FloattoStr(DBSubstances.Na) ;
 
-    for i := 0 to ListBox2.Items.Count - 1 do
+    if SummaryPopupsCheckBox.Checked then PopupNotifier.Show;
 
-        begin
-
-        if (ListBox2.Selected [i]) then
-        ListBox2.Selected [i] := false ;
-
-        end ;
-
-    MyDbf := TDbf.Create(nil) ;
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := MainForm.substances_db;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-
-    PopupNotifier1.Title := ListBox1.Items[selected_idx] + ' - '+ 'ConcType ' + MyDbf.FieldByName('ConcType').AsString ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
-    PopupNotifier1.Text := 'Solid, composition is in %W/W' ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 1 then
-    PopupNotifier1.Text := 'Liquid, composition is in %W/V';
-
-    PopupNotifier1.Text := PopupNotifier1.Text + LineEnding + ' Purity ' + FloattoStr(MyDbf.FieldByName('Purity').AsFloat*100) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| N (NO3-)' + ' - ' + FloattoStr(MyDbf.FieldByName('N (NO3-)').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| N (NH4+)' + ' - ' + FloattoStr(MyDbf.FieldByName('N (NH4+)').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| K' + ' - ' + FloattoStr(MyDbf.FieldByName('K').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| P' + ' - ' + FloattoStr(MyDbf.FieldByName('P').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mg' + ' - ' + FloattoStr(MyDbf.FieldByName('Mg').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Ca' + ' - ' + FloattoStr(MyDbf.FieldByName('Ca').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| S' + ' - ' + FloattoStr(MyDbf.FieldByName('S').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Fe' + ' - ' + FloattoStr(MyDbf.FieldByName('Fe').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| B' + ' - ' + FloattoStr(MyDbf.FieldByName('B').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Zn' + ' - ' + FloattoStr(MyDbf.FieldByName('Zn').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mn' + ' - ' + FloattoStr(MyDbf.FieldByName('Mn').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Cu' + ' - ' + FloattoStr(MyDbf.FieldByName('Cu').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mo' + ' - ' + FloattoStr(MyDbf.FieldByName('Mo').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Si' + ' - ' + FloattoStr(MyDbf.FieldByName('Si').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Cl' + ' - ' + FloattoStr(MyDbf.FieldByName('Cl').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Na' + ' - ' + FloattoStr(MyDbf.FieldByName('Na').AsFloat) ;
-
-    MyDbf.Close ;
-    MyDbf.Free ;
-
-    if checkbox1.Checked then PopupNotifier1.Show;
-
-    Button1.Enabled := True ;
-    Button4.Enabled := True ;
-    Button5.Enabled := True ;
-    Button6.Enabled := False ;
-    Button2.Enabled := False ;
-    Button10.Enabled := False;
-
-end ;
+    AddToUsedButton.Enabled := True ;
+    DeleteFromDBButton.Enabled := True ;
+    EditSelectButton.Enabled := True ;
+    SetAmountButton.Enabled := False ;
+    DoNotUseButton.Enabled := False ;
+    DoNotUseAllButton.Enabled := False;
+  end ;
 
 end;
 
 
-procedure TSubstanceSelectionForm.ListBox2SelectionChange(Sender: TObject; User: boolean);
+procedure TSubstanceSelectionForm.SubstancesUsedListBoxSelectionChange(Sender: TObject);
 var
   i,selected_idx : integer ;
   item_selected : boolean ;
-  MyDbf: TDbf;
 begin
+  item_selected := false ;
 
-
-item_selected := false ;
-
-for i := 0 to ListBox2.Items.Count - 1 do
-
-    begin
-
-    if (ListBox2.Selected [i]) then
-    begin
+  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+    if (SubstancesUsedListBox.Selected [i]) then begin
         item_selected := true ;
         selected_idx := i;
     end;
+  end ;
 
-    end ;
+  if item_selected then begin
+     for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+        if (SubstanceDatabaseListBox.Selected [i]) then
+        SubstanceDatabaseListBox.Selected [i] := false ;
+     end ;
 
-if item_selected then
+    DBSubstancesUsed.SearchByField('NAME', SubstancesUsedListBox.Items[selected_idx], True);
+    PopupNotifier.Title := SubstancesUsedListBox.Items[selected_idx] + ' - '+ 'ConcType ' + DBSubstancesUsed.CONCTYPE ;
 
-begin
+    if DBSubstancesUsed.ISLIQUID then PopupNotifier.Text := 'Liquid, composition is in %W/V'
+      else PopupNotifier.Text := 'Solid, composition is in %W/W' ;
 
-for i := 0 to ListBox1.Items.Count - 1 do
+    PopupNotifier.Text := PopupNotifier.Text + LineEnding + ' Purity ' + FloattoStr(DBSubstancesUsed.PURITY*100) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| N (NO3-)' + ' - ' + FloattoStr(DBSubstancesUsed.N_NO3)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| N (NH4+)' + ' - ' + FloattoStr(DBSubstancesUsed.N_NH4)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| K' + ' - ' + FloattoStr(DBSubstancesUsed.K) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| P' + ' - ' + FloattoStr(DBSubstancesUsed.P)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mg' + ' - ' + FloattoStr(DBSubstancesUsed.Mg)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Ca' + ' - ' + FloattoStr(DBSubstancesUsed.Ca)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| S' + ' - ' + FloattoStr(DBSubstancesUsed.S) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Fe' + ' - ' + FloattoStr(DBSubstancesUsed.Fe)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| B' + ' - ' + FloattoStr(DBSubstancesUsed.B) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Zn' + ' - ' + FloattoStr(DBSubstancesUsed.Zn) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mn' + ' - ' + FloattoStr(DBSubstancesUsed.Mn)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Cu' + ' - ' + FloattoStr(DBSubstancesUsed.Cu) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Mo' + ' - ' + FloattoStr(DBSubstancesUsed.Mo) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Si' + ' - ' + FloattoStr(DBSubstancesUsed.Si)  ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Cl' + ' - ' + FloattoStr(DBSubstancesUsed.Cl) ;
+    PopupNotifier.Text := PopupNotifier.Text + ' ' + '| Na' + ' - ' + FloattoStr(DBSubstancesUsed.Na) ;
 
-    begin
+    if SummaryPopupsCheckBox.Checked then PopupNotifier.Show;
 
-    if (ListBox1.Selected [i]) then
-    ListBox1.Selected [i] := false ;
-
-    end ;
-
-
-    MyDbf := TDbf.Create(nil) ;
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := MainForm.substances_used_db;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_idx]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-
-    PopupNotifier1.Title := ListBox2.Items[selected_idx] + ' - '+ 'ConcType ' + MyDbf.FieldByName('ConcType').AsString ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
-    PopupNotifier1.Text := 'Solid, composition is in %W/W' ;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 1 then
-    PopupNotifier1.Text := 'Liquid, composition is in %W/V';
-
-    PopupNotifier1.Text := PopupNotifier1.Text + LineEnding + ' Purity ' + FloattoStr(MyDbf.FieldByName('Purity').AsFloat*100) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| N (NO3-)' + ' - ' + FloattoStr(MyDbf.FieldByName('N (NO3-)').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| N (NH4+)' + ' - ' + FloattoStr(MyDbf.FieldByName('N (NH4+)').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| K' + ' - ' + FloattoStr(MyDbf.FieldByName('K').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| P' + ' - ' + FloattoStr(MyDbf.FieldByName('P').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mg' + ' - ' + FloattoStr(MyDbf.FieldByName('Mg').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Ca' + ' - ' + FloattoStr(MyDbf.FieldByName('Ca').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| S' + ' - ' + FloattoStr(MyDbf.FieldByName('S').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Fe' + ' - ' + FloattoStr(MyDbf.FieldByName('Fe').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| B' + ' - ' + FloattoStr(MyDbf.FieldByName('B').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Zn' + ' - ' + FloattoStr(MyDbf.FieldByName('Zn').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mn' + ' - ' + FloattoStr(MyDbf.FieldByName('Mn').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Cu' + ' - ' + FloattoStr(MyDbf.FieldByName('Cu').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Mo' + ' - ' + FloattoStr(MyDbf.FieldByName('Mo').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Si' + ' - ' + FloattoStr(MyDbf.FieldByName('Si').AsFloat)  ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Cl' + ' - ' + FloattoStr(MyDbf.FieldByName('Cl').AsFloat) ;
-    PopupNotifier1.Text := PopupNotifier1.Text + ' ' + '| Na' + ' - ' + FloattoStr(MyDbf.FieldByName('Na').AsFloat) ;
-
-    MyDbf.Close ;
-    MyDbf.Free ;
-
-    if checkbox1.Checked then PopupNotifier1.Show;
-
-Button1.Enabled := False ;
-Button4.Enabled := False ;
-Button5.Enabled := False ;
-Button2.Enabled := True ;
-Button6.Enabled := True ;
-Button10.Enabled := True ;
-
-end ;
-
+    AddToUsedButton.Enabled := False ;
+    DeleteFromDBButton.Enabled := False ;
+    EditSelectButton.Enabled := False ;
+    DoNotUseButton.Enabled := True ;
+    SetAmountButton.Enabled := True ;
+    DoNotUseAllButton.Enabled := True ;
+  end ;
 end;
 
-procedure TSubstanceSelectionForm.Button1Click(Sender: TObject);
-var
-MyDbf: TDbf;
-MyDbf_used: TDbf;
-i, j : integer ;
-selected_items : array of integer ;
-values_to_copy : array of double ;
-name1 : string ;
-conctype : string ;
-formula1 : string ;
-source: string;
-begin
-
-if ListBox1.SelCount = 0 then // No ítems selected
-     Exit;
-
-SetLength(values_to_copy, 20) ;
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_db;
-MyDbf.ReadOnly := False ;
-MyDbf.Open;
-
-MyDbf_used := TDbf.Create(nil) ;
-MyDbf_used.FilePathFull := '';
-MyDbf_used.TableName := MainForm.substances_used_db;
-MyDbf_used.Open             ;
-MyDbf_used.Active := true ;
-
-For i := 0 to ListBox1.Items.Count - 1 do
-
-         begin
-                               if ListBox1.Selected [i] then
-                               begin
-                                SetLength(selected_items, Length(selected_items)+1);
-                                selected_items[Length(selected_items)-1] := i ;
-                               end;
-         end;
-
-For i := 0 to Length(selected_items)-1 do
-begin
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_items[i]]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    name1 :=  MyDbf.FieldByName('Name').AsString ;
-    formula1 := MyDbf.FieldByName('Formula').AsString ;
-    values_to_copy[0] := MyDbf.FieldByName('Purity').AsFloat ;
-    values_to_copy[1] := MyDbf.FieldByName('N (NO3-)').AsFloat ;
-    values_to_copy[2] := MyDbf.FieldByName('P').AsFloat ;
-    values_to_copy[3] := MyDbf.FieldByName('K').AsFloat ;
-    values_to_copy[4] := MyDbf.FieldByName('Mg').AsFloat ;
-    values_to_copy[5] := MyDbf.FieldByName('Ca').AsFloat ;
-    values_to_copy[6] := MyDbf.FieldByName('S').AsFloat ;
-    values_to_copy[7] := MyDbf.FieldByName('B').AsFloat ;
-    values_to_copy[8] := MyDbf.FieldByName('Fe').AsFloat ;
-    values_to_copy[9] := MyDbf.FieldByName('Zn').AsFloat ;
-    values_to_copy[10] := MyDbf.FieldByName('Cu').AsFloat ;
-    values_to_copy[11] := MyDbf.FieldByName('Mo').AsFloat ;
-    values_to_copy[12] := MyDbf.FieldByName('Na').AsFloat ;
-    values_to_copy[13] := MyDbf.FieldByName('Si').AsFloat ;
-    values_to_copy[14] := MyDbf.FieldByName('Cl').AsFloat ;
-    values_to_copy[15] := MyDbf.FieldByName('Mn').AsFloat ;
-    values_to_copy[16] := MyDbf.FieldByName('N (NH4+)').AsFloat ;
-    values_to_copy[17] := MyDbf.FieldByName('Cost').AsFloat ;
-    values_to_copy[18] := MyDbf.FieldByName('IsLiquid').AsFloat ;
-    values_to_copy[19] := MyDbf.FieldByName('Density').AsFloat ;
-    source := MyDbf.FieldByName('Source').AsString ;
-    conctype := MyDbf.FieldByName('ConcType').AsString ;
-
-    MyDbf_used.Insert ;
-
-    MyDbf_used.FieldByName('Name').AsString:= name1 ;
-    MyDbf_used.FieldByName('Formula').AsString:= formula1;
-    MyDbf_used.FieldByName('Purity').AsFloat:=values_to_copy[0] ;
-    MyDbf_used.FieldByName('N (NO3-)').AsFloat:=values_to_copy[1];
-    MyDbf_used.FieldByName('P').AsFloat:=values_to_copy[2];
-    MyDbf_used.FieldByName('K').AsFloat:=values_to_copy[3];
-    MyDbf_used.FieldByName('Mg').AsFloat:=values_to_copy[4];
-    MyDbf_used.FieldByName('Ca').AsFloat:=values_to_copy[5];
-    MyDbf_used.FieldByName('S').AsFloat:=values_to_copy[6];
-    MyDbf_used.FieldByName('B').AsFloat:=values_to_copy[7];
-    MyDbf_used.FieldByName('Fe').AsFloat:=values_to_copy[8];
-    MyDbf_used.FieldByName('Zn').AsFloat:=values_to_copy[9];
-    MyDbf_used.FieldByName('Cu').AsFloat:=values_to_copy[10];
-    MyDbf_used.FieldByName('Mo').AsFloat:=values_to_copy[11];
-    MyDbf_used.FieldByName('Na').AsFloat:=values_to_copy[12];
-    MyDbf_used.FieldByName('Si').AsFloat:=values_to_copy[13];
-    MyDbf_used.FieldByName('Cl').AsFloat:=values_to_copy[14];
-    MyDbf_used.FieldByName('Mn').AsFloat:=values_to_copy[15];
-    MyDbf_used.FieldByName('N (NH4+)').AsFloat:=values_to_copy[16];
-    MyDbf_used.FieldByName('Weight').AsFloat:=0;
-    MyDbf_used.FieldByName('Cost').AsFloat:= values_to_copy[17] ;
-    MyDbf_used.FieldByName('IsLiquid').AsInteger:=Round(values_to_copy[18]);
-    MyDbf_used.FieldByName('Density').AsFloat := values_to_copy[19] ;
-    MyDbf_used.FieldByName('Source').AsString := source ;
-    MyDbf_used.FieldByName('ConcType').AsString:= conctype ;
-
-    MyDbf_used.Post ;
-
-end;
-
-MyDbf.Close ;
-MyDbf.Free ;
-
-MyDbf_used.Close;
-MyDbf_used.Free;
-
-
-For i := 0 to Length(selected_items)-1 do
-begin
-     ListBox2.Items.Add(ListBox1.Items[selected_items[i]]);
-     ListBox1.Items.Delete(selected_items[i]);
-     For j := 0 to Length(selected_items)-1 do
-     begin
-          if (j > i) and (selected_items[j] > selected_items[i]) then
-             selected_items[j] := selected_items[j] - 1;
-     end;
-
-end;
-
-end;
-
-procedure TSubstanceSelectionForm.Button10Click(Sender: TObject);
-var
-MyDbf: TDbf;
-i, j : integer ;
-selected_items : array of integer ;
-begin
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_used_db;
-MyDbf.Open;
-MyDbf.ReadOnly := False;
-MyDbf.Active := true ;
-
-For i := 0 to ListBox2.Items.Count - 1 do
-         begin
-             SetLength(selected_items, Length(selected_items)+1);
-             selected_items[Length(selected_items)-1] := i ;
-         end;
-
-For i := 0 to Length(selected_items)-1 do
-begin
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_items[i]]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString) ;
-    MyDbf.Delete ;
-end;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-MainForm.Button10.Enabled := false ;
-
-For i := 0 to Length(selected_items)-1 do
-begin
-     ListBox2.Items.Delete(selected_items[i]);
-     For j := 0 to Length(selected_items)-1 do
-     begin
-          if (j > i) and (selected_items[j] > selected_items[i]) then
-             selected_items[j] := selected_items[j] - 1;
-     end;
-end;
-
-
-end;
-
-procedure TSubstanceSelectionForm.Button2Click(Sender: TObject);
-var
-MyDbf: TDbf;
-i, j : integer ;
-selected_items : array of integer ;
-begin
-
-if ListBox2.SelCount = 0 then // No ítems selected
-     Exit;
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_used_db;
-MyDbf.Open;
-MyDbf.ReadOnly := False;
-MyDbf.Active := true ;
-
-For i := 0 to ListBox2.Items.Count - 1 do
-
-         begin
-                               if ListBox2.Selected [i] then
-                               begin
-                               SetLength(selected_items, Length(selected_items)+1);
-                               selected_items[Length(selected_items)-1] := i ;
-                               end;
-         end;
-
-For i := 0 to Length(selected_items)-1 do
-begin
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_items[i]]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString) ;
-    MyDbf.Delete ;
-end;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-MainForm.Button10.Enabled := false ;
-
-For i := 0 to Length(selected_items)-1 do
-begin
-     ListBox2.Items.Delete(selected_items[i]);
-     For j := 0 to Length(selected_items)-1 do
-     begin
-          if (j > i) and (selected_items[j] > selected_items[i]) then
-             selected_items[j] := selected_items[j] - 1;
-     end;
-end;
-
-
-end;
-
-procedure TSubstanceSelectionForm.Button3Click(Sender: TObject);
-var
-   i: integer;
-begin
-  hb_newcustomsalt.CustomSaltForm.InsertPrepare;
-  hb_newcustomsalt.CustomSaltForm.Visible := true ;
-end;
-
-
-procedure TSubstanceSelectionForm.Button4Click(Sender: TObject);
-var
-MyDbf: TDbf;
-i : integer ;
-selected_item : integer ;
-begin
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-if ListBox1.SelCount = 0 then // No ítems selected
-     Exit;
-
-For i := 0 to ListBox1.Items.Count - 1 do
-
-         begin
-                               if ListBox1.Selected [i] then
-                               begin
-                                selected_item := i ;
-                               end;
-         end;
-
-MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_item]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    ShowMessage('Deleting ' + MyDbf.FieldByName('Name').AsString + ' from database');
-    MyDbf.Delete ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-ListBox1.Items.Delete(selected_item);
-
-end;
-
-procedure TSubstanceSelectionForm.Button5Click(Sender: TObject);
+procedure TSubstanceSelectionForm.AddToUsedButtonClick(Sender: TObject);
 var
 i : integer ;
-selected_item : integer ;
-MyDbf: TDbf;
 begin
+  if SubstanceDatabaseListBox.SelCount = 0 then Exit; // No ítems selected
 
-   if ListBox1.SelCount = 0 then // No ítems selected
-     Exit;
-
-     For i := 0 to ListBox1.Items.Count - 1 do
-
-         begin
-                               if ListBox1.Selected [i] then
-                               begin
-                                selected_item := i ;
-                               end;
-         end;
-
-  CustomSaltForm.UpdatePrepare(ListBox1.Items[selected_item]);
-  CustomSaltForm.Visible := True ;
-
-end;
-
-procedure TSubstanceSelectionForm.Button6Click(Sender: TObject);
-var
-i : integer ;
-selected_item : integer ;
-MyDbf: TDbf;
-begin
-
-   if ListBox2.SelCount = 0 then // No ítems selected
-     Exit;
-
-     For i := 0 to ListBox2.Items.Count - 1 do
-
-         begin
-                               if ListBox2.Selected [i] then
-                               begin
-                                selected_item := i ;
-                               end;
-         end;
-
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.substances_used_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_item]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-    AddWeightForm.Edit1.text := MyDbf.FieldByName('Weight').AsString;
-    AddWeightForm.is_liquid := MyDbf.FieldByName('IsLiquid').AsInteger;
-
-    MyDbf.Close ;
-
-    MyDbf.Free ;
-
-if (AddWeightForm.is_liquid = 0) and (MainForm.RadioButton9.checked) then AddWeightForm.Label1.Caption := 'Mass of substance (oz)';
-if (AddWeightForm.is_liquid = 0) and (MainForm.RadioButton8.checked) then AddWeightForm.Label1.Caption := 'Mass of substance (g)';
-if (AddWeightForm.is_liquid = 1) then AddWeightForm.Label1.Caption := 'Volume of substance (mL)';
-
-AddWeightForm.Label2.Caption := ListBox2.Items[selected_item] ;
-
-AddWeightForm.Visible := True ;
-
-end;
-
-procedure TSubstanceSelectionForm.Button7Click(Sender: TObject);
-var
-i : integer ;
-selected_item : integer ;
-MyDbf: TDbf;
-begin
-
-
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.substances_used_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
-
-    while not MyDbf.EOF do
-    begin
-
-    MyDbf.Edit;
-
-    MyDbf.FieldByName('Weight').AsFloat := 0;
-
-    MyDbf.Post;
-
-     MyDbf.Next;
-
+  For i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+    if SubstanceDatabaseListBox.Selected[i] then begin
+       DBSubstances.SearchByField('NAME', SubstanceDatabaseListBox.Items[i], True);
+       DBSubstancesUsed.NAME := DBSubstances.NAME;
+       DBSubstancesUsed.FORMULA  := DBSubstances.FORMULA;
+       DBSubstancesUsed.SOURCE := DBSubstances.SOURCE;
+       DBSubstancesUsed.PURITY := DBSubstances.PURITY;
+       DBSubstancesUsed.N_NO3 := DBSubstances.N_NO3;
+       DBSubstancesUsed.N_NH4 := DBSubstances.N_NH4;
+       DBSubstancesUsed.P := DBSubstances.P;
+       DBSubstancesUsed.K := DBSubstances.K;
+       DBSubstancesUsed.Mg := DBSubstances.Mg;
+       DBSubstancesUsed.Ca := DBSubstances.Ca;
+       DBSubstancesUsed.S := DBSubstances.S;
+       DBSubstancesUsed.B := DBSubstances.B;
+       DBSubstancesUsed.Fe := DBSubstances.Fe;
+       DBSubstancesUsed.Zn := DBSubstances.Zn;
+       DBSubstancesUsed.Mn := DBSubstances.Mn;
+       DBSubstancesUsed.Cu := DBSubstances.Cu;
+       DBSubstancesUsed.Mo := DBSubstances.Mo;
+       DBSubstancesUsed.Na := DBSubstances.Na;
+       DBSubstancesUsed.Si := DBSubstances.Si;
+       DBSubstancesUsed.Cl := DBSubstances.Cl;
+       DBSubstancesUsed.ISLIQUID := DBSubstances.ISLIQUID;
+       DBSubstancesUsed.DENSITY := DBSubstances.DENSITY;
+       DBSubstancesUsed.CONCTYPE := DBSubstances.CONCTYPE;
+       DBSubstancesUsed.Insert;
+       SubstancesUsedListBox.Items.Add(SubstanceDatabaseListBox.Items[i]);
     end;
+  end;
 
-    MyDbf.Close ;
+  For i := SubstanceDatabaseListBox.Items.Count - 1 downto 0  do begin
+    if SubstanceDatabaseListBox.Selected[i] then SubstanceDatabaseListBox.Items.Delete(i);
+  end;
 
-    MyDbf.Free ;
+end;
+
+procedure TSubstanceSelectionForm.DoNotUseAllButtonClick(Sender: TObject);
+var
+  i, j : integer ;
+  selected_items : array of integer ;
+begin
+  For i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+    SetLength(selected_items, Length(selected_items)+1);
+    selected_items[Length(selected_items)-1] := i ;
+  end;
+
+  For i := 0 to Length(selected_items)-1 do
+  begin
+    DBSubstancesUsed.SearchByField('NAME', SubstancesUsedListBox.Items[selected_items[i]], True);
+    SubstanceDatabaseListBox.Items.Add(DBSubstancesUsed.NAME);
+    DBSubstancesUsed.Delete('NAME', SubstancesUsedListBox.Items[selected_items[i]]);
+  end;
+
+  MainForm.Button10.Enabled := false ;
+
+  For i := 0 to Length(selected_items)-1 do begin
+     SubstancesUsedListBox.Items.Delete(selected_items[i]);
+     For j := 0 to Length(selected_items)-1 do begin
+       if (j > i) and (selected_items[j] > selected_items[i]) then selected_items[j] := selected_items[j] - 1;
+     end;
+  end;
+end;
+
+procedure TSubstanceSelectionForm.DoNotUseButtonClick(Sender: TObject);
+var
+i, j : integer ;
+selected_items : array of integer ;
+begin
+  if SubstancesUsedListBox.SelCount = 0 then Exit; // No ítems selected
+
+  For i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+    if SubstancesUsedListBox.Selected [i] then begin
+      SetLength(selected_items, Length(selected_items)+1);
+      selected_items[Length(selected_items)-1] := i ;
+    end;
+  end;
+
+  For i := 0 to Length(selected_items)-1 do begin
+    DBSubstancesUsed.SearchByField('NAME', SubstancesUsedListBox.Items[selected_items[i]], True);
+    SubstanceDatabaseListBox.Items.Add(DBSubstancesUsed.NAME);
+    DBSubstancesUsed.Delete('NAME', SubstancesUsedListBox.Items[selected_items[i]]);
+  end;
+
+  MainForm.Button10.Enabled := false ;
+
+  For i := 0 to Length(selected_items)-1 do begin
+     SubstancesUsedListBox.Items.Delete(selected_items[i]);
+     For j := 0 to Length(selected_items)-1 do begin
+       if (j > i) and (selected_items[j] > selected_items[i]) then selected_items[j] := selected_items[j] - 1;
+     end;
+  end;
+end;
+
+procedure TSubstanceSelectionForm.AddNewButtonClick(Sender: TObject);
+begin
+  CustomSaltForm.InsertPrepare;
+  CustomSaltForm.ShowModal;
+  UpdateLists;
+end;
+
+
+procedure TSubstanceSelectionForm.DeleteFromDBButtonClick(Sender: TObject);
+var
+  i : integer ;
+  selected_item : integer ;
+begin
+  if SubstanceDatabaseListBox.SelCount = 0 then Exit; // No ítems selected
+
+  For i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+    if SubstanceDatabaseListBox.Selected [i] then selected_item := i;
+  end;
+
+  DBSubstances.Delete('NAME', SubstanceDatabaseListBox.Items[selected_item]);
+
+  SubstanceDatabaseListBox.Items.Delete(selected_item);
+end;
+
+procedure TSubstanceSelectionForm.EditSelectButtonClick(Sender: TObject);
+var
+  i : integer ;
+  selected_item : integer ;
+begin
+   if SubstanceDatabaseListBox.SelCount = 0 then Exit; // No ítems selected
+
+   For i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+     if SubstanceDatabaseListBox.Selected [i] then selected_item := i;
+   end;
+
+  CustomSaltForm.UpdatePrepare(SubstanceDatabaseListBox.Items[selected_item]);
+  CustomSaltForm.ShowModal;
+  UpdateLists;
+
+end;
+
+procedure TSubstanceSelectionForm.SetAmountButtonClick(Sender: TObject);
+var
+i : integer ;
+selected_item : integer ;
+begin
+
+   if SubstancesUsedListBox.SelCount = 0 then // No ítems selected
+     Exit;
+
+   For i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+     if SubstancesUsedListBox.Selected [i] then selected_item := i ;
+   end;
+
+   DBSubstancesUsed.SearchByField('NAME', SubstancesUsedListBox.Items[selected_item], True);
+
+   AddWeightForm.MassEdit.text := floattostr(DBSubstancesUsed.WEIGHT);
+   AddWeightForm.is_liquid := DBSubstancesUsed.IsLiquid;
+
+  if (not AddWeightForm.is_liquid) and (MainForm.RadioButton9.checked) then AddWeightForm.MassLabel.Caption := 'Mass of substance (oz)';
+  if (not AddWeightForm.is_liquid) and (MainForm.RadioButton8.checked) then AddWeightForm.MassLabel.Caption := 'Mass of substance (g)';
+  if (AddWeightForm.is_liquid) then AddWeightForm.MassLabel.Caption := 'Volume of substance (mL)';
+
+  AddWeightForm.SubstanceNameLabel.Caption := SubstancesUsedListBox.Items[selected_item] ;
+
+  if AddWeightForm.ShowModal = mrOK then begin
+     DBSubstancesUsed.WEIGHT := StrtoFloatAnySeparator(AddWeightForm.MassEdit.text);
+     DBSubstancesUsed.Update('NAME', SubstancesUsedListBox.Items[selected_item]);
+  end;
+
+
+end;
+
+procedure TSubstanceSelectionForm.ResetAmountsButtonClick(Sender: TObject);
+begin
+
+  DBSubstancesUsed.SearchFirst;
+  while not DBSubstancesUsed.EOF do begin
+    DBSubstancesUsed.WEIGHT := 0;
+    DBSubstancesUsed.Update('NAME', DBSubstancesUsed.NAME);
+    DBSubstancesUsed.Next;
+  end;
 
  ShowMessage('All used substance weights have been reset to zero') ;
 
 end;
 
-procedure TSubstanceSelectionForm.Button8Click(Sender: TObject);
+procedure TSubstanceSelectionForm.SaveToFileButtonClick(Sender: TObject);
 var
    saltList : TStringList  ;
    i: integer;
 begin
    saltList := TStringList.Create;
 
-   if ListBox2.Items.Count = 0 then
+   if SubstancesUsedListBox.Items.Count = 0 then
    begin
       ShowMessage('No substances have been loaded');
       exit;
    end;
 
-   For i := 0 to ListBox2.Items.Count - 1 do
-         begin
-              saltList.Add(ListBox2.Items[i]);
-         end;
+   For i := 0 to SubstancesUsedListBox.Items.Count - 1 do saltList.Add(SubstancesUsedListBox.Items[i]);
 
-   SaveDialog1.Execute;
+   if SaveDialog.Execute then
+     begin
+         ShowMessage(SaveDialog.FileName) ;
+         saltList.SaveToFile(SaveDialog.FileName);
+     end;
 
-   ShowMessage(SaveDialog1.FileName) ;
-   saltList.SaveToFile(SaveDialog1.FileName);
    saltList.Free();
 end;
 
-procedure TSubstanceSelectionForm.Button9Click(Sender: TObject);
+procedure TSubstanceSelectionForm.LoadFromFileButtonClick(Sender: TObject);
 var
    saltList : TStringList  ;
-   MyDbf: TDbf;
-  MyDbf_used: TDbf;
   i, j : integer ;
   selected_items : array of integer ;
-  selected_items2 : array of integer ;
-  values_to_copy : array of double ;
-  name1 : string ;
-  conctype : string ;
-  formula1 : string ;
 begin
+ if OpenDialog.Execute then
+   begin
+     saltList := TStringList.Create;
+     saltList.LoadFromFile(OpenDialog.FileName);
 
-    MyDbf := TDbf.Create(nil) ;
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := MainForm.substances_used_db;
-    MyDbf.Open;
-    MyDbf.ReadOnly := False;
-    MyDbf.Active := true ;
+     DoNotUseAllButtonClick(Sender);
 
-    For i := 0 to ListBox2.Items.Count - 1 do
+
+    For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
     begin
-         SetLength(selected_items2, Length(selected_items2)+1);
-         selected_items2[Length(selected_items2)-1] := i ;
+        SubstanceDatabaseListBox.Selected [j] := False;
     end;
 
-    For i := 0 to Length(selected_items2)-1 do
-    begin
-        MyDbf.Filter := 'Name=' + QuotedStr(ListBox2.Items[selected_items2[i]]) ;
-        MyDbf.Filtered := true;       // This selects the filtered set
-        MyDbf.First;                  // moves the the first filtered data
-        ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString) ;
-        MyDbf.Delete ;
-    end;
+     For i := 0 to saltList.Count - 1 do
+     begin
+          For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
+          begin
+               if SubstanceDatabaseListBox.Items[j] = saltList[i] then
+               begin
+                   SetLength(selected_items, Length(selected_items)+1);
+                   selected_items[Length(selected_items)-1] := j ;
+               end;
+          end;
+     end;
 
-    MyDbf.Close ;
-    MyDbf.Free ;
-
-    MainForm.Button10.Enabled := false ;
-
-    For i := 0 to Length(selected_items2)-1 do
-    begin
-         ListBox2.Items.Delete(selected_items2[i]);
-         For j := 0 to Length(selected_items2)-1 do
-         begin
-              if (j > i) and (selected_items2[j] > selected_items2[i]) then
-                 selected_items2[j] := selected_items2[j] - 1;
-         end;
-    end;
-
-   OpenDialog1.Execute;
-   saltList := TStringList.Create;
-   saltList.LoadFromFile(OpenDialog1.FileName);
-
-For j := 0 to ListBox1.Items.Count - 1 do
-begin
-    ListBox1.Selected [j] := False;
-end;
-
- For i := 0 to saltList.Count - 1 do
- begin
-      For j := 0 to ListBox1.Items.Count - 1 do
-      begin
-           if ListBox1.Items[j] = saltList[i] then
-           begin
-               SetLength(selected_items, Length(selected_items)+1);
-               selected_items[Length(selected_items)-1] := j ;
-           end;
-      end;
- end;
-
-  SetLength(values_to_copy, 20) ;
-
-  MyDbf := TDbf.Create(nil) ;
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := MainForm.substances_db;
-  MyDbf.ReadOnly := False ;
-  MyDbf.Open;
-
-  MyDbf_used := TDbf.Create(nil) ;
-  MyDbf_used.FilePathFull := '';
-  MyDbf_used.TableName := MainForm.substances_used_db;
-  MyDbf_used.Open             ;
-  MyDbf_used.Active := true ;
 
   For i := 0 to Length(selected_items)-1 do
   begin
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_items[i]]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    name1 :=  MyDbf.FieldByName('Name').AsString ;
-    formula1 := MyDbf.FieldByName('Formula').AsString ;
-    values_to_copy[0] := MyDbf.FieldByName('Purity').AsFloat ;
-    values_to_copy[1] := MyDbf.FieldByName('N (NO3-)').AsFloat ;
-    values_to_copy[2] := MyDbf.FieldByName('P').AsFloat ;
-    values_to_copy[3] := MyDbf.FieldByName('K').AsFloat ;
-    values_to_copy[4] := MyDbf.FieldByName('Mg').AsFloat ;
-    values_to_copy[5] := MyDbf.FieldByName('Ca').AsFloat ;
-    values_to_copy[6] := MyDbf.FieldByName('S').AsFloat ;
-    values_to_copy[7] := MyDbf.FieldByName('B').AsFloat ;
-    values_to_copy[8] := MyDbf.FieldByName('Fe').AsFloat ;
-    values_to_copy[9] := MyDbf.FieldByName('Zn').AsFloat ;
-    values_to_copy[10] := MyDbf.FieldByName('Cu').AsFloat ;
-    values_to_copy[11] := MyDbf.FieldByName('Mo').AsFloat ;
-    values_to_copy[12] := MyDbf.FieldByName('Na').AsFloat ;
-    values_to_copy[13] := MyDbf.FieldByName('Si').AsFloat ;
-    values_to_copy[14] := MyDbf.FieldByName('Cl').AsFloat ;
-    values_to_copy[15] := MyDbf.FieldByName('Mn').AsFloat ;
-    values_to_copy[16] := MyDbf.FieldByName('N (NH4+)').AsFloat ;
-    values_to_copy[17] := MyDbf.FieldByName('Cost').AsFloat ;
-    values_to_copy[18] := MyDbf.FieldByName('IsLiquid').AsFloat ;
-    values_to_copy[19] := MyDbf.FieldByName('Density').AsFloat ;
-    conctype := MyDbf.FieldByName('ConcType').AsString ;
-
-    MyDbf_used.Insert ;
-
-    MyDbf_used.FieldByName('Name').AsString:= name1 ;
-    MyDbf_used.FieldByName('Formula').AsString:= formula1;
-    MyDbf_used.FieldByName('Purity').AsFloat:=values_to_copy[0] ;
-    MyDbf_used.FieldByName('N (NO3-)').AsFloat:=values_to_copy[1];
-    MyDbf_used.FieldByName('P').AsFloat:=values_to_copy[2];
-    MyDbf_used.FieldByName('K').AsFloat:=values_to_copy[3];
-    MyDbf_used.FieldByName('Mg').AsFloat:=values_to_copy[4];
-    MyDbf_used.FieldByName('Ca').AsFloat:=values_to_copy[5];
-    MyDbf_used.FieldByName('S').AsFloat:=values_to_copy[6];
-    MyDbf_used.FieldByName('B').AsFloat:=values_to_copy[7];
-    MyDbf_used.FieldByName('Fe').AsFloat:=values_to_copy[8];
-    MyDbf_used.FieldByName('Zn').AsFloat:=values_to_copy[9];
-    MyDbf_used.FieldByName('Cu').AsFloat:=values_to_copy[10];
-    MyDbf_used.FieldByName('Mo').AsFloat:=values_to_copy[11];
-    MyDbf_used.FieldByName('Na').AsFloat:=values_to_copy[12];
-    MyDbf_used.FieldByName('Si').AsFloat:=values_to_copy[13];
-    MyDbf_used.FieldByName('Cl').AsFloat:=values_to_copy[14];
-    MyDbf_used.FieldByName('Mn').AsFloat:=values_to_copy[15];
-    MyDbf_used.FieldByName('N (NH4+)').AsFloat:=values_to_copy[16];
-    MyDbf_used.FieldByName('Weight').AsFloat:=0;
-    MyDbf_used.FieldByName('Cost').AsFloat:= values_to_copy[17] ;
-    MyDbf_used.FieldByName('IsLiquid').AsInteger:=Round(values_to_copy[18]);
-    MyDbf_used.FieldByName('Density').AsFloat := values_to_copy[19] ;
-    MyDbf_used.FieldByName('ConcType').AsString:= conctype ;
-
-    MyDbf_used.Post ;
-
+    DBSubstances.SearchByField('NAME', SubstanceDatabaseListBox.Items[i], True);
+    DBSubstancesUsed.NAME := DBSubstances.NAME;
+    DBSubstancesUsed.FORMULA  := DBSubstances.FORMULA;
+    DBSubstancesUsed.SOURCE := DBSubstances.SOURCE;
+    DBSubstancesUsed.PURITY := DBSubstances.PURITY;
+    DBSubstancesUsed.N_NO3 := DBSubstances.N_NO3;
+    DBSubstancesUsed.N_NH4 := DBSubstances.N_NH4;
+    DBSubstancesUsed.P := DBSubstances.P;
+    DBSubstancesUsed.K := DBSubstances.K;
+    DBSubstancesUsed.Mg := DBSubstances.Mg;
+    DBSubstancesUsed.Ca := DBSubstances.Ca;
+    DBSubstancesUsed.S := DBSubstances.S;
+    DBSubstancesUsed.B := DBSubstances.B;
+    DBSubstancesUsed.Fe := DBSubstances.Fe;
+    DBSubstancesUsed.Zn := DBSubstances.Zn;
+    DBSubstancesUsed.Mn := DBSubstances.Mn;
+    DBSubstancesUsed.Cu := DBSubstances.Cu;
+    DBSubstancesUsed.Mo := DBSubstances.Mo;
+    DBSubstancesUsed.Na := DBSubstances.Na;
+    DBSubstancesUsed.Si := DBSubstances.Si;
+    DBSubstancesUsed.Cl := DBSubstances.Cl;
+    DBSubstancesUsed.ISLIQUID := DBSubstances.ISLIQUID;
+    DBSubstancesUsed.DENSITY := DBSubstances.DENSITY;
+    DBSubstancesUsed.CONCTYPE := DBSubstances.CONCTYPE;
+    DBSubstancesUsed.Insert;
   end;
 
-  MyDbf.Close ;
-  MyDbf.Free ;
-
-  MyDbf_used.Close;
-  MyDbf_used.Free;
-
-
   For i := 0 to Length(selected_items)-1 do
   begin
-       ListBox2.Items.Add(ListBox1.Items[selected_items[i]]);
-       ListBox1.Items.Delete(selected_items[i]);
+       SubstancesUsedListBox.Items.Add(SubstanceDatabaseListBox.Items[selected_items[i]]);
+       SubstanceDatabaseListBox.Items.Delete(selected_items[i]);
        For j := 0 to Length(selected_items)-1 do
        begin
             if (j > i) and (selected_items[j] > selected_items[i]) then
@@ -819,15 +467,55 @@ end;
   end;
 
    saltList.Free();
+end;
 
 end;
 
-procedure TSubstanceSelectionForm.CheckBox1Change(Sender: TObject);
+procedure TSubstanceSelectionForm.SummaryPopupsCheckBoxChange(Sender: TObject);
 begin
-  PopupNotifier1.Hide;
+  PopupNotifier.Hide;
 end;
 
 
+procedure TSubstanceSelectionForm.UpdateLists;
+var
+  i:     integer;
+  j:     integer;
+begin
+
+  SubstanceDatabaseListBox.Items.Clear;
+  SubstancesUsedListBox.Items.Clear;
+
+  DBSubstances.SearchFirst;
+  while not DBSubstances.EOF do begin
+    SubstanceDatabaseListBox.Items.Add(DBSubstances.NAME);
+    DBSubstances.Next;
+  end;
+
+  DBSubstancesUsed.SearchFirst;
+  while not DBSubstancesUsed.EOF do begin
+    SubstancesUsedListBox.Items.Add(DBSubstancesUsed.NAME);
+    DBSubstancesUsed.Next;
+  end;
+
+  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do
+  begin
+    j := 0;
+    while j <= SubstanceDatabaseListBox.Items.Count - 1 do
+    begin
+      if (SubstanceDatabaseListBox.Items[j] = SubstancesUsedListBox.Items[i]) then
+      begin
+        SubstanceDatabaseListBox.Items.Delete(j);
+        j := j + 1;
+      end;
+      j := j + 1;
+    end;
+  end;
+  // sort listboxes
+  SubstanceSelectionForm.SubstancesUsedListBox.Sorted := true ;
+  SubstanceSelectionForm.SubstanceDatabaseListBox.Sorted := true ;
+
+end;
 
 
 initialization

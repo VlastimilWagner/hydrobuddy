@@ -2,7 +2,7 @@ object AddWeightForm: TAddWeightForm
   Left = 2285
   Height = 174
   Top = 702
-  Width = 213
+  Width = 301
   HorzScrollBar.Page = 191
   HorzScrollBar.Range = 170
   VertScrollBar.Page = 161
@@ -10,41 +10,57 @@ object AddWeightForm: TAddWeightForm
   BorderStyle = bsToolWindow
   Caption = 'Set Mass of Substance Used'
   ClientHeight = 174
-  ClientWidth = 213
+  ClientWidth = 301
   FormStyle = fsStayOnTop
-  object Label1: TLabel
-    Left = 40
+  OnActivate = FormActivate
+  object MassLabel: TLabel
+    Left = 24
     Height = 15
     Top = 64
-    Width = 145
+    Width = 257
+    Alignment = taCenter
+    AutoSize = False
     Caption = 'Mass of Substance Used (g)'
     ParentColor = False
   end
-  object Label2: TLabel
-    Left = 40
+  object SubstanceNameLabel: TLabel
+    Left = 24
     Height = 32
     Top = 24
-    Width = 144
+    Width = 256
     AutoSize = False
     Caption = '------'
     ParentColor = False
     WordWrap = True
   end
-  object Edit1: TEdit
-    Left = 48
+  object MassEdit: TEdit
+    Left = 88
     Height = 23
-    Top = 96
+    Top = 88
     Width = 120
     TabOrder = 0
     Text = '0'
+    OnKeyPress = MassEditKeyPress
   end
-  object Button1: TButton
-    Left = 64
+  object OKButton: TBitBtn
+    Left = 5
     Height = 25
-    Top = 136
-    Width = 75
-    Caption = 'Ok'
+    Top = 133
+    Width = 134
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
     TabOrder = 1
-    OnClick = Button1Click
+  end
+  object CancelButton: TBitBtn
+    Left = 152
+    Height = 27
+    Top = 133
+    Width = 136
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 2
   end
 end

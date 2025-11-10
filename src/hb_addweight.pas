@@ -6,23 +6,25 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Dbf, db, Dbf_Common ;
+  StdCtrls, Buttons, Dbf, db, Dbf_Common ;
 
 type
 
   { TAddWeightForm }
 
   TAddWeightForm = class(TForm)
-    Button1: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    procedure Button1Click(Sender: TObject);
+    CancelButton: TBitBtn;
+    MassEdit: TEdit;
+    MassLabel: TLabel;
+    SubstanceNameLabel: TLabel;
+    OKButton: TBitBtn;
+    procedure FormActivate(Sender: TObject);
+    procedure MassEditKeyPress(Sender: TObject; var Key: char);
   private
     { private declarations }
   public
     { public declarations }
-    is_liquid: integer;
+    is_liquid: boolean;
   end; 
 
 var
@@ -32,38 +34,19 @@ implementation
 
 { TAddWeightForm }
 
-uses HB_Main;
 
-procedure TAddWeightForm.Button1Click(Sender: TObject);
-var
-MyDbf: TDbf;
+
+procedure TAddWeightForm.MassEditKeyPress(Sender: TObject; var Key: char);
 begin
+  if Key = #27 then begin
+    ModalResult := mrCancel;
+    Close;
+  end;
+end;
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_used_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-MyDbf.Filter := 'Name=' + QuotedStr(Label2.Caption) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;
-
-    MyDbf.Edit;
-
-               MyDbf.FieldByName('Weight').AsFloat:= StrtoFloat(Edit1.Text) ;
-
-    MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-AddWeightForm.Visible := False ;
-
-
-
+procedure TAddWeightForm.FormActivate(Sender: TObject);
+begin
+  MassEdit.SetFocus;
 end;
 
 initialization

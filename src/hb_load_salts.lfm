@@ -13,9 +13,8 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
   ClientWidth = 689
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
-  object Label1: TLabel
+  object SubstanceDatabaseLabel: TLabel
     Left = 66
     Height = 21
     Top = 16
@@ -25,7 +24,7 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     ParentColor = False
     ParentFont = False
   end
-  object Label2: TLabel
+  object SubstancesUsedLabel: TLabel
     Left = 437
     Height = 21
     Top = 16
@@ -35,7 +34,7 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     ParentColor = False
     ParentFont = False
   end
-  object ListBox1: TListBox
+  object SubstanceDatabaseListBox: TListBox
     Left = 16
     Height = 376
     Top = 56
@@ -46,10 +45,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     ScrollWidth = 238
     Sorted = True
     TabOrder = 0
-    OnClick = ListBox1Click
-    OnSelectionChange = ListBox1SelectionChange
+    OnSelectionChange = SubstanceDatabaseListBoxSelectionChange
   end
-  object ListBox2: TListBox
+  object SubstancesUsedListBox: TListBox
     Left = 432
     Height = 376
     Top = 56
@@ -59,9 +57,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     ScrollWidth = 238
     Sorted = True
     TabOrder = 1
-    OnSelectionChange = ListBox2SelectionChange
+    OnSelectionChange = SubstancesUsedListBoxSelectionChange
   end
-  object Button1: TBitBtn
+  object AddToUsedButton: TBitBtn
     Left = 280
     Height = 32
     Top = 72
@@ -187,9 +185,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     }
     Layout = blGlyphRight
     TabOrder = 2
-    OnClick = Button1Click
+    OnClick = AddToUsedButtonClick
   end
-  object Button2: TBitBtn
+  object DoNotUseButton: TBitBtn
     Left = 304
     Height = 32
     Top = 112
@@ -314,9 +312,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       00000000000000000000
     }
     TabOrder = 3
-    OnClick = Button2Click
+    OnClick = DoNotUseButtonClick
   end
-  object Button3: TBitBtn
+  object AddNewButton: TBitBtn
     Left = 280
     Height = 32
     Top = 176
@@ -405,9 +403,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 4
-    OnClick = Button3Click
+    OnClick = AddNewButtonClick
   end
-  object Button4: TBitBtn
+  object DeleteFromDBButton: TBitBtn
     Left = 280
     Height = 32
     Top = 216
@@ -497,9 +495,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 5
-    OnClick = Button4Click
+    OnClick = DeleteFromDBButtonClick
   end
-  object Button5: TBitBtn
+  object EditSelectButton: TBitBtn
     Left = 280
     Height = 32
     Top = 256
@@ -589,9 +587,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 6
-    OnClick = Button5Click
+    OnClick = EditSelectButtonClick
   end
-  object Button6: TBitBtn
+  object SetAmountButton: TBitBtn
     Left = 280
     Height = 32
     Top = 360
@@ -680,9 +678,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 7
-    OnClick = Button6Click
+    OnClick = SetAmountButtonClick
   end
-  object Button7: TBitBtn
+  object ResetAmountsButton: TBitBtn
     Left = 280
     Height = 32
     Top = 400
@@ -772,9 +770,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     }
     ParentFont = False
     TabOrder = 8
-    OnClick = Button7Click
+    OnClick = ResetAmountsButtonClick
   end
-  object Button8: TBitBtn
+  object SaveToFileButton: TBitBtn
     Left = 280
     Height = 40
     Top = 296
@@ -862,9 +860,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     TabOrder = 9
-    OnClick = Button8Click
+    OnClick = SaveToFileButtonClick
   end
-  object Button9: TBitBtn
+  object LoadFromFileButton: TBitBtn
     Left = 344
     Height = 40
     Top = 296
@@ -952,9 +950,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
     }
     TabOrder = 10
-    OnClick = Button9Click
+    OnClick = LoadFromFileButtonClick
   end
-  object Button10: TBitBtn
+  object DoNotUseAllButton: TBitBtn
     Left = 280
     Height = 32
     Top = 112
@@ -962,9 +960,9 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     Caption = 'All'
     Enabled = False
     TabOrder = 11
-    OnClick = Button10Click
+    OnClick = DoNotUseAllButtonClick
   end
-  object CheckBox1: TCheckBox
+  object SummaryPopupsCheckBox: TCheckBox
     Left = 280
     Height = 19
     Top = 152
@@ -973,21 +971,21 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     Checked = True
     State = cbChecked
     TabOrder = 12
-    OnChange = CheckBox1Change
+    OnChange = SummaryPopupsCheckBoxChange
   end
-  object OpenDialog1: TOpenDialog
+  object OpenDialog: TOpenDialog
     DefaultExt = '.hbl'
     Filter = 'HydroBuddy List|*.hbl'
     FilterIndex = 0
     Left = 240
   end
-  object SaveDialog1: TSaveDialog
+  object SaveDialog: TSaveDialog
     DefaultExt = '.hbl'
     Filter = 'HydroBuddy List|*.hbl'
     FilterIndex = 0
-    Left = 328
+    Left = 312
   end
-  object PopupNotifier1: TPopupNotifier
+  object PopupNotifier: TPopupNotifier
     Color = clInfoBk
     Icon.Data = {
       07544269746D617000000000
@@ -996,7 +994,6 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
     Title = 'Caption'
     TitleFont.Style = [fsBold]
     Visible = False
-    Left = 392
-    Top = 8
+    Left = 384
   end
 end

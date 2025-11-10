@@ -16,7 +16,7 @@ uses
 
 procedure AssignValues ;
 begin
-   if DBwatterquality.SearchByField('NAME', 'DEFAULT') then begin
+   if DBwatterquality.SearchByField('NAME', 'DEFAULT', True) then begin
      WatterQualityForm.Edit25.text := DBwatterquality.RowData.NAME;
      WatterQualityForm.Edit1.text := FloatToStrF(DBwatterquality.RowData.N_NO3,ffFixed,7,3);
      WatterQualityForm.Edit2.text := FloatToStrF(DBwatterquality.RowData.N_NH4,ffFixed,7,3);

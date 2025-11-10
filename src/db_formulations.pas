@@ -9,39 +9,34 @@ uses
   Classes, SysUtils, Dbf, db, Dbf_Common, LResources, csvdocument, db_base, customhelpfunctions;
 
 type
-  TformulationRecord = record
-      NAME: string;
-      N_NO3: double;
-      N_NH4: double;
-      P: double;
-      K: double;
-      Mg: double;
-      Ca: double;
-      S: double;
-      B: double;
-      Fe: double;
-      Zn: double;
-      Mn: double;
-      Cu: double;
-      Mo: double;
-      Na: double;
-      Si: double;
-      Cl: double;
-      UNITS: string;
-  end;
-
 
   TDBformulations = class(TDBBase)
   private
-    FRowData: TFormulationRecord;
     procedure Createdb; override;
     procedure AssignFields; override;
     procedure AssignRowData; override;
     procedure InsertDataFromCSVRes;
     procedure InsertDataFromDBVer100;
   public
+    NAME: string;
+    N_NO3: double;
+    N_NH4: double;
+    P: double;
+    K: double;
+    Mg: double;
+    Ca: double;
+    S: double;
+    B: double;
+    Fe: double;
+    Zn: double;
+    Mn: double;
+    Cu: double;
+    Mo: double;
+    Na: double;
+    Si: double;
+    Cl: double;
+    UNITS: string;
     constructor Create;
-    property RowData: TformulationRecord read FRowData write FRowData;
   end;
 
   var DBformulations: TDBformulations;
@@ -53,8 +48,6 @@ constructor TDBformulations.Create;
 begin
   inherited Create('formulations.dbf');
 end;
-
-
 
 procedure TDBformulations.Createdb;
 begin
@@ -90,24 +83,24 @@ end;
 procedure TDBformulations.AssignFields;
 begin
   try
-    Dbf.FieldByName('NAME').AsString:= FRowData.NAME;
-    Dbf.FieldByName('N(NO3-)').AsFloat:= FRowData.N_NO3;
-    Dbf.FieldByName('N(NH4+)').AsFloat:= FRowData.N_NH4;
-    Dbf.FieldByName('P').AsFloat:= FRowData.P;
-    Dbf.FieldByName('K').AsFloat:= FRowData.K;
-    Dbf.FieldByName('Mg').AsFloat:= FRowData.Mg;
-    Dbf.FieldByName('Ca').AsFloat:= FRowData.Ca;
-    Dbf.FieldByName('S').AsFloat:= FRowData.S;
-    Dbf.FieldByName('B').AsFloat:= FRowData.B;
-    Dbf.FieldByName('Fe').AsFloat:= FRowData.Fe;
-    Dbf.FieldByName('Zn').AsFloat:= FRowData.Zn;
-    Dbf.FieldByName('Mn').AsFloat:= FRowData.Mn;
-    Dbf.FieldByName('Cu').AsFloat:= FRowData.Cu;
-    Dbf.FieldByName('Mo').AsFloat:= FRowData.Mo;
-    Dbf.FieldByName('Na').AsFloat:= FRowData.Na;
-    Dbf.FieldByName('Si').AsFloat:= FRowData.Si;
-    Dbf.FieldByName('Cl').AsFloat:= FRowData.Cl;
-    Dbf.FieldByName('UNITS').AsString:= FRowData.UNITS;
+    Dbf.FieldByName('NAME').AsString:= NAME;
+    Dbf.FieldByName('N(NO3-)').AsFloat:= N_NO3;
+    Dbf.FieldByName('N(NH4+)').AsFloat:= N_NH4;
+    Dbf.FieldByName('P').AsFloat:= P;
+    Dbf.FieldByName('K').AsFloat:= K;
+    Dbf.FieldByName('Mg').AsFloat:= Mg;
+    Dbf.FieldByName('Ca').AsFloat:= Ca;
+    Dbf.FieldByName('S').AsFloat:= S;
+    Dbf.FieldByName('B').AsFloat:= B;
+    Dbf.FieldByName('Fe').AsFloat:= Fe;
+    Dbf.FieldByName('Zn').AsFloat:= Zn;
+    Dbf.FieldByName('Mn').AsFloat:= Mn;
+    Dbf.FieldByName('Cu').AsFloat:= Cu;
+    Dbf.FieldByName('Mo').AsFloat:= Mo;
+    Dbf.FieldByName('Na').AsFloat:= Na;
+    Dbf.FieldByName('Si').AsFloat:= Si;
+    Dbf.FieldByName('Cl').AsFloat:= Cl;
+    Dbf.FieldByName('UNITS').AsString:= UNITS;
   except
     on E:Exception do
        raise Exception.CreateFmt('Assign DBF data Error: %s', [E.Message]);
@@ -117,24 +110,24 @@ end;
 procedure TDBformulations.AssignRowData;
 begin
   try
-    FRowData.NAME := Dbf.FieldByName('NAME').AsString;
-    FRowData.N_NO3 := Dbf.FieldByName('N(NO3-)').AsFloat;
-    FRowData.N_NH4 := Dbf.FieldByName('N(NH4+)').AsFloat;
-    FRowData.P := Dbf.FieldByName('P').AsFloat;
-    FRowData.K := Dbf.FieldByName('K').AsFloat;
-    FRowData.Mg := Dbf.FieldByName('Mg').AsFloat;
-    FRowData.Ca := Dbf.FieldByName('Ca').AsFloat;
-    FRowData.S := Dbf.FieldByName('S').AsFloat;
-    FRowData.B := Dbf.FieldByName('B').AsFloat;
-    FRowData.Fe := Dbf.FieldByName('Fe').AsFloat;
-    FRowData.Zn := Dbf.FieldByName('Zn').AsFloat;
-    FRowData.Mn := Dbf.FieldByName('Mn').AsFloat;
-    FRowData.Cu := Dbf.FieldByName('Cu').AsFloat;
-    FRowData.Mo := Dbf.FieldByName('Mo').AsFloat;
-    FRowData.Na := Dbf.FieldByName('Na').AsFloat;
-    FRowData.Si := Dbf.FieldByName('Si').AsFloat;
-    FRowData.Cl := Dbf.FieldByName('Cl').AsFloat;
-    FRowData.UNITS := Dbf.FieldByName('UNITS').AsString;
+    NAME := Dbf.FieldByName('NAME').AsString;
+    N_NO3 := Dbf.FieldByName('N(NO3-)').AsFloat;
+    N_NH4 := Dbf.FieldByName('N(NH4+)').AsFloat;
+    P := Dbf.FieldByName('P').AsFloat;
+    K := Dbf.FieldByName('K').AsFloat;
+    Mg := Dbf.FieldByName('Mg').AsFloat;
+    Ca := Dbf.FieldByName('Ca').AsFloat;
+    S := Dbf.FieldByName('S').AsFloat;
+    B := Dbf.FieldByName('B').AsFloat;
+    Fe := Dbf.FieldByName('Fe').AsFloat;
+    Zn := Dbf.FieldByName('Zn').AsFloat;
+    Mn := Dbf.FieldByName('Mn').AsFloat;
+    Cu := Dbf.FieldByName('Cu').AsFloat;
+    Mo := Dbf.FieldByName('Mo').AsFloat;
+    Na := Dbf.FieldByName('Na').AsFloat;
+    Si := Dbf.FieldByName('Si').AsFloat;
+    Cl := Dbf.FieldByName('Cl').AsFloat;
+    UNITS := Dbf.FieldByName('UNITS').AsString;
   except
     on E:Exception do
        raise Exception.CreateFmt('Assign from DBF Error: %s', [E.Message]);
@@ -151,37 +144,37 @@ end;
 
 procedure TDBformulations.InsertDataFromCSVRes;
 var
-   S: TLazarusResourceStream;
+   RS: TLazarusResourceStream;
    Doc: TCSVDocument;
    ListFields: array[0..100] of string;
    i:integer;
 begin
-   S := TLazarusResourceStream.Create('dbformulations', 'CSV');
+   RS := TLazarusResourceStream.Create('dbformulations', 'CSV');
    Doc := TCSVDocument.Create;
    try
      Doc.Delimiter := ',';
-     Doc.LoadFromStream(S);
+     Doc.LoadFromStream(RS);
      for i:= 0 to Doc.ColCount[0]-1 do ListFields[i] := Doc.Cells[i,0];
 
      for i:= 1 to Doc.RowCount-1 do begin
-       FRowData.NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
-       FRowData.N_NO3 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NO3-)',0),i]);
-       FRowData.N_NH4 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NH4+)',0),i]);
-       FRowData.P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
-       FRowData.K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
-       FRowData.MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
-       FRowData.CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
-       FRowData.S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
-       FRowData.B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
-       FRowData.FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
-       FRowData.ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
-       FRowData.MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
-       FRowData.CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
-       FRowData.MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
-       FRowData.NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
-       FRowData.SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
-       FRowData.CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
-       FRowData.UNITS := Doc.Cells[Doc.IndexOfCol('UNITS',0),i];
+       NAME := Doc.Cells[Doc.IndexOfCol('NAME',0),i];
+       N_NO3 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NO3-)',0),i]);
+       N_NH4 := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('N(NH4+)',0),i]);
+       P := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('P',0),i]);
+       K := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('K',0),i]);
+       MG := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MG',0),i]);
+       CA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CA',0),i]);
+       S := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('S',0),i]);
+       B := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('B',0),i]);
+       FE := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('FE',0),i]);
+       ZN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('ZN',0),i]);
+       MN := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MN',0),i]);
+       CU := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CU',0),i]);
+       MO := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('MO',0),i]);
+       NA := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('NA',0),i]);
+       SI := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('SI',0),i]);
+       CL := StrtoFloatAnySeparator(Doc.Cells[Doc.IndexOfCol('CL',0),i]);
+       UNITS := Doc.Cells[Doc.IndexOfCol('UNITS',0),i];
        Insert;
      end;
 

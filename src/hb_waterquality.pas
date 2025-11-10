@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common, hb_ph, DOM, XMLRead, XMLWrite, db_watterquality;
+  StdCtrls, Buttons, Dbf, db, hb_ph, DOM, XMLRead, XMLWrite, db_watterquality;
 
 type
 
@@ -277,7 +277,7 @@ end;
 
 procedure TWatterQualityForm.SaveToXMLButtonClick(Sender: TObject);
 var  MyXML: TXMLDocument;
-     RootNode, Node, Value: TDOMNode;
+     RootNode, Value: TDOMNode;
 begin
      try
         MyXML := TXMLDocument.Create;
@@ -298,7 +298,6 @@ end;
 
 procedure TWatterQualityForm.UpdateComboBox ;
 var
-MyDbf: TDbf;
 i : integer ;
 j : integer ;
 begin

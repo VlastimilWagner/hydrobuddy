@@ -271,7 +271,6 @@ type
         water_quality_db,formulations_db,substances_db,substances_used_db,tissue_analysis_db: string;
         IsLiquid: array of array of double ;
         procedure weightFineTunning;
-        procedure UpdateList;
         procedure UpdateComboBox;
         procedure setinivalues ;
         procedure cleanresults;
@@ -309,9 +308,9 @@ begin
      MainForm.ComboBox1.Items.Clear;
 
      DBformulations.SearchFirst;
-     MainForm.ComboBox1.Items.Add(DBformulations.RowData.Name);
+     MainForm.ComboBox1.Items.Add(DBformulations.Name);
      while DBformulations.Next do
-       MainForm.ComboBox1.Items.Add(DBformulations.RowData.Name);
+       MainForm.ComboBox1.Items.Add(DBformulations.Name);
 
 end;
 
@@ -323,85 +322,10 @@ begin
   round2 := round(Number * t) / t;
 end;
 
-procedure TMainForm.UpdateList;
-var
-  MyDbf: TDbf;
-  i:     integer;
-  j:     integer;
-begin
-
-  SubstanceSelectionForm.ListBox1.Items.Clear;
-  SubstanceSelectionForm.ListBox2.Items.Clear;
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
-
-  MyDbf.First;                  // moves to the first data
-
-  while not MyDbf.EOF do
-  begin
-    SubstanceSelectionForm.ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString);
-    MyDbf.Next;                                     // use .next here NOT .findnext!
-  end;
-
-  MyDbf.Close;
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_used_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
-
-  MyDbf.First;                  // moves to the first data
-
-  while not MyDbf.EOF do
-  begin
-    SubstanceSelectionForm.ListBox2.Items.Add(MyDbf.FieldByName('Name').AsString);
-    MyDbf.Next;                                     // use .next here NOT .findnext!
-  end;
-
-  MyDbf.Close;
-
-  MyDbf.Free;
-
-  for i := 0 to SubstanceSelectionForm.ListBox2.Items.Count - 1 do
-
-  begin
-
-    j := 0;
-
-    while j <= SubstanceSelectionForm.ListBox1.Items.Count - 1 do
-
-    begin
-
-      if (SubstanceSelectionForm.ListBox1.Items[j] = SubstanceSelectionForm.ListBox2.Items[i]) then
-
-      begin
-        SubstanceSelectionForm.ListBox1.Items.Delete(j);
-        j := j + 1;
-      end;
-
-      j := j + 1;
-
-    end;
-
-  end;
-
-
-  // sort listboxes
-  SubstanceSelectionForm.ListBox2.Sorted := true ;
-  SubstanceSelectionForm.ListBox1.Sorted := true ;
-
-end;
 
 procedure TMainForm.Button1Click(Sender: TObject);
 begin
-
-  UpdateList;
-
+  SubstanceSelectionForm.UpdateLists;
   SubstanceSelectionForm.Visible := True;
 end;
 
@@ -574,7 +498,6 @@ var
   MyDbf:  TDbf;
   i:      integer;
   j:      integer;
-  varcount: integer;
   Volume: double;
   array_size: integer;
   answer: integer;
@@ -716,9 +639,9 @@ begin
 
   // update list to get matrix size from used substances
 
-  UpdateList;
+  SubstanceSelectionForm.UpdateLists;
 
-  arraysize := SubstanceSelectionForm.ListBox2.Items.Count;
+  arraysize := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   // define volume taking into account radio box setting for units
   // the end input volume is always converted to cubic meters
@@ -739,9 +662,7 @@ begin
   if RadioButton6.Checked then
   Volume := Volume * StrToFloat(Edit17.Text);
 
-  array_size := SubstanceSelectionForm.ListBox2.Items.Count;
-
-  varcount := 0;
+  array_size := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   // set and define molar mass array (contains molar masses for elements)
 
@@ -1757,9 +1678,9 @@ begin
 
   // update list to get matrix size from used substances
 
-  UpdateList;
+  SubstanceSelectionForm.UpdateLists;
 
-  arraysize := SubstanceSelectionForm.ListBox2.Items.Count;
+  arraysize := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   // define volume taking into account radio box setting for units
   // the end input volume is always converted to cubic meters
@@ -1776,7 +1697,7 @@ begin
   if Radiobutton2.Checked then
     Volume := Volume * 3.78541178 / 1000;
 
-  array_size := SubstanceSelectionForm.ListBox2.Items.Count;
+  array_size := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   varcount := 0;
 
@@ -3433,30 +3354,30 @@ procedure TMainForm.ComboBox1Select(Sender: TObject);
 var
   Units : string ;
 begin
-  if DBFormulations.SearchByField('NAME',ComboBox1.Items[ComboBox1.ItemIndex]) then
+  if DBFormulations.SearchByField('NAME',ComboBox1.Items[ComboBox1.ItemIndex], True) then
   begin
-    Units := DBFormulations.RowData.UNITS;
+    Units := DBFormulations.UNITS;
     if Units = 'ppm' then RadioButton10.Checked := true ;
     if Units = 'M' then RadioButton11.Checked := true ;
     if Units = 'mM' then RadioButton12.Checked := true ;
     if Units = 'mN' then RadioButton13.Checked := true ;
-    Edit19.Text := DBFormulations.RowData.Name;
-    Edit1.Text  := FloatToStr(DBFormulations.RowData.N_NO3);
-    Edit2.Text := FloatToStr(DBFormulations.RowData.N_NH4);
-    Edit3.Text  := FloatToStr(DBFormulations.RowData.P);
-    Edit4.Text  := FloatToStr(DBFormulations.RowData.K);
-    Edit5.Text  := FloatToStr(DBFormulations.RowData.Mg);
-    Edit6.Text  := FloatToStr(DBFormulations.RowData.Ca);
-    Edit7.Text  := FloatToStr(DBFormulations.RowData.S);
-    Edit8.Text  := FloatToStr(DBFormulations.RowData.Fe);
-    Edit9.Text := FloatToStr(DBFormulations.RowData.Mn);
-    Edit10.Text  := FloatToStr(DBFormulations.RowData.Zn);
-    Edit11.Text  := FloatToStr(DBFormulations.RowData.B);
-    Edit12.Text := FloatToStr(DBFormulations.RowData.Cu);
-    Edit13.Text := FloatToStr(DBFormulations.RowData.Si);
-    Edit14.Text := FloatToStr(DBFormulations.RowData.Mo);
-    Edit15.Text := FloatToStr(DBFormulations.RowData.Na);
-    Edit16.Text := FloatToStr(DBFormulations.RowData.Cl);
+    Edit19.Text := DBFormulations.Name;
+    Edit1.Text  := FloatToStr(DBFormulations.N_NO3);
+    Edit2.Text := FloatToStr(DBFormulations.N_NH4);
+    Edit3.Text  := FloatToStr(DBFormulations.P);
+    Edit4.Text  := FloatToStr(DBFormulations.K);
+    Edit5.Text  := FloatToStr(DBFormulations.Mg);
+    Edit6.Text  := FloatToStr(DBFormulations.Ca);
+    Edit7.Text  := FloatToStr(DBFormulations.S);
+    Edit8.Text  := FloatToStr(DBFormulations.Fe);
+    Edit9.Text := FloatToStr(DBFormulations.Mn);
+    Edit10.Text  := FloatToStr(DBFormulations.Zn);
+    Edit11.Text  := FloatToStr(DBFormulations.B);
+    Edit12.Text := FloatToStr(DBFormulations.Cu);
+    Edit13.Text := FloatToStr(DBFormulations.Si);
+    Edit14.Text := FloatToStr(DBFormulations.Mo);
+    Edit15.Text := FloatToStr(DBFormulations.Na);
+    Edit16.Text := FloatToStr(DBFormulations.Cl);
   end;
 end;
 
@@ -3485,7 +3406,7 @@ begin
     Sett.WriteBool('Main', 'MainForm.Checkbox3', Checkbox3.Checked);
     Sett.WriteBool('Main', 'MainForm.Checkbox5', Checkbox5.Checked);
     Sett.WriteInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
-    Sett.WriteBool('Main', 'SubstanceSelectionForm.CheckBox1', SubstanceSelectionForm.Checkbox1.checked);
+    Sett.WriteBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
 
     Form15.StringGrid1.SavetoCSVFile('hb_comparison.csv');
     StockAnalysisForm.StringGrid1.SavetoCSVFile('hb_stockanalysis.csv');
@@ -3522,7 +3443,7 @@ begin
     Checkbox3.Checked := Sett.ReadBool('Main', 'MainForm.Checkbox3', Checkbox3.Checked);
     Checkbox5.Checked := Sett.ReadBool('Main', 'MainForm.Checkbox5', Checkbox3.Checked);
     ComboBox3.ItemIndex := Sett.ReadInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
-    SubstanceSelectionForm.Checkbox1.checked := Sett.ReadBool('Main', 'SubstanceSelectionForm.CheckBox1', SubstanceSelectionForm.Checkbox1.checked);
+    SubstanceSelectionForm.SummaryPopupsCheckBox.checked := Sett.ReadBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
 
     if FileExists('hb_comparison.csv') then Form15.StringGrid1.LoadFromCSVFile('hb_comparison.csv');
     if FileExists('hb_stockanalysis.csv') then StockAnalysisForm.StringGrid1.LoadFromCSVFile('hb_stockanalysis.csv');
@@ -4003,7 +3924,6 @@ procedure TMainForm.RadioButton8Change(Sender: TObject);
 begin
 
   StringGrid2.Cells[AMOUNT_IDX,0]  := 'Mass (g)';
-  AddWeightForm.Label1.Caption := 'Mass of Substance Used (g)';
   cleanresults;
 
 end;
@@ -4012,7 +3932,6 @@ procedure TMainForm.RadioButton9Change(Sender: TObject);
 begin
 
   StringGrid2.Cells[AMOUNT_IDX,0]  := 'Mass (oz)';
-  AddWeightForm.Label1.Caption := 'Mass of Substance Used (oz)';
   cleanresults;
 
 end;

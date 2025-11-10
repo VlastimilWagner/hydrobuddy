@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, Dbf_Common, DOM, XMLRead, XMLWrite, CustomHelpFunctions ;
+  StdCtrls, Buttons, Dbf, DOM, XMLRead, XMLWrite, CustomHelpFunctions, db_substances;
 
 type
 
@@ -92,12 +92,11 @@ uses HB_Main ;
 
 procedure TCustomSaltForm.InsertPrepare;
 begin
-  ComboBox1.ItemIndex := 0;
-  ComboBox2.ItemIndex := 0 ;
+    ComboBox1.ItemIndex := 0;
+    ComboBox2.ItemIndex := 0 ;
     ComboBox3.ItemIndex := 0 ;
     CheckBox2.Checked := false;
     OKButton.Enabled := True ;
-    CancelButton.Enabled := False ;
     NameEdit.Text := '';
     FormulaEdit.Text := '';
     SourceEdit.Text := '';
@@ -124,52 +123,36 @@ begin
 end;
 
 procedure TCustomSaltForm.UpdatePrepare(ItemName: string);
-var
-   MyDbf: TDbf;
 begin
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.substances_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-   MyDbf.Filter := 'Name=' + QuotedStr(ItemName) ;
-   MyDbf.Filtered := true;       // This selects the filtered set
-   MyDbf.First;                  // moves the the first filtered data
+   DBSubstances.SearchByField('NAME', ItemName, True);
 
-   NameEdit.text := MyDbf.FieldByName('Name').AsString;
-   FormulaEdit.text := MyDbf.FieldByName('Formula').AsString;
-   SourceEdit.text := MyDbf.FieldByName('Source').AsString;
-   PurityEdit.text := FloattoStr(MyDbf.FieldByName('Purity').AsFloat*100) ;
-   N_NO3Edit.text := MyDbf.FieldByName('N (NO3-)').AsString ;
-   N_NH4Edit.text := MyDbf.FieldByName('N (NH4+)').AsString ;
-   PEdit.text := MyDbf.FieldByName('P').AsString ;
-   KEdit.text := MyDbf.FieldByName('K').AsString ;
-   MgEdit.text := MyDbf.FieldByName('Mg').AsString ;
-   CaEdit.text := MyDbf.FieldByName('Ca').AsString ;
-   SEdit.text := MyDbf.FieldByName('S').AsString ;
-   FeEdit.text := MyDbf.FieldByName('Fe').AsString ;
-   MnEdit.text := MyDbf.FieldByName('Mn').AsString ;
-   ZnEdit.text := MyDbf.FieldByName('Zn').AsString ;
-   BEdit.text := MyDbf.FieldByName('B').AsString ;
-   CuEdit.text := MyDbf.FieldByName('Cu').AsString ;
-   SiEdit.text := MyDbf.FieldByName('Si').AsString ;
-   MoEdit.text := MyDbf.FieldByName('Mo').AsString ;
-   NaEdit.text := MyDbf.FieldByName('Na').AsString ;
-   ClEdit.text := MyDbf.FieldByName('Cl').AsString ;
-   CostEdit.text := MyDbf.FieldByName('Cost').AsString ;
-
-   ConcentratedTypeComboBox.text := MyDbf.FieldByName('ConcType').AsString;
-
-   if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
-      CheckBox2.Checked := false
-   else
-      CheckBox2.Checked := true ;
-
-   MyDbf.Close ;
-   MyDbf.Free ;
+   NameEdit.Text := DBSubstances.Name;
+   FormulaEdit.text := DBSubstances.FORMULA;
+   SourceEdit.text := DBSubstances.SOURCE;
+   PurityEdit.text := floattostr(DBSubstances.PURITY*100);
+   N_NO3Edit.text := floattostr(DBSubstances.N_NO3);
+   N_NH4Edit.text := floattostr(DBSubstances.N_NH4);
+   PEdit.text := floattostr(DBSubstances.P);
+   KEdit.text := floattostr(DBSubstances.K);
+   MgEdit.text := floattostr(DBSubstances.Mg);
+   CaEdit.text := floattostr(DBSubstances.Ca);
+   SEdit.text := floattostr(DBSubstances.S);
+   FeEdit.text := floattostr(DBSubstances.Fe);
+   MnEdit.text := floattostr(DBSubstances.Mn);
+   ZnEdit.text := floattostr(DBSubstances.Zn);
+   BEdit.text := floattostr(DBSubstances.B);
+   CuEdit.text := floattostr(DBSubstances.Cu);
+   SiEdit.text := floattostr(DBSubstances.Si);
+   MoEdit.text := floattostr(DBSubstances.Mo);
+   NaEdit.text := floattostr(DBSubstances.Na);
+   ClEdit.text := floattostr(DBSubstances.Cl);
+   CostEdit.text := floattostr(DBSubstances.Cost);
+   ConcentratedTypeComboBox.text := DBSubstances.CONCTYPE;
+   CheckBox2.Checked := DBSubstances.ISLIQUID;
 
    SaltDBName := ItemName;
-   ComboBox1.ItemIndex := 0;
+
+   ComboBox1.ItemIndex := 0 ;
    ComboBox2.ItemIndex := 0 ;
    ComboBox3.ItemIndex := 0 ;
 
@@ -177,188 +160,62 @@ begin
 end;
 
 procedure TCustomSaltForm.OKButtonClick(Sender: TObject);
-var
-MyDbf: TDbf;
-currentValP: integer;
-currentValK: Integer;
-currentValSi: Integer;
 begin
+  DBSubstances.NAME := NameEdit.Text;
+  DBSubstances.FORMULA := FormulaEdit.Text;
+  DBSubstances.PURITY := StrtoFloatAnySeparator(PurityEdit.Text)/100;
 
-currentValP := ComboBox1.ItemIndex;
-currentValK := ComboBox2.ItemIndex;
-currentValSi := ComboBox3.ItemIndex;
+  if ComboBox1.ItemIndex = 0 then
+       DBSubstances.P := StrtoFloatAnySeparator(PEdit.Text)
+  else
+       DBSubstances.P := StrtoFloatAnySeparator(PEdit.Text)*0.4364;
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_db ;
-MyDbf.Open             ;
-MyDbf.Active := true ;
+  if ComboBox2.ItemIndex = 0 then
+       DBSubstances.K := StrtoFloatAnySeparator(KEdit.Text)
+  else
+       DBSubstances.K := StrtoFloatAnySeparator(KEdit.Text)*0.8301;
 
-MyDbf.Insert ;
+  if ComboBox3.ItemIndex = 0 then
+       DBSubstances.Si := StrtoFloatAnySeparator(SiEdit.Text)
+  else
+       DBSubstances.Si := StrtoFloatAnySeparator(SiEdit.Text)*0.4684;
 
-MyDbf.FieldByName('Name').AsString:= NameEdit.Text ;
-MyDbf.FieldByName('Formula').AsString:= FormulaEdit.Text;
-MyDbf.FieldByName('Purity').AsFloat:=StrtoFloatAnySeparator(PurityEdit.Text)/100 ;
+  DBSubstances.ISLIQUID := CheckBox2.Checked;
+  DBSubstances.N_NO3 := StrtoFloatAnySeparator(N_NO3Edit.Text);
+  DBSubstances.N_NH4 := StrtoFloatAnySeparator(N_NH4Edit.Text);
+  DBSubstances.Mg := StrtoFloatAnySeparator(MgEdit.Text);
+  DBSubstances.Ca := StrtoFloatAnySeparator(CaEdit.Text);
+  DBSubstances.S := StrtoFloatAnySeparator(SEdit.Text);
+  DBSubstances.Fe := StrtoFloatAnySeparator(FeEdit.Text);
+  DBSubstances.Mn := StrtoFloatAnySeparator(MnEdit.Text);
+  DBSubstances.Zn := StrtoFloatAnySeparator(ZnEdit.Text);
+  DBSubstances.B := StrtoFloatAnySeparator(BEdit.Text);
+  DBSubstances.Cu := StrtoFloatAnySeparator(CuEdit.Text);
+  DBSubstances.Mo := StrtoFloatAnySeparator(MoEdit.Text);
+  DBSubstances.Na := StrtoFloatAnySeparator(NaEdit.Text);
+  DBSubstances.Cl := StrtoFloatAnySeparator(ClEdit.Text);
+  DBSubstances.COST := StrtoFloatAnySeparator(CostEdit.Text);
+  DBSubstances.CONCTYPE := ConcentratedTypeComboBox.Text;
 
-if currentValP = 0 then
-MyDbf.FieldByName('P').AsFloat:=StrtoFloatAnySeparator(PEdit.Text);
+  if ComboBox1.ItemIndex = 1  then
+     ShowMessage('P will be converted and saved as P%, to see P2O5 again in the future simply select it from the dropbox for automatic conversion');
 
-if currentValK = 0 then
-MyDbf.FieldByName('K').AsFloat:=StrtoFloatAnySeparator(KEdit.Text);
+  if ComboBox2.ItemIndex = 1  then
+     ShowMessage('K will be converted and saved as K%, to see K2O again in the future simply select it from the dropbox for automatic conversion');
 
-if currentValSi = 0 then
-MyDbf.FieldByName('Si').AsFloat:=StrtoFloatAnySeparator(SiEdit.Text);
+  if ComboBox2.ItemIndex = 1  then
+     ShowMessage('Si will be converted and saved as Si%, to see SiO2 again in the future simply select it from the dropbox for automatic conversion');
 
-if currentValP = 1 then
-MyDbf.FieldByName('P').AsFloat:=(StrtoFloatAnySeparator(PEdit.Text)*0.4364);
+  if EditMode then DBSubstances.Update('NAME',SaltDBName) else DBSubstances.Insert;
 
-if currentValK = 1 then
-MyDbf.FieldByName('K').AsFloat:=(StrtoFloatAnySeparator(KEdit.Text)*0.8301);
-
-if currentValSi = 1 then
-MyDbf.FieldByName('Si').AsFloat:=(StrtoFloatAnySeparator(SiEdit.Text)*0.4684);
-
-
-if CheckBox2.Checked = false then
-   MyDbf.FieldByName('IsLiquid').AsInteger:=0;
-
-
-if CheckBox2.Checked  then
-   MyDbf.FieldByName('IsLiquid').AsInteger:=1;
-
-MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloatAnySeparator(N_NO3Edit.Text);
-MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloatAnySeparator(N_NH4Edit.Text);
-MyDbf.FieldByName('Mg').AsFloat:=StrtoFloatAnySeparator(MgEdit.Text);
-MyDbf.FieldByName('Ca').AsFloat:=StrtoFloatAnySeparator(CaEdit.Text);
-MyDbf.FieldByName('S').AsFloat:=StrtoFloatAnySeparator(SEdit.Text);
-MyDbf.FieldByName('Fe').AsFloat:=StrtoFloatAnySeparator(FeEdit.Text);
-MyDbf.FieldByName('Mn').AsFloat:=StrtoFloatAnySeparator(MnEdit.Text);
-MyDbf.FieldByName('Zn').AsFloat:=StrtoFloatAnySeparator(ZnEdit.Text);
-MyDbf.FieldByName('B').AsFloat:=StrtoFloatAnySeparator(BEdit.Text);
-MyDbf.FieldByName('Cu').AsFloat:=StrtoFloatAnySeparator(CuEdit.Text);
-MyDbf.FieldByName('Mo').AsFloat:=StrtoFloatAnySeparator(MoEdit.Text);
-MyDbf.FieldByName('Na').AsFloat:=StrtoFloatAnySeparator(NaEdit.Text);
-MyDbf.FieldByName('Cl').AsFloat:=StrtoFloatAnySeparator(ClEdit.Text);
-
-MyDbf.FieldByName('Cost').AsFloat:=StrtoFloatAnySeparator(CostEdit.Text);
-MyDbf.FieldByName('ConcType').AsString:=ConcentratedTypeComboBox.Text;
-
-MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-MainForm.UpdateList ;
-
-if currentValP = 1  then
-ShowMessage('P will be converted and saved as P%, to see P2O5 again in the future simply select it from the dropbox for automatic conversion');
-
-if currentValK = 1  then
-ShowMessage('K will be converted and saved as K%, to see K2O again in the future simply select it from the dropbox for automatic conversion');
-
-if currentValSi = 1  then
-ShowMessage('Si will be converted and saved as Si%, to see SiO2 again in the future simply select it from the dropbox for automatic conversion');
-
-ComboBox1.ItemIndex := 0;
-
-ComboBox2.ItemIndex := 0 ;
-
-ComboBox3.ItemIndex := 0 ;
-
-CustomSaltForm.Visible := False ;
-
+  ModalResult := mrOK;
+  close;
 end;
 
 procedure TCustomSaltForm.CancelButtonClick(Sender: TObject);
-var
-MyDbf: TDbf;
-currentValP: integer;
-currentValK: Integer;
-currentValSi: Integer;
 begin
-
-currentValP := ComboBox1.ItemIndex;
-currentValK := ComboBox2.ItemIndex;
-currentValSi := ComboBox3.ItemIndex;
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.substances_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-MyDbf.Filter := 'Name=' + QuotedStr(SaltDbName) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;
-
-    MyDbf.Edit;
-
-    MyDbf.FieldByName('Name').AsString:= NameEdit.Text ;
-    MyDbf.FieldByName('Formula').AsString:= FormulaEdit.Text;
-    MyDbf.FieldByName('Purity').AsFloat:=StrtoFloatAnySeparator(PurityEdit.Text)/100 ;
-    MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloatAnySeparator(N_NO3Edit.Text);
-    MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloatAnySeparator(N_NH4Edit.Text);
-
-    if currentValP = 0 then
-    MyDbf.FieldByName('P').AsFloat:=StrtoFloatAnySeparator(PEdit.Text);
-
-    if currentValK = 0 then
-    MyDbf.FieldByName('K').AsFloat:=StrtoFloatAnySeparator(KEdit.Text);
-
-    if currentValSi = 0 then
-    MyDbf.FieldByName('Si').AsFloat:=StrtoFloatAnySeparator(SiEdit.Text);
-
-    if currentValP = 1 then
-    MyDbf.FieldByName('P').AsFloat:=(StrtoFloatAnySeparator(PEdit.Text)*0.4364);
-
-    if currentValK = 1 then
-    MyDbf.FieldByName('K').AsFloat:=(StrtoFloatAnySeparator(KEdit.Text)*0.8301);
-
-    if currentValSi = 1 then
-    MyDbf.FieldByName('Si').AsFloat:=(StrtoFloatAnySeparator(SiEdit.Text)*0.4684);
-
-    if CheckBox2.Checked = false then
-    MyDbf.FieldByName('IsLiquid').AsInteger:=0;
-
-
-   if CheckBox2.Checked  then
-   MyDbf.FieldByName('IsLiquid').AsInteger:=1;
-
-   MyDbf.FieldByName('Mg').AsFloat:=StrtoFloatAnySeparator(MgEdit.Text);
-   MyDbf.FieldByName('Ca').AsFloat:=StrtoFloatAnySeparator(CaEdit.Text);
-   MyDbf.FieldByName('S').AsFloat:=StrtoFloatAnySeparator(SEdit.Text);
-
-   MyDbf.FieldByName('Fe').AsFloat:=StrtoFloatAnySeparator(FeEdit.Text);
-   MyDbf.FieldByName('Mn').AsFloat:=StrtoFloatAnySeparator(MnEdit.Text);
-   MyDbf.FieldByName('Zn').AsFloat:=StrtoFloatAnySeparator(ZnEdit.Text);
-   MyDbf.FieldByName('B').AsFloat:=StrtoFloatAnySeparator(BEdit.Text);
-   MyDbf.FieldByName('Cu').AsFloat:=StrtoFloatAnySeparator(CuEdit.Text);
-   MyDbf.FieldByName('Mo').AsFloat:=StrtoFloatAnySeparator(MoEdit.Text);
-   MyDbf.FieldByName('Na').AsFloat:=StrtoFloatAnySeparator(NaEdit.Text);
-   MyDbf.FieldByName('Cl').AsFloat:=StrtoFloatAnySeparator(ClEdit.Text);
-
-   MyDbf.FieldByName('Cost').AsFloat:=StrtoFloatAnySeparator(CostEdit.Text);
-
-   MyDbf.FieldByName('ConcType').AsString:=ConcentratedTypeComboBox.Text;
-
-    MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-ComboBox1.ItemIndex := 0;
-
-ComboBox2.ItemIndex := 0 ;
-
-ComboBox3.ItemIndex := 0 ;
-
-MainForm.UpdateList ;
-
-CustomSaltForm.Visible := False ;
-
+  ModalResult := mrCancel;
+  close;
 end;
 
 
