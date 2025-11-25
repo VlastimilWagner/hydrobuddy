@@ -350,7 +350,7 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnWindowStateChange = FormWindowStateChange
   object PageControl1: TPageControl
-    Left = 0
+    Left = 8
     Height = 673
     Top = 0
     Width = 834
@@ -368,8 +368,8 @@ object MainForm: TMainForm
         Height = 648
         Top = 0
         Width = 828
-        ActivePage = TabSheet7
-        TabIndex = 2
+        ActivePage = TabSheet12
+        TabIndex = 8
         TabOrder = 0
         object TabSheet5: TTabSheet
           Caption = 'Introduction'
@@ -23162,29 +23162,6 @@ object MainForm: TMainForm
         TabOrder = 10
         Text = '0.5'
       end
-      object Button3: TButton
-        Left = 376
-        Height = 25
-        Top = 7
-        Width = 91
-        Caption = 'Add Field DB'
-        Enabled = False
-        ParentFont = False
-        TabOrder = 19
-        Visible = False
-        OnClick = Button3Click
-      end
-      object CheckBox1: TCheckBox
-        Left = 92
-        Height = 19
-        Top = 7
-        Width = 71
-        Caption = 'Enable DB'
-        ParentFont = False
-        TabOrder = 20
-        Visible = False
-        OnChange = CheckBox1Change
-      end
       object Edit2: TEdit
         Left = 132
         Height = 23
@@ -23202,7 +23179,7 @@ object MainForm: TMainForm
         ClientHeight = 72
         ClientWidth = 153
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 19
         object Label19: TLabel
           Left = 41
           Height = 15
@@ -23242,7 +23219,7 @@ object MainForm: TMainForm
         ClientHeight = 176
         ClientWidth = 481
         ParentFont = False
-        TabOrder = 22
+        TabOrder = 20
         object Button7: TButton
           Left = 224
           Height = 25
@@ -23357,7 +23334,7 @@ object MainForm: TMainForm
         Width = 104
         Caption = 'Disable Pop-ups'
         ParentFont = False
-        TabOrder = 23
+        TabOrder = 21
         OnChange = CheckBox3Change
       end
       object CheckBox5: TCheckBox
@@ -23367,7 +23344,7 @@ object MainForm: TMainForm
         Top = 73
         Width = 94
         Caption = 'Small Window'
-        TabOrder = 24
+        TabOrder = 22
         OnChange = CheckBox5Change
       end
       object Panel8: TPanel
@@ -23377,7 +23354,7 @@ object MainForm: TMainForm
         Width = 120
         ClientHeight = 112
         ClientWidth = 120
-        TabOrder = 25
+        TabOrder = 23
         object Label34: TLabel
           Left = 0
           Height = 15
@@ -23425,26 +23402,6 @@ object MainForm: TMainForm
           OnChange = RadioButton13Change
         end
       end
-      object Button23: TButton
-        Left = 548
-        Height = 25
-        Top = 7
-        Width = 75
-        Caption = 'Add field S'
-        TabOrder = 26
-        Visible = False
-        OnClick = Button23Click
-      end
-      object Button24: TButton
-        Left = 312
-        Height = 25
-        Top = 7
-        Width = 75
-        Caption = 'SetValues'
-        TabOrder = 27
-        Visible = False
-        OnClick = Button24Click
-      end
       object ComboBox3: TComboBox
         Left = 44
         Height = 23
@@ -23457,7 +23414,7 @@ object MainForm: TMainForm
           'SiO2'
         )
         Style = csDropDownList
-        TabOrder = 28
+        TabOrder = 24
         Text = 'Si'
         OnChange = ComboBox3Change
       end
@@ -23711,7 +23668,7 @@ object MainForm: TMainForm
           FFFF0099FFFF0099FFFF039AFFFF0099FFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFF
           FFFF
         }
-        TabOrder = 29
+        TabOrder = 25
         OnClick = Button26Click
       end
       object Button15: TButton
@@ -23720,7 +23677,7 @@ object MainForm: TMainForm
         Top = 74
         Width = 120
         Caption = 'Zero all targets'
-        TabOrder = 30
+        TabOrder = 26
         OnClick = Button15Click
       end
       object Panel9: TPanel
@@ -23731,7 +23688,7 @@ object MainForm: TMainForm
         ClientHeight = 55
         ClientWidth = 153
         ParentFont = False
-        TabOrder = 31
+        TabOrder = 27
         object Label25: TLabel
           Left = 41
           Height = 15
@@ -26951,17 +26908,5 @@ object MainForm: TMainForm
     Filter = '*.csv'
     Left = 664
     Top = 65496
-  end
-  object PopupMenu1: TPopupMenu
-    Left = 56
-    Top = 40
-    object MenuItem2: TMenuItem
-      Caption = 'Copy'
-      OnClick = MenuItem2Click
-    end
-  end
-  object SelectDirectoryDialog1: TSelectDirectoryDialog
-    Left = 16
-    Top = 40
   end
 end

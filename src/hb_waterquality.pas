@@ -277,7 +277,7 @@ end;
 
 procedure TWatterQualityForm.SaveToXMLButtonClick(Sender: TObject);
 var  MyXML: TXMLDocument;
-     RootNode, Value: TDOMNode;
+     RootNode, Node, Value: TDOMNode;
 begin
      try
         MyXML := TXMLDocument.Create;
@@ -305,8 +305,8 @@ begin
   ComboBox1.Items.Clear ;
 
   DBWatterQuality.SearchFirst;
-  ComboBox1.Items.Add(DBWatterQuality.RowData.Name);
-  while DBWatterQuality.Next do ComboBox1.Items.Add(DBWatterQuality.RowData.Name);
+  ComboBox1.Items.Add(DBWatterQuality.Name);
+  while DBWatterQuality.Next do ComboBox1.Items.Add(DBWatterQuality.Name);
 
 {
 

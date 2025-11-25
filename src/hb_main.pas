@@ -10,7 +10,7 @@ uses
   hb_load_salts, Dbf, DB, Math, densesolver, hb_commercialnutrient, hb_comparison,
   hb_waterquality, hb_addweight, hb_insprecision, hb_stockanalysis,
   hb_persubstance, hb_datasetname, hb_analysis, hb_tissue_analysis,
-  hb_freedom, dbf_fields, hb_ratios,LCLIntf, Types,IniFiles, db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used, customhelpfunctions;
+  hb_freedom, hb_ratios,LCLIntf, Types,IniFiles, db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used, customhelpfunctions;
 
 const
   IniFile = 'settings.ini';
@@ -35,17 +35,13 @@ type
     Button20: TButton;
     Button21: TButton;
     Button22: TButton;
-    Button23: TButton;
-    Button24: TButton;
     Button25: TButton;
     Button26: TBitBtn;
-    Button3:    TButton;
     Button4:    TButton;
     Button6:    TButton;
     Button7:    TButton;
     Button8:    TButton;
     Button9:    TButton;
-    CheckBox1:  TCheckBox;
     CheckBox3: TCheckBox;
     CheckBox5: TCheckBox;
     ComboBox1:  TComboBox;
@@ -114,7 +110,6 @@ type
     Label34:    TLabel;
     Label26:    TLabel;
     LabelVersion: TLabel;
-    MenuItem2: TMenuItem;
     PageControl2: TPageControl;
     Panel4:     TPanel;
     Panel5:     TPanel;
@@ -122,7 +117,6 @@ type
     Panel7:     TPanel;
     Panel8: TPanel;
     Panel9: TPanel;
-    PopupMenu1: TPopupMenu;
     RadioButton10: TRadioButton;
     RadioButton11: TRadioButton;
     RadioButton12: TRadioButton;
@@ -159,7 +153,6 @@ type
     RadioButton6: TRadioButton;
     RadioButton7: TRadioButton;
     SaveDialog1: TSaveDialog;
-    SelectDirectoryDialog1: TSelectDirectoryDialog;
     StringGrid1: TStringGrid;
     StringGrid2: TStringGrid;
     TabSheet1:  TTabSheet;
@@ -188,19 +181,15 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button20Click(Sender: TObject);
     procedure Button22Click(Sender: TObject);
-    procedure Button23Click(Sender: TObject);
-    procedure Button24Click(Sender: TObject);
     procedure Button25Click(Sender: TObject);
     procedure Button26Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button4Resize(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
-    procedure CheckBox1Change(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
     procedure CheckBox4Change(Sender: TObject);
     procedure CheckBox5Change(Sender: TObject);
@@ -341,144 +330,7 @@ begin
   FreedomForm.Visible := true ;;
 end;
 
-procedure TMainForm.Button23Click(Sender: TObject);
-var
-  MyDbf: TDbf;
-  FieldDefs: TDbfFieldDefs;
-begin
-{
-MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := 'substances_used.dbf';
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-  FieldDefs.Add('Density', ftFloat, 0, False);
-  FieldDefs.Add('IsLiquid',ftInteger, 0, False);
-  MyDbf.RestructureTable(FieldDefs, True);
-  MyDbf.Free;
-  FieldDefs.Free;
-  }
 
-  {
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := 'formulations.dbf';
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-  FieldDefs.Add('Units', ftString, 80, False);
-  MyDbf.RestructureTable(FieldDefs, True);
-  MyDbf.Free;
-  FieldDefs.Free;
-  }
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := water_quality_db;
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-  FieldDefs.Add('pH', ftFloat, 0, False);
-  FieldDefs.Add('GH', ftFloat, 0, False);
-  FieldDefs.Add('KH', ftFloat, 0, False);
-  MyDbf.RestructureTable(FieldDefs, True);
-  MyDbf.Free;
-  FieldDefs.Free;
-
-
-end;
-
-procedure TMainForm.Button24Click(Sender: TObject);
-var
-  MyDbf: TDbf;
-  FieldDefs: TDbfFieldDefs;
-begin
-
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_db;
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-
-  ShowMessage(InttoStr(FieldDefs.Count) + ' '+ MyDbf.TableName) ;
-
-  FieldDefs.Free ;
-  MyDbf.Free ;
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_used_db;
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-
-  ShowMessage(InttoStr(FieldDefs.Count) + ' '+ MyDbf.TableName) ;
-
-  FieldDefs.Free ;
-  MyDbf.Free ;
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := formulations_db;
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-
-  ShowMessage(InttoStr(FieldDefs.Count) + ' '+ MyDbf.TableName) ;
-
-  FieldDefs.Free ;
-  MyDbf.Free ;
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := water_quality_db;
-  MyDbf.Open;
-  FieldDefs := TDbfFieldDefs.Create(nil);
-  FieldDefs.Assign(MyDbf.DbfFieldDefs);
-  MyDbf.Close;
-
-  ShowMessage(InttoStr(FieldDefs.Count) + ' '+ MyDbf.TableName) ;
-
-  FieldDefs.Free ;
-  MyDbf.Free ;
-
-  {
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := 'substances.dbf';
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-while not MyDbf.EOF do
-    begin
-
-        MyDbf.Edit;
-
-        MyDbf.FieldByName('Density').AsFloat := 0 ;
-
-        MyDbf.Post ;
-
-        MyDbf.next;                                   // use .next here NOT .findnext!
-    end;
-
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-}
-
-end;
 
 procedure TMainForm.Button25Click(Sender: TObject);
 begin
@@ -495,7 +347,6 @@ end;
 
 procedure TMainForm.weightFineTunning;
 var
-  MyDbf:  TDbf;
   i:      integer;
   j:      integer;
   Volume: double;
@@ -743,10 +594,11 @@ if RadioButton13.Checked then
 
  end ;
 
-    varnames := nil ;
     Result := nil ;
 
     SetLength(varnames, 16);
+    varnames := ['N_NO3','N_NH4','P','K','Mg','Ca','S','Fe','Mn','Zn','B','Cu','Si','Mo','Na','Cl'];
+
     SetLength(Result, 16);
     SetLength(all_element_targets, 16);
 
@@ -755,7 +607,7 @@ if RadioButton13.Checked then
 
       // load all element names (this time we don't need to discriminate as
       // we simply calculate for everyone
-      varnames[j - 1] := (FindComponent('Label' + IntToStr(j)) as TLabel).Caption;
+      //varnames[j - 1] := (FindComponent('Label' + IntToStr(j)) as TLabel).Caption;
       all_element_targets[j-1] := StrToFloat((FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
       StringGrid1.Cells[2, j] := '0';
       StringGrid1.Cells[3, j] := '0';
@@ -768,25 +620,19 @@ if RadioButton13.Checked then
 
     // load the database in order to get the weights and find the resulting ppm values
 
-    MyDbf := TDbf.Create(nil);
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := substances_used_db;
-    MyDbf.Open;
-    MyDbf.Active := True;
-
     for i := 1 to StringGrid2.RowCount - 1 do
     begin
 
-    MyDbf.First;                  // moves to the first data
+    DBSubstances.SearchFirst;                 // moves to the first data
 
-    while not MyDbf.EOF do
+    while not DBSubstances.EOF do
     begin
 
-      nameSubstance := MyDbf.FieldByName('Name').AsString;
+      nameSubstance := DBSubstances.Name;
       weight := StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
       nameToCompare := StringGrid2.Cells[NAME_IDX, i] ;
 
-      if  MyDbf.FieldByName('isLiquid').AsBoolean = True then all_solids := False;
+      if  DBSubstances.isLiquid then all_solids := False;
 
       If RadioButton6.Checked then
       nameToCompare := Copy(nameToCompare, 5, Length(nameToCompare));
@@ -799,8 +645,7 @@ if RadioButton13.Checked then
       begin
 
         if ((1 / weight_factor) * weight *
-          0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-          'Purity').AsFloat / Volume > 0) then
+          0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity / Volume > 0) then
 
         begin
 
@@ -825,15 +670,13 @@ if RadioButton13.Checked then
 
           PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
             FloattoStr(round2((1 / weight_factor) * weight *
-            0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-            'Purity').AsFloat / Volume, 3)));
+            0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity / Volume, 3)));
 
           if prev_conc <> 'ppm' then
 
           PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
             FloattoStrF((1/conc_factor[j])*(1 / weight_factor) * weight *
-            0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-            'Purity').AsFloat / Volume, ffExponent, 4, 2));
+            0.01 * double(DBSubstances.FieldByName(varnames[j])) * DBSubstances.Purity / Volume, ffExponent, 4, 2));
 
           Result[j] := Result[j] + StrToFloat(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]);
 
@@ -844,25 +687,23 @@ if RadioButton13.Checked then
           elementInSolutionB[j] := StrToFloat(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]) + elementInSolutionB[j] ;
 
           //ShowMessage( nameSubstance + ' ' + varnames[j] + ' ' + FloatToStr(weight * 0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName('Purity').AsFloat));
-          mixContribution[j] := mixContribution[j] + weight * 0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName('Purity').AsFloat ;
+          mixContribution[j] := mixContribution[j] + weight * 0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity ;
 
         end;
 
       end;
 
       StringGrid2.Cells[COST_IDX,i] := (FloattoStr(
-        round2(weight * MyDbf.FieldByName('Cost').AsFloat * 0.001 *
+        round2(weight * DBSubstances.Cost * 0.001 *
         (1 / weight_factor), 1)));
 
       end;
 
-      MyDbf.Next;                                     // use .next here NOT .findnext!
+      DBSubstances.Next;                                     // use .next here NOT .findnext!
     end;
 
     end;
 
-    MyDbf.Close;
-    MyDbf.Free;
 
     for i := 1 to StringGrid2.RowCount - 1 do totalWeight := totalWeight+StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
 
@@ -1080,7 +921,6 @@ if RadioButton13.Checked then
 
 procedure TMainForm.Button10Click(Sender: TObject);
 var
-  MyDbf: TDbf;
   i:     integer;
   used_string : string ;
 begin
@@ -1088,12 +928,6 @@ begin
   if RadioButton4.Checked then
 
   begin
-
-    MyDbf := TDbf.Create(nil);
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := substances_used_db;
-    MyDbf.Open;
-    MyDbf.Active := True;
 
     for i := 1 to StringGrid2.RowCount - 1 do
 
@@ -1104,26 +938,16 @@ begin
     if RadioButton6.checked then
     delete (used_string,1,4);
 
-
-      MyDbf.Filter := 'Name=' + QuotedStr(used_string);
-
-      MyDbf.Filtered := True;       // This selects the filtered set
-      MyDbf.First;
-
-      MyDbf.Edit;
-
-      MyDbf.FieldByName('Weight').AsFloat := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i]);
+      DBSubstancesUsed.SearchByField('Name', used_string, True);
 
       if RadioButton6.checked then
-      MyDbf.FieldByName('Weight').AsFloat := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i])/StrToFloat(Edit17.Text);
+            DBSubstancesUsed.Weight := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i])/StrToFloat(Edit17.Text)
+      else
+            DBSubstancesUsed.Weight := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i]);
 
-      MyDbf.Post;
+      DBSubstancesUsed.Update('Name', used_string);
 
     end;
-
-    MyDbf.Close;
-
-    MyDbf.Free;
 
     ShowMessage('Weights have been successfully copied to Database');
 
@@ -1307,10 +1131,6 @@ begin
 end;
 
 procedure TMainForm.Button18Click(Sender: TObject);
-var
-  MyDbf: TDbf;
-  i:     integer;
-  selected_item: integer;
 begin
 
   Edit19.Text := 'DEFAULT' ;
@@ -1318,19 +1138,8 @@ begin
   if ComboBox1.Items.Count = 0 then
     Exit;
 
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := formulations_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
-  MyDbf.Filter := 'Name=' + QuotedStr('DEFAULT');
-
-  MyDbf.Filtered := True;       // This selects the filtered set
-  MyDbf.First;                  // moves the the first filtered data
+  DBFormulations.Delete('Name', 'DEFAULT');
   ComboBox1.Items.Delete(ComboBox1.ItemIndex);
-  MyDbf.Delete;
-  MyDbf.Close;
-  MyDbf.Free;
 
   Button4Click(Sender);
 end;
@@ -2949,154 +2758,7 @@ if RadioButton13.Checked then
 
 end;
 
-procedure TMainForm.Button3Click(Sender: TObject);
-var
 
-  MyDbf: TDbf;
-  oldvalues1: array of array of string;
-  oldvalues: array of array of double;
-  i: integer;
-  j: integer;
-
-begin
-
-  MyDbf := TDbf.Create(nil);
-  try
-    { use relative path to "data" directory }
-    MyDbf.FilePath   := '';
-    { we want to use Visual dBase VII compatible tables }
-    MyDbf.TableLevel := 7;
-    MyDbf.Exclusive  := True;
-    MyDbf.TableName  := substances_db ;
-    with MyDbf.FieldDefs do
-    begin
-      Add('Name', ftString, 80, False);
-      Add('Formula', ftString, 80, False);
-      Add('Source', ftString, 80, False);
-      Add('Purity', ftFloat, 0, False);
-      Add('N (NO3-)', ftFloat, 0, False);
-      Add('N (NH4+)', ftFloat, 0, False);
-      Add('P', ftFloat, 0, False);
-      Add('K', ftFloat, 0, False);
-      Add('Mg', ftFloat, 0, False);
-      Add('Ca', ftFloat, 0, False);
-      Add('S', ftFloat, 0, False);
-      Add('B', ftFloat, 0, False);
-      Add('Fe', ftFloat, 0, False);
-      Add('Zn', ftFloat, 0, False);
-      Add('Mn', ftFloat, 0, False);
-      Add('Cu', ftFloat, 0, False);
-      Add('Mo', ftFloat, 0, False);
-      Add('Na', ftFloat, 0, False);
-      Add('Si', ftFloat, 0, False);
-      Add('Cl', ftFloat, 0, False);
-      Add('isLiquid', ftFloat, 0, False);
-      Add('Density', ftFloat, 0, False);
-      Add('Cost', ftFloat, 0, False);
-      Add('ConcType', ftString, 80, False);
-    end;
-    MyDbf.CreateTable;
-    MyDbf.FieldDefs.Clear;
-    MyDbf.Open;
-    MyDbf.AddIndex('name', 'Name', [ixCaseInsensitive]);
-    MyDbf.AddIndex('formula', 'Formula', [ixCaseInsensitive]);
-    MyDbf.Close;
-  finally
-    MyDbf.Free;
-  end;
-
-  SetLength(oldvalues1, 50, 3);
-  SetLength(oldvalues, 50, 17);
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := 'substances_win_backup.dbf';
-  MyDbf.Open;
-
-  MyDbf.First;
-
-  i := 0;
-
-  while not MyDbf.EOF do
-  begin
-
-    oldvalues1[i][0] := MyDbf.FieldByName('Name').AsString;
-    oldvalues1[i][1] := MyDbf.FieldByName('Formula').AsString;
-    oldvalues1[i][2] := MyDbf.FieldByName('ConcType').AsString;
-    oldvalues[i][0]  := MyDbf.FieldByName('Purity').AsFloat;
-    ;
-    oldvalues[i][1]  := MyDbf.FieldByName('N (NO3-)').AsFloat;
-    oldvalues[i][2]  := MyDbf.FieldByName('P').AsFloat;
-    oldvalues[i][3]  := MyDbf.FieldByName('K').AsFloat;
-    oldvalues[i][4]  := MyDbf.FieldByName('Mg').AsFloat;
-    oldvalues[i][5]  := MyDbf.FieldByName('Ca').AsFloat;
-    oldvalues[i][6]  := MyDbf.FieldByName('S').AsFloat;
-    oldvalues[i][7]  := MyDbf.FieldByName('B').AsFloat;
-    oldvalues[i][8]  := MyDbf.FieldByName('Fe').AsFloat;
-    oldvalues[i][9]  := MyDbf.FieldByName('Zn').AsFloat;
-    oldvalues[i][10] := MyDbf.FieldByName('Cu').AsFloat;
-    oldvalues[i][11] := MyDbf.FieldByName('Mo').AsFloat;
-    oldvalues[i][12] := MyDbf.FieldByName('Na').AsFloat;
-    oldvalues[i][13] := MyDbf.FieldByName('Si').AsFloat;
-    oldvalues[i][14] := MyDbf.FieldByName('Cl').AsFloat;
-    oldvalues[i][15] := MyDbf.FieldByName('Mn').AsFloat;
-    oldvalues[i][16] := MyDbf.FieldByName('N (NH4+)').AsFloat;
-
-
-    i := i + 1;
-
-    MyDbf.Next;                                     // use .next here NOT .findnext!
-
-  end;
-
-  MyDbf.Close;
-  MyDbf.Free;
-
-
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_db;
-  MyDbf.Open;
-
-  MyDbf.Active := True;
-
-  for j := 0 to i do
-
-  begin
-
-    MyDbf.Insert;
-
-    MyDbf.FieldByName('Name').AsString := oldvalues1[j][0];
-    MyDbf.FieldByName('Formula').AsString := oldvalues1[j][1];
-    MyDbf.FieldByName('ConcType').AsString := oldvalues1[j][2];
-    MyDbf.FieldByName('Purity').AsFloat := oldvalues[j][0];
-    MyDbf.FieldByName('N (NO3-)').AsFloat := oldvalues[j][1];
-    MyDbf.FieldByName('P').AsFloat    := oldvalues[j][2];
-    MyDbf.FieldByName('K').AsFloat    := oldvalues[j][3];
-    MyDbf.FieldByName('Mg').AsFloat   := oldvalues[j][4];
-    MyDbf.FieldByName('Ca').AsFloat   := oldvalues[j][5];
-    MyDbf.FieldByName('S').AsFloat    := oldvalues[j][6];
-    MyDbf.FieldByName('B').AsFloat    := oldvalues[j][7];
-    MyDbf.FieldByName('Fe').AsFloat   := oldvalues[j][8];
-    MyDbf.FieldByName('Zn').AsFloat   := oldvalues[j][9];
-    MyDbf.FieldByName('Cu').AsFloat   := oldvalues[j][10];
-    MyDbf.FieldByName('Mo').AsFloat   := oldvalues[j][11];
-    MyDbf.FieldByName('Na').AsFloat   := oldvalues[j][12];
-    MyDbf.FieldByName('Si').AsFloat   := oldvalues[j][13];
-    MyDbf.FieldByName('Cl').AsFloat   := oldvalues[j][14];
-    MyDbf.FieldByName('Mn').AsFloat   := oldvalues[j][15];
-    MyDbf.FieldByName('N (NH4+)').AsFloat := oldvalues[j][16];
-    MyDbf.FieldByName('Cost').AsFloat := 0;
-    ;
-
-    MyDbf.Post;
-
-  end;
-
-  MyDbf.Close;
-  MyDbf.Free;
-
-end;
 
 procedure TMainForm.Button4Click(Sender: TObject);
 var
@@ -3270,24 +2932,6 @@ begin
 
 end;
 
-procedure TMainForm.CheckBox1Change(Sender: TObject);
-begin
-
-  if CheckBox1.Checked then
-  begin
-
-    Button3.Enabled := True;
-
-  end;
-
-  if CheckBox1.Checked = False then
-  begin
-
-    Button3.Enabled := False;
-
-  end;
-
-end;
 
 procedure TMainForm.setinivalues ;
 var
@@ -3959,7 +3603,7 @@ end;
 
 procedure TMainForm.StringGrid2EditingDone(Sender: TObject);
 begin
-  weightFineTunning;
+weightFineTunning;
 end;
 
 procedure TMainForm.TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;

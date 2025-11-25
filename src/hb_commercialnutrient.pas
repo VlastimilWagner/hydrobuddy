@@ -190,7 +190,6 @@ for i := 1 to 16 do
 procedure TCommercialNutrientForm.Button2Click(Sender: TObject);
 var
 i : integer ;
-j : integer ;
 varnames : array of string ;
 result : array of double ;
 test : double ;
@@ -274,7 +273,6 @@ end;
 
 procedure TCommercialNutrientForm.ComboBox4Change(Sender: TObject);
   var
-i : integer ;
 selected_item : integer ;
 MyDbf: TDbf;
 begin

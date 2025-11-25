@@ -17,23 +17,23 @@ uses
 procedure AssignValues ;
 begin
    if DBwatterquality.SearchByField('NAME', 'DEFAULT', True) then begin
-     WatterQualityForm.Edit25.text := DBwatterquality.RowData.NAME;
-     WatterQualityForm.Edit1.text := FloatToStrF(DBwatterquality.RowData.N_NO3,ffFixed,7,3);
-     WatterQualityForm.Edit2.text := FloatToStrF(DBwatterquality.RowData.N_NH4,ffFixed,7,3);
-     WatterQualityForm.Edit3.text := FloatToStrF(DBwatterquality.RowData.P,ffFixed,7,3);
-     WatterQualityForm.Edit4.text := FloatToStrF(DBwatterquality.RowData.K,ffFixed,7,3);
-     WatterQualityForm.Edit5.text := FloatToStrF(DBwatterquality.RowData.Mg,ffFixed,7,3);
-     WatterQualityForm.Edit6.text := FloatToStrF(DBwatterquality.RowData.Ca,ffFixed,7,3);
-     WatterQualityForm.Edit7.text := FloatToStrF(DBwatterquality.RowData.S,ffFixed,7,3);
-     WatterQualityForm.Edit8.text := FloatToStrF(DBwatterquality.RowData.Fe,ffFixed,7,3);
-     WatterQualityForm.Edit9.text := FloatToStrF(DBwatterquality.RowData.Mn,ffFixed,7,3);
-     WatterQualityForm.Edit10.text := FloatToStrF(DBwatterquality.RowData.Zn,ffFixed,7,3);
-     WatterQualityForm.Edit11.text := FloatToStrF(DBwatterquality.RowData.B,ffFixed,7,3);
-     WatterQualityForm.Edit12.text := FloatToStrF(DBwatterquality.RowData.Cu,ffFixed,7,3);
-     WatterQualityForm.Edit13.text := FloatToStrF(DBwatterquality.RowData.Si,ffFixed,7,3);
-     WatterQualityForm.Edit14.text := FloatToStrF(DBwatterquality.RowData.Mo,ffFixed,7,3);
-     WatterQualityForm.Edit15.text := FloatToStrF(DBwatterquality.RowData.Na,ffFixed,7,3);
-     WatterQualityForm.Edit16.text := FloatToStrF(DBwatterquality.RowData.Cl,ffFixed,7,3);
+     WatterQualityForm.Edit25.text := DBwatterquality.NAME;
+     WatterQualityForm.Edit1.text := FloatToStrF(DBwatterquality.N_NO3,ffFixed,7,3);
+     WatterQualityForm.Edit2.text := FloatToStrF(DBwatterquality.N_NH4,ffFixed,7,3);
+     WatterQualityForm.Edit3.text := FloatToStrF(DBwatterquality.P,ffFixed,7,3);
+     WatterQualityForm.Edit4.text := FloatToStrF(DBwatterquality.K,ffFixed,7,3);
+     WatterQualityForm.Edit5.text := FloatToStrF(DBwatterquality.Mg,ffFixed,7,3);
+     WatterQualityForm.Edit6.text := FloatToStrF(DBwatterquality.Ca,ffFixed,7,3);
+     WatterQualityForm.Edit7.text := FloatToStrF(DBwatterquality.S,ffFixed,7,3);
+     WatterQualityForm.Edit8.text := FloatToStrF(DBwatterquality.Fe,ffFixed,7,3);
+     WatterQualityForm.Edit9.text := FloatToStrF(DBwatterquality.Mn,ffFixed,7,3);
+     WatterQualityForm.Edit10.text := FloatToStrF(DBwatterquality.Zn,ffFixed,7,3);
+     WatterQualityForm.Edit11.text := FloatToStrF(DBwatterquality.B,ffFixed,7,3);
+     WatterQualityForm.Edit12.text := FloatToStrF(DBwatterquality.Cu,ffFixed,7,3);
+     WatterQualityForm.Edit13.text := FloatToStrF(DBwatterquality.Si,ffFixed,7,3);
+     WatterQualityForm.Edit14.text := FloatToStrF(DBwatterquality.Mo,ffFixed,7,3);
+     WatterQualityForm.Edit15.text := FloatToStrF(DBwatterquality.Na,ffFixed,7,3);
+     WatterQualityForm.Edit16.text := FloatToStrF(DBwatterquality.Cl,ffFixed,7,3);
    end;
 end ;
 
