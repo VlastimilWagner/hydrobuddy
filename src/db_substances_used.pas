@@ -45,8 +45,8 @@ type
     WEIGHT: double;
     CONCTYPE: string;
     constructor Create;
+    function FieldByName(const AName: string): Variant;
   end;
-
   var DBSubstancesUsed: TDBSubstancesUsed;
 
 
@@ -223,6 +223,27 @@ begin
    end;
 end;
 
+function TDBSubstancesUsed.FieldByName(const AName: string): Variant;
+begin
+  if AName = 'N_NO3' then Exit(N_NO3)
+  else if AName = 'N_NH4' then Exit(N_NH4)
+  else if AName = 'P' then Exit(P)
+  else if AName = 'K' then Exit(K)
+  else if AName = 'Mg' then Exit(Mg)
+  else if AName = 'Ca' then Exit(Ca)
+  else if AName = 'S' then Exit(S)
+  else if AName = 'B' then Exit(B)
+  else if AName = 'Fe' then Exit(Fe)
+  else if AName = 'Zn' then Exit(Zn)
+  else if AName = 'Mn' then Exit(Mn)
+  else if AName = 'Cu' then Exit(Cu)
+  else if AName = 'Mo' then Exit(Mo)
+  else if AName = 'Na' then Exit(Na)
+  else if AName = 'Si' then Exit(Si)
+  else if AName = 'Cl' then Exit(Cl)
+  else raise Exception.CreateFmt('Field "%s" not found', [AName]);
+
+end;
 
 
 begin

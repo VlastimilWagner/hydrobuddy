@@ -7,10 +7,12 @@ interface
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
   ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, Grids, TAGraph, TASeries,
-  hb_load_salts, Dbf, DB, Math, densesolver, hb_commercialnutrient, hb_comparison,
+  hb_load_salts, Math, densesolver, hb_commercialnutrient, hb_comparison,
   hb_waterquality, hb_addweight, hb_insprecision, hb_stockanalysis,
   hb_persubstance, hb_datasetname, hb_analysis, hb_tissue_analysis,
-  hb_freedom, hb_ratios,LCLIntf, Types,IniFiles, db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used, customhelpfunctions;
+  hb_freedom, hb_ratios,LCLIntf, Types,IniFiles,
+  db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used,
+  customhelpfunctions;
 
 const
   IniFile = 'settings.ini';
@@ -454,31 +456,31 @@ begin
 
   SetLength(waterquality, 16);
 
-  waterquality[0]  := StrtoFloat(WatterQualityForm.Edit1.Text);
-  waterquality[1]  := StrtoFloat(WatterQualityForm.Edit2.Text);
-  waterquality[2]  := StrtoFloat(WatterQualityForm.Edit3.Text);
-  waterquality[3]  := StrtoFloat(WatterQualityForm.Edit4.Text);
-  waterquality[4]  := StrtoFloat(WatterQualityForm.Edit5.Text);
-  waterquality[5]  := StrtoFloat(WatterQualityForm.Edit6.Text);
-  waterquality[6]  := StrtoFloat(WatterQualityForm.Edit7.Text);
-  waterquality[7]  := StrtoFloat(WatterQualityForm.Edit8.Text);
-  waterquality[8]  := StrtoFloat(WatterQualityForm.Edit9.Text);
-  waterquality[9]  := StrtoFloat(WatterQualityForm.Edit10.Text);
-  waterquality[10] := StrtoFloat(WatterQualityForm.Edit11.Text);
-  waterquality[11] := StrtoFloat(WatterQualityForm.Edit12.Text);
-  waterquality[12] := StrtoFloat(WatterQualityForm.Edit13.Text);
-  waterquality[13] := StrtoFloat(WatterQualityForm.Edit14.Text);
-  waterquality[14] := StrtoFloat(WatterQualityForm.Edit15.Text);
-  waterquality[15] := StrtoFloat(WatterQualityForm.Edit16.Text);
+  waterquality[0]  := StrtoFloatAnySeparator(WatterQualityForm.Edit1.Text);
+  waterquality[1]  := StrtoFloatAnySeparator(WatterQualityForm.Edit2.Text);
+  waterquality[2]  := StrtoFloatAnySeparator(WatterQualityForm.Edit3.Text);
+  waterquality[3]  := StrtoFloatAnySeparator(WatterQualityForm.Edit4.Text);
+  waterquality[4]  := StrtoFloatAnySeparator(WatterQualityForm.Edit5.Text);
+  waterquality[5]  := StrtoFloatAnySeparator(WatterQualityForm.Edit6.Text);
+  waterquality[6]  := StrtoFloatAnySeparator(WatterQualityForm.Edit7.Text);
+  waterquality[7]  := StrtoFloatAnySeparator(WatterQualityForm.Edit8.Text);
+  waterquality[8]  := StrtoFloatAnySeparator(WatterQualityForm.Edit9.Text);
+  waterquality[9]  := StrtoFloatAnySeparator(WatterQualityForm.Edit10.Text);
+  waterquality[10] := StrtoFloatAnySeparator(WatterQualityForm.Edit11.Text);
+  waterquality[11] := StrtoFloatAnySeparator(WatterQualityForm.Edit12.Text);
+  waterquality[12] := StrtoFloatAnySeparator(WatterQualityForm.Edit13.Text);
+  waterquality[13] := StrtoFloatAnySeparator(WatterQualityForm.Edit14.Text);
+  waterquality[14] := StrtoFloatAnySeparator(WatterQualityForm.Edit15.Text);
+  waterquality[15] := StrtoFloatAnySeparator(WatterQualityForm.Edit16.Text);
 
   // disable input mix analysis button, we will enable it later if all substances are solids
   Button19.Enabled := False ;
 
   // set instrument precision values
 
-  volume_error := StrtoFloat(InsPrecisionForm.Edit1.Text) * 0.001;
+  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit1.Text) * 0.001;
 
-  weight_error := StrtoFloat(InsPrecisionForm.Edit2.Text);
+  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit2.Text);
 
   // set weight factor (g) or (oz)
 
@@ -499,7 +501,7 @@ begin
   // which is the unit used within all calculations ppm = g/m3
 
   // cubic meter
-  Volume := StrtoFloat(Edit18.Text);
+  Volume := StrtoFloatAnySeparator(Edit18.Text);
 
   // liter conversion
   if Radiobutton1.Checked then
@@ -511,7 +513,7 @@ begin
 
   // correct volume if using concentrated solutions.
   if RadioButton6.Checked then
-  Volume := Volume * StrToFloat(Edit17.Text);
+  Volume := Volume * StrtoFloatAnySeparator(Edit17.Text);
 
   array_size := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
@@ -608,7 +610,7 @@ if RadioButton13.Checked then
       // load all element names (this time we don't need to discriminate as
       // we simply calculate for everyone
       //varnames[j - 1] := (FindComponent('Label' + IntToStr(j)) as TLabel).Caption;
-      all_element_targets[j-1] := StrToFloat((FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
+      all_element_targets[j-1] := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
       StringGrid1.Cells[2, j] := '0';
       StringGrid1.Cells[3, j] := '0';
       grossError[j-1] := 0;
@@ -629,7 +631,7 @@ if RadioButton13.Checked then
     begin
 
       nameSubstance := DBSubstances.Name;
-      weight := StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
+      weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i]);
       nameToCompare := StringGrid2.Cells[NAME_IDX, i] ;
 
       if  DBSubstances.isLiquid then all_solids := False;
@@ -645,13 +647,13 @@ if RadioButton13.Checked then
       begin
 
         if ((1 / weight_factor) * weight *
-          0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity / Volume > 0) then
+          0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstances.Purity / Volume > 0) then
 
         begin
 
-          upper := ((StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i])+weight_error)) /
+          upper := ((StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i])+weight_error)) /
             (Volume - volume_error) ;
-          lower := ((StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i])-weight_error)) /
+          lower := ((StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i])-weight_error)) /
             (Volume + volume_error) ;
 
           if (RadioButton7.Checked = true) and (all_element_targets[j] <> 0) then
@@ -659,7 +661,7 @@ if RadioButton13.Checked then
 
           if (RadioButton6.Checked = true) and (all_element_targets[j] <> 0) then
           instrumentalError[j] := ((upper - lower) * (100 / all_element_targets[j])) /
-          (2 * StrtoFloat(Edit17.Text)) + instrumentalError[j];
+          (2 * StrtoFloatAnySeparator(Edit17.Text)) + instrumentalError[j];
 
           PerSubstanceForm.StringGrid1.RowCount := PerSubstanceForm.StringGrid1.RowCount + 1 ;
 
@@ -670,7 +672,7 @@ if RadioButton13.Checked then
 
           PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
             FloattoStr(round2((1 / weight_factor) * weight *
-            0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity / Volume, 3)));
+            0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstances.Purity / Volume, 3)));
 
           if prev_conc <> 'ppm' then
 
@@ -678,16 +680,16 @@ if RadioButton13.Checked then
             FloattoStrF((1/conc_factor[j])*(1 / weight_factor) * weight *
             0.01 * double(DBSubstances.FieldByName(varnames[j])) * DBSubstances.Purity / Volume, ffExponent, 4, 2));
 
-          Result[j] := Result[j] + StrToFloat(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]);
+          Result[j] := Result[j] + StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]);
 
           if (StringGrid2.Cells[NAME_IDX, i][1] = 'A') and (RadioButton6.Checked) then
-          elementInSolutionA[j] := StrToFloat(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1])+ elementInSolutionA[j] ;
+          elementInSolutionA[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1])+ elementInSolutionA[j] ;
 
           if (StringGrid2.Cells[NAME_IDX, i][1] = 'B') and (RadioButton6.Checked) then
-          elementInSolutionB[j] := StrToFloat(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]) + elementInSolutionB[j] ;
+          elementInSolutionB[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]) + elementInSolutionB[j] ;
 
-          //ShowMessage( nameSubstance + ' ' + varnames[j] + ' ' + FloatToStr(weight * 0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName('Purity').AsFloat));
-          mixContribution[j] := mixContribution[j] + weight * 0.01 * DBSubstances.FieldByName(varnames[j]).AsFloat * DBSubstances.Purity ;
+          //ShowMessage( nameSubstance + ' ' + varnames[j] + ' ' + FloatToStr(weight * 0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstancesPurity));
+          mixContribution[j] := mixContribution[j] + weight * 0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstances.Purity ;
 
         end;
 
@@ -705,7 +707,7 @@ if RadioButton13.Checked then
     end;
 
 
-    for i := 1 to StringGrid2.RowCount - 1 do totalWeight := totalWeight+StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
+    for i := 1 to StringGrid2.RowCount - 1 do totalWeight := totalWeight+StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i]);
 
     // save results in main page as well
     for j := 1 to 16 do
@@ -714,7 +716,7 @@ if RadioButton13.Checked then
         if all_element_targets[j-1] <> 0 then
         grossError[j-1] :=  (Result[j-1] * 100 / all_element_targets[j-1]) - 100 ;
 
-        (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption := StringGrid1.Cells[1, i];
+        (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption := StringGrid1.Cells[1, j];
         StringGrid1.Cells[3, j] := '+/- ' + FloatToStr(Round(instrumentalError[j-1]*10)/10) + '%' ;
         StringGrid1.Cells[2, j] := FloatToStr(Round(grossError[j-1]*10)/10) + '%' ;
 
@@ -776,7 +778,7 @@ if RadioButton13.Checked then
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
-            predicted_ec := conc_factor[i-1]*StrtoFloat(
+            predicted_ec := conc_factor[i-1]*StrtoFloatAnySeparator(
               (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) *
               ec_contribution[i - 1] + predicted_ec;
         end;
@@ -789,13 +791,13 @@ if RadioButton13.Checked then
 
         // calculate ionic strength used for conductivity model
         ionic_strength := 0;
-        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
+        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
 
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
             predicted_ec := conc_factor[i-1]
-                            * (StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
+                            * (StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
                             * ec_contribution[i - 1]
                             * exp(-0.7025187*sqrt(ionic_strength)*power(zi[i-1],1.5))
                             + predicted_ec;
@@ -829,7 +831,7 @@ if RadioButton13.Checked then
 
   begin
 
-    test := StrtoFloat(StringGrid2.Cells[COST_IDX,i+1]) + test;
+    test := StrtoFloatAnySeparator(StringGrid2.Cells[COST_IDX,i+1]) + test;
 
   end;
 
@@ -844,7 +846,7 @@ if RadioButton13.Checked then
   begin
 
         //ShowMessage(FloatToStr(elementInSolutionA[i]));
-        elementInSolutionA[i] := 100 * elementInSolutionA[i] * StrtoFloat(Edit17.Text) / (1000*1000);
+        elementInSolutionA[i] := 100 * elementInSolutionA[i] * StrtoFloatAnySeparator(Edit17.Text) / (1000*1000);
 
         if (varnames[i] <> 'P') and (varnames[i] <> 'K') then
 
@@ -876,7 +878,7 @@ if RadioButton13.Checked then
   for i := 0 to 15 do
   begin
 
-        elementInSolutionB[i] := 100 * elementInSolutionB[i] * StrtoFloat(Edit17.Text) / (1000*1000);
+        elementInSolutionB[i] := 100 * elementInSolutionB[i] * StrtoFloatAnySeparator(Edit17.Text) / (1000*1000);
 
         if (varnames[i] <> 'P') and (varnames[i] <> 'K') then
 
@@ -941,9 +943,9 @@ begin
       DBSubstancesUsed.SearchByField('Name', used_string, True);
 
       if RadioButton6.checked then
-            DBSubstancesUsed.Weight := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i])/StrToFloat(Edit17.Text)
+            DBSubstancesUsed.Weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/StrtoFloatAnySeparator(Edit17.Text)
       else
-            DBSubstancesUsed.Weight := StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i]);
+            DBSubstancesUsed.Weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i]);
 
       DBSubstancesUsed.Update('Name', used_string);
 
@@ -1008,7 +1010,7 @@ begin
             StringGrid2.Cells[FORMULA_IDX,i] + ',' +
             StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
             StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrToFloat(StringGrid2.Cells[AMOUNT_IDX,i])/16)  + ',' +
+            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/16)  + ',' +
             'lb'    + ',' +
             StringGrid2.Cells[COST_IDX,i]);
       end;
@@ -1019,7 +1021,7 @@ begin
             StringGrid2.Cells[FORMULA_IDX,i] + ',' +
             StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
             StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrToFloat(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
+            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
             'kg'    + ',' +
             StringGrid2.Cells[COST_IDX,i]);
       end;
@@ -1030,7 +1032,7 @@ begin
             StringGrid2.Cells[FORMULA_IDX,i] + ',' +
             StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
             StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrToFloat(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
+            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
             'L'    + ',' +
             StringGrid2.Cells[COST_IDX,i]);
       end;
@@ -1104,7 +1106,7 @@ begin
 
   for i := 1 to StringGrid2.RowCount-1 do
   begin
-      current_weight := StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
+      current_weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i]);
       StringGrid2.Cells[AMOUNT_IDX, i] := FloatToStr(round2(current_weight*1.05, 4));
   end;
 
@@ -1122,7 +1124,7 @@ begin
 
   for i := 1 to StringGrid2.RowCount-1 do
   begin
-      current_weight := StrToFloat(StringGrid2.Cells[AMOUNT_IDX, i]);
+      current_weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i]);
       StringGrid2.Cells[AMOUNT_IDX, i] := FloatToStr(round2(current_weight*0.95, 4));
   end;
 
@@ -1267,7 +1269,7 @@ for i:= 1 to 16 do
         begin
 
          if StringGrid1.Cells[0,i] = names[j] then
-          temp[j] := StrToFloat(StringGrid1.Cells[1,i]) ;
+          temp[j] := StrtoFloatAnySeparator(StringGrid1.Cells[1,i]) ;
 
         end;
 
@@ -1323,7 +1325,6 @@ end;
 
 procedure TMainForm.Button2Click(Sender: TObject);
 var
-  MyDbf:  TDbf;
   i:      integer;
   j:      integer;
   k:      integer;
@@ -1373,6 +1374,7 @@ var
   all_solids: boolean;
   mixContribution: array[0..15] of double;
   totalWeight: double;
+  dbvarnames: array of string;
 begin
 
   //deal with null
@@ -1448,28 +1450,32 @@ begin
   // define water quality parameters
   SetLength(waterquality, 16);
 
-  waterquality[0]  := StrtoFloat(WatterQualityForm.Edit1.Text);
-  waterquality[1]  := StrtoFloat(WatterQualityForm.Edit2.Text);
-  waterquality[2]  := StrtoFloat(WatterQualityForm.Edit3.Text);
-  waterquality[3]  := StrtoFloat(WatterQualityForm.Edit4.Text);
-  waterquality[4]  := StrtoFloat(WatterQualityForm.Edit5.Text);
-  waterquality[5]  := StrtoFloat(WatterQualityForm.Edit6.Text);
-  waterquality[6]  := StrtoFloat(WatterQualityForm.Edit7.Text);
-  waterquality[7]  := StrtoFloat(WatterQualityForm.Edit8.Text);
-  waterquality[8]  := StrtoFloat(WatterQualityForm.Edit9.Text);
-  waterquality[9]  := StrtoFloat(WatterQualityForm.Edit10.Text);
-  waterquality[10] := StrtoFloat(WatterQualityForm.Edit11.Text);
-  waterquality[11] := StrtoFloat(WatterQualityForm.Edit12.Text);
-  waterquality[12] := StrtoFloat(WatterQualityForm.Edit13.Text);
-  waterquality[13] := StrtoFloat(WatterQualityForm.Edit14.Text);
-  waterquality[14] := StrtoFloat(WatterQualityForm.Edit15.Text);
-  waterquality[15] := StrtoFloat(WatterQualityForm.Edit16.Text);
+  waterquality[0]  := StrtoFloatAnySeparator(WatterQualityForm.Edit1.Text);
+  waterquality[1]  := StrtoFloatAnySeparator(WatterQualityForm.Edit2.Text);
+  waterquality[2]  := StrtoFloatAnySeparator(WatterQualityForm.Edit3.Text);
+  waterquality[3]  := StrtoFloatAnySeparator(WatterQualityForm.Edit4.Text);
+  waterquality[4]  := StrtoFloatAnySeparator(WatterQualityForm.Edit5.Text);
+  waterquality[5]  := StrtoFloatAnySeparator(WatterQualityForm.Edit6.Text);
+  waterquality[6]  := StrtoFloatAnySeparator(WatterQualityForm.Edit7.Text);
+  waterquality[7]  := StrtoFloatAnySeparator(WatterQualityForm.Edit8.Text);
+  waterquality[8]  := StrtoFloatAnySeparator(WatterQualityForm.Edit9.Text);
+  waterquality[9]  := StrtoFloatAnySeparator(WatterQualityForm.Edit10.Text);
+  waterquality[10] := StrtoFloatAnySeparator(WatterQualityForm.Edit11.Text);
+  waterquality[11] := StrtoFloatAnySeparator(WatterQualityForm.Edit12.Text);
+  waterquality[12] := StrtoFloatAnySeparator(WatterQualityForm.Edit13.Text);
+  waterquality[13] := StrtoFloatAnySeparator(WatterQualityForm.Edit14.Text);
+  waterquality[14] := StrtoFloatAnySeparator(WatterQualityForm.Edit15.Text);
+  waterquality[15] := StrtoFloatAnySeparator(WatterQualityForm.Edit16.Text);
+
+
+  SetLength(dbvarnames, 16);
+  dbvarnames := ['N_NO3','N_NH4','P','K','Mg','Ca','S','Fe','Mn','Zn','B','Cu','Si','Mo','Na','Cl'];
 
   // set instrument precision values
 
-  volume_error := StrtoFloat(InsPrecisionForm.Edit1.Text) * 0.001;
+  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit1.Text) * 0.001;
 
-  weight_error := StrtoFloat(InsPrecisionForm.Edit2.Text);
+  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit2.Text);
 
   // set weight factor (g) or (oz)
 
@@ -1496,7 +1502,7 @@ begin
   // which is the unit used within all calculations ppm = g/m3
 
   // cubic meter
-  Volume := StrtoFloat(Edit18.Text);
+  Volume := StrtoFloatAnySeparator(Edit18.Text);
 
   // liter conversion
   if Radiobutton1.Checked then
@@ -1659,44 +1665,37 @@ if RadioButton13.Checked then
     all_element_names[i - 1] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption   ;
 
     if (all_element_names[i - 1] <> 'Si') then
-    all_element_targets[i - 1] := (conc_factor[i-1])*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
+    all_element_targets[i - 1] := (conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
 
     if (all_element_names[i - 1] = 'Si') and (ComboBox3.ItemIndex = 0) then
-    all_element_targets[i - 1] := (conc_factor[i-1])*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
+    all_element_targets[i - 1] := (conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
 
     if (all_element_names[i - 1] = 'Si') and (ComboBox3.ItemIndex = 1) then
-    all_element_targets[i - 1] := 0.4684*(conc_factor[i-1])*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
+    all_element_targets[i - 1] := 0.4684*(conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
    ;
 
     end ;
 
     // load the database in order to get the weights and find the resulting ppm values
 
-    MyDbf := TDbf.Create(nil);
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := substances_used_db ;
-    MyDbf.Open;
-    MyDbf.Active := True;
-
-    MyDbf.First; // moves to the first data
-
+    DBSubstancesUsed.SearchFirst;
     i := 0 ;
 
-    while not MyDbf.EOF do
+    while not DBSubstancesUsed.EOF do
     begin
 
-      IsLiquid[0][i] := MyDbf.FieldByName('IsLiquid').AsFloat ;
-      IsLiquid[1][i] := MyDbf.FieldByName('Density').AsFloat ;
+      if DBSubstancesUsed.IsLiquid then IsLiquid[0][i] := 1 else IsLiquid[0][i] := 0;
+      IsLiquid[1][i] := DBSubstancesUsed.Density ;
 
       for j := 0 to 15 do
 
       begin
-        if IsLiquid[0][i] = 0 then preloaded_weight[i] :=  (1 / weight_factor) * MyDbf.FieldByName('Weight').AsFloat ;
-        if IsLiquid[0][i] = 1 then preloaded_weight[i] :=   MyDbf.FieldByName('Weight').AsFloat ;
+        if IsLiquid[0][i] = 0 then preloaded_weight[i] :=  (1 / weight_factor) * DBSubstancesUsed.Weight ;
+        if IsLiquid[0][i] = 1 then preloaded_weight[i] :=   DBSubstancesUsed.Weight ;
         if IsLiquid[0][i] = 1 then all_solids := False;
 
         all_element_contributions[j][i] :=
-        0.01 * MyDbf.FieldByName(all_element_names[j]).AsFloat * MyDbf.FieldByName('Purity').AsFloat / Volume;
+        0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume;
 
        // if all_element_contributions[j][i] <> 0 then
        // ShowMessage(all_element_names[j] + ' ' +FloatToStr(all_element_contributions[j][i]));
@@ -1708,7 +1707,7 @@ if RadioButton13.Checked then
        if (preloaded_weight[i] > 0) and (CheckBox3.Checked = false) then
        begin
 
-            ShowMessage('You have selected a fixed weight for ' + MyDbf.FieldByName('Name').AsString + '. The program will find a solution with this constraint but it will add more of this substance if it leads to a better solution');
+            ShowMessage('You have selected a fixed weight for ' + DBSubstancesUsed.Name + '. The program will find a solution with this constraint but it will add more of this substance if it leads to a better solution');
 
             if RadioButton6.Checked then
             preloaded_weight[i] := preloaded_weight[i]/StrToInt(Edit17.Text);
@@ -1716,11 +1715,9 @@ if RadioButton13.Checked then
        end;
 
        i := i + 1;
-      MyDbf.Next;// use .next here NOT .findnext!
+      DBSubstancesUsed.Next;// use .next here NOT .findnext!
     end;
 
-    MyDbf.Close;
-    MyDbf.Free;
 
     // define variable count, names and intended values
 
@@ -1735,7 +1732,7 @@ if RadioButton13.Checked then
     for i := 1 to 16 do
     begin
 
-      if (StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) > 0) and
+      if (StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) > 0) and
         ((FindComponent('Label' + IntToStr(i)) as TLabel).Caption <> degree_of_freedom) then
       begin
 
@@ -1788,10 +1785,10 @@ if RadioButton13.Checked then
         varnames[j] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption;
 
         if (varnames[j] <> 'Si') or (ComboBox3.ItemIndex = 0) then
-        vartargetvalue[j] := conc_factor[i-1]*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
+        vartargetvalue[j] := conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
 
         if (varnames[j] = 'Si') and (ComboBox3.ItemIndex = 1) then
-        vartargetvalue[j] := 0.4684*conc_factor[i-1]*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
+        vartargetvalue[j] := 0.4684*conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
 
         SetLength(temp, j + 1);
         SetLength(temp2, j + 1);
@@ -1810,10 +1807,10 @@ if RadioButton13.Checked then
 
     begin
 
-    all_element_targets[i - 1] := conc_factor[i-1]*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
+    all_element_targets[i - 1] := conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
 
     if (i=13) and (ComboBox3.ItemIndex = 1) then
-    all_element_targets[i - 1] := 0.4684*conc_factor[i-1]*StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
+    all_element_targets[i - 1] := 0.4684*conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
 
 
     end ;
@@ -1842,26 +1839,20 @@ if RadioButton13.Checked then
 
     i := 0;
 
-    MyDbf := TDbf.Create(nil);
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := substances_used_db ;
-    MyDbf.Open;
-    MyDbf.Active := True;
+    DBSubstancesUsed.SearchFirst;
 
-    MyDbf.First;                  // moves to the first data
-
-    while not MyDbf.EOF do
+    while not DBSubstancesUsed.EOF do
     begin
-      name_array[i][0] := MyDbf.FieldByName('Name').AsString;
-      name_array[i][1] := MyDbf.FieldByName('Formula').AsString;
-      name_array[i][2] := MyDbf.FieldByName('Source').AsString;
+      name_array[i][0] := DBSubstancesUsed.Name;
+      name_array[i][1] := DBSubstancesUsed.Formula;
+      name_array[i][2] := DBSubstancesUsed.Source;
 
       // if conditional for when A+B solutions are needed
       if Radiobutton6.Checked then
 
       begin
 
-        ConcTypeArray[i] := MyDbf.FieldByName('ConcType').AsString;
+        ConcTypeArray[i] := DBSubstancesUsed.ConcType;
 
         if ConcTypeArray[i] = '0' then
 
@@ -1879,19 +1870,17 @@ if RadioButton13.Checked then
       begin
 
         problem_matrix_left[j][i] :=
-          0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName('Purity').AsFloat / Volume;
+          0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume;
 
       end;
 
 
-      cost[i] := MyDbf.FieldByName('Cost').AsFloat;
+      cost[i] := DBSubstancesUsed.Cost;
 
       i := i + 1;
-      MyDbf.Next;                                     // use .next here NOT .findnext!
+      DBSubstancesUsed.Next;                                     // use .next here NOT .findnext!
     end;
 
-    MyDbf.Close;
-    MyDbf.Free;
 
     // right hand sided of the problem matrix (intended concentrations)
 
@@ -1987,7 +1976,7 @@ if RadioButton13.Checked then
 
       if (RadioButton6.Checked = true) and (all_element_targets[i] <> 0) then
         instrumental_error[i] := ((upper - lower) * (100 / all_element_targets[i])) /
-          (2 * StrtoFloat(Edit17.Text));
+          (2 * StrtoFloatAnySeparator(Edit17.Text));
 
       if all_element_targets[i] <> 0 then
       gross_error[i] := ((test+waterquality[i]) * 100 / (all_element_targets[i])) - 100;
@@ -2072,15 +2061,15 @@ if RadioButton13.Checked then
           StringGrid2.Cells[NAME_IDX,i+1] := (ConcTypeArray[i] + ' - ' + name_array[i][0]);
           StringGrid2.Cells[SOURCE_IDX,i+1] := (name_array[i][2]);
 
-          if IsLiquid[0][i] = 0 then StringGrid2.Cells[AMOUNT_IDX,i+1] :=(FloatToStr(round2(solutions[i] * StrtoFloat(Edit17.Text) * weight_factor +preloaded_weight[i]* weight_factor*StrtoFloat(Edit17.Text), 3)));
-          if IsLiquid[0][i] = 1 then StringGrid2.Cells[AMOUNT_IDX,i+1] :=(FloatToStr(round2(solutions[i] * StrtoFloat(Edit17.Text) +preloaded_weight[i]*StrtoFloat(Edit17.Text), 3)));
+          if IsLiquid[0][i] = 0 then StringGrid2.Cells[AMOUNT_IDX,i+1] :=(FloatToStr(round2(solutions[i] * StrtoFloatAnySeparator(Edit17.Text) * weight_factor +preloaded_weight[i]* weight_factor*StrtoFloatAnySeparator(Edit17.Text), 3)));
+          if IsLiquid[0][i] = 1 then StringGrid2.Cells[AMOUNT_IDX,i+1] :=(FloatToStr(round2(solutions[i] * StrtoFloatAnySeparator(Edit17.Text) +preloaded_weight[i]*StrtoFloatAnySeparator(Edit17.Text), 3)));
 
-          StringGrid2.Cells[COST_IDX,i+1] :=(FloatToStr(round2(0.001 * solutions[i] * cost[i] * StrtoFloat(Edit17.Text)+0.001*preloaded_weight[i] * cost[i]*StrtoFloat(Edit17.Text), 1)));
+          StringGrid2.Cells[COST_IDX,i+1] :=(FloatToStr(round2(0.001 * solutions[i] * cost[i] * StrtoFloatAnySeparator(Edit17.Text)+0.001*preloaded_weight[i] * cost[i]*StrtoFloatAnySeparator(Edit17.Text), 1)));
 
           Label20.Caption := 'Values calculated for the preparation of ' +
             Edit18.Text + ' ' + volumeunit + ' of A and ' + Edit18.Text + ' ' +
             volumeunit + ' of B solution. Please use ' +
-            FloatToStr(round2(1000 / StrtoFloat(Edit17.Text), 3)) +
+            FloatToStr(round2(1000 / StrtoFloatAnySeparator(Edit17.Text), 3)) +
             'mL of A and B within every Liter of final solution';
 
         end;
@@ -2129,15 +2118,15 @@ if RadioButton13.Checked then
           StringGrid2.Cells[SOURCE_IDX,i+1] := (name_array[i][2]);
 
           StringGrid2.Cells[AMOUNT_IDX,i+1] :=(FloatToStr(
-            round2(preloaded_weight[i]*StrtoFloat(Edit17.Text), 3)));
+            round2(preloaded_weight[i]*StrtoFloatAnySeparator(Edit17.Text), 3)));
 
           StringGrid2.Cells[COST_IDX,i+1] :=(FloatToStr(
-            round2(0.001*preloaded_weight[i] * cost[i]*StrtoFloat(Edit17.Text), 1)));
+            round2(0.001*preloaded_weight[i] * cost[i]*StrtoFloatAnySeparator(Edit17.Text), 1)));
 
           Label20.Caption := 'Values calculated for the preparation of ' +
             Edit18.Text + ' ' + volumeunit + ' of A and ' + Edit18.Text + ' ' +
             volumeunit + ' of B solution. Please use ' +
-            FloatToStr(round2(1000 / StrtoFloat(Edit17.Text), 3)) +
+            FloatToStr(round2(1000 / StrtoFloatAnySeparator(Edit17.Text), 3)) +
             'mL of A and B within every Liter of final solution';
 
         end;
@@ -2220,7 +2209,7 @@ if RadioButton13.Checked then
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
-            predicted_ec := conc_factor[i-1]*StrtoFloat(
+            predicted_ec := conc_factor[i-1]*StrtoFloatAnySeparator(
               (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) *
               ec_contribution[i - 1] + predicted_ec;
         end;
@@ -2233,13 +2222,13 @@ if RadioButton13.Checked then
 
         // calculate ionic strength used for conductivity model
         ionic_strength := 0;
-        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
+        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
 
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
             predicted_ec := conc_factor[i-1]
-                            * (StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
+                            * (StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
                             * ec_contribution[i - 1]
                             * exp(-0.7025187*sqrt(ionic_strength)*power(zi[i-1],1.5))
                             + predicted_ec;
@@ -2280,7 +2269,7 @@ if RadioButton13.Checked then
         // the 100 is to convert to percentage and the 100,000 to convert cubic meter to mL
         // in order to do the %W/V calculation (g to mL).
 
-        test := test * StrtoFloat(Edit17.Text) * 100 / (Volume * 1000000);
+        test := test * StrtoFloatAnySeparator(Edit17.Text) * 100 / (Volume * 1000000);
 
         if (all_element_names[i] <> 'P') and (all_element_names[i] <> 'K') then
 
@@ -2333,7 +2322,7 @@ if RadioButton13.Checked then
         // the 100 is to convert to percentage and the 100,000 to convert cubic meter to mL
         // in order to do the %W/V calculation (g to mL).
 
-        test := test * StrtoFloat(Edit17.Text) * 100 / (Volume * 1000000);
+        test := test * StrtoFloatAnySeparator(Edit17.Text) * 100 / (Volume * 1000000);
 
         if (all_element_names[i] <> 'P') and (all_element_names[i] <> 'K') then
 
@@ -2423,12 +2412,12 @@ if RadioButton13.Checked then
 
     begin
 
-        if (StrtoFloat(StockAnalysisForm.StringGrid1.Cells[1, 6]) > 0) and
-           (StrtoFloat(StockAnalysisForm.StringGrid1.Cells[1, 7]) > 0)  then
+        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[1, 6]) > 0) and
+           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[1, 7]) > 0)  then
            ShowMessage('Your stock solutions have not been properly designed. Currently there is calcium and sulfate within the same solution (a big problem). Please do NOT carry out this preparation');
 
-        if (StrtoFloat(StockAnalysisForm.StringGrid1.Cells[2, 6]) > 0) and
-           (StrtoFloat(StockAnalysisForm.StringGrid1.Cells[2, 7]) > 0)  then
+        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[2, 6]) > 0) and
+           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[2, 7]) > 0)  then
            ShowMessage('Your stock solutions have not been properly designed. Currently there is calcium and sulfate within the same solution (a big problem). Please do NOT carry out this preparation');
 
           temp1 :=  0 ;
@@ -2437,7 +2426,7 @@ if RadioButton13.Checked then
 
           begin
 
-          temp1 := StrtoFloat( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
+          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
 
           end ;
 
@@ -2451,7 +2440,7 @@ if RadioButton13.Checked then
 
           begin
 
-          temp1 := StrtoFloat( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
+          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
 
           end ;
 
@@ -2507,27 +2496,20 @@ if RadioButton13.Checked then
 
     // load the database in order to get the weights and find the resulting ppm values
 
-    MyDbf := TDbf.Create(nil);
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := substances_used_db ;
-    MyDbf.Open;
-    MyDbf.Active := True;
+    DBSubstancesUsed.SearchFirst;
 
-    MyDbf.First;                  // moves to the first data
-
-    while not MyDbf.EOF do
+    while not DBSubstancesUsed.EOF do
     begin
-      name_array[i][0] := MyDbf.FieldByName('Name').AsString;
-      name_array[i][1] := MyDbf.FieldByName('Formula').AsString;
+      name_array[i][0] := DBSubstancesUsed.Name;
+      name_array[i][1] := DBSubstancesUsed.Formula;
 
-      IsLiquid[0][i] := MyDbf.FieldByName('IsLiquid').AsFloat ;
-      IsLiquid[1][i] := MyDbf.FieldByName('Density').AsFloat ;
+      if DBSubstancesUsed.IsLiquid then IsLiquid[0][i] := 1 else IsLiquid[0][i] := 0;
+      IsLiquid[1][i] := DBSubstancesUsed.Density;
 
       for j := 0 to 15 do
       begin
         if IsLiquid[0][i] = 1 then all_solids := False;
-        all_element_contributions[j][i] :=
-        0.01 * MyDbf.FieldByName((FindComponent('Label' + IntToStr(j+1)) as TLabel).Caption).AsFloat * MyDbf.FieldByName('Purity').AsFloat / Volume;
+        all_element_contributions[j][i] := 0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume;
       end;
 
       if IsLiquid[0][i] = 0 then StringGrid2.Cells[UNIT_IDX,i+1] := mass_unit;
@@ -2539,13 +2521,11 @@ if RadioButton13.Checked then
 
         // ppm values are very easily calculated using all the information
         // within the DB
-        Result[j] := (1 / weight_factor) * MyDbf.FieldByName('Weight').AsFloat *
-          0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-          'Purity').AsFloat / Volume + Result[j];
+        Result[j] := (1 / weight_factor) * DBSubstancesUsed.Weight *
+          0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume + Result[j];
 
-        if ((1 / weight_factor) * MyDbf.FieldByName('Weight').AsFloat *
-          0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-          'Purity').AsFloat / Volume > 0) then
+        if ((1 / weight_factor) * DBSubstancesUsed.Weight *
+          0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume > 0) then
 
         begin
 
@@ -2557,16 +2537,14 @@ if RadioButton13.Checked then
           if prev_conc = 'ppm' then
 
           PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
-            FloattoStr(round2((1 / weight_factor) * MyDbf.FieldByName('Weight').AsFloat *
-            0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-            'Purity').AsFloat / Volume, 3)));
+            FloattoStr(round2((1 / weight_factor) * DBSubstancesUsed.Weight *
+            0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume, 3)));
 
           if prev_conc <> 'ppm' then
 
           PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
-            FloattoStrF((1/conc_factor[j])*(1 / weight_factor) * MyDbf.FieldByName('Weight').AsFloat *
-            0.01 * MyDbf.FieldByName(varnames[j]).AsFloat * MyDbf.FieldByName(
-            'Purity').AsFloat / Volume, ffExponent, 4, 2));
+            FloattoStrF(double((1/conc_factor[j])*(1 / weight_factor) * DBSubstancesUsed.Weight *
+            0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume), ffExponent, 4, 2));
 
 
 
@@ -2577,16 +2555,13 @@ if RadioButton13.Checked then
       StringGrid2.Cells[NAME_IDX,i+1] := (name_array[i][0]);
       StringGrid2.Cells[FORMULA_IDX,i+1] := (name_array[i][1]);
       StringGrid2.Cells[COST_IDX,i+1] := (FloattoStr(
-        round2(MyDbf.FieldByName('Weight').AsFloat * MyDbf.FieldByName('Cost').AsFloat * 0.001 *
+        round2(DBSubstancesUsed.Weight * DBSubstancesUsed.Cost * 0.001 *
         (1 / weight_factor), 1)));
-      StringGrid2.Cells[AMOUNT_IDX,i+1] := (MyDbf.FieldByName('Weight').AsString);
+      StringGrid2.Cells[AMOUNT_IDX,i+1] := FloattoStr(DBSubstancesUsed.Weight);
 
       i := i + 1;
-      MyDbf.Next;                                     // use .next here NOT .findnext!
+      DBSubstancesUsed.Next;                                     // use .next here NOT .findnext!
     end;
-
-    MyDbf.Close;
-    MyDbf.Free;
 
 
     for i := 1 to 16 do
@@ -2640,7 +2615,7 @@ if RadioButton13.Checked then
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
-            predicted_ec := conc_factor[i-1]*StrtoFloat(
+            predicted_ec := conc_factor[i-1]*StrtoFloatAnySeparator(
               (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) *
               ec_contribution[i - 1] + predicted_ec;
         end;
@@ -2653,13 +2628,13 @@ if RadioButton13.Checked then
 
         // calculate ionic strength used for conductivity model
         ionic_strength := 0;
-        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
+        for i := 1 to 16 do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
 
         predicted_ec := 0;
         for i := 1 to 16 do
         begin
             predicted_ec := conc_factor[i-1]
-                            * (StrtoFloat((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
+                            * (StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
                             * ec_contribution[i - 1]
                             * exp(-0.7025187*sqrt(ionic_strength)*power(zi[i-1],1.5))
                             + predicted_ec;
@@ -2715,9 +2690,9 @@ if RadioButton13.Checked then
 
    for i := 1 to StringGrid2.RowCount - 1 do
    begin
-      test := StrtoFloat(StringGrid2.Cells[COST_IDX,i]) + test;
-      totalWeight := totalWeight + StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i]);
-      for j:= 0 to 15 do mixContribution[j] := mixContribution[j] + StrtoFloat(StringGrid2.Cells[AMOUNT_IDX,i])*all_element_contributions[j][i-1]*Volume;
+      test := StrtoFloatAnySeparator(StringGrid2.Cells[COST_IDX,i]) + test;
+      totalWeight := totalWeight + StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i]);
+      for j:= 0 to 15 do mixContribution[j] := mixContribution[j] + StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])*all_element_contributions[j][i-1]*Volume;
    end;
 
    for j := 1 to 16 do
@@ -2761,8 +2736,6 @@ end;
 
 
 procedure TMainForm.Button4Click(Sender: TObject);
-var
-  MyDbf: TDbf;
 begin
 
   if Edit19.Text = 'Input Formulation Name Here' then
@@ -2771,50 +2744,38 @@ begin
     Exit;
   end;
 
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := formulations_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
-
-  MyDbf.Insert;
-
-  MyDbf.FieldByName('Name').AsString := Edit19.Text;
-  MyDbf.FieldByName('N (NO3-)').AsFloat := StrtoFloat(Edit1.Text);
-  MyDbf.FieldByName('N (NH4+)').AsFloat := StrtoFloat(Edit2.Text);
-  MyDbf.FieldByName('P').AsFloat     := StrtoFloat(Edit3.Text);
-  MyDbf.FieldByName('K').AsFloat     := StrtoFloat(Edit4.Text);
-  MyDbf.FieldByName('Mg').AsFloat    := StrtoFloat(Edit5.Text);
-  MyDbf.FieldByName('Ca').AsFloat    := StrtoFloat(Edit6.Text);
-  MyDbf.FieldByName('S').AsFloat     := StrtoFloat(Edit7.Text);
-  MyDbf.FieldByName('Fe').AsFloat    := StrtoFloat(Edit8.Text);
-  MyDbf.FieldByName('Mn').AsFloat    := StrtoFloat(Edit9.Text);
-  MyDbf.FieldByName('Zn').AsFloat    := StrtoFloat(Edit10.Text);
-  MyDbf.FieldByName('B').AsFloat     := StrtoFloat(Edit11.Text);
-  MyDbf.FieldByName('Cu').AsFloat    := StrtoFloat(Edit12.Text);
-  MyDbf.FieldByName('Si').AsFloat    := StrtoFloat(Edit13.Text);
-  MyDbf.FieldByName('Mo').AsFloat    := StrtoFloat(Edit14.Text);
-  MyDbf.FieldByName('Na').AsFloat    := StrtoFloat(Edit15.Text);
-  MyDbf.FieldByName('Cl').AsFloat    := StrtoFloat(Edit16.Text);
+  DBFormulations.Name := Edit19.Text;
+  DBFormulations.N_NO3 := StrtoFloatAnySeparator(Edit1.Text);
+  DBFormulations.N_NH4 := StrtoFloatAnySeparator(Edit2.Text);
+  DBFormulations.P := StrtoFloatAnySeparator(Edit3.Text);
+  DBFormulations.K := StrtoFloatAnySeparator(Edit4.Text);
+  DBFormulations.Mg := StrtoFloatAnySeparator(Edit5.Text);
+  DBFormulations.Ca := StrtoFloatAnySeparator(Edit6.Text);
+  DBFormulations.S  := StrtoFloatAnySeparator(Edit7.Text);
+  DBFormulations.Fe := StrtoFloatAnySeparator(Edit8.Text);
+  DBFormulations.Mn := StrtoFloatAnySeparator(Edit9.Text);
+  DBFormulations.Zn := StrtoFloatAnySeparator(Edit10.Text);
+  DBFormulations.B  := StrtoFloatAnySeparator(Edit11.Text);
+  DBFormulations.Cu := StrtoFloatAnySeparator(Edit12.Text);
+  DBFormulations.Si := StrtoFloatAnySeparator(Edit13.Text);
+  DBFormulations.Mo := StrtoFloatAnySeparator(Edit14.Text);
+  DBFormulations.Na := StrtoFloatAnySeparator(Edit15.Text);
+  DBFormulations.Cl := StrtoFloatAnySeparator(Edit16.Text);
 
 
   if RadioButton10.Checked then
-  MyDbf.FieldByName('Units').AsString := 'ppm' ;
+  DBFormulations.Units := 'ppm' ;
 
   if RadioButton11.Checked then
-  MyDbf.FieldByName('Units').AsString := 'M' ;
+  DBFormulations.Units := 'M' ;
 
   if RadioButton12.Checked then
-  MyDbf.FieldByName('Units').AsString := 'mM' ;
+  DBFormulations.Units := 'mM' ;
 
   if RadioButton13.Checked then
-  MyDbf.FieldByName('Units').AsString := 'mN' ;
+  DBFormulations.Units := 'mN' ;
 
-  MyDbf.Post;
-
-  MyDbf.Close;
-
-  MyDbf.Free;
+  DBFormulations.Insert;
 
   if Edit19.Text <> 'DEFAULT' then
   ShowMessage('Formulation named ' + Edit19.Text + ' has been saved to the Database');
@@ -2833,10 +2794,6 @@ end;
 
 
 procedure TMainForm.Button6Click(Sender: TObject);
-var
-  MyDbf: TDbf;
-  i:     integer;
-  selected_item: integer;
 begin
 
   if ComboBox1.Text = 'Select formulation from DB' then
@@ -2848,23 +2805,8 @@ begin
   if ComboBox1.Items.Count = 0 then
     Exit;
 
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := formulations_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
-
-
-  MyDbf.Filter := 'Name=' + QuotedStr(ComboBox1.Items[ComboBox1.ItemIndex]);
-
-  MyDbf.Filtered := True;       // This selects the filtered set
-  MyDbf.First;                  // moves the the first filtered data
+  DBFormulations.Delete('Name', ComboBox1.Items[ComboBox1.ItemIndex]);
   ComboBox1.Items.Delete(ComboBox1.ItemIndex);
-  MyDbf.Delete;
-
-  MyDbf.Close;
-
-  MyDbf.Free;
 
   if ComboBox1.Items.Count = 0 then
 
@@ -2878,29 +2820,17 @@ begin
 end;
 
 procedure TMainForm.Button7Click(Sender: TObject);
-var
-  MyDbf: TDbf;
-  i:     integer;
-  j:     integer;
 begin
 
   CommercialNutrientForm.ComboBox4.Items.Clear;
 
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := substances_db;
-  MyDbf.Open;
-  MyDbf.Active := True;
+  DBSubstances.SearchFirst;
 
-  MyDbf.First;                  // moves to the first data
-
-  while not MyDbf.EOF do
+  while not DBSubstances.EOF do
   begin
-    CommercialNutrientForm.ComboBox4.Items.Add(MyDbf.FieldByName('Name').AsString);
-    MyDbf.Next;                                     // use .next here NOT .findnext!
+    CommercialNutrientForm.ComboBox4.Items.Add(DBSubstances.Name);
+    DBSubstances.Next;                                     // use .next here NOT .findnext!
   end;
-
-  MyDbf.Close;
 
   CommercialNutrientForm.ComboBox4.Sorted := true ;
   CommercialNutrientForm.Visible := True;
@@ -3193,7 +3123,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*molar_masses[i-1]*1000, ffGeneral, 4, 2)
 
@@ -3211,7 +3141,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*molar_masses[i-1], ffGeneral, 4, 2)
 
@@ -3229,7 +3159,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*molar_masses[i-1]/equivalents[i-1], ffGeneral, 4, 2)
 
@@ -3270,7 +3200,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF((prev_value/molar_masses[i-1])/1000, ffExponent, 4, 2)
 
@@ -3288,7 +3218,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value/1000, ffExponent, 4, 2)
 
@@ -3306,7 +3236,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(0.001*prev_value/equivalents[i-1], ffExponent, 4, 2)
 
@@ -3347,7 +3277,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value/molar_masses[i-1], ffExponent, 4, 2)
 
@@ -3365,7 +3295,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*1000, ffExponent, 4, 2)
 
@@ -3383,7 +3313,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value/equivalents[i-1], ffExponent, 4, 2)
 
@@ -3424,7 +3354,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*equivalents[i-1]/molar_masses[i-1], ffExponent, 4, 2)
 
@@ -3442,7 +3372,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*equivalents[i-1], ffExponent, 4, 2)
 
@@ -3460,7 +3390,7 @@ begin
 
   begin
 
-  prev_value := StrtoFloat((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
+  prev_value := StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)  ;
 
   (FindComponent('Edit' + IntToStr(i)) as TEdit).Text  := FloatToStrF(prev_value*equivalents[i-1]*1000, ffExponent, 4, 2)
 

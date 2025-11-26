@@ -22527,7 +22527,7 @@ object MainForm: TMainForm
         Left = 140
         Height = 15
         Top = 40
-        Width = 35
+        Width = 36
         Caption = 'Target '
         ParentColor = False
         ParentFont = False
@@ -22860,7 +22860,7 @@ object MainForm: TMainForm
           Left = 23
           Height = 15
           Top = 8
-          Width = 87
+          Width = 88
           Caption = 'Calculation Type'
           ParentColor = False
         end

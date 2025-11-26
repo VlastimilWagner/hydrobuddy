@@ -5,7 +5,7 @@ unit db_base;
 interface
 
 uses
-  Classes, SysUtils, Dbf, db, TypInfo;
+  Classes, SysUtils, Dbf, db;
 
 type
   { === Abstract ancestor for all DBF classes === }
@@ -33,9 +33,6 @@ type
 
     property Dbf: TDbf read FDbf;
     property FileName: string read FDBFileName;
-
-    function FieldByName(const AName: string): Variant;
-
   end;
 
 implementation
@@ -136,17 +133,6 @@ end;
 function TDBBase.EOF:boolean;
 begin
   Result := FDbf.EOF;
-end;
-
-function TDBBase.FieldByName(const AName: string): Variant;
-var
-  PI: PPropInfo;
-begin
-  PI := GetPropInfo(Self.ClassInfo, AName);
-  if Assigned(PI) then
-    Result := GetPropValue(Self, AName)
-  else
-    raise Exception.CreateFmt('Property "%s" not found', [AName]);
 end;
 
 
