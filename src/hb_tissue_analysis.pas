@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, Grids, Dbf, db, Dbf_Common;
+  Buttons, Grids, CustomHelpFunctions, db_tissue_analysis;
 
 type
 
@@ -82,29 +82,16 @@ uses HB_Main ;
 { TForm16 }
 
 procedure  TForm16.UpdateTissueList;
-var
-  MyDbf: TDbf;
 begin
 
   ListBox1.Items.Clear;
 
-  MyDbf := TDbf.Create(nil);
-  MyDbf.FilePathFull := '';
-  MyDbf.TableName := MainForm.tissue_analysis_db ;
-  MyDbf.Open;
-  MyDbf.Active := True;
-
-  MyDbf.First;                  // moves to the first data
-
-  while not MyDbf.EOF do
+  DBTissueAnalysis.SearchFirst;
+  while not DBTissueAnalysis.EOF do
   begin
-    ListBox1.Items.Add(MyDbf.FieldByName('Name').AsString);
-    MyDbf.Next;                                     // use .next here NOT .findnext!
+    ListBox1.Items.Add(DBTissueAnalysis.Name);
+    DBTissueAnalysis.Next;                                     // use .next here NOT .findnext!
   end;
-
-  MyDbf.Close;
-
-  MyDbf.Free;
 
 end;
 
@@ -122,83 +109,63 @@ procedure TForm16.ListBox1SelectionChange(Sender: TObject; User: boolean);
 var
   i,selected_idx : integer ;
   item_selected : boolean ;
-  MyDbf: TDbf;
   wue: double;
 begin
 
-item_selected := false ;
-wue := StrToFloat(Edit17.Text)  ;
+  item_selected := false ;
+  wue := StrtoFloatAnySeparator(Edit17.Text)  ;
 
-for i := 0 to ListBox1.Items.Count - 1 do
-
-    begin
-
-    if (ListBox1.Selected [i]) then
-    begin
+  for i := 0 to ListBox1.Items.Count - 1 do begin
+    if (ListBox1.Selected [i]) then begin
          selected_idx := i;
          item_selected := true ;
     end;
+  end ;
 
-    end ;
+  if item_selected then begin
 
-if item_selected then
-
-begin
-
-    MyDbf := TDbf.Create(nil) ;
-    MyDbf.FilePathFull := '';
-    MyDbf.TableName := MainForm.tissue_analysis_db;
-    MyDbf.Open             ;
-    MyDbf.Active := true ;
-    MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
+    DBTissueAnalysis.SearchByField('Name',ListBox1.Items[selected_idx],True);
 
     Edit25.Text :=  ListBox1.Items[selected_idx];
 
-    Edit1.Text :=  FloattoStr(MyDbf.FieldByName('N').AsFloat);
-    Edit3.Text :=  FloattoStr(MyDbf.FieldByName('P').AsFloat);
-    Edit4.Text :=  FloattoStr(MyDbf.FieldByName('K').AsFloat);
-    Edit5.Text :=  FloattoStr(MyDbf.FieldByName('Mg').AsFloat);
-    Edit6.Text :=  FloattoStr(MyDbf.FieldByName('Ca').AsFloat);
-    Edit7.Text :=  FloattoStr(MyDbf.FieldByName('S').AsFloat);
-    Edit13.Text :=  FloattoStr(MyDbf.FieldByName('Si').AsFloat);
-    Edit8.Text :=  FloattoStr(MyDbf.FieldByName('Fe').AsFloat);
-    Edit9.Text :=  FloattoStr(MyDbf.FieldByName('Mn').AsFloat);
-    Edit10.Text :=  FloattoStr(MyDbf.FieldByName('Zn').AsFloat);
-    Edit11.Text :=  FloattoStr(MyDbf.FieldByName('B').AsFloat);
-    Edit12.Text :=  FloattoStr(MyDbf.FieldByName('Cu').AsFloat);
-    Edit14.Text :=  FloattoStr(MyDbf.FieldByName('Mo').AsFloat);
-    Edit15.Text :=  FloattoStr(MyDbf.FieldByName('Na').AsFloat);
-    Edit16.Text :=  FloattoStr(MyDbf.FieldByName('Cl').AsFloat);
+    Edit1.Text :=  FloattoStr(DBTissueAnalysis.N);
+    Edit3.Text :=  FloattoStr(DBTissueAnalysis.P);
+    Edit4.Text :=  FloattoStr(DBTissueAnalysis.K);
+    Edit5.Text :=  FloattoStr(DBTissueAnalysis.Mg);
+    Edit6.Text :=  FloattoStr(DBTissueAnalysis.Ca);
+    Edit7.Text :=  FloattoStr(DBTissueAnalysis.S);
+    Edit13.Text :=  FloattoStr(DBTissueAnalysis.Si);
+    Edit8.Text :=  FloattoStr(DBTissueAnalysis.Fe);
+    Edit9.Text :=  FloattoStr(DBTissueAnalysis.Mn);
+    Edit10.Text :=  FloattoStr(DBTissueAnalysis.Zn);
+    Edit11.Text :=  FloattoStr(DBTissueAnalysis.B);
+    Edit12.Text :=  FloattoStr(DBTissueAnalysis.Cu);
+    Edit14.Text :=  FloattoStr(DBTissueAnalysis.Mo);
+    Edit15.Text :=  FloattoStr(DBTissueAnalysis.Na);
+    Edit16.Text :=  FloattoStr(DBTissueAnalysis.Cl);
 
-    StringGrid1.Cells[1,1] :=  FloattoStr((MyDbf.FieldByName('N').AsFloat/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,2] :=  FloattoStr((MyDbf.FieldByName('P').AsFloat/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,3] :=  FloattoStr((MyDbf.FieldByName('K').AsFloat/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,4] :=  FloattoStr((MyDbf.FieldByName('Mg').AsFloat/100.0)*(wue*1000));
-    StringGrid1.Cells[1,5] :=  FloattoStr((MyDbf.FieldByName('Ca').AsFloat/100.0)*(wue*1000))   ;
-    StringGrid1.Cells[1,6] :=  FloattoStr((MyDbf.FieldByName('S').AsFloat/100.0)*(wue*1000));
-    StringGrid1.Cells[1,7] :=  FloattoStr((MyDbf.FieldByName('Fe').AsFloat/(10000*100.0))*(wue*1000))   ;
-    StringGrid1.Cells[1,8] :=  FloattoStr((MyDbf.FieldByName('Mn').AsFloat/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,9] :=  FloattoStr((MyDbf.FieldByName('Zn').AsFloat/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,10] :=  FloattoStr((MyDbf.FieldByName('B').AsFloat/(10000*100.0))*(wue*1000));
-    StringGrid1.Cells[1,11] :=  FloattoStr((MyDbf.FieldByName('Cu').AsFloat/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,12] :=  FloattoStr((MyDbf.FieldByName('Si').AsFloat/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,13] :=  FloattoStr((MyDbf.FieldByName('Mo').AsFloat/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,14] :=  FloattoStr((MyDbf.FieldByName('Na').AsFloat/(10000*100.0))*(wue*1000));
-    StringGrid1.Cells[1,15] :=  FloattoStr((MyDbf.FieldByName('Cl').AsFloat/(10000*100.0))*(wue*1000)) ;
-
-    MyDbf.Close ;
-    MyDbf.Free ;
+    StringGrid1.Cells[1,1] :=  FloattoStr((DBTissueAnalysis.N/100.0)*(wue*1000)) ;
+    StringGrid1.Cells[1,2] :=  FloattoStr((DBTissueAnalysis.P/100.0)*(wue*1000)) ;
+    StringGrid1.Cells[1,3] :=  FloattoStr((DBTissueAnalysis.K/100.0)*(wue*1000)) ;
+    StringGrid1.Cells[1,4] :=  FloattoStr((DBTissueAnalysis.Mg/100.0)*(wue*1000));
+    StringGrid1.Cells[1,5] :=  FloattoStr((DBTissueAnalysis.Ca/100.0)*(wue*1000))   ;
+    StringGrid1.Cells[1,6] :=  FloattoStr((DBTissueAnalysis.S/100.0)*(wue*1000));
+    StringGrid1.Cells[1,7] :=  FloattoStr((DBTissueAnalysis.Fe/(10000*100.0))*(wue*1000))   ;
+    StringGrid1.Cells[1,8] :=  FloattoStr((DBTissueAnalysis.Mn/(10000*100.0))*(wue*1000)) ;
+    StringGrid1.Cells[1,9] :=  FloattoStr((DBTissueAnalysis.Zn/(10000*100.0))*(wue*1000)) ;
+    StringGrid1.Cells[1,10] :=  FloattoStr((DBTissueAnalysis.B/(10000*100.0))*(wue*1000));
+    StringGrid1.Cells[1,11] :=  FloattoStr((DBTissueAnalysis.Cu/(10000*100.0))*(wue*1000)) ;
+    StringGrid1.Cells[1,12] :=  FloattoStr((DBTissueAnalysis.Si/100.0)*(wue*1000)) ;
+    StringGrid1.Cells[1,13] :=  FloattoStr((DBTissueAnalysis.Mo/(10000*100.0))*(wue*1000)) ;
+    StringGrid1.Cells[1,14] :=  FloattoStr((DBTissueAnalysis.Na/(10000*100.0))*(wue*1000));
+    StringGrid1.Cells[1,15] :=  FloattoStr((DBTissueAnalysis.Cl/(10000*100.0))*(wue*1000)) ;
 
     Button1.Enabled := False ;
     Button2.Enabled := True ;
     Button4.Enabled := True ;
     Button5.Enabled := True ;
     Button3.Enabled := True ;
-
-end ;
+  end ;
 
 if item_selected = False then
 begin
@@ -232,167 +199,111 @@ end;
 end;
 
 procedure TForm16.Button1Click(Sender: TObject);
-   var
-MyDbf: TDbf;
 begin
+DBTissueAnalysis.Name := Edit25.Text ;
+DBTissueAnalysis.N := StrtoFloatAnySeparator(Edit1.Text);
+DBTissueAnalysis.P := StrtoFloatAnySeparator(Edit3.Text);
+DBTissueAnalysis.K := StrtoFloatAnySeparator(Edit4.Text);
+DBTissueAnalysis.Mg := StrtoFloatAnySeparator(Edit5.Text);
+DBTissueAnalysis.Ca := StrtoFloatAnySeparator(Edit6.Text);
+DBTissueAnalysis.S := StrtoFloatAnySeparator(Edit7.Text);
+DBTissueAnalysis.Fe := StrtoFloatAnySeparator(Edit8.Text);
+DBTissueAnalysis.Mn := StrtoFloatAnySeparator(Edit9.Text);
+DBTissueAnalysis.Zn := StrtoFloatAnySeparator(Edit10.Text);
+DBTissueAnalysis.B := StrtoFloatAnySeparator(Edit11.Text);
+DBTissueAnalysis.Cu := StrtoFloatAnySeparator(Edit12.Text);
+DBTissueAnalysis.Si := StrtoFloatAnySeparator(Edit13.Text);
+DBTissueAnalysis.Mo := StrtoFloatAnySeparator(Edit14.Text);
+DBTissueAnalysis.Na := StrtoFloatAnySeparator(Edit15.Text);
+DBTissueAnalysis.Cl := StrtoFloatAnySeparator(Edit16.Text);
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.tissue_analysis_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-MyDbf.Insert ;
-
-MyDbf.FieldByName('Name').AsString:= Edit25.Text ;
-
-MyDbf.FieldByName('N').AsFloat:=StrtoFloat(Edit1.Text);
-MyDbf.FieldByName('P').AsFloat:=StrtoFloat(Edit3.Text);
-MyDbf.FieldByName('K').AsFloat:=StrtoFloat(Edit4.Text);
-MyDbf.FieldByName('Mg').AsFloat:=StrtoFloat(Edit5.Text);
-MyDbf.FieldByName('Ca').AsFloat:=StrtoFloat(Edit6.Text);
-MyDbf.FieldByName('S').AsFloat:=StrtoFloat(Edit7.Text);
-MyDbf.FieldByName('Fe').AsFloat:=StrtoFloat(Edit8.Text);
-MyDbf.FieldByName('Mn').AsFloat:=StrtoFloat(Edit9.Text);
-MyDbf.FieldByName('Zn').AsFloat:=StrtoFloat(Edit10.Text);
-MyDbf.FieldByName('B').AsFloat:=StrtoFloat(Edit11.Text);
-MyDbf.FieldByName('Cu').AsFloat:=StrtoFloat(Edit12.Text);
-MyDbf.FieldByName('Si').AsFloat:=StrtoFloat(Edit13.Text);
-MyDbf.FieldByName('Mo').AsFloat:=StrtoFloat(Edit14.Text);
-MyDbf.FieldByName('Na').AsFloat:=StrtoFloat(Edit15.Text);
-MyDbf.FieldByName('Cl').AsFloat:=StrtoFloat(Edit16.Text);
-
-MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
+DBTissueAnalysis.Insert;
 
 Form16.UpdateTissueList ;
 end;
 
 procedure TForm16.Button2Click(Sender: TObject);
-   var
-   MyDbf: TDbf;
+var
    i : integer ;
    selected_item : integer ;
-   begin
-
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.tissue_analysis_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
+begin
 
    if ListBox1.SelCount = 0 then // No ítems selected
-        Exit;
+     Exit;
 
-   For i := 0 to ListBox1.Items.Count - 1 do
+   For i := 0 to ListBox1.Items.Count - 1 do begin
+      if ListBox1.Selected [i] then selected_item := i ;
+   end;
 
-            begin
-                                  if ListBox1.Selected [i] then
-                                  begin
-                                   selected_item := i ;
-                                  end;
-            end;
-
-   MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_item]) ;
-
-       MyDbf.Filtered := true;       // This selects the filtered set
-       MyDbf.First;                  // moves the the first filtered data
-       ShowMessage('Deleting ' + MyDbf.FieldByName('Name').AsString + ' from database');
-       MyDbf.Delete ;
-
-   MyDbf.Close ;
-
-   MyDbf.Free ;
+   ShowMessage('Deleting ' + ListBox1.Items[selected_item] + ' from database');
+   DBTissueAnalysis.Delete('Name', ListBox1.Items[selected_item]) ;
 
    ListBox1.Items.Delete(selected_item);
 
    end;
 
 procedure TForm16.Button3Click(Sender: TObject);
-   var
+var
      i,selected_idx : integer ;
      item_selected : boolean ;
-     MyDbf: TDbf;
      wue: double;
-   begin
+begin
 
-   item_selected := false ;
-   wue := StrToFloat(Edit17.Text)  ;
+  item_selected := false ;
+  wue := StrtoFloatAnySeparator(Edit17.Text)  ;
 
-   for i := 0 to ListBox1.Items.Count - 1 do
-
-       begin
-
-       if (ListBox1.Selected [i]) then
-       begin
-            selected_idx := i;
-            item_selected := true ;
+  for i := 0 to ListBox1.Items.Count - 1 do begin
+       if (ListBox1.Selected [i]) then begin
+          selected_idx := i;
+          item_selected := true ;
        end;
+  end;
 
-       end ;
+  if item_selected then begin
 
-   if item_selected then
+     DBTissueAnalysis.SearchByField('Name',ListBox1.Items[selected_idx],True);
 
-   begin
+     MainForm.Edit1.Text :=  FloattoStr((DBTissueAnalysis.N/100.0)*(wue*1000)) ;
+     MainForm.Edit3.Text :=  FloattoStr((DBTissueAnalysis.P/100.0)*(wue*1000)) ;
+     MainForm.Edit4.Text :=  FloattoStr((DBTissueAnalysis.K/100.0)*(wue*1000)) ;
+     MainForm.Edit5.Text :=  FloattoStr((DBTissueAnalysis.Mg/100.0)*(wue*1000));
+     MainForm.Edit6.Text :=  FloattoStr((DBTissueAnalysis.Ca/100.0)*(wue*1000))   ;
+     MainForm.Edit7.Text :=  FloattoStr((DBTissueAnalysis.S/100.0)*(wue*1000));
+     MainForm.Edit13.Text :=  FloattoStr((DBTissueAnalysis.Si/100.0)*(wue*1000)) ;
+     MainForm.Edit8.Text :=  FloattoStr((DBTissueAnalysis.Fe/(10000*100.0))*(wue*1000))   ;
+     MainForm.Edit9.Text :=  FloattoStr((DBTissueAnalysis.Mn/(10000*100.0))*(wue*1000)) ;
+     MainForm.Edit10.Text :=  FloattoStr((DBTissueAnalysis.Zn/(10000*100.0))*(wue*1000)) ;
+     MainForm.Edit11.Text :=  FloattoStr((DBTissueAnalysis.B/(10000*100.0))*(wue*1000));
+     MainForm.Edit12.Text :=  FloattoStr((DBTissueAnalysis.Cu/(10000*100.0))*(wue*1000)) ;
+     MainForm.Edit14.Text :=  FloattoStr((DBTissueAnalysis.Mo/(10000*100.0))*(wue*1000)) ;
+     MainForm.Edit15.Text :=  FloattoStr((DBTissueAnalysis.Na/(10000*100.0))*(wue*1000));
+     MainForm.Edit16.Text :=  FloattoStr((DBTissueAnalysis.Cl/(10000*100.0))*(wue*1000)) ;
+  end ;
 
-       MyDbf := TDbf.Create(nil) ;
-       MyDbf.FilePathFull := '';
-       MyDbf.TableName := MainForm.tissue_analysis_db;
-       MyDbf.Open             ;
-       MyDbf.Active := true ;
-       MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_idx]) ;
-       MyDbf.Filtered := true;       // This selects the filtered set
-       MyDbf.First;                  // moves the the first filtered data
-
-       HB_Main.MainForm.Edit1.Text :=  FloattoStr((MyDbf.FieldByName('N').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.MainForm.Edit3.Text :=  FloattoStr((MyDbf.FieldByName('P').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.MainForm.Edit4.Text :=  FloattoStr((MyDbf.FieldByName('K').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.MainForm.Edit5.Text :=  FloattoStr((MyDbf.FieldByName('Mg').AsFloat/100.0)*(wue*1000));
-       HB_Main.MainForm.Edit6.Text :=  FloattoStr((MyDbf.FieldByName('Ca').AsFloat/100.0)*(wue*1000))   ;
-       HB_Main.MainForm.Edit7.Text :=  FloattoStr((MyDbf.FieldByName('S').AsFloat/100.0)*(wue*1000));
-       HB_Main.MainForm.Edit13.Text :=  FloattoStr((MyDbf.FieldByName('Si').AsFloat/100.0)*(wue*1000)) ;
-       HB_Main.MainForm.Edit8.Text :=  FloattoStr((MyDbf.FieldByName('Fe').AsFloat/(10000*100.0))*(wue*1000))   ;
-       HB_Main.MainForm.Edit9.Text :=  FloattoStr((MyDbf.FieldByName('Mn').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.MainForm.Edit10.Text :=  FloattoStr((MyDbf.FieldByName('Zn').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.MainForm.Edit11.Text :=  FloattoStr((MyDbf.FieldByName('B').AsFloat/(10000*100.0))*(wue*1000));
-       HB_Main.MainForm.Edit12.Text :=  FloattoStr((MyDbf.FieldByName('Cu').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.MainForm.Edit14.Text :=  FloattoStr((MyDbf.FieldByName('Mo').AsFloat/(10000*100.0))*(wue*1000)) ;
-       HB_Main.MainForm.Edit15.Text :=  FloattoStr((MyDbf.FieldByName('Na').AsFloat/(10000*100.0))*(wue*1000));
-       HB_Main.MainForm.Edit16.Text :=  FloattoStr((MyDbf.FieldByName('Cl').AsFloat/(10000*100.0))*(wue*1000)) ;
-
-       MyDbf.Close ;
-       MyDbf.Free ;
-
-   end ;
-
-   if item_selected = False then
-   begin
-       Button1.Enabled := True ;
-       Button2.Enabled := False ;
-       Button4.Enabled := True ;
-       Button5.Enabled := False ;
-       Button3.Enabled := False ;
-       for i := 1 to StringGrid1.RowCount - 1 do StringGrid1.Cells[1,i] := '';
-       Edit1.Text := '0';
-       Edit3.Text := '0';
-        Edit4.Text := '0';
-        Edit5.Text := '0';
-        Edit6.Text := '0';
-        Edit7.Text := '0';
-        Edit8.Text := '0';
-        Edit9.Text := '0';
-        Edit10.Text := '0';
-        Edit11.Text := '0';
-        Edit12.Text := '0';
-        Edit13.Text := '0';
-        Edit14.Text := '0';
-        Edit15.Text := '0';
-        Edit16.Text := '0';
-        Edit25.Text := 'Name for DB';
-   end;
+  if item_selected = False then begin
+     Button1.Enabled := True ;
+     Button2.Enabled := False ;
+     Button4.Enabled := True ;
+     Button5.Enabled := False ;
+     Button3.Enabled := False ;
+     for i := 1 to StringGrid1.RowCount - 1 do StringGrid1.Cells[1,i] := '';
+     Edit1.Text := '0';
+     Edit3.Text := '0';
+     Edit4.Text := '0';
+     Edit5.Text := '0';
+     Edit6.Text := '0';
+     Edit7.Text := '0';
+     Edit8.Text := '0';
+     Edit9.Text := '0';
+     Edit10.Text := '0';
+     Edit11.Text := '0';
+     Edit12.Text := '0';
+     Edit13.Text := '0';
+     Edit14.Text := '0';
+     Edit15.Text := '0';
+     Edit16.Text := '0';
+     Edit25.Text := 'Name for DB';
+  end;
 
 end;
 
@@ -427,58 +338,33 @@ begin
 end;
 
 procedure TForm16.Button5Click(Sender: TObject);
-   var
-     MyDbf: TDbf;
-     selected_item, i : integer ;
-   begin
-
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.tissue_analysis_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
+var
+  selected_item, i : integer ;
+begin
    if ListBox1.SelCount = 0 then // No ítems selected
-        Exit;
+      Exit;
 
-   For i := 0 to ListBox1.Items.Count - 1 do
+   For i := 0 to ListBox1.Items.Count - 1 do begin
+      if ListBox1.Selected [i] then selected_item := i ;
+   end;
 
-            begin
-                                  if ListBox1.Selected [i] then
-                                  begin
-                                   selected_item := i ;
-                                  end;
-            end;
-
-   MyDbf.Filter := 'Name=' + QuotedStr(ListBox1.Items[selected_item]) ;
-
-       MyDbf.Filtered := true;       // This selects the filtered set
-       MyDbf.First;
-
-       MyDbf.Edit;
-
-       MyDbf.FieldByName('Name').AsString:= Edit25.Text ;
-       MyDbf.FieldByName('N').AsFloat:=StrtoFloat(Edit1.Text);
-       MyDbf.FieldByName('P').AsFloat:=StrtoFloat(Edit3.Text);
-       MyDbf.FieldByName('K').AsFloat:=StrtoFloat(Edit4.Text);
-       MyDbf.FieldByName('Mg').AsFloat:=StrtoFloat(Edit5.Text);
-       MyDbf.FieldByName('Ca').AsFloat:=StrtoFloat(Edit6.Text);
-       MyDbf.FieldByName('S').AsFloat:=StrtoFloat(Edit7.Text);
-       MyDbf.FieldByName('Fe').AsFloat:=StrtoFloat(Edit8.Text);
-       MyDbf.FieldByName('Mn').AsFloat:=StrtoFloat(Edit9.Text);
-       MyDbf.FieldByName('Zn').AsFloat:=StrtoFloat(Edit10.Text);
-       MyDbf.FieldByName('B').AsFloat:=StrtoFloat(Edit11.Text);
-       MyDbf.FieldByName('Cu').AsFloat:=StrtoFloat(Edit12.Text);
-       MyDbf.FieldByName('Si').AsFloat:=StrtoFloat(Edit13.Text);
-       MyDbf.FieldByName('Mo').AsFloat:=StrtoFloat(Edit14.Text);
-       MyDbf.FieldByName('Na').AsFloat:=StrtoFloat(Edit15.Text);
-       MyDbf.FieldByName('Cl').AsFloat:=StrtoFloat(Edit16.Text);
-
-       MyDbf.Post ;
-
-   MyDbf.Close ;
-
-   MyDbf.Free ;
+   DBTissueAnalysis.Name := Edit25.Text ;
+   DBTissueAnalysis.N := StrtoFloatAnySeparator(Edit1.Text);
+   DBTissueAnalysis.P := StrtoFloatAnySeparator(Edit3.Text);
+   DBTissueAnalysis.K := StrtoFloatAnySeparator(Edit4.Text);
+   DBTissueAnalysis.Mg := StrtoFloatAnySeparator(Edit5.Text);
+   DBTissueAnalysis.Ca := StrtoFloatAnySeparator(Edit6.Text);
+   DBTissueAnalysis.S := StrtoFloatAnySeparator(Edit7.Text);
+   DBTissueAnalysis.Fe := StrtoFloatAnySeparator(Edit8.Text);
+   DBTissueAnalysis.Mn := StrtoFloatAnySeparator(Edit9.Text);
+   DBTissueAnalysis.Zn := StrtoFloatAnySeparator(Edit10.Text);
+   DBTissueAnalysis.B := StrtoFloatAnySeparator(Edit11.Text);
+   DBTissueAnalysis.Cu := StrtoFloatAnySeparator(Edit12.Text);
+   DBTissueAnalysis.Si := StrtoFloatAnySeparator(Edit13.Text);
+   DBTissueAnalysis.Mo := StrtoFloatAnySeparator(Edit14.Text);
+   DBTissueAnalysis.Na := StrtoFloatAnySeparator(Edit15.Text);
+   DBTissueAnalysis.Cl := StrtoFloatAnySeparator(Edit16.Text);
+   DBTissueAnalysis.Update('Name', ListBox1.Items[selected_item]);
 
    UpdateTissueList ;
 

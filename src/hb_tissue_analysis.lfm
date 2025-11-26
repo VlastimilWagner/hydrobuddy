@@ -8,7 +8,6 @@ object Form16: TForm16
   ClientHeight = 717
   ClientWidth = 549
   Position = poMainFormCenter
-  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 33
@@ -295,7 +294,7 @@ object Form16: TForm16
     Left = 24
     Height = 15
     Top = 296
-    Width = 126
+    Width = 127
     Caption = 'Tissue analysis database'
     ParentColor = False
   end

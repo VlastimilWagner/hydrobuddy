@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, Dbf, hb_comparison;
+  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, hb_comparison, db_substances;
 
 type
 
@@ -272,58 +272,36 @@ begin
 end;
 
 procedure TCommercialNutrientForm.ComboBox4Change(Sender: TObject);
-  var
-selected_item : integer ;
-MyDbf: TDbf;
 begin
 
-   selected_item := ComboBox4.ItemIndex;
+  DBSubstances.SearchByField('Name', ComboBox4.Items[ComboBox4.ItemIndex], True);
 
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.substances_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
-
-         MyDbf.Filter := 'Name=' + QuotedStr(ComboBox4.Items[selected_item]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-    Edit1.text := MyDbf.FieldByName('N (NO3-)').AsString ;
-    Edit2.text := MyDbf.FieldByName('N (NH4+)').AsString ;
-    Edit3.text := MyDbf.FieldByName('P').AsString ;
-    Edit4.text := MyDbf.FieldByName('K').AsString ;
-    Edit5.text := MyDbf.FieldByName('Mg').AsString ;
-    Edit6.text := MyDbf.FieldByName('Ca').AsString ;
-    Edit7.text := MyDbf.FieldByName('S').AsString ;
-    Edit8.text := MyDbf.FieldByName('Fe').AsString ;
-    Edit9.text := MyDbf.FieldByName('Mn').AsString ;
-    Edit10.text := MyDbf.FieldByName('Zn').AsString ;
-    Edit11.text := MyDbf.FieldByName('B').AsString ;
-    Edit12.text := MyDbf.FieldByName('Cu').AsString ;
-    Edit13.text := MyDbf.FieldByName('Si').AsString ;
-    Edit14.text := MyDbf.FieldByName('Mo').AsString ;
-    Edit15.text := MyDbf.FieldByName('Na').AsString ;
-    Edit16.text := MyDbf.FieldByName('Cl').AsString ;
+  Edit1.text := FloatToStr(DBSubstances.N_NO3);
+  Edit2.text := FloatToStr(DBSubstances.N_NH4);
+  Edit3.text := FloatToStr(DBSubstances.P);
+  Edit4.text := FloatToStr(DBSubstances.K);
+  Edit5.text := FloatToStr(DBSubstances.Mg);
+  Edit6.text := FloatToStr(DBSubstances.Ca);
+  Edit7.text := FloatToStr(DBSubstances.S);
+  Edit8.text := FloatToStr(DBSubstances.Fe);
+  Edit9.text := FloatToStr(DBSubstances.Mn);
+  Edit10.text := FloatToStr(DBSubstances.Zn);
+  Edit11.text := FloatToStr(DBSubstances.B);
+  Edit12.text := FloatToStr(DBSubstances.Cu);
+  Edit13.text := FloatToStr(DBSubstances.Si);
+  Edit14.text := FloatToStr(DBSubstances.Mo);
+  Edit15.text := FloatToStr(DBSubstances.Na);
+  Edit16.text := FloatToStr(DBSubstances.Cl);
 
 
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 0 then
-    begin
-         is_liquid := False ;
-         Label20.Caption := 'Mass of addition (g)'
-    end;
-
-    if MyDbf.FieldByName('IsLiquid').AsInteger = 1 then
+    if DBSubstances.IsLiquid then
     begin
          is_liquid := True ;
          Label20.Caption := 'Volume of addition (mL)'
+    end else begin
+         is_liquid := False ;
+         Label20.Caption := 'Mass of addition (g)'
     end;
-
-    MyDbf.Close ;
-
-    MyDbf.Free ;
 
 
 end;

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, db, hb_ph, DOM, XMLRead, XMLWrite, db_watterquality;
+  StdCtrls, Buttons, hb_ph, DOM, XMLRead, XMLWrite, db_watterquality, CustomHelpFunctions;
 
 type
 
@@ -79,135 +79,62 @@ implementation
 uses HB_Main;
 
 procedure TWatterQualityForm.Button1Click(Sender: TObject);
- var
-MyDbf: TDbf;
 begin
+  DBWatterQuality.Name := Edit25.Text ;
+  DBWatterQuality.N_NO3 := StrtoFloatAnySeparator(Edit1.Text);
+  DBWatterQuality.N_NH4 := StrtoFloatAnySeparator(Edit2.Text);
+  DBWatterQuality.P := StrtoFloatAnySeparator(Edit3.Text);
+  DBWatterQuality.K := StrtoFloatAnySeparator(Edit4.Text);
+  DBWatterQuality.Mg := StrtoFloatAnySeparator(Edit5.Text);
+  DBWatterQuality.Ca := StrtoFloatAnySeparator(Edit6.Text);
+  DBWatterQuality.S := StrtoFloatAnySeparator(Edit7.Text);
+  DBWatterQuality.Fe := StrtoFloatAnySeparator(Edit8.Text);
+  DBWatterQuality.Mn := StrtoFloatAnySeparator(Edit9.Text);
+  DBWatterQuality.Zn := StrtoFloatAnySeparator(Edit10.Text);
+  DBWatterQuality.B := StrtoFloatAnySeparator(Edit11.Text);
+  DBWatterQuality.Cu := StrtoFloatAnySeparator(Edit12.Text);
+  DBWatterQuality.Si := StrtoFloatAnySeparator(Edit13.Text);
+  DBWatterQuality.Mo := StrtoFloatAnySeparator(Edit14.Text);
+  DBWatterQuality.Na := StrtoFloatAnySeparator(Edit15.Text);
+  DBWatterQuality.Cl := StrtoFloatAnySeparator(Edit16.Text);
+  DBWatterQuality.Default := 0;
+  DBWatterQuality.Insert;
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.water_quality_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
+  ShowMessage('Water Quality data named ' + Edit25.Text + ' has been saved to the Database');
 
-MyDbf.Insert ;
+  WatterQualityForm.UpdateComboBox ;
 
-MyDbf.FieldByName('Name').AsString:= Edit25.Text ;
-
-MyDbf.FieldByName('N (NO3-)').AsFloat:=StrtoFloat(Edit1.Text);
-MyDbf.FieldByName('N (NH4+)').AsFloat:=StrtoFloat(Edit2.Text);
-MyDbf.FieldByName('P').AsFloat:=StrtoFloat(Edit3.Text);
-MyDbf.FieldByName('K').AsFloat:=StrtoFloat(Edit4.Text);
-MyDbf.FieldByName('Mg').AsFloat:=StrtoFloat(Edit5.Text);
-MyDbf.FieldByName('Ca').AsFloat:=StrtoFloat(Edit6.Text);
-MyDbf.FieldByName('S').AsFloat:=StrtoFloat(Edit7.Text);
-MyDbf.FieldByName('Fe').AsFloat:=StrtoFloat(Edit8.Text);
-MyDbf.FieldByName('Mn').AsFloat:=StrtoFloat(Edit9.Text);
-MyDbf.FieldByName('Zn').AsFloat:=StrtoFloat(Edit10.Text);
-MyDbf.FieldByName('B').AsFloat:=StrtoFloat(Edit11.Text);
-MyDbf.FieldByName('Cu').AsFloat:=StrtoFloat(Edit12.Text);
-MyDbf.FieldByName('Si').AsFloat:=StrtoFloat(Edit13.Text);
-MyDbf.FieldByName('Mo').AsFloat:=StrtoFloat(Edit14.Text);
-MyDbf.FieldByName('Na').AsFloat:=StrtoFloat(Edit15.Text);
-MyDbf.FieldByName('Cl').AsFloat:=StrtoFloat(Edit16.Text);
-
-
-
-MyDbf.FieldByName('Default').AsInteger := 0;
-
-MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-ShowMessage('Water Quality data named ' + Edit25.Text + ' has been saved to the Database');
-
-WatterQualityForm.UpdateComboBox ;
-
-Button3.Enabled := True ;
-
-Button2.Enabled := true ;
-
+  Button3.Enabled := True ;
+  Button2.Enabled := true ;
 end;
 
 procedure TWatterQualityForm.Button2Click(Sender: TObject);
-  var
-MyDbf: TDbf;
-i : integer ;
-selected_item : integer ;
 begin
+  DBWatterQuality.Delete('Name', ComboBox1.Items[ComboBox1.ItemIndex]);
+  ComboBox1.Items.Delete(ComboBox1.ItemIndex) ;
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.water_quality_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-
-MyDbf.Filter := 'Name=' + QuotedStr(ComboBox1.Items[ComboBox1.ItemIndex]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-    ComboBox1.Items.Delete(ComboBox1.ItemIndex) ;
-    MyDbf.Delete ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-if ComboBox1.Items.Count = 0 then
-
-   begin
-
-   ComboBox1.Text := 'Select Water Quality Data From DB' ;
-   Button2.Enabled := false ;
-
-   end;
+  if ComboBox1.Items.Count = 0 then begin
+     ComboBox1.Text := 'Select Water Quality Data From DB' ;
+     Button2.Enabled := false ;
+  end;
 
 end;
 
 procedure TWatterQualityForm.Button3Click(Sender: TObject);
-  var
-MyDbf: TDbf;
 begin
+  DBWatterQuality.SearchFirst;
 
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.water_quality_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
+  while not DBWatterQuality.EOF do begin
+    DBWatterQuality.Default := 0;
+    DBWatterQuality.Update('Name',DBWatterQuality.Name);
+    DBWatterQuality.next;                                   // use .next here NOT .findnext!
+  end;
 
-while not MyDbf.EOF do
-    begin
+  DBWatterQuality.SearchByField('Name', Edit25.Text, True);
+  DBWatterQuality.Default := 0 ;
+  DBWatterQuality.Update('Name', Edit25.Text);
 
-        MyDbf.Edit;
-
-        MyDbf.FieldByName('Default').AsInteger := 0 ;
-
-        MyDbf.Post ;
-
-        MyDbf.next;                                   // use .next here NOT .findnext!
-    end;
-
-MyDbf.Filter := 'Name=' + QuotedStr(Edit25.Text) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;
-
-    MyDbf.Edit;
-
-              MyDbf.FieldByName('Default').AsInteger := 1 ;
-
-    MyDbf.Post ;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
-ShowMessage(Edit25.Text + ' set as default water quality set') ;
-
-
-
+  ShowMessage(Edit25.Text + ' set as default water quality set') ;
 end;
 
 procedure TWatterQualityForm.Button4Click(Sender: TObject);
@@ -229,50 +156,26 @@ end;
 
 
 procedure TWatterQualityForm.ComboBox1Select(Sender: TObject);
-var
-i : integer ;
-selected_item : integer ;
-MyDbf: TDbf;
 begin
-
-   MyDbf := TDbf.Create(nil) ;
-   MyDbf.FilePathFull := '';
-   MyDbf.TableName := MainForm.water_quality_db;
-   MyDbf.Open             ;
-   MyDbf.Active := true ;
-
-         MyDbf.Filter := 'Name=' + QuotedStr(ComboBox1.Items[ComboBox1.ItemIndex]) ;
-
-    MyDbf.Filtered := true;       // This selects the filtered set
-    MyDbf.First;                  // moves the the first filtered data
-
-    Edit25.text := MyDbf.FieldByName('Name').AsString;
-    Edit1.text := MyDbf.FieldByName('N (NO3-)').AsString ;
-    Edit2.text := MyDbf.FieldByName('N (NH4+)').AsString ;
-    Edit3.text := MyDbf.FieldByName('P').AsString ;
-    Edit4.text := MyDbf.FieldByName('K').AsString ;
-    Edit5.text := MyDbf.FieldByName('Mg').AsString ;
-    Edit6.text := MyDbf.FieldByName('Ca').AsString ;
-    Edit7.text := MyDbf.FieldByName('S').AsString ;
-    Edit8.text := MyDbf.FieldByName('Fe').AsString ;
-    Edit9.text := MyDbf.FieldByName('Mn').AsString ;
-    Edit10.text := MyDbf.FieldByName('Zn').AsString ;
-    Edit11.text := MyDbf.FieldByName('B').AsString ;
-    Edit12.text := MyDbf.FieldByName('Cu').AsString ;
-    Edit13.text := MyDbf.FieldByName('Si').AsString ;
-    Edit14.text := MyDbf.FieldByName('Mo').AsString ;
-    Edit15.text := MyDbf.FieldByName('Na').AsString ;
-    Edit16.text := MyDbf.FieldByName('Cl').AsString ;
-
-    MyDbf.Close ;
-
-    MyDbf.Free ;
-
+  DBWatterQuality.SearchByField('Name', ComboBox1.Items[ComboBox1.ItemIndex], True);
+  Edit25.text := DBWatterQuality.Name;
+  Edit1.text := floattostr(DBWatterQuality.N_NO3);
+  Edit2.text := floattostr(DBWatterQuality.N_NH4);
+  Edit3.text := floattostr(DBWatterQuality.P);
+  Edit4.text := floattostr(DBWatterQuality.K);
+  Edit5.text := floattostr(DBWatterQuality.Mg);
+  Edit6.text := floattostr(DBWatterQuality.Ca);
+  Edit7.text := floattostr(DBWatterQuality.S);
+  Edit8.text := floattostr(DBWatterQuality.Fe);
+  Edit9.text := floattostr(DBWatterQuality.Mn);
+  Edit10.text := floattostr(DBWatterQuality.Zn);
+  Edit11.text := floattostr(DBWatterQuality.B);
+  Edit12.text := floattostr(DBWatterQuality.Cu);
+  Edit13.text := floattostr(DBWatterQuality.Si);
+  Edit14.text := floattostr(DBWatterQuality.Mo);
+  Edit15.text := floattostr(DBWatterQuality.Na);
+  Edit16.text := floattostr(DBWatterQuality.Cl);
   Button3.Enabled := True ;
-
-
-
-
 end;
 
 procedure TWatterQualityForm.SaveToXMLButtonClick(Sender: TObject);
@@ -297,38 +200,15 @@ end;
 
 
 procedure TWatterQualityForm.UpdateComboBox ;
-var
-i : integer ;
-j : integer ;
 begin
 
   ComboBox1.Items.Clear ;
 
   DBWatterQuality.SearchFirst;
-  ComboBox1.Items.Add(DBWatterQuality.Name);
-  while DBWatterQuality.Next do ComboBox1.Items.Add(DBWatterQuality.Name);
-
-{
-
-MyDbf := TDbf.Create(nil) ;
-MyDbf.FilePathFull := '';
-MyDbf.TableName := MainForm.water_quality_db;
-MyDbf.Open             ;
-MyDbf.Active := true ;
-
-    MyDbf.First;                  // moves to the first data
-
-    while not MyDbf.EOF do
-    begin
-        ComboBox1.Items.Add(MyDbf.FieldByName('Name').AsString);
-        MyDbf.next;                                     // use .next here NOT .findnext!
-    end;
-
-MyDbf.Close ;
-
-MyDbf.Free ;
-
- }
+  while not DBWatterQuality.EOF do begin
+    ComboBox1.Items.Add(DBWatterQuality.Name);
+    DBWatterQuality.Next;
+  end;
 
 end ;
 
