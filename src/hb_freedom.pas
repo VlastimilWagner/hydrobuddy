@@ -15,8 +15,8 @@ type
   TFreedomForm = class(TForm)
     Button1: TButton;
     ComboBox1: TComboBox;
-    Label1: TLabel;
-    Label2: TLabel;
+    InputLabel: TLabel;
+    InstructionsLabel: TLabel;
     procedure Button1Click(Sender: TObject);
   private
     { private declarations }

@@ -1,4 +1,4 @@
-object Form16: TForm16
+object TissueAnalysisForm: TTissueAnalysisForm
   Left = 739
   Height = 717
   Top = 377
@@ -9,7 +9,7 @@ object Form16: TForm16
   ClientWidth = 549
   Position = poMainFormCenter
   OnCreate = FormCreate
-  object Label1: TLabel
+  object NLabel: TLabel
     Left = 33
     Height = 15
     Top = 99
@@ -17,7 +17,7 @@ object Form16: TForm16
     Caption = 'N (%)'
     ParentColor = False
   end
-  object Label3: TLabel
+  object PLabel: TLabel
     Left = 33
     Height = 15
     Top = 133
@@ -25,7 +25,7 @@ object Form16: TForm16
     Caption = 'P (%)'
     ParentColor = False
   end
-  object Label4: TLabel
+  object KLabel: TLabel
     Left = 33
     Height = 15
     Top = 164
@@ -33,7 +33,7 @@ object Form16: TForm16
     Caption = 'K (%)'
     ParentColor = False
   end
-  object Label5: TLabel
+  object MgLabel: TLabel
     Left = 33
     Height = 15
     Top = 196
@@ -41,7 +41,7 @@ object Form16: TForm16
     Caption = 'Mg (%)'
     ParentColor = False
   end
-  object Label6: TLabel
+  object CaLabel: TLabel
     Left = 33
     Height = 15
     Top = 227
@@ -49,7 +49,7 @@ object Form16: TForm16
     Caption = 'Ca (%)'
     ParentColor = False
   end
-  object Label7: TLabel
+  object SLabel: TLabel
     Left = 169
     Height = 15
     Top = 97
@@ -57,7 +57,7 @@ object Form16: TForm16
     Caption = ' S (%)'
     ParentColor = False
   end
-  object Label8: TLabel
+  object FeLabel: TLabel
     Left = 169
     Height = 15
     Top = 129
@@ -65,7 +65,7 @@ object Form16: TForm16
     Caption = 'Fe (ppm)'
     ParentColor = False
   end
-  object Label10: TLabel
+  object ZnLabel: TLabel
     Left = 169
     Height = 15
     Top = 193
@@ -73,7 +73,7 @@ object Form16: TForm16
     Caption = 'Zn (ppm)'
     ParentColor = False
   end
-  object Label11: TLabel
+  object BLabel: TLabel
     Left = 169
     Height = 15
     Top = 220
@@ -81,7 +81,7 @@ object Form16: TForm16
     Caption = 'B (ppm)'
     ParentColor = False
   end
-  object Label12: TLabel
+  object CuLabel: TLabel
     Left = 330
     Height = 15
     Top = 225
@@ -89,7 +89,7 @@ object Form16: TForm16
     Caption = 'Cu (ppm)'
     ParentColor = False
   end
-  object Label14: TLabel
+  object MoLabel: TLabel
     Left = 330
     Height = 15
     Top = 130
@@ -97,7 +97,7 @@ object Form16: TForm16
     Caption = 'Mo (ppm)'
     ParentColor = False
   end
-  object Label15: TLabel
+  object NaLabel: TLabel
     Left = 330
     Height = 15
     Top = 161
@@ -105,7 +105,7 @@ object Form16: TForm16
     Caption = 'Na (ppm)'
     ParentColor = False
   end
-  object Label13: TLabel
+  object SiLabel: TLabel
     Left = 330
     Height = 15
     Top = 99
@@ -113,7 +113,7 @@ object Form16: TForm16
     Caption = 'Si (%)'
     ParentColor = False
   end
-  object Label16: TLabel
+  object ClLabel: TLabel
     Left = 330
     Height = 15
     Top = 193
@@ -121,7 +121,7 @@ object Form16: TForm16
     Caption = 'Cl (ppm)'
     ParentColor = False
   end
-  object Label9: TLabel
+  object MnLabel: TLabel
     Left = 169
     Height = 15
     Top = 161
@@ -129,7 +129,7 @@ object Form16: TForm16
     Caption = 'Mn (ppm)'
     ParentColor = False
   end
-  object Label29: TLabel
+  object CompositionLabel: TLabel
     Left = 33
     Height = 15
     Top = 64
@@ -137,95 +137,95 @@ object Form16: TForm16
     Caption = 'Composition values should be entered below:'
     ParentColor = False
   end
-  object Edit1: TEdit
+  object NEdit: TEdit
     Left = 85
     Height = 23
     Top = 96
-    Width = 64
-    TabOrder = 0
-    Text = '0'
-  end
-  object Edit3: TEdit
-    Left = 85
-    Height = 23
-    Top = 130
     Width = 64
     TabOrder = 1
     Text = '0'
   end
-  object Edit4: TEdit
+  object PEdit: TEdit
     Left = 85
     Height = 23
-    Top = 161
+    Top = 130
     Width = 64
     TabOrder = 2
     Text = '0'
   end
-  object Edit5: TEdit
+  object KEdit: TEdit
     Left = 85
     Height = 23
-    Top = 193
+    Top = 161
     Width = 64
     TabOrder = 3
     Text = '0'
   end
-  object Edit6: TEdit
+  object MgEdit: TEdit
     Left = 85
     Height = 23
-    Top = 224
+    Top = 193
     Width = 64
     TabOrder = 4
     Text = '0'
   end
-  object Edit7: TEdit
+  object CaEdit: TEdit
+    Left = 85
+    Height = 23
+    Top = 224
+    Width = 64
+    TabOrder = 5
+    Text = '0'
+  end
+  object SEdit: TEdit
     Left = 232
     Height = 23
     Top = 96
     Width = 72
-    TabOrder = 5
+    TabOrder = 6
     Text = '0'
   end
-  object Edit8: TEdit
+  object FeEdit: TEdit
     Left = 232
     Height = 23
     Top = 127
     Width = 72
-    TabOrder = 6
+    TabOrder = 7
     Text = '0'
   end
-  object Edit9: TEdit
+  object MnEdit: TEdit
     Left = 232
     Height = 23
     Top = 157
     Width = 72
-    TabOrder = 7
+    TabOrder = 8
     Text = '0'
   end
-  object Edit10: TEdit
+  object ZnEdit: TEdit
     Left = 232
     Height = 23
     Top = 188
     Width = 72
-    TabOrder = 8
-    Text = '0'
-  end
-  object Edit11: TEdit
-    Left = 232
-    Height = 23
-    Top = 220
-    Width = 72
     TabOrder = 9
     Text = '0'
   end
-  object Edit12: TEdit
-    Left = 392
+  object BEdit: TEdit
+    Left = 232
     Height = 23
     Top = 220
     Width = 72
     TabOrder = 10
     Text = '0'
   end
-  object Edit13: TEdit
+  object EditCu: TEdit
+    Left = 392
+    Height = 23
+    Top = 220
+    Width = 72
+    TabOrder = 15
+    Text = '0'
+  end
+  object SiEdit: TEdit
     Left = 392
     Height = 23
     Top = 97
@@ -233,31 +233,31 @@ object Form16: TForm16
     TabOrder = 11
     Text = '0'
   end
-  object Edit15: TEdit
+  object NaEdit: TEdit
     Left = 392
     Height = 23
     Top = 157
     Width = 72
-    TabOrder = 12
+    TabOrder = 13
     Text = '0'
   end
-  object Edit16: TEdit
+  object ClEdit: TEdit
     Left = 392
     Height = 23
     Top = 188
     Width = 72
-    TabOrder = 13
+    TabOrder = 14
     Text = '0'
   end
-  object Edit14: TEdit
+  object MoEdit: TEdit
     Left = 392
     Height = 23
     Top = 129
     Width = 72
-    TabOrder = 14
+    TabOrder = 12
     Text = '0'
   end
-  object Edit17: TEdit
+  object WaterUseEdit: TEdit
     Left = 304
     Height = 23
     Hint = 'This represents the grams of water transpired per gram of tissue grown'
@@ -265,10 +265,10 @@ object Form16: TForm16
     Width = 72
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 15
+    TabOrder = 16
     Text = '3.5'
   end
-  object Label17: TLabel
+  object WaterUseLabel: TLabel
     Left = 24
     Height = 15
     Hint = 'This represents the grams of water transpired per gram of tissue grown'
@@ -279,26 +279,26 @@ object Form16: TForm16
     ParentShowHint = False
     ShowHint = True
   end
-  object ListBox1: TListBox
+  object TADatabaseListBox: TListBox
     Left = 24
     Height = 361
     Top = 319
     Width = 216
     ItemHeight = 0
     Sorted = True
-    TabOrder = 16
-    OnClick = ListBox1Click
-    OnSelectionChange = ListBox1SelectionChange
+    TabOrder = 17
+    OnClick = TADatabaseListBoxClick
+    OnSelectionChange = TADatabaseListBoxSelectionChange
   end
-  object Label30: TLabel
+  object TaDatabaseLabel: TLabel
     Left = 24
     Height = 15
     Top = 296
-    Width = 127
+    Width = 126
     Caption = 'Tissue analysis database'
     ParentColor = False
   end
-  object Label31: TLabel
+  object SoluionPPMLabel: TLabel
     Left = 400
     Height = 15
     Top = 296
@@ -306,7 +306,7 @@ object Form16: TForm16
     Caption = 'Solution ppm'
     ParentColor = False
   end
-  object Label26: TLabel
+  object NameLabel: TLabel
     Left = 33
     Height = 15
     Top = 28
@@ -314,15 +314,15 @@ object Form16: TForm16
     Caption = 'Name'
     ParentColor = False
   end
-  object Edit25: TEdit
+  object NameEdit: TEdit
     Left = 81
     Height = 23
     Top = 24
     Width = 391
-    TabOrder = 17
+    TabOrder = 0
     Text = 'Name for DB'
   end
-  object Button1: TBitBtn
+  object SaveToDBButton: TBitBtn
     Left = 256
     Height = 41
     Top = 319
@@ -411,9 +411,9 @@ object Form16: TForm16
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 18
-    OnClick = Button1Click
+    OnClick = SaveToDBButtonClick
   end
-  object Button2: TBitBtn
+  object RemoveFromDBButton: TBitBtn
     Left = 256
     Height = 41
     Top = 378
@@ -503,9 +503,9 @@ object Form16: TForm16
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 19
-    OnClick = Button2Click
+    OnClick = RemoveFromDBButtonClick
   end
-  object Button5: TBitBtn
+  object UpdateValuesButton: TBitBtn
     Left = 256
     Height = 41
     Top = 437
@@ -595,9 +595,9 @@ object Form16: TForm16
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 20
-    OnClick = Button5Click
+    OnClick = UpdateValuesButtonClick
   end
-  object Button4: TBitBtn
+  object AddNewButton: TBitBtn
     Left = 256
     Height = 41
     Top = 495
@@ -761,9 +761,9 @@ object Form16: TForm16
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 21
-    OnClick = Button4Click
+    OnClick = AddNewButtonClick
   end
-  object Button3: TBitBtn
+  object CopyToTargetsButton: TBitBtn
     Left = 256
     Height = 41
     Top = 556
@@ -853,9 +853,9 @@ object Form16: TForm16
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 22
-    OnClick = Button3Click
+    OnClick = CopyToTargetsButtonClick
   end
-  object StringGrid1: TStringGrid
+  object SolutionPPMStringGrid: TStringGrid
     Left = 400
     Height = 360
     Top = 320
@@ -927,7 +927,7 @@ object Form16: TForm16
       'Cl'
     )
   end
-  object Edit2: TEdit
+  object TisuueReferencsEdit: TEdit
     Cursor = crArrow
     Left = 24
     Height = 15

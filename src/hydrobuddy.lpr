@@ -136,7 +136,7 @@ begin
   AssignValues ;
   UpdateComboBoxes ;
   MainForm.LoadValues;
-  Application.CreateForm(TForm16, Form16);
+  Application.CreateForm(TTissueAnalysisForm, TissueAnalysisForm);
   Application.Run;
 end.
 

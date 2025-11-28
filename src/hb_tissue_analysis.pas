@@ -10,62 +10,62 @@ uses
 
 type
 
-  { TForm16 }
+  { TTissueAnalysisForm }
 
-  TForm16 = class(TForm)
-    Button1: TBitBtn;
-    Button2: TBitBtn;
-    Button3: TBitBtn;
-    Button4: TBitBtn;
-    Button5: TBitBtn;
-    Edit1: TEdit;
-    Edit10: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit14: TEdit;
-    Edit15: TEdit;
-    Edit16: TEdit;
-    Edit17: TEdit;
-    Edit2: TEdit;
-    Edit25: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
-    Label1: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label26: TLabel;
-    Label29: TLabel;
-    Label3: TLabel;
-    Label30: TLabel;
-    Label31: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    ListBox1: TListBox;
-    StringGrid1: TStringGrid;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
+  TTissueAnalysisForm = class(TForm)
+    SaveToDBButton: TBitBtn;
+    RemoveFromDBButton: TBitBtn;
+    CopyToTargetsButton: TBitBtn;
+    AddNewButton: TBitBtn;
+    UpdateValuesButton: TBitBtn;
+    NEdit: TEdit;
+    ZnEdit: TEdit;
+    BEdit: TEdit;
+    EditCu: TEdit;
+    SiEdit: TEdit;
+    MoEdit: TEdit;
+    NaEdit: TEdit;
+    ClEdit: TEdit;
+    WaterUseEdit: TEdit;
+    TisuueReferencsEdit: TEdit;
+    NameEdit: TEdit;
+    PEdit: TEdit;
+    KEdit: TEdit;
+    MgEdit: TEdit;
+    CaEdit: TEdit;
+    SEdit: TEdit;
+    FeEdit: TEdit;
+    MnEdit: TEdit;
+    NLabel: TLabel;
+    ZnLabel: TLabel;
+    BLabel: TLabel;
+    CuLabel: TLabel;
+    SiLabel: TLabel;
+    MoLabel: TLabel;
+    NaLabel: TLabel;
+    ClLabel: TLabel;
+    WaterUseLabel: TLabel;
+    NameLabel: TLabel;
+    CompositionLabel: TLabel;
+    PLabel: TLabel;
+    TaDatabaseLabel: TLabel;
+    SoluionPPMLabel: TLabel;
+    KLabel: TLabel;
+    MgLabel: TLabel;
+    CaLabel: TLabel;
+    SLabel: TLabel;
+    FeLabel: TLabel;
+    MnLabel: TLabel;
+    TADatabaseListBox: TListBox;
+    SolutionPPMStringGrid: TStringGrid;
+    procedure SaveToDBButtonClick(Sender: TObject);
+    procedure RemoveFromDBButtonClick(Sender: TObject);
+    procedure CopyToTargetsButtonClick(Sender: TObject);
+    procedure AddNewButtonClick(Sender: TObject);
+    procedure UpdateValuesButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ListBox1Click(Sender: TObject);
-    procedure ListBox1SelectionChange(Sender: TObject; User: boolean);
+    procedure TADatabaseListBoxClick(Sender: TObject);
+    procedure TADatabaseListBoxSelectionChange(Sender: TObject; User: boolean);
   private
 
   public
@@ -73,39 +73,39 @@ type
   end;
 
 var
-  Form16: TForm16;
+  TissueAnalysisForm: TTissueAnalysisForm;
 
 implementation
 
 uses HB_Main ;
 
-{ TForm16 }
+{ TTissueAnalysisForm }
 
-procedure  TForm16.UpdateTissueList;
+procedure  TTissueAnalysisForm.UpdateTissueList;
 begin
 
-  ListBox1.Items.Clear;
+  TADatabaseListBox.Items.Clear;
 
   DBTissueAnalysis.SearchFirst;
   while not DBTissueAnalysis.EOF do
   begin
-    ListBox1.Items.Add(DBTissueAnalysis.Name);
-    DBTissueAnalysis.Next;                                     // use .next here NOT .findnext!
+    TADatabaseListBox.Items.Add(DBTissueAnalysis.Name);
+    DBTissueAnalysis.Next;
   end;
 
 end;
 
-procedure TForm16.FormCreate(Sender: TObject);
+procedure TTissueAnalysisForm.FormCreate(Sender: TObject);
 begin
 
 end;
 
-procedure TForm16.ListBox1Click(Sender: TObject);
+procedure TTissueAnalysisForm.TADatabaseListBoxClick(Sender: TObject);
 begin
 
 end;
 
-procedure TForm16.ListBox1SelectionChange(Sender: TObject; User: boolean);
+procedure TTissueAnalysisForm.TADatabaseListBoxSelectionChange(Sender: TObject; User: boolean);
 var
   i,selected_idx : integer ;
   item_selected : boolean ;
@@ -113,10 +113,10 @@ var
 begin
 
   item_selected := false ;
-  wue := StrtoFloatAnySeparator(Edit17.Text)  ;
+  wue := StrtoFloatAnySeparator(WaterUseEdit.Text)  ;
 
-  for i := 0 to ListBox1.Items.Count - 1 do begin
-    if (ListBox1.Selected [i]) then begin
+  for i := 0 to TADatabaseListBox.Items.Count - 1 do begin
+    if (TADatabaseListBox.Selected [i]) then begin
          selected_idx := i;
          item_selected := true ;
     end;
@@ -124,125 +124,122 @@ begin
 
   if item_selected then begin
 
-    DBTissueAnalysis.SearchByField('Name',ListBox1.Items[selected_idx],True);
+    DBTissueAnalysis.SearchByField('Name',TADatabaseListBox.Items[selected_idx],True);
 
-    Edit25.Text :=  ListBox1.Items[selected_idx];
+    NameEdit.Text :=  TADatabaseListBox.Items[selected_idx];
 
-    Edit1.Text :=  FloattoStr(DBTissueAnalysis.N);
-    Edit3.Text :=  FloattoStr(DBTissueAnalysis.P);
-    Edit4.Text :=  FloattoStr(DBTissueAnalysis.K);
-    Edit5.Text :=  FloattoStr(DBTissueAnalysis.Mg);
-    Edit6.Text :=  FloattoStr(DBTissueAnalysis.Ca);
-    Edit7.Text :=  FloattoStr(DBTissueAnalysis.S);
-    Edit13.Text :=  FloattoStr(DBTissueAnalysis.Si);
-    Edit8.Text :=  FloattoStr(DBTissueAnalysis.Fe);
-    Edit9.Text :=  FloattoStr(DBTissueAnalysis.Mn);
-    Edit10.Text :=  FloattoStr(DBTissueAnalysis.Zn);
-    Edit11.Text :=  FloattoStr(DBTissueAnalysis.B);
-    Edit12.Text :=  FloattoStr(DBTissueAnalysis.Cu);
-    Edit14.Text :=  FloattoStr(DBTissueAnalysis.Mo);
-    Edit15.Text :=  FloattoStr(DBTissueAnalysis.Na);
-    Edit16.Text :=  FloattoStr(DBTissueAnalysis.Cl);
+    NEdit.Text :=  FloattoStr(DBTissueAnalysis.N);
+    PEdit.Text :=  FloattoStr(DBTissueAnalysis.P);
+    KEdit.Text :=  FloattoStr(DBTissueAnalysis.K);
+    MgEdit.Text :=  FloattoStr(DBTissueAnalysis.Mg);
+    CaEdit.Text :=  FloattoStr(DBTissueAnalysis.Ca);
+    SEdit.Text :=  FloattoStr(DBTissueAnalysis.S);
+    SiEdit.Text :=  FloattoStr(DBTissueAnalysis.Si);
+    FeEdit.Text :=  FloattoStr(DBTissueAnalysis.Fe);
+    MnEdit.Text :=  FloattoStr(DBTissueAnalysis.Mn);
+    ZnEdit.Text :=  FloattoStr(DBTissueAnalysis.Zn);
+    BEdit.Text :=  FloattoStr(DBTissueAnalysis.B);
+    EditCu.Text :=  FloattoStr(DBTissueAnalysis.Cu);
+    MoEdit.Text :=  FloattoStr(DBTissueAnalysis.Mo);
+    NaEdit.Text :=  FloattoStr(DBTissueAnalysis.Na);
+    ClEdit.Text :=  FloattoStr(DBTissueAnalysis.Cl);
 
-    StringGrid1.Cells[1,1] :=  FloattoStr((DBTissueAnalysis.N/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,2] :=  FloattoStr((DBTissueAnalysis.P/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,3] :=  FloattoStr((DBTissueAnalysis.K/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,4] :=  FloattoStr((DBTissueAnalysis.Mg/100.0)*(wue*1000));
-    StringGrid1.Cells[1,5] :=  FloattoStr((DBTissueAnalysis.Ca/100.0)*(wue*1000))   ;
-    StringGrid1.Cells[1,6] :=  FloattoStr((DBTissueAnalysis.S/100.0)*(wue*1000));
-    StringGrid1.Cells[1,7] :=  FloattoStr((DBTissueAnalysis.Fe/(10000*100.0))*(wue*1000))   ;
-    StringGrid1.Cells[1,8] :=  FloattoStr((DBTissueAnalysis.Mn/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,9] :=  FloattoStr((DBTissueAnalysis.Zn/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,10] :=  FloattoStr((DBTissueAnalysis.B/(10000*100.0))*(wue*1000));
-    StringGrid1.Cells[1,11] :=  FloattoStr((DBTissueAnalysis.Cu/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,12] :=  FloattoStr((DBTissueAnalysis.Si/100.0)*(wue*1000)) ;
-    StringGrid1.Cells[1,13] :=  FloattoStr((DBTissueAnalysis.Mo/(10000*100.0))*(wue*1000)) ;
-    StringGrid1.Cells[1,14] :=  FloattoStr((DBTissueAnalysis.Na/(10000*100.0))*(wue*1000));
-    StringGrid1.Cells[1,15] :=  FloattoStr((DBTissueAnalysis.Cl/(10000*100.0))*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,1] :=  FloattoStr((DBTissueAnalysis.N/100.0)*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,2] :=  FloattoStr((DBTissueAnalysis.P/100.0)*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,3] :=  FloattoStr((DBTissueAnalysis.K/100.0)*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,4] :=  FloattoStr((DBTissueAnalysis.Mg/100.0)*(wue*1000));
+    SolutionPPMStringGrid.Cells[1,5] :=  FloattoStr((DBTissueAnalysis.Ca/100.0)*(wue*1000))   ;
+    SolutionPPMStringGrid.Cells[1,6] :=  FloattoStr((DBTissueAnalysis.S/100.0)*(wue*1000));
+    SolutionPPMStringGrid.Cells[1,7] :=  FloattoStr((DBTissueAnalysis.Fe/(10000*100.0))*(wue*1000))   ;
+    SolutionPPMStringGrid.Cells[1,8] :=  FloattoStr((DBTissueAnalysis.Mn/(10000*100.0))*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,9] :=  FloattoStr((DBTissueAnalysis.Zn/(10000*100.0))*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,10] :=  FloattoStr((DBTissueAnalysis.B/(10000*100.0))*(wue*1000));
+    SolutionPPMStringGrid.Cells[1,11] :=  FloattoStr((DBTissueAnalysis.Cu/(10000*100.0))*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,12] :=  FloattoStr((DBTissueAnalysis.Si/100.0)*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,13] :=  FloattoStr((DBTissueAnalysis.Mo/(10000*100.0))*(wue*1000)) ;
+    SolutionPPMStringGrid.Cells[1,14] :=  FloattoStr((DBTissueAnalysis.Na/(10000*100.0))*(wue*1000));
+    SolutionPPMStringGrid.Cells[1,15] :=  FloattoStr((DBTissueAnalysis.Cl/(10000*100.0))*(wue*1000)) ;
 
-    Button1.Enabled := False ;
-    Button2.Enabled := True ;
-    Button4.Enabled := True ;
-    Button5.Enabled := True ;
-    Button3.Enabled := True ;
+    SaveToDBButton.Enabled := False ;
+    RemoveFromDBButton.Enabled := True ;
+    AddNewButton.Enabled := True ;
+    UpdateValuesButton.Enabled := True ;
+    CopyToTargetsButton.Enabled := True ;
   end ;
 
-if item_selected = False then
+  if item_selected = False then begin
+    SaveToDBButton.Enabled := True ;
+    RemoveFromDBButton.Enabled := False ;
+    AddNewButton.Enabled := True ;
+    UpdateValuesButton.Enabled := False ;
+    CopyToTargetsButton.Enabled := False ;
+
+    for i := 1 to SolutionPPMStringGrid.RowCount - 1 do SolutionPPMStringGrid.Cells[1,i] := '';
+
+    NEdit.Text := '0';
+    PEdit.Text := '0';
+    KEdit.Text := '0';
+    MgEdit.Text := '0';
+    CaEdit.Text := '0';
+    SEdit.Text := '0';
+    FeEdit.Text := '0';
+    MnEdit.Text := '0';
+    ZnEdit.Text := '0';
+    BEdit.Text := '0';
+    EditCu.Text := '0';
+    SiEdit.Text := '0';
+    MoEdit.Text := '0';
+    NaEdit.Text := '0';
+    ClEdit.Text := '0';
+    NameEdit.Text := 'Name for DB';
+  end;
+end;
+
+procedure TTissueAnalysisForm.SaveToDBButtonClick(Sender: TObject);
 begin
-    Button1.Enabled := True ;
-    Button2.Enabled := False ;
-    Button4.Enabled := True ;
-    Button5.Enabled := False ;
-    Button3.Enabled := False ;
+  DBTissueAnalysis.Name := NameEdit.Text ;
+  DBTissueAnalysis.N := StrtoFloatAnySeparator(NEdit.Text);
+  DBTissueAnalysis.P := StrtoFloatAnySeparator(PEdit.Text);
+  DBTissueAnalysis.K := StrtoFloatAnySeparator(KEdit.Text);
+  DBTissueAnalysis.Mg := StrtoFloatAnySeparator(MgEdit.Text);
+  DBTissueAnalysis.Ca := StrtoFloatAnySeparator(CaEdit.Text);
+  DBTissueAnalysis.S := StrtoFloatAnySeparator(SEdit.Text);
+  DBTissueAnalysis.Fe := StrtoFloatAnySeparator(FeEdit.Text);
+  DBTissueAnalysis.Mn := StrtoFloatAnySeparator(MnEdit.Text);
+  DBTissueAnalysis.Zn := StrtoFloatAnySeparator(ZnEdit.Text);
+  DBTissueAnalysis.B := StrtoFloatAnySeparator(BEdit.Text);
+  DBTissueAnalysis.Cu := StrtoFloatAnySeparator(EditCu.Text);
+  DBTissueAnalysis.Si := StrtoFloatAnySeparator(SiEdit.Text);
+  DBTissueAnalysis.Mo := StrtoFloatAnySeparator(MoEdit.Text);
+  DBTissueAnalysis.Na := StrtoFloatAnySeparator(NaEdit.Text);
+  DBTissueAnalysis.Cl := StrtoFloatAnySeparator(ClEdit.Text);
 
-    for i := 1 to StringGrid1.RowCount - 1 do StringGrid1.Cells[1,i] := '';
+  DBTissueAnalysis.Insert;
 
-    Edit1.Text := '0';
-    Edit3.Text := '0';
-    Edit4.Text := '0';
-    Edit5.Text := '0';
-    Edit6.Text := '0';
-    Edit7.Text := '0';
-    Edit8.Text := '0';
-    Edit9.Text := '0';
-    Edit10.Text := '0';
-    Edit11.Text := '0';
-    Edit12.Text := '0';
-    Edit13.Text := '0';
-    Edit14.Text := '0';
-    Edit15.Text := '0';
-    Edit16.Text := '0';
-    Edit25.Text := 'Name for DB';
+  TissueAnalysisForm.UpdateTissueList ;
 end;
 
-
-end;
-
-procedure TForm16.Button1Click(Sender: TObject);
-begin
-DBTissueAnalysis.Name := Edit25.Text ;
-DBTissueAnalysis.N := StrtoFloatAnySeparator(Edit1.Text);
-DBTissueAnalysis.P := StrtoFloatAnySeparator(Edit3.Text);
-DBTissueAnalysis.K := StrtoFloatAnySeparator(Edit4.Text);
-DBTissueAnalysis.Mg := StrtoFloatAnySeparator(Edit5.Text);
-DBTissueAnalysis.Ca := StrtoFloatAnySeparator(Edit6.Text);
-DBTissueAnalysis.S := StrtoFloatAnySeparator(Edit7.Text);
-DBTissueAnalysis.Fe := StrtoFloatAnySeparator(Edit8.Text);
-DBTissueAnalysis.Mn := StrtoFloatAnySeparator(Edit9.Text);
-DBTissueAnalysis.Zn := StrtoFloatAnySeparator(Edit10.Text);
-DBTissueAnalysis.B := StrtoFloatAnySeparator(Edit11.Text);
-DBTissueAnalysis.Cu := StrtoFloatAnySeparator(Edit12.Text);
-DBTissueAnalysis.Si := StrtoFloatAnySeparator(Edit13.Text);
-DBTissueAnalysis.Mo := StrtoFloatAnySeparator(Edit14.Text);
-DBTissueAnalysis.Na := StrtoFloatAnySeparator(Edit15.Text);
-DBTissueAnalysis.Cl := StrtoFloatAnySeparator(Edit16.Text);
-
-DBTissueAnalysis.Insert;
-
-Form16.UpdateTissueList ;
-end;
-
-procedure TForm16.Button2Click(Sender: TObject);
+procedure TTissueAnalysisForm.RemoveFromDBButtonClick(Sender: TObject);
 var
    i : integer ;
    selected_item : integer ;
 begin
 
-   if ListBox1.SelCount = 0 then // No ítems selected
+   if TADatabaseListBox.SelCount = 0 then // No ítems selected
      Exit;
 
-   For i := 0 to ListBox1.Items.Count - 1 do begin
-      if ListBox1.Selected [i] then selected_item := i ;
+   For i := 0 to TADatabaseListBox.Items.Count - 1 do begin
+      if TADatabaseListBox.Selected [i] then selected_item := i ;
    end;
 
-   ShowMessage('Deleting ' + ListBox1.Items[selected_item] + ' from database');
-   DBTissueAnalysis.Delete('Name', ListBox1.Items[selected_item]) ;
+   ShowMessage('Deleting ' + TADatabaseListBox.Items[selected_item] + ' from database');
+   DBTissueAnalysis.Delete('Name', TADatabaseListBox.Items[selected_item]) ;
 
-   ListBox1.Items.Delete(selected_item);
+   TADatabaseListBox.Items.Delete(selected_item);
 
    end;
 
-procedure TForm16.Button3Click(Sender: TObject);
+procedure TTissueAnalysisForm.CopyToTargetsButtonClick(Sender: TObject);
 var
      i,selected_idx : integer ;
      item_selected : boolean ;
@@ -250,10 +247,10 @@ var
 begin
 
   item_selected := false ;
-  wue := StrtoFloatAnySeparator(Edit17.Text)  ;
+  wue := StrtoFloatAnySeparator(WaterUseEdit.Text)  ;
 
-  for i := 0 to ListBox1.Items.Count - 1 do begin
-       if (ListBox1.Selected [i]) then begin
+  for i := 0 to TADatabaseListBox.Items.Count - 1 do begin
+       if (TADatabaseListBox.Selected [i]) then begin
           selected_idx := i;
           item_selected := true ;
        end;
@@ -261,7 +258,7 @@ begin
 
   if item_selected then begin
 
-     DBTissueAnalysis.SearchByField('Name',ListBox1.Items[selected_idx],True);
+     DBTissueAnalysis.SearchByField('Name',TADatabaseListBox.Items[selected_idx],True);
 
      MainForm.Edit1.Text :=  FloattoStr((DBTissueAnalysis.N/100.0)*(wue*1000)) ;
      MainForm.Edit3.Text :=  FloattoStr((DBTissueAnalysis.P/100.0)*(wue*1000)) ;
@@ -281,97 +278,93 @@ begin
   end ;
 
   if item_selected = False then begin
-     Button1.Enabled := True ;
-     Button2.Enabled := False ;
-     Button4.Enabled := True ;
-     Button5.Enabled := False ;
-     Button3.Enabled := False ;
-     for i := 1 to StringGrid1.RowCount - 1 do StringGrid1.Cells[1,i] := '';
-     Edit1.Text := '0';
-     Edit3.Text := '0';
-     Edit4.Text := '0';
-     Edit5.Text := '0';
-     Edit6.Text := '0';
-     Edit7.Text := '0';
-     Edit8.Text := '0';
-     Edit9.Text := '0';
-     Edit10.Text := '0';
-     Edit11.Text := '0';
-     Edit12.Text := '0';
-     Edit13.Text := '0';
-     Edit14.Text := '0';
-     Edit15.Text := '0';
-     Edit16.Text := '0';
-     Edit25.Text := 'Name for DB';
+     SaveToDBButton.Enabled := True ;
+     RemoveFromDBButton.Enabled := False ;
+     AddNewButton.Enabled := True ;
+     UpdateValuesButton.Enabled := False ;
+     CopyToTargetsButton.Enabled := False ;
+     for i := 1 to SolutionPPMStringGrid.RowCount - 1 do SolutionPPMStringGrid.Cells[1,i] := '';
+     NEdit.Text := '0';
+     PEdit.Text := '0';
+     KEdit.Text := '0';
+     MgEdit.Text := '0';
+     CaEdit.Text := '0';
+     SEdit.Text := '0';
+     FeEdit.Text := '0';
+     MnEdit.Text := '0';
+     ZnEdit.Text := '0';
+     BEdit.Text := '0';
+     EditCu.Text := '0';
+     SiEdit.Text := '0';
+     MoEdit.Text := '0';
+     NaEdit.Text := '0';
+     ClEdit.Text := '0';
+     NameEdit.Text := 'Name for DB';
   end;
 
 end;
 
-procedure TForm16.Button4Click(Sender: TObject);
+procedure TTissueAnalysisForm.AddNewButtonClick(Sender: TObject);
 var
   i: integer;
 begin
-    ListBox1.Clear;
+    TADatabaseListBox.Clear;
     UpdateTissueList;
-    Button1.Enabled := True ;
-    Button2.Enabled := False ;
-    Button4.Enabled := True ;
-    Button5.Enabled := False ;
-    Button3.Enabled := False ;
-    for i := 1 to StringGrid1.RowCount - 1 do StringGrid1.Cells[1,i] := '';
-    Edit1.Text := '0';
-    Edit3.Text := '0';
-    Edit4.Text := '0';
-    Edit5.Text := '0';
-    Edit6.Text := '0';
-    Edit7.Text := '0';
-    Edit8.Text := '0';
-    Edit9.Text := '0';
-    Edit10.Text := '0';
-    Edit11.Text := '0';
-    Edit12.Text := '0';
-    Edit13.Text := '0';
-    Edit14.Text := '0';
-    Edit15.Text := '0';
-    Edit16.Text := '0';
-    Edit25.Text := 'Name for DB';
+    SaveToDBButton.Enabled := True ;
+    RemoveFromDBButton.Enabled := False ;
+    AddNewButton.Enabled := True ;
+    UpdateValuesButton.Enabled := False ;
+    CopyToTargetsButton.Enabled := False ;
+    for i := 1 to SolutionPPMStringGrid.RowCount - 1 do SolutionPPMStringGrid.Cells[1,i] := '';
+    NEdit.Text := '0';
+    PEdit.Text := '0';
+    KEdit.Text := '0';
+    MgEdit.Text := '0';
+    CaEdit.Text := '0';
+    SEdit.Text := '0';
+    FeEdit.Text := '0';
+    MnEdit.Text := '0';
+    ZnEdit.Text := '0';
+    BEdit.Text := '0';
+    EditCu.Text := '0';
+    SiEdit.Text := '0';
+    MoEdit.Text := '0';
+    NaEdit.Text := '0';
+    ClEdit.Text := '0';
+    NameEdit.Text := 'Name for DB';
 end;
 
-procedure TForm16.Button5Click(Sender: TObject);
+procedure TTissueAnalysisForm.UpdateValuesButtonClick(Sender: TObject);
 var
   selected_item, i : integer ;
 begin
-   if ListBox1.SelCount = 0 then // No ítems selected
+   if TADatabaseListBox.SelCount = 0 then // No ítems selected
       Exit;
 
-   For i := 0 to ListBox1.Items.Count - 1 do begin
-      if ListBox1.Selected [i] then selected_item := i ;
+   For i := 0 to TADatabaseListBox.Items.Count - 1 do begin
+      if TADatabaseListBox.Selected [i] then selected_item := i ;
    end;
 
-   DBTissueAnalysis.Name := Edit25.Text ;
-   DBTissueAnalysis.N := StrtoFloatAnySeparator(Edit1.Text);
-   DBTissueAnalysis.P := StrtoFloatAnySeparator(Edit3.Text);
-   DBTissueAnalysis.K := StrtoFloatAnySeparator(Edit4.Text);
-   DBTissueAnalysis.Mg := StrtoFloatAnySeparator(Edit5.Text);
-   DBTissueAnalysis.Ca := StrtoFloatAnySeparator(Edit6.Text);
-   DBTissueAnalysis.S := StrtoFloatAnySeparator(Edit7.Text);
-   DBTissueAnalysis.Fe := StrtoFloatAnySeparator(Edit8.Text);
-   DBTissueAnalysis.Mn := StrtoFloatAnySeparator(Edit9.Text);
-   DBTissueAnalysis.Zn := StrtoFloatAnySeparator(Edit10.Text);
-   DBTissueAnalysis.B := StrtoFloatAnySeparator(Edit11.Text);
-   DBTissueAnalysis.Cu := StrtoFloatAnySeparator(Edit12.Text);
-   DBTissueAnalysis.Si := StrtoFloatAnySeparator(Edit13.Text);
-   DBTissueAnalysis.Mo := StrtoFloatAnySeparator(Edit14.Text);
-   DBTissueAnalysis.Na := StrtoFloatAnySeparator(Edit15.Text);
-   DBTissueAnalysis.Cl := StrtoFloatAnySeparator(Edit16.Text);
-   DBTissueAnalysis.Update('Name', ListBox1.Items[selected_item]);
+   DBTissueAnalysis.Name := NameEdit.Text ;
+   DBTissueAnalysis.N := StrtoFloatAnySeparator(NEdit.Text);
+   DBTissueAnalysis.P := StrtoFloatAnySeparator(PEdit.Text);
+   DBTissueAnalysis.K := StrtoFloatAnySeparator(KEdit.Text);
+   DBTissueAnalysis.Mg := StrtoFloatAnySeparator(MgEdit.Text);
+   DBTissueAnalysis.Ca := StrtoFloatAnySeparator(CaEdit.Text);
+   DBTissueAnalysis.S := StrtoFloatAnySeparator(SEdit.Text);
+   DBTissueAnalysis.Fe := StrtoFloatAnySeparator(FeEdit.Text);
+   DBTissueAnalysis.Mn := StrtoFloatAnySeparator(MnEdit.Text);
+   DBTissueAnalysis.Zn := StrtoFloatAnySeparator(ZnEdit.Text);
+   DBTissueAnalysis.B := StrtoFloatAnySeparator(BEdit.Text);
+   DBTissueAnalysis.Cu := StrtoFloatAnySeparator(EditCu.Text);
+   DBTissueAnalysis.Si := StrtoFloatAnySeparator(SiEdit.Text);
+   DBTissueAnalysis.Mo := StrtoFloatAnySeparator(MoEdit.Text);
+   DBTissueAnalysis.Na := StrtoFloatAnySeparator(NaEdit.Text);
+   DBTissueAnalysis.Cl := StrtoFloatAnySeparator(ClEdit.Text);
+   DBTissueAnalysis.Update('Name', TADatabaseListBox.Items[selected_item]);
 
    UpdateTissueList ;
-
-
-
-
-   end;
+end;
 
 initialization
   {$I hb_tissue_analysis.lrs}

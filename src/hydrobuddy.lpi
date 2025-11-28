@@ -49,7 +49,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="41">
+    <Units Count="35">
       <Unit0>
         <Filename Value="hydrobuddy.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -65,12 +65,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="HB_Main"/>
-        <EditorIndex Value="9"/>
-        <CursorPos X="18" Y="10"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="2833"/>
+        <CursorPos Y="2869"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="2">
-          <Item0 X="34" Y="595"/>
-          <Item1 X="3" Y="1387" ID="1"/>
+          <Item0 X="34" Y="602"/>
+          <Item1 X="3" Y="1379" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -81,7 +83,7 @@
         <ComponentName Value="SubstanceSelectionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="9"/>
         <CursorPos X="52" Y="42"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -93,8 +95,9 @@
         <ComponentName Value="CustomSaltForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="26"/>
-        <CursorPos X="51" Y="9"/>
+        <EditorIndex Value="22"/>
+        <TopLine Value="162"/>
+        <CursorPos Y="165"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -112,7 +115,7 @@
         <ComponentName Value="AddWeightForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="23"/>
+        <EditorIndex Value="19"/>
         <CursorPos X="8" Y="38"/>
         <UsageCount Value="230"/>
         <Loaded Value="True"/>
@@ -124,8 +127,9 @@
         <ComponentName Value="CommercialNutrientForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="24"/>
-        <CursorPos X="77" Y="9"/>
+        <EditorIndex Value="20"/>
+        <TopLine Value="175"/>
+        <CursorPos X="94" Y="175"/>
         <UsageCount Value="224"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -136,8 +140,7 @@
         <ComponentName Value="WatterQualityForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="21"/>
-        <CursorPos X="47" Y="207"/>
+        <EditorIndex Value="17"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -148,7 +151,7 @@
         <ComponentName Value="InsPrecisionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="16"/>
         <CursorPos X="3" Y="26"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
@@ -160,7 +163,7 @@
         <ComponentName Value="StockAnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="15"/>
         <CursorPos X="20" Y="27"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -172,7 +175,7 @@
         <ComponentName Value="PerSubstanceForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="14"/>
         <CursorPos X="19" Y="26"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
@@ -184,7 +187,7 @@
         <ComponentName Value="DatasetNameForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="13"/>
         <CursorPos X="18" Y="27"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -196,8 +199,7 @@
         <ComponentName Value="AnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="16"/>
-        <CursorPos X="15" Y="26"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -208,7 +210,7 @@
         <ComponentName Value="FreedomForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="11"/>
         <CursorPos X="19" Y="13"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
@@ -228,7 +230,7 @@
         <ComponentName Value="Form13"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="22"/>
+        <EditorIndex Value="18"/>
         <TopLine Value="7"/>
         <CursorPos X="35" Y="51"/>
         <UsageCount Value="248"/>
@@ -253,312 +255,257 @@
         <ComponentName Value="Form15"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="25"/>
+        <EditorIndex Value="21"/>
         <UsageCount Value="229"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit17>
       <Unit18>
-        <Filename Value="C:\lazarus\lazarus\lcl\include\control.inc"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <TopLine Value="3538"/>
-        <CursorPos Y="3548"/>
-        <UsageCount Value="3"/>
-      </Unit18>
-      <Unit19>
         <Filename Value="hb_tissue_analysis.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form16"/>
+        <ComponentName Value="TissueAnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="27"/>
-        <CursorPos X="19" Y="9"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="5" Y="93"/>
         <UsageCount Value="218"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit19>
-      <Unit20>
+      </Unit18>
+      <Unit19>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2939"/>
         <CursorPos Y="2978"/>
-        <UsageCount Value="36"/>
-      </Unit20>
-      <Unit21>
+        <UsageCount Value="26"/>
+      </Unit19>
+      <Unit20>
         <Filename Value="customhelpfunctions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CustomHelpFunctions"/>
-        <EditorIndex Value="13"/>
-        <CursorPos X="31" Y="9"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="32" Y="36"/>
         <UsageCount Value="219"/>
-        <Loaded Value="True"/>
-      </Unit21>
-      <Unit22>
+      </Unit20>
+      <Unit21>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysstr.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1202"/>
         <CursorPos X="10" Y="1227"/>
-        <UsageCount Value="36"/>
-      </Unit22>
-      <Unit23>
+        <UsageCount Value="26"/>
+      </Unit21>
+      <Unit22>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="178"/>
         <CursorPos X="20" Y="196"/>
-        <UsageCount Value="36"/>
-      </Unit23>
-      <Unit24>
+        <UsageCount Value="26"/>
+      </Unit22>
+      <Unit23>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\sysutils\sysinth.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="3" Y="33"/>
-        <UsageCount Value="36"/>
-      </Unit24>
-      <Unit25>
+        <UsageCount Value="26"/>
+      </Unit23>
+      <Unit24>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\dbase\dbf.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="48"/>
-        <UsageCount Value="110"/>
+        <UsageCount Value="99"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="db_watterquality.pas"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="137"/>
+        <CursorPos Y="172"/>
+        <UsageCount Value="171"/>
+        <Loaded Value="True"/>
       </Unit25>
       <Unit26>
-        <Filename Value="db_watterquality.pas"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="24"/>
-        <CursorPos X="7" Y="45"/>
-        <UsageCount Value="171"/>
+        <Filename Value="db_formulations.pas"/>
+        <EditorIndex Value="6"/>
+        <CursorPos Y="12"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
       </Unit26>
       <Unit27>
-        <Filename Value="db_formulations.pas"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="13"/>
-        <CursorPos X="8" Y="22"/>
-        <UsageCount Value="170"/>
+        <Filename Value="db_base.pas"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="68"/>
+        <CursorPos X="3" Y="90"/>
+        <UsageCount Value="102"/>
         <Loaded Value="True"/>
       </Unit27>
       <Unit28>
-        <Filename Value="db_base.pas"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="102"/>
+        <Filename Value="db_substances.pas"/>
+        <EditorIndex Value="4"/>
+        <CursorPos Y="39"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit28>
       <Unit29>
-        <Filename Value="db_substances.pas"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="21"/>
-        <CursorPos Y="44"/>
+        <Filename Value="db_tissue_analysis.pas"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="6" Y="141"/>
         <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit29>
       <Unit30>
-        <Filename Value="db_tissue_analysis.pas"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="49"/>
-        <CursorPos X="25" Y="9"/>
+        <Filename Value="db_substances_used.pas"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit30>
       <Unit31>
-        <Filename Value="db_substances_used.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="212"/>
-        <CursorPos X="33" Y="243"/>
-        <UsageCount Value="134"/>
-        <Loaded Value="True"/>
-      </Unit31>
-      <Unit32>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\base\db.pas"/>
         <UnitName Value="DB"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1652"/>
         <CursorPos X="15" Y="1687"/>
-        <UsageCount Value="32"/>
-      </Unit32>
-      <Unit33>
+        <UsageCount Value="21"/>
+      </Unit31>
+      <Unit32>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\win32listsl.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos Y="160"/>
-        <UsageCount Value="32"/>
-      </Unit33>
-      <Unit34>
+        <UsageCount Value="21"/>
+      </Unit32>
+      <Unit33>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5444"/>
         <CursorPos Y="5479"/>
-        <UsageCount Value="31"/>
-      </Unit34>
-      <Unit35>
+        <UsageCount Value="20"/>
+      </Unit33>
+      <Unit34>
         <Filename Value="C:\lazarus\lcl\include\customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="351"/>
         <CursorPos Y="501"/>
-        <UsageCount Value="31"/>
-      </Unit35>
-      <Unit36>
-        <Filename Value="C:\lazarus\lcl\lclmessageglue.pas"/>
-        <UnitName Value="LCLMessageGlue"/>
-        <EditorIndex Value="12"/>
-        <TopLine Value="87"/>
-        <CursorPos Y="118"/>
-        <UsageCount Value="14"/>
-        <Loaded Value="True"/>
-      </Unit36>
-      <Unit37>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <UnitName Value="TypInfo"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="3448"/>
-        <CursorPos X="9" Y="3479"/>
-        <UsageCount Value="14"/>
-        <Loaded Value="True"/>
-      </Unit37>
-      <Unit38>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\rtl-objpas\src\inc\rtti.pp"/>
-        <UnitName Value="Rtti"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-      </Unit38>
-      <Unit39>
-        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\win64\system.pp"/>
-        <UnitName Value="System"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="43"/>
-        <UsageCount Value="9"/>
-      </Unit39>
-      <Unit40>
-        <Filename Value="C:\lazarus\lcl\grids.pas"/>
-        <UnitName Value="Grids"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="10320"/>
-        <CursorPos Y="10339"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit40>
+        <UsageCount Value="20"/>
+      </Unit34>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="270" Column="59" TopLine="250"/>
+        <Caret Line="40" Column="20" TopLine="3"/>
       </Position1>
       <Position2>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="271" Column="59" TopLine="250"/>
+        <Caret Line="41" Column="20" TopLine="3"/>
       </Position2>
       <Position3>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="272" Column="59" TopLine="250"/>
+        <Caret Line="42" Column="20" TopLine="3"/>
       </Position3>
       <Position4>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="273" Column="60" TopLine="250"/>
+        <Caret Line="43" Column="20" TopLine="3"/>
       </Position4>
       <Position5>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="274" Column="59" TopLine="250"/>
+        <Caret Line="44" Column="20" TopLine="3"/>
       </Position5>
       <Position6>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="275" Column="59" TopLine="250"/>
+        <Caret Line="45" Column="20" TopLine="3"/>
       </Position6>
       <Position7>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="276" Column="60" TopLine="250"/>
+        <Caret Line="46" Column="20" TopLine="3"/>
       </Position7>
       <Position8>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="277" Column="60" TopLine="250"/>
+        <Caret Line="47" Column="20" TopLine="3"/>
       </Position8>
       <Position9>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="278" Column="60" TopLine="250"/>
+        <Caret Line="48" Column="20" TopLine="3"/>
       </Position9>
       <Position10>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="279" Column="60" TopLine="250"/>
+        <Caret Line="49" Column="20" TopLine="3"/>
       </Position10>
       <Position11>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="280" Column="60" TopLine="251"/>
+        <Caret Line="50" Column="19" TopLine="3"/>
       </Position11>
       <Position12>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="267" Column="70" TopLine="252"/>
+        <Caret Line="51" Column="20" TopLine="3"/>
       </Position12>
       <Position13>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="266" Column="70" TopLine="252"/>
+        <Caret Line="52" Column="20" TopLine="3"/>
       </Position13>
       <Position14>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="267" Column="60" TopLine="252"/>
+        <Caret Line="53" Column="19" TopLine="3"/>
       </Position14>
       <Position15>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="268" Column="60" TopLine="252"/>
+        <Caret Line="54" Column="19" TopLine="3"/>
       </Position15>
       <Position16>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="269" Column="60" TopLine="252"/>
+        <Caret Line="55" Column="19" TopLine="3"/>
       </Position16>
       <Position17>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="270" Column="61" TopLine="252"/>
+        <Caret Line="56" Column="19" TopLine="3"/>
       </Position17>
       <Position18>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="271" Column="61" TopLine="252"/>
+        <Caret Line="57" Column="19" TopLine="3"/>
       </Position18>
       <Position19>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="272" Column="60" TopLine="252"/>
+        <Caret Line="58" Column="19" TopLine="3"/>
       </Position19>
       <Position20>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="273" Column="62" TopLine="252"/>
+        <Caret Line="33" Column="33" TopLine="171"/>
       </Position20>
       <Position21>
         <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="274" Column="61" TopLine="252"/>
+        <Caret Line="111" TopLine="111"/>
       </Position21>
       <Position22>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="275" Column="61" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="2864" TopLine="2893"/>
       </Position22>
       <Position23>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="276" Column="62" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="2859" Column="3" TopLine="2830"/>
       </Position23>
       <Position24>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="277" Column="61" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="177" TopLine="177"/>
       </Position24>
       <Position25>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="278" Column="62" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
       </Position25>
       <Position26>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="279" Column="62" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="15" Column="33" TopLine="136"/>
       </Position26>
       <Position27>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="280" Column="62" TopLine="252"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="2862" TopLine="2818"/>
       </Position27>
       <Position28>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="219" TopLine="189"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="2865" Column="3" TopLine="2824"/>
       </Position28>
       <Position29>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="344" Column="50" TopLine="331"/>
+        <Filename Value="hb_main.pas"/>
+        <Caret Line="333" TopLine="331"/>
       </Position29>
       <Position30>
-        <Filename Value="hb_tissue_analysis.pas"/>
-        <Caret Line="366" TopLine="338"/>
+        <Filename Value="hb_insprecision.pas"/>
+        <Caret Line="26" Column="3"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -585,85 +532,6 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="11">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="hb_main.pas"/>
-        <Line Value="2540"/>
-      </Item1>
-      <Item2>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="hb_main.pas"/>
-        <Line Value="2546"/>
-      </Item2>
-      <Item3>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1343"/>
-      </Item3>
-      <Item4>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1296"/>
-      </Item4>
-      <Item5>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1321"/>
-      </Item5>
-      <Item6>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1331"/>
-      </Item6>
-      <Item7>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1337"/>
-      </Item7>
-      <Item8>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1349"/>
-      </Item8>
-      <Item9>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1355"/>
-      </Item9>
-      <Item10>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\typinfo.pp"/>
-        <Line Value="1455"/>
-      </Item10>
-      <Item11>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="db_base.pas"/>
-        <Line Value="138"/>
-      </Item11>
-    </BreakPoints>
     <Exceptions Count="3">
       <Item1>
         <Name Value="EAbort"/>
