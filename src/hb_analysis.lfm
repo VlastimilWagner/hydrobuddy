@@ -9,16 +9,16 @@ object AnalysisForm: TAnalysisForm
   ClientWidth = 266
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  object Button1: TButton
+  object CloseButton: TButton
     Left = 181
     Height = 25
     Top = 408
     Width = 75
     Caption = 'Close '
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = CloseButtonClick
   end
-  object StringGrid1: TStringGrid
+  object StringGrid: TStringGrid
     Left = 16
     Height = 384
     Top = 16

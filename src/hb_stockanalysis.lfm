@@ -12,7 +12,7 @@ object StockAnalysisForm: TStockAnalysisForm
   ClientHeight = 395
   ClientWidth = 368
   FormStyle = fsStayOnTop
-  object Label3: TLabel
+  object CompositionLabel: TLabel
     Left = 16
     Height = 15
     Top = 8
@@ -20,16 +20,16 @@ object StockAnalysisForm: TStockAnalysisForm
     Caption = 'Composition values below are given as (W/V)%'
     ParentColor = False
   end
-  object Button1: TButton
+  object CloseButton: TButton
     Left = 264
     Height = 25
     Top = 360
     Width = 96
     Caption = 'Close'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = CloseButtonClick
   end
-  object StringGrid1: TStringGrid
+  object StringGrid: TStringGrid
     Left = 16
     Height = 312
     Top = 40

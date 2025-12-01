@@ -13,12 +13,12 @@ type
   { TInsPrecisionForm }
 
   TInsPrecisionForm = class(TForm)
-    Button1: TButton;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    procedure Button1Click(Sender: TObject);
+    OKButton: TButton;
+    VolumePrecEdit: TEdit;
+    WeightPrecEdit: TEdit;
+    VolumePrecLabel: TLabel;
+    WeightPrecLabel: TLabel;
+    procedure OKButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     { private declarations }
@@ -33,7 +33,7 @@ implementation
 
 { TInsPrecisionForm }
 
-procedure TInsPrecisionForm.Button1Click(Sender: TObject);
+procedure TInsPrecisionForm.OKButtonClick(Sender: TObject);
 begin
 
 InsPrecisionForm.Visible := false ;

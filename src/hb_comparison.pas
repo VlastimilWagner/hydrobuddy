@@ -10,14 +10,14 @@ uses
 
 type
 
-  { TForm15 }
+  { TComparisonForm }
 
-  TForm15 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    StringGrid1: TStringGrid;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+  TComparisonForm = class(TForm)
+    CloseButton: TButton;
+    ClearButton: TButton;
+    StringGrid: TStringGrid;
+    procedure CloseButtonClick(Sender: TObject);
+    procedure ClearButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -25,20 +25,20 @@ type
   end; 
 
 var
-  Form15: TForm15; 
+  ComparisonForm: TComparisonForm;
 
 implementation
 
-{ TForm15 }
+{ TComparisonForm }
 
-procedure TForm15.Button2Click(Sender: TObject);
+procedure TComparisonForm.ClearButtonClick(Sender: TObject);
 begin
-  StringGrid1.ColCount := 1 ;
+  StringGrid.ColCount := 1 ;
 end;
 
-procedure TForm15.Button1Click(Sender: TObject);
+procedure TComparisonForm.CloseButtonClick(Sender: TObject);
 begin
-  Form15.Visible := false ;
+  ComparisonForm.Visible := false ;
 end;
 
 initialization

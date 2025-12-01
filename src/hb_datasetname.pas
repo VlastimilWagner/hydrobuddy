@@ -13,10 +13,10 @@ type
   { TDatasetNameForm }
 
   TDatasetNameForm = class(TForm)
-    Button1: TButton;
-    Edit1: TEdit;
-    Label1: TLabel;
-    procedure Button1Click(Sender: TObject);
+    OKButton: TButton;
+    NewNameEdit: TEdit;
+    InputDataLabel: TLabel;
+    procedure OKButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -32,13 +32,13 @@ uses HB_Main ;
 
 { TDatasetNameForm }
 
-procedure TDatasetNameForm.Button1Click(Sender: TObject);
+procedure TDatasetNameForm.OKButtonClick(Sender: TObject);
 
 begin
 
-datasetname := Edit1.Text ;
+datasetname := NewNameEdit.Text ;
 
-ShowMessage('Data Set name set to ' + Edit1.Text + '. Database creation will finish when you add a data point');
+ShowMessage('Data Set name set to ' + NewNameEdit.Text + '. Database creation will finish when you add a data point');
 
 DatasetNameForm.Visible := False ;
 

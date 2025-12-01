@@ -1,4 +1,4 @@
-object Form13: TForm13
+object AlkalinityForm: TAlkalinityForm
   Left = 853
   Height = 143
   Top = 415
@@ -9,16 +9,15 @@ object Form13: TForm13
   ClientWidth = 353
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '4.2.0.0'
-  object Label18: TLabel
+  object TotalAlkalinityLabel: TLabel
     Left = 25
     Height = 15
     Top = 24
-    Width = 113
+    Width = 114
     Caption = 'Total Alkanility (ppm)'
     ParentColor = False
   end
-  object Edit18: TEdit
+  object TotalAlkalinityEdit: TEdit
     Left = 192
     Height = 23
     Top = 24
@@ -26,7 +25,7 @@ object Form13: TForm13
     TabOrder = 0
     Text = '0'
   end
-  object Button1: TButton
+  object AddAcidButton: TButton
     Left = 25
     Height = 25
     Hint = 'This will add the nutrient contribution of the acid selected, in the amount needed to neutralize the total alkalinity of the source water'
@@ -36,9 +35,9 @@ object Form13: TForm13
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
-    OnClick = Button1Click
+    OnClick = AddAcidButtonClick
   end
-  object Label1: TLabel
+  object AcidLabel: TLabel
     Left = 25
     Height = 15
     Top = 56
@@ -46,7 +45,7 @@ object Form13: TForm13
     Caption = 'Acid used to neutralize'
     ParentColor = False
   end
-  object ComboBox1: TComboBox
+  object AcidComboBox: TComboBox
     Left = 192
     Height = 23
     Top = 56
@@ -61,6 +60,6 @@ object Form13: TForm13
     Style = csDropDownList
     TabOrder = 2
     Text = 'Phosphoric acid'
-    OnChange = ComboBox1Change
+    OnChange = AcidComboBoxChange
   end
 end

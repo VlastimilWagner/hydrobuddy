@@ -127,9 +127,9 @@ begin
   Application.CreateForm(TDatasetNameForm, DatasetNameForm);
   Application.CreateForm(TAnalysisForm, AnalysisForm);
   Application.CreateForm(TFreedomForm, FreedomForm);
-  Application.CreateForm(TForm13, Form13);
+  Application.CreateForm(TAlkalinityForm, AlkalinityForm);
   Application.CreateForm(TForm14, Form14);
-  Application.CreateForm(TForm15, Form15);
+  Application.CreateForm(TComparisonForm, ComparisonForm);
 
   SetActiveTab  ;
 //  CheckDatabaseFiles;

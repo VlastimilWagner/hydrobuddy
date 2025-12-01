@@ -1,4 +1,4 @@
-object Form15: TForm15
+object ComparisonForm: TComparisonForm
   Left = 341
   Height = 466
   Top = 355
@@ -8,10 +8,8 @@ object Form15: TForm15
   ClientHeight = 466
   ClientWidth = 899
   PopupMode = pmExplicit
-  PopupParent = Form5.Owner
   Position = poMainFormCenter
-  LCLVersion = '2.0.13.0'
-  object StringGrid1: TStringGrid
+  object StringGrid: TStringGrid
     Left = 8
     Height = 416
     Top = 8
@@ -76,22 +74,22 @@ object Form15: TForm15
       'Addition'
     )
   end
-  object Button1: TButton
+  object CloseButton: TButton
     Left = 813
     Height = 25
     Top = 432
     Width = 75
     Caption = 'Close'
-    OnClick = Button1Click
     TabOrder = 1
+    OnClick = CloseButtonClick
   end
-  object Button2: TButton
+  object ClearButton: TButton
     Left = 608
     Height = 25
     Top = 432
     Width = 179
     Caption = 'Clear Comparison Chart'
-    OnClick = Button2Click
     TabOrder = 2
+    OnClick = ClearButtonClick
   end
 end

@@ -6,14 +6,15 @@ LazarusResources.Add('TPerSubstanceForm','FORMDATA',[
   +'crollBar.Range'#3#233#1#18'VertScrollBar.Page'#3#224#1#19'VertScrollBar.Ran'
   +'ge'#3#193#1#11'BorderStyle'#7#12'bsToolWindow'#7'Caption'#6'&Detailed Eleme'
   +'nt Contribution Analysis'#12'ClientHeight'#3#223#1#11'ClientWidth'#3#19#2#9
-  +'FormStyle'#7#11'fsStayOnTop'#0#7'TButton'#7'Button1'#4'Left'#3#136#1#6'Heig'
-  +'ht'#2#25#3'Top'#3#168#1#5'Width'#2'`'#7'Caption'#6#5'Close'#8'TabOrder'#2#0
-  +#7'OnClick'#7#12'Button1Click'#0#0#11'TStringGrid'#11'StringGrid1'#4'Left'#2
-  +'('#6'Height'#3'h'#1#3'Top'#2'('#5'Width'#3#192#1#11'AutoAdvance'#7#6'aaNone'
-  +#8'ColCount'#2#3#7'Columns'#14#1#13'Title.Caption'#6#14'Substance Name'#0#1#9
-  +'Alignment'#7#8'taCenter'#15'Title.Alignment'#7#8'taCenter'#13'Title.Caption'
-  +#6#7'Element'#0#1#9'Alignment'#7#8'taCenter'#15'Title.Alignment'#7#8'taCente'
-  +'r'#13'Title.Caption'#6#18'Contribution (ppm)'#0#0#20'Constraints.MaxWidth'#3
-  +#192#1#15'DefaultColWidth'#3#145#0#16'DefaultRowHeight'#2#18#9'FixedCols'#2#0
-  +#8'RowCount'#2#1#10'ScrollBars'#7#14'ssAutoVertical'#8'TabOrder'#2#1#0#0#0
+  +'FormStyle'#7#11'fsStayOnTop'#0#7'TButton'#11'CloseButton'#4'Left'#3#136#1#6
+  +'Height'#2#25#3'Top'#3#168#1#5'Width'#2'`'#7'Caption'#6#5'Close'#8'TabOrder'
+  +#2#0#7'OnClick'#7#16'CloseButtonClick'#0#0#11'TStringGrid'#10'StringGrid'#4
+  +'Left'#2'('#6'Height'#3'h'#1#3'Top'#2'('#5'Width'#3#192#1#11'AutoAdvance'#7#6
+  +'aaNone'#8'ColCount'#2#3#7'Columns'#14#1#13'Title.Caption'#6#14'Substance Na'
+  +'me'#0#1#9'Alignment'#7#8'taCenter'#15'Title.Alignment'#7#8'taCenter'#13'Tit'
+  +'le.Caption'#6#7'Element'#0#1#9'Alignment'#7#8'taCenter'#15'Title.Alignment'
+  +#7#8'taCenter'#13'Title.Caption'#6#18'Contribution (ppm)'#0#0#20'Constraints'
+  +'.MaxWidth'#3#192#1#15'DefaultColWidth'#3#145#0#16'DefaultRowHeight'#2#18#9
+  +'FixedCols'#2#0#8'RowCount'#2#1#10'ScrollBars'#7#14'ssAutoVertical'#8'TabOrd'
+  +'er'#2#1#0#0#0
 ]);

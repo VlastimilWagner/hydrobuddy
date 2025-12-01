@@ -13,7 +13,7 @@ object InsPrecisionForm: TInsPrecisionForm
   ClientWidth = 290
   FormStyle = fsStayOnTop
   OnCreate = FormCreate
-  object Label1: TLabel
+  object VolumePrecLabel: TLabel
     Left = 40
     Height = 15
     Top = 24
@@ -21,7 +21,7 @@ object InsPrecisionForm: TInsPrecisionForm
     Caption = 'Volume Instrument Precision (+/- L)'
     ParentColor = False
   end
-  object Label2: TLabel
+  object WeightPrecLabel: TLabel
     Left = 40
     Height = 15
     Top = 88
@@ -29,16 +29,16 @@ object InsPrecisionForm: TInsPrecisionForm
     Caption = 'Weight Instrument Precision (+/- g)'
     ParentColor = False
   end
-  object Button1: TButton
+  object OKButton: TButton
     Left = 40
     Height = 25
     Top = 160
     Width = 75
     Caption = 'OK'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = OKButtonClick
   end
-  object Edit1: TEdit
+  object VolumePrecEdit: TEdit
     Left = 40
     Height = 23
     Top = 48
@@ -46,7 +46,7 @@ object InsPrecisionForm: TInsPrecisionForm
     TabOrder = 1
     Text = '0.1'
   end
-  object Edit2: TEdit
+  object WeightPrecEdit: TEdit
     Left = 40
     Height = 23
     Top = 120

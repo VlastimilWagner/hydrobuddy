@@ -8,7 +8,7 @@ object DatasetNameForm: TDatasetNameForm
   ClientHeight = 121
   ClientWidth = 258
   FormStyle = fsStayOnTop
-  object Label1: TLabel
+  object InputDataLabel: TLabel
     Left = 32
     Height = 15
     Top = 11
@@ -16,16 +16,16 @@ object DatasetNameForm: TDatasetNameForm
     Caption = 'Input Data Set Name'
     ParentColor = False
   end
-  object Button1: TButton
+  object OKButton: TButton
     Left = 88
     Height = 25
     Top = 72
     Width = 75
     Caption = 'OK'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = OKButtonClick
   end
-  object Edit1: TEdit
+  object NewNameEdit: TEdit
     Left = 32
     Height = 23
     Top = 40

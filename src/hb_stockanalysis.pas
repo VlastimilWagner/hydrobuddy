@@ -13,10 +13,10 @@ type
   { TStockAnalysisForm }
 
   TStockAnalysisForm = class(TForm)
-    Button1: TButton;
-    Label3: TLabel;
-    StringGrid1: TStringGrid;
-    procedure Button1Click(Sender: TObject);
+    CloseButton: TButton;
+    CompositionLabel: TLabel;
+    StringGrid: TStringGrid;
+    procedure CloseButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -30,7 +30,7 @@ implementation
 
 { TStockAnalysisForm }
 
-procedure TStockAnalysisForm.Button1Click(Sender: TObject);
+procedure TStockAnalysisForm.CloseButtonClick(Sender: TObject);
 begin
 
 StockAnalysisForm.Visible := false ;

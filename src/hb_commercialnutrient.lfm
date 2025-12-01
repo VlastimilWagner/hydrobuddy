@@ -12,7 +12,6 @@ object CommercialNutrientForm: TCommercialNutrientForm
   ClientHeight = 336
   ClientWidth = 750
   FormStyle = fsStayOnTop
-  LCLVersion = '4.2.0.0'
   object Label1: TLabel
     Left = 22
     Height = 15

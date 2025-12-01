@@ -13,9 +13,9 @@ type
   { TAnalysisForm }
 
   TAnalysisForm = class(TForm)
-    Button1: TButton;
-    StringGrid1: TStringGrid;
-    procedure Button1Click(Sender: TObject);
+    CloseButton: TButton;
+    StringGrid: TStringGrid;
+    procedure CloseButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -29,7 +29,7 @@ implementation
 
 { TAnalysisForm }
 
-procedure TAnalysisForm.Button1Click(Sender: TObject);
+procedure TAnalysisForm.CloseButtonClick(Sender: TObject);
 begin
 
 AnalysisForm.Visible := false ;

@@ -236,39 +236,39 @@ for i := 1 to 16 do
 
     // finally copy values for comparison
 
-    hb_comparison.Form15.StringGrid1.ColCount:= hb_comparison.Form15.StringGrid1.ColCount + 1 ;
+    ComparisonForm.StringGrid.ColCount:= ComparisonForm.StringGrid.ColCount + 1 ;
 
-    colCount := hb_comparison.Form15.StringGrid1.ColCount ;
+    colCount := ComparisonForm.StringGrid.ColCount ;
 
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 0] := ComboBox4.Items[ComboBox4.ItemIndex] ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 1] := FloattoStr(result[0]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 2] := FloattoStr(result[1]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 3] := FloattoStr(result[2]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 4] := FloattoStr(result[3]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 5] := FloattoStr(result[4]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 6] := FloattoStr(result[5]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 7] := FloattoStr(result[6]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 8] := FloattoStr(result[7]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 9] := FloattoStr(result[8]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 10] := FloattoStr(result[9]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 11] := FloattoStr(result[10]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 12] := FloattoStr(result[11]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 13] := FloattoStr(result[12]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 14] := FloattoStr(result[13]);
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 15] := FloattoStr(result[14]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 16] := FloattoStr(result[15]) ;
-    hb_comparison.Form15.StringGrid1.Cells[ColCount-1, 17] := Edit17.Text + addition_units ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 0] := ComboBox4.Items[ComboBox4.ItemIndex] ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 1] := FloattoStr(result[0]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 2] := FloattoStr(result[1]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 3] := FloattoStr(result[2]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 4] := FloattoStr(result[3]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 5] := FloattoStr(result[4]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 6] := FloattoStr(result[5]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 7] := FloattoStr(result[6]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 8] := FloattoStr(result[7]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 9] := FloattoStr(result[8]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 10] := FloattoStr(result[9]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 11] := FloattoStr(result[10]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 12] := FloattoStr(result[11]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 13] := FloattoStr(result[12]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 14] := FloattoStr(result[13]);
+    ComparisonForm.StringGrid.Cells[ColCount-1, 15] := FloattoStr(result[14]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 16] := FloattoStr(result[15]) ;
+    ComparisonForm.StringGrid.Cells[ColCount-1, 17] := Edit17.Text + addition_units ;
 
     ShowMessage('Product final ppm values added to comparison chart') ;
-    hb_comparison.Form15.StringGrid1.AutoSizeColumn(colCount-1);
-    s := hb_comparison.Form15.StringGrid1.DefaultTextStyle;
+    ComparisonForm.StringGrid.AutoSizeColumn(colCount-1);
+    s := ComparisonForm.StringGrid.DefaultTextStyle;
     s.Alignment:=taCenter;
-    hb_comparison.Form15.StringGrid1.DefaultTextStyle := s;
+    ComparisonForm.StringGrid.DefaultTextStyle := s;
 end;
 
 procedure TCommercialNutrientForm.Button3Click(Sender: TObject);
 begin
-  hb_comparison.Form15.Visible := true ;
+  ComparisonForm.Visible := true ;
 end;
 
 procedure TCommercialNutrientForm.ComboBox4Change(Sender: TObject);

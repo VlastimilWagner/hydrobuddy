@@ -409,9 +409,9 @@ begin
 
   Form14.StringGrid1.Clean;
   Form14.StringGrid1.RowCount := 1 ;
-  PerSubstanceForm.StringGrid1.Clean;
-  PerSubstanceForm.StringGrid1.RowCount := 1 ;
-  StockAnalysisForm.StringGrid1.Clean ;
+  PerSubstanceForm.StringGrid.Clean;
+  PerSubstanceForm.StringGrid.RowCount := 1 ;
+  StockAnalysisForm.StringGrid.Clean ;
 
   //initializing variables for mix label calculation
   all_solids := True;
@@ -487,9 +487,9 @@ begin
 
   // set instrument precision values
 
-  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit1.Text) * 0.001;
+  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.VolumePrecEdit.Text) * 0.001;
 
-  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit2.Text);
+  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.WeightPrecEdit.Text);
 
   // set weight factor (g) or (oz)
 
@@ -672,30 +672,30 @@ if RadioButton13.Checked then
           instrumentalError[j] := ((upper - lower) * (100 / all_element_targets[j])) /
           (2 * StrtoFloatAnySeparator(Edit17.Text)) + instrumentalError[j];
 
-          PerSubstanceForm.StringGrid1.RowCount := PerSubstanceForm.StringGrid1.RowCount + 1 ;
+          PerSubstanceForm.StringGrid.RowCount := PerSubstanceForm.StringGrid.RowCount + 1 ;
 
-          PerSubstanceForm.StringGrid1.Cells[0, PerSubstanceForm.StringGrid1.RowCount-1] := (nameSubstance);
-          PerSubstanceForm.StringGrid1.Cells[1, PerSubstanceForm.StringGrid1.RowCount-1] :=(varnames[j]);
+          PerSubstanceForm.StringGrid.Cells[0, PerSubstanceForm.StringGrid.RowCount-1] := (nameSubstance);
+          PerSubstanceForm.StringGrid.Cells[1, PerSubstanceForm.StringGrid.RowCount-1] :=(varnames[j]);
 
           if prev_conc = 'ppm' then
 
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1] :=(
             FloattoStr(round2((1 / weight_factor) * weight *
             0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstances.Purity / Volume, 3)));
 
           if prev_conc <> 'ppm' then
 
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1] :=(
             FloattoStrF((1/conc_factor[j])*(1 / weight_factor) * weight *
             0.01 * double(DBSubstances.FieldByName(varnames[j])) * DBSubstances.Purity / Volume, ffExponent, 4, 2));
 
-          Result[j] := Result[j] + StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]);
+          Result[j] := Result[j] + StrtoFloatAnySeparator(PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1]);
 
           if (StringGrid2.Cells[NAME_IDX, i][1] = 'A') and (RadioButton6.Checked) then
-          elementInSolutionA[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1])+ elementInSolutionA[j] ;
+          elementInSolutionA[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1])+ elementInSolutionA[j] ;
 
           if (StringGrid2.Cells[NAME_IDX, i][1] = 'B') and (RadioButton6.Checked) then
-          elementInSolutionB[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1]) + elementInSolutionB[j] ;
+          elementInSolutionB[j] := StrtoFloatAnySeparator(PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1]) + elementInSolutionB[j] ;
 
           //ShowMessage( nameSubstance + ' ' + varnames[j] + ' ' + FloatToStr(weight * 0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstancesPurity));
           mixContribution[j] := mixContribution[j] + weight * 0.01 * DBSubstances.FieldByName(varnames[j]) * DBSubstances.Purity ;
@@ -730,9 +730,9 @@ if RadioButton13.Checked then
         StringGrid1.Cells[2, j] := FloatToStr(Round(grossError[j-1]*10)/10) + '%' ;
 
         // save the mix composition here
-        AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(100*mixContribution[j-1]/totalWeight,3));
-        if AnalysisForm.StringGrid1.Cells[0,j] = 'K2O' then AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(1.2047*100*mixContribution[j-1]/totalWeight,3));
-        if AnalysisForm.StringGrid1.Cells[0,j] = 'P2O5' then AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(2.290*100*mixContribution[j-1]/totalWeight,3));
+        AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(100*mixContribution[j-1]/totalWeight,3));
+        if AnalysisForm.StringGrid.Cells[0,j] = 'K2O' then AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(1.2047*100*mixContribution[j-1]/totalWeight,3));
+        if AnalysisForm.StringGrid.Cells[0,j] = 'P2O5' then AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(2.290*100*mixContribution[j-1]/totalWeight,3));
 
     end;
 
@@ -860,15 +860,15 @@ if RadioButton13.Checked then
         if (varnames[i] <> 'P') and (varnames[i] <> 'K') then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := (varnames[i]);
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (FloattoStr(round2(elementInSolutionA[i], 5)));
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := (varnames[i]);
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (FloattoStr(round2(elementInSolutionA[i], 5)));
         end;
 
         if varnames[i] = 'P' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := ('P2O5');
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := ('P2O5');
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (
             FloattoStr(round2(elementInSolutionA[i] * 2.2915, 3)));
         end;
 
@@ -876,8 +876,8 @@ if RadioButton13.Checked then
         if varnames[i] = 'K' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := ('K2O');
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := ('K2O');
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (
             FloattoStr(round2(elementInSolutionA[i] * 1.2047, 3)));
         end;
 
@@ -892,13 +892,13 @@ if RadioButton13.Checked then
         if (varnames[i] <> 'P') and (varnames[i] <> 'K') then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] := (FloattoStr(round2(elementInSolutionB[i], 5)));
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (FloattoStr(round2(elementInSolutionB[i], 5)));
         end;
 
         if varnames[i] = 'P' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (
             FloattoStr(round2(elementInSolutionB[i] * 2.2915, 3)));
         end;
 
@@ -906,7 +906,7 @@ if RadioButton13.Checked then
         if varnames[i] = 'K' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (
             FloattoStr(round2(elementInSolutionB[i] * 1.2047, 3)));
         end;
 
@@ -1400,9 +1400,9 @@ begin
   StringGrid2.ColWidths[COST_IDX] := 110;
   Form14.StringGrid1.Clean;
   Form14.StringGrid1.RowCount := 1 ;
-  PerSubstanceForm.StringGrid1.Clean;
-  PerSubstanceForm.StringGrid1.RowCount := 1 ;
-  StockAnalysisForm.StringGrid1.Clean ;
+  PerSubstanceForm.StringGrid.Clean;
+  PerSubstanceForm.StringGrid.RowCount := 1 ;
+  StockAnalysisForm.StringGrid.Clean ;
 
   //initializing variables for mix label calculation
   all_solids := True;
@@ -1482,9 +1482,9 @@ begin
 
   // set instrument precision values
 
-  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit1.Text) * 0.001;
+  volume_error := StrtoFloatAnySeparator(InsPrecisionForm.VolumePrecEdit.Text) * 0.001;
 
-  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.Edit2.Text);
+  weight_error := StrtoFloatAnySeparator(InsPrecisionForm.WeightPrecEdit.Text);
 
   // set weight factor (g) or (oz)
 
@@ -2283,15 +2283,15 @@ if RadioButton13.Checked then
         if (all_element_names[i] <> 'P') and (all_element_names[i] <> 'K') then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := (all_element_names[i]);
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (FloattoStr(round2(test, 5)));
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := (all_element_names[i]);
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (FloattoStr(round2(test, 5)));
         end;
 
         if all_element_names[i] = 'P' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := ('P2O5');
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := ('P2O5');
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (
             FloattoStr(round2(test * 2.2915, 3)));
         end;
 
@@ -2299,8 +2299,8 @@ if RadioButton13.Checked then
         if all_element_names[i] = 'K' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[0, i+ 1] := ('K2O');
-          StockAnalysisForm.StringGrid1.Cells[1, i+ 1] := (
+          StockAnalysisForm.StringGrid.Cells[0, i+ 1] := ('K2O');
+          StockAnalysisForm.StringGrid.Cells[1, i+ 1] := (
             FloattoStr(round2(test * 1.2047, 3)));
         end;
 
@@ -2336,13 +2336,13 @@ if RadioButton13.Checked then
         if (all_element_names[i] <> 'P') and (all_element_names[i] <> 'K') then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] := (FloattoStr(round2(test, 5)));
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (FloattoStr(round2(test, 5)));
         end;
 
         if all_element_names[i] = 'P' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] :=(
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] :=(
             FloattoStr(round2(test * 2.2915, 3)));
         end;
 
@@ -2350,7 +2350,7 @@ if RadioButton13.Checked then
         if all_element_names[i] = 'K' then
 
         begin
-          StockAnalysisForm.StringGrid1.Cells[2, i+ 1] :=(
+          StockAnalysisForm.StringGrid.Cells[2, i+ 1] :=(
             FloattoStr(round2(test * 1.2047, 3)));
         end;
 
@@ -2372,19 +2372,19 @@ if RadioButton13.Checked then
 
         begin
 
-          PerSubstanceForm.StringGrid1.RowCount := PerSubstanceForm.StringGrid1.RowCount + 1 ;
+          PerSubstanceForm.StringGrid.RowCount := PerSubstanceForm.StringGrid.RowCount + 1 ;
 
-          PerSubstanceForm.StringGrid1.Cells[0, PerSubstanceForm.StringGrid1.RowCount - 1] :=(name_array[i][0]);
-          PerSubstanceForm.StringGrid1.Cells[1, PerSubstanceForm.StringGrid1.RowCount - 1] :=(all_element_names[j]);
+          PerSubstanceForm.StringGrid.Cells[0, PerSubstanceForm.StringGrid.RowCount - 1] :=(name_array[i][0]);
+          PerSubstanceForm.StringGrid.Cells[1, PerSubstanceForm.StringGrid.RowCount - 1] :=(all_element_names[j]);
 
           temp3 := solutions[i] * all_element_contributions[j][i]+preloaded_weight[i]*all_element_contributions[j][j] ;
 
            if prev_conc = 'ppm' then
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount - 1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount - 1] :=(
             FloattoStr(round2((1/conc_factor[j])*temp3, 3)));
 
             if prev_conc <> 'ppm' then
-            PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount - 1] :=(
+            PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount - 1] :=(
             FloattoStrF((1/conc_factor[j])*temp3, ffExponent, 4, 2));
 
         end;
@@ -2393,19 +2393,19 @@ if RadioButton13.Checked then
 
         begin
 
-          PerSubstanceForm.StringGrid1.RowCount := PerSubstanceForm.StringGrid1.RowCount + 1 ;
+          PerSubstanceForm.StringGrid.RowCount := PerSubstanceForm.StringGrid.RowCount + 1 ;
 
-          PerSubstanceForm.StringGrid1.Cells[0, PerSubstanceForm.StringGrid1.RowCount - 1] :=(name_array[i][0]);
-          PerSubstanceForm.StringGrid1.Cells[1, PerSubstanceForm.StringGrid1.RowCount - 1] :=(all_element_names[j]);
+          PerSubstanceForm.StringGrid.Cells[0, PerSubstanceForm.StringGrid.RowCount - 1] :=(name_array[i][0]);
+          PerSubstanceForm.StringGrid.Cells[1, PerSubstanceForm.StringGrid.RowCount - 1] :=(all_element_names[j]);
 
           temp3 := preloaded_weight[i]*all_element_contributions[j][i] ;
 
           if prev_conc = 'ppm' then
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount - 1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount - 1] :=(
             FloattoStr(round2((1/conc_factor[j])*temp3, 3)));
 
             if prev_conc <> 'ppm' then
-            PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount - 1] :=(
+            PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount - 1] :=(
             FloattoStrF((1/conc_factor[j])*temp3, ffExponent, 4, 2));
 
         end;
@@ -2421,21 +2421,21 @@ if RadioButton13.Checked then
 
     begin
 
-        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[1, 6]) > 0) and
-           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[1, 7]) > 0)  then
+        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid.Cells[1, 6]) > 0) and
+           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid.Cells[1, 7]) > 0)  then
            ShowMessage('Your stock solutions have not been properly designed. Currently there is calcium and sulfate within the same solution (a big problem). Please do NOT carry out this preparation');
 
-        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[2, 6]) > 0) and
-           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid1.Cells[2, 7]) > 0)  then
+        if (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid.Cells[2, 6]) > 0) and
+           (StrtoFloatAnySeparator(StockAnalysisForm.StringGrid.Cells[2, 7]) > 0)  then
            ShowMessage('Your stock solutions have not been properly designed. Currently there is calcium and sulfate within the same solution (a big problem). Please do NOT carry out this preparation');
 
           temp1 :=  0 ;
 
-          for i := 1 to StockAnalysisForm.StringGrid1.RowCount - 1 do
+          for i := 1 to StockAnalysisForm.StringGrid.RowCount - 1 do
 
           begin
 
-          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
+          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid.Cells[1, i]) + temp1 ;
 
           end ;
 
@@ -2445,11 +2445,11 @@ if RadioButton13.Checked then
 
           temp1 :=  0 ;
 
-          for i := 1 to StockAnalysisForm.StringGrid1.RowCount - 1 do
+          for i := 1 to StockAnalysisForm.StringGrid.RowCount - 1 do
 
           begin
 
-          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid1.Cells[1, i]) + temp1 ;
+          temp1 := StrtoFloatAnySeparator( StockAnalysisForm.StringGrid.Cells[1, i]) + temp1 ;
 
           end ;
 
@@ -2538,20 +2538,20 @@ if RadioButton13.Checked then
 
         begin
 
-          PerSubstanceForm.StringGrid1.RowCount := PerSubstanceForm.StringGrid1.RowCount + 1 ;
+          PerSubstanceForm.StringGrid.RowCount := PerSubstanceForm.StringGrid.RowCount + 1 ;
 
-          PerSubstanceForm.StringGrid1.Cells[0, PerSubstanceForm.StringGrid1.RowCount-1] := (name_array[i][1]);
-          PerSubstanceForm.StringGrid1.Cells[1, PerSubstanceForm.StringGrid1.RowCount-1] :=(varnames[j]);
+          PerSubstanceForm.StringGrid.Cells[0, PerSubstanceForm.StringGrid.RowCount-1] := (name_array[i][1]);
+          PerSubstanceForm.StringGrid.Cells[1, PerSubstanceForm.StringGrid.RowCount-1] :=(varnames[j]);
 
           if prev_conc = 'ppm' then
 
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1] :=(
             FloattoStr(round2((1 / weight_factor) * DBSubstancesUsed.Weight *
             0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume, 3)));
 
           if prev_conc <> 'ppm' then
 
-          PerSubstanceForm.StringGrid1.Cells[2, PerSubstanceForm.StringGrid1.RowCount-1] :=(
+          PerSubstanceForm.StringGrid.Cells[2, PerSubstanceForm.StringGrid.RowCount-1] :=(
             FloattoStrF(double((1/conc_factor[j])*(1 / weight_factor) * DBSubstancesUsed.Weight *
             0.01 * DBSubstancesUsed.FieldByName(dbvarnames[j]) * DBSubstancesUsed.Purity / Volume), ffExponent, 4, 2));
 
@@ -2706,9 +2706,9 @@ if RadioButton13.Checked then
 
    for j := 1 to 16 do
    begin
-        AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(100*mixContribution[j-1]/totalWeight,3));
-        if AnalysisForm.StringGrid1.Cells[0,j] = 'K2O' then AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(1.2047*100*mixContribution[j-1]/totalWeight,3));
-        if AnalysisForm.StringGrid1.Cells[0,j] = 'P2O5' then AnalysisForm.StringGrid1.Cells[1,j] := FloatToStr(round2(2.290*100*mixContribution[j-1]/totalWeight,3));
+        AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(100*mixContribution[j-1]/totalWeight,3));
+        if AnalysisForm.StringGrid.Cells[0,j] = 'K2O' then AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(1.2047*100*mixContribution[j-1]/totalWeight,3));
+        if AnalysisForm.StringGrid.Cells[0,j] = 'P2O5' then AnalysisForm.StringGrid.Cells[1,j] := FloatToStr(round2(2.290*100*mixContribution[j-1]/totalWeight,3));
    end;
 
    if all_solids then Button19.Enabled := True;
@@ -2990,14 +2990,14 @@ begin
     Sett.WriteInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
     Sett.WriteBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
 
-    Form15.StringGrid1.SavetoCSVFile('hb_comparison.csv');
-    StockAnalysisForm.StringGrid1.SavetoCSVFile('hb_stockanalysis.csv');
-    PerSubstanceForm.StringGrid1.SavetoCSVFile('hb_persubstance.csv');
+    ComparisonForm.StringGrid.SavetoCSVFile('hb_comparison.csv');
+    StockAnalysisForm.StringGrid.SavetoCSVFile('hb_stockanalysis.csv');
+    PerSubstanceForm.StringGrid.SavetoCSVFile('hb_persubstance.csv');
     Form14.StringGrid1.SavetoCSVFile('hb_ratios.csv');
     StringGrid1.SavetoCSVFile('hb_ppm_results.csv');
     StringGrid2.SavetoCSVFile('hb_results.csv');
 
-    if Form15.StringGrid1.ColCount = 1 then  DeleteFile('hb_comparison.csv');
+    if ComparisonForm.StringGrid.ColCount = 1 then  DeleteFile('hb_comparison.csv');
     Sett.Free;
 end;
 
@@ -3027,9 +3027,9 @@ begin
     ComboBox3.ItemIndex := Sett.ReadInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
     SubstanceSelectionForm.SummaryPopupsCheckBox.checked := Sett.ReadBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
 
-    if FileExists('hb_comparison.csv') then Form15.StringGrid1.LoadFromCSVFile('hb_comparison.csv');
-    if FileExists('hb_stockanalysis.csv') then StockAnalysisForm.StringGrid1.LoadFromCSVFile('hb_stockanalysis.csv');
-    if FileExists('hb_persubstance.csv') then PerSubstanceForm.StringGrid1.LoadFromCSVFile('hb_persubstance.csv');
+    if FileExists('hb_comparison.csv') then ComparisonForm.StringGrid.LoadFromCSVFile('hb_comparison.csv');
+    if FileExists('hb_stockanalysis.csv') then StockAnalysisForm.StringGrid.LoadFromCSVFile('hb_stockanalysis.csv');
+    if FileExists('hb_persubstance.csv') then PerSubstanceForm.StringGrid.LoadFromCSVFile('hb_persubstance.csv');
     if FileExists('hb_ratios.csv') then Form14.StringGrid1.LoadFromCSVFile('hb_ratios.csv');
     if FileExists('hb_ppm_results.csv') then StringGrid1.LoadFromCSVFile('hb_ppm_results.csv');
     if FileExists('hb_results.csv') then StringGrid2.LoadFromCSVFile('hb_results.csv');
@@ -3115,7 +3115,7 @@ begin
   Label29.Caption := 'Conc. (ppm)' ;
   Label32.Caption := '(ppm)' ;
   StringGrid1.Cells[1,0] := 'Result (ppm)' ;
-  PerSubstanceForm.StringGrid1.Cells[2, 0] := 'Contribution (ppm)' ;
+  PerSubstanceForm.StringGrid.Cells[2, 0] := 'Contribution (ppm)' ;
   Form14.StringGrid1.Cells[1, 0] := 'Ratio (ppm: ppm)' ;
 
   getmolarmasses(molar_masses) ;
@@ -3192,7 +3192,7 @@ begin
   Label29.Caption := 'Conc. (mol/L)' ;
   Label32.Caption := '(mol/L)' ;
   StringGrid1.Cells[1,0] := 'Result (mol/L)' ;
-  PerSubstanceForm.StringGrid1.Cells[2, 0] := 'Contribution (mol/L)' ;
+  PerSubstanceForm.StringGrid.Cells[2, 0] := 'Contribution (mol/L)' ;
   Form14.StringGrid1.Cells[1, 0] := 'Ratio (mol/L: mol/L)' ;
 
   getmolarmasses(molar_masses) ;
@@ -3269,7 +3269,7 @@ begin
   Label29.Caption := 'Conc. (mmol/L)' ;
   Label32.Caption := '(mmol/L)' ;
   StringGrid1.Cells[1,0] := 'Result (mmol/L)' ;
-  PerSubstanceForm.StringGrid1.Cells[2, 0] := 'Contribution (mmol/L)' ;
+  PerSubstanceForm.StringGrid.Cells[2, 0] := 'Contribution (mmol/L)' ;
   Form14.StringGrid1.Cells[1, 0]  := 'Ratio (mmol/L: mmol/L)' ;
 
   getmolarmasses(molar_masses) ;
@@ -3346,7 +3346,7 @@ begin
   Label29.Caption := 'Conc. (meq/L)' ;
   Label32.Caption := '(meq/L)' ;
   StringGrid1.Cells[1,0] := 'Result (meq/L)' ;
-  PerSubstanceForm.StringGrid1.Cells[2, 0] := 'Contribution (meq/L)' ;
+  PerSubstanceForm.StringGrid.Cells[2, 0] := 'Contribution (meq/L)' ;
   Form14.StringGrid1.Cells[1, 0] := 'Ratio (meq/L: meq/L)' ;
 
   getmolarmasses(molar_masses) ;

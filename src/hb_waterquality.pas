@@ -146,7 +146,7 @@ end;
 
 procedure TWatterQualityForm.Button5Click(Sender: TObject);
 begin
-  hb_ph.Form13.Visible := true ;
+  hb_ph.AlkalinityForm.Visible := true ;
 end;
 
 procedure TWatterQualityForm.ComboBox1Change(Sender: TObject);

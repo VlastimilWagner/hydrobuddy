@@ -12,16 +12,16 @@ object PerSubstanceForm: TPerSubstanceForm
   ClientHeight = 479
   ClientWidth = 531
   FormStyle = fsStayOnTop
-  object Button1: TButton
+  object CloseButton: TButton
     Left = 392
     Height = 25
     Top = 424
     Width = 96
     Caption = 'Close'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = CloseButtonClick
   end
-  object StringGrid1: TStringGrid
+  object StringGrid: TStringGrid
     Left = 40
     Height = 360
     Top = 40
