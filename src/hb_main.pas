@@ -10,12 +10,9 @@ uses
   hb_load_salts, Math, densesolver, hb_commercialnutrient, hb_comparison,
   hb_waterquality, hb_addweight, hb_insprecision, hb_stockanalysis,
   hb_persubstance, hb_datasetname, hb_analysis, hb_tissue_analysis,
-  hb_freedom, hb_ratios,LCLIntf, Types,IniFiles,
-  db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used,
+  hb_freedom, hb_ratios,LCLIntf, Types,
+  db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used, db_settings,
   customhelpfunctions;
-
-const
-  IniFile = 'settings.ini';
 
 type
 
@@ -193,10 +190,6 @@ type
     procedure Button7Click(Sender: TObject);
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
-    procedure CheckBox3Change(Sender: TObject);
-    procedure CheckBox4Change(Sender: TObject);
-    procedure CheckBox5Change(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox1Select(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -264,7 +257,6 @@ type
         IsLiquid: array of array of double ;
         procedure weightFineTunning;
         procedure UpdateComboBox;
-        procedure setinivalues ;
         procedure cleanresults;
         function getratio(first: string; second: string; third: string; items: integer): string ;
         procedure getmolarmasses(var molar_mass: array of double) ;
@@ -2871,67 +2863,6 @@ begin
 end;
 
 
-procedure TMainForm.setinivalues ;
-var
-  update_ini : TStringList ;
-  answer : array of string ;
-begin
-
-  SetLength(answer, 3) ;
-
-  if CheckBox3.Checked then
-  answer[1] := 'POPUP = 1'
-  else
-  answer[1] := 'POPUP = 0' ;
-
-  if CheckBox5.Checked then
-  answer[2] := 'SMALLWINDOW = 1'
-  else
-  answer[2] := 'SMALLWINDOW = 0' ;
-
-  update_ini :=  TStringList.Create;
-
-  update_ini.Add(answer[0]) ;
-
-  update_ini.Add(answer[1]) ;
-
-  update_ini.Add(answer[2]) ;
-
-  update_ini.SaveToFile('update.ini');
-
-  update_ini.Free ;
-
-end;
-
-procedure TMainForm.CheckBox3Change(Sender: TObject);
-begin
-
-  setinivalues;
-
-
-end;
-
-
-procedure TMainForm.CheckBox4Change(Sender: TObject);
-begin
-
-  setinivalues ;
-
-end;
-
-procedure TMainForm.CheckBox5Change(Sender: TObject);
-begin
-
-  setinivalues ;
-
-end;
-
-procedure TMainForm.ComboBox1Change(Sender: TObject);
-begin
-
-end;
-
-
 procedure TMainForm.ComboBox1Select(Sender: TObject);
 var
   Units : string ;
@@ -2970,70 +2901,66 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
-    Sett : TIniFile;
-    j: integer;
+    i,j: integer;
+    c: TStrings;
 begin
     //save program variable states on exit
-    Sett := TIniFile.Create(IniFile);
-    for j := 1 to 19 do Sett.WriteString('Main', 'MainForm.Edit' + IntToStr(j), (FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
-    for j := 1 to 16 do Sett.WriteString('Main', 'MainForm.RLabel' + IntToStr(j), (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption);
-    for j := 1 to 34 do Sett.WriteString('Main', 'MainForm.Label' + IntToStr(j), (FindComponent('Label' + IntToStr(j)) as TLabel).Caption);
-    for j := 1 to 15 do Sett.WriteBool('Main', 'MainForm.RadioButton' + IntToStr(j), (FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked);
+    for j := 1 to 19 do DBsettings.SaveSettingsValue('Main', 'MainForm.Edit' + IntToStr(j), (FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
+    for j := 1 to 16 do DBsettings.SaveSettingsValue('Main', 'MainForm.RLabel' + IntToStr(j), (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption);
+    for j := 1 to 34 do DBsettings.SaveSettingsValue('Main', 'MainForm.Label' + IntToStr(j), (FindComponent('Label' + IntToStr(j)) as TLabel).Caption);
+    for j := 1 to 15 do DBsettings.SaveSettingsValue('Main', 'MainForm.RadioButton' + IntToStr(j), BoolToStr((FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked));
 
-    Sett.WriteString('Main', 'version', VERSION);
-    Sett.WriteString('Main', 'prev_conc', prev_conc);
-    Sett.WriteString('Main', 'MainForm.Label20', Label20.Caption);
-    Sett.WriteString('Main', 'MainForm.Label18', Label18.Caption);
-    Sett.WriteString('Main', 'MainForm.Panel6', Panel6.Caption);
-    Sett.WriteBool('Main', 'MainForm.Checkbox3', Checkbox3.Checked);
-    Sett.WriteBool('Main', 'MainForm.Checkbox5', Checkbox5.Checked);
-    Sett.WriteInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
-    Sett.WriteBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
+    DBsettings.SaveSettingsValue('Main', 'version', VERSION);
+    DBsettings.SaveSettingsValue('Main', 'prev_conc', prev_conc);
+    DBsettings.SaveSettingsValue('Main', 'MainForm.Label20', Label20.Caption);
+    DBsettings.SaveSettingsValue('Main', 'MainForm.Label18', Label18.Caption);
+    DBsettings.SaveSettingsValue('Main', 'MainForm.Panel6', Panel6.Caption);
+    DBsettings.SaveSettingsValue('Main', 'MainForm.Checkbox3', BoolToStr(Checkbox3.Checked));
+    DBsettings.SaveSettingsValue('Main', 'MainForm.Checkbox5', BoolToStr(Checkbox5.Checked));
+    DBsettings.SaveSettingsValue('Main', 'MainForm.ComboBox3', IntToStr(ComboBox3.ItemIndex));
+    DBsettings.SaveSettingsValue('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', BoolToStr(SubstanceSelectionForm.SummaryPopupsCheckBox.checked));
 
-    ComparisonForm.StringGrid.SavetoCSVFile('hb_comparison.csv');
-    StockAnalysisForm.StringGrid.SavetoCSVFile('hb_stockanalysis.csv');
-    PerSubstanceForm.StringGrid.SavetoCSVFile('hb_persubstance.csv');
-    Form14.StringGrid1.SavetoCSVFile('hb_ratios.csv');
-    StringGrid1.SavetoCSVFile('hb_ppm_results.csv');
-    StringGrid2.SavetoCSVFile('hb_results.csv');
+
+    SaveStringGridToDBSettings(ComparisonForm.StringGrid, 'hb_comparison');
+    SaveStringGridToDBSettings(StockAnalysisForm.StringGrid, 'hb_stockanalysis');
+    SaveStringGridToDBSettings(PerSubstanceForm.StringGrid, 'hb_persubstance');
+    SaveStringGridToDBSettings(Form14.StringGrid1, 'hb_ratios');
+    SaveStringGridToDBSettings(StringGrid1, 'hb_ppm_results');
+    SaveStringGridToDBSettings(StringGrid2, 'hb_results');
 
     if ComparisonForm.StringGrid.ColCount = 1 then  DeleteFile('hb_comparison.csv');
-    Sett.Free;
 end;
 
 procedure TMainForm.LoadValues;
 var
-    Sett : TIniFile;
     j: integer;
 begin
     //load program variables
-    Sett := TIniFile.Create(IniFile);
-
     // if the setting files are from an old version ignore them and stop loading
-    if Sett.ReadString('Main', 'version', '-1') <> VERSION then exit;
+    if DBsettings.LoadSettingsValue('Main', 'version', VERSION) <> VERSION then exit;
 
-    for j := 1 to 19 do (FindComponent('Edit' + IntToStr(j)) as TEdit).Text := Sett.ReadString('Main', 'MainForm.Edit' + IntToStr(j), (FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
-    for j := 1 to 16 do (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption := Sett.ReadString('Main', 'MainForm.RLabel' + IntToStr(j), '0');
-    for j := 1 to 34 do (FindComponent('Label' + IntToStr(j)) as TLabel).Caption := Sett.ReadString('Main', 'MainForm.Label' + IntToStr(j), (FindComponent('Label' + IntToStr(j)) as TLabel).Caption);
+    for j := 1 to 19 do (FindComponent('Edit' + IntToStr(j)) as TEdit).Text := DBsettings.LoadSettingsValue('Main', 'MainForm.Edit' + IntToStr(j), (FindComponent('Edit' + IntToStr(j)) as TEdit).Text);
+    for j := 1 to 16 do (FindComponent('RLabel' + IntToStr(j)) as TLabel).Caption := DBsettings.LoadSettingsValue('Main', 'MainForm.RLabel' + IntToStr(j), '0');
+    for j := 1 to 34 do (FindComponent('Label' + IntToStr(j)) as TLabel).Caption := DBsettings.LoadSettingsValue('Main', 'MainForm.Label' + IntToStr(j), (FindComponent('Label' + IntToStr(j)) as TLabel).Caption);
 
-    prev_conc := Sett.ReadString('Main', 'prev_conc', prev_conc);
-    for j := 1 to 15 do (FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked := Sett.ReadBool('Main', 'MainForm.RadioButton' + IntToStr(j), (FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked);
+    prev_conc := DBsettings.LoadSettingsValue('Main', 'prev_conc', prev_conc);
+    for j := 1 to 15 do (FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked := StrToBool(DBsettings.LoadSettingsValue('Main', 'MainForm.RadioButton' + IntToStr(j), BoolToStr((FindComponent('RadioButton' + IntToStr(j)) as TRadioButton).Checked)));
 
-    Label20.Caption := Sett.ReadString('Main', 'MainForm.Label20', Label20.Caption);
-    Label18.Caption := Sett.ReadString('Main', 'MainForm.Label18', Label18.Caption);
-    Panel6.Caption := Sett.ReadString('Main', 'MainForm.Panel6', Panel6.Caption);
-    Checkbox3.Checked := Sett.ReadBool('Main', 'MainForm.Checkbox3', Checkbox3.Checked);
-    Checkbox5.Checked := Sett.ReadBool('Main', 'MainForm.Checkbox5', Checkbox3.Checked);
-    ComboBox3.ItemIndex := Sett.ReadInteger('Main', 'MainForm.ComboBox3', ComboBox3.ItemIndex);
-    SubstanceSelectionForm.SummaryPopupsCheckBox.checked := Sett.ReadBool('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', SubstanceSelectionForm.SummaryPopupsCheckBox.checked);
+    Label20.Caption := DBsettings.LoadSettingsValue('Main', 'MainForm.Label20', Label20.Caption);
+    Label18.Caption := DBsettings.LoadSettingsValue('Main', 'MainForm.Label18', Label18.Caption);
+    Panel6.Caption := DBsettings.LoadSettingsValue('Main', 'MainForm.Panel6', Panel6.Caption);
+    Checkbox3.Checked := StrToBool(DBsettings.LoadSettingsValue('Main', 'MainForm.Checkbox3', BoolToStr(Checkbox3.Checked)));
+    Checkbox5.Checked := StrToBool(DBsettings.LoadSettingsValue('Main', 'MainForm.Checkbox5', BoolToStr(Checkbox3.Checked)));
+    ComboBox3.ItemIndex := StrToInt(DBsettings.LoadSettingsValue('Main', 'MainForm.ComboBox3', IntToStr(ComboBox3.ItemIndex)));
+    SubstanceSelectionForm.SummaryPopupsCheckBox.checked := StrToBool(DBsettings.LoadSettingsValue('Main', 'SubstanceSelectionForm.SummaryPopupsCheckBox', BoolToStr(SubstanceSelectionForm.SummaryPopupsCheckBox.checked)));
 
-    if FileExists('hb_comparison.csv') then ComparisonForm.StringGrid.LoadFromCSVFile('hb_comparison.csv');
-    if FileExists('hb_stockanalysis.csv') then StockAnalysisForm.StringGrid.LoadFromCSVFile('hb_stockanalysis.csv');
-    if FileExists('hb_persubstance.csv') then PerSubstanceForm.StringGrid.LoadFromCSVFile('hb_persubstance.csv');
-    if FileExists('hb_ratios.csv') then Form14.StringGrid1.LoadFromCSVFile('hb_ratios.csv');
-    if FileExists('hb_ppm_results.csv') then StringGrid1.LoadFromCSVFile('hb_ppm_results.csv');
-    if FileExists('hb_results.csv') then StringGrid2.LoadFromCSVFile('hb_results.csv');
-    Sett.Free;
+    LoadToStringGridFromDBSettings(ComparisonForm.StringGrid, 'hb_comparison');
+    LoadToStringGridFromDBSettings(StockAnalysisForm.StringGrid, 'hb_stockanalysis');
+    LoadToStringGridFromDBSettings(PerSubstanceForm.StringGrid, 'hb_persubstance');
+    LoadToStringGridFromDBSettings(Form14.StringGrid1, 'hb_ratios');
+    LoadToStringGridFromDBSettings(StringGrid1, 'hb_ppm_results');
+    LoadToStringGridFromDBSettings(StringGrid2, 'hb_results');
+
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);

@@ -23269,7 +23269,6 @@ object MainForm: TMainForm
           Sorted = True
           TabOrder = 4
           Text = 'Select formulation from DB'
-          OnChange = ComboBox1Change
           OnSelect = ComboBox1Select
         end
         object Button9: TButton
@@ -23335,7 +23334,6 @@ object MainForm: TMainForm
         Caption = 'Disable Pop-ups'
         ParentFont = False
         TabOrder = 21
-        OnChange = CheckBox3Change
       end
       object CheckBox5: TCheckBox
         Left = 686
@@ -23345,7 +23343,6 @@ object MainForm: TMainForm
         Width = 94
         Caption = 'Small Window'
         TabOrder = 22
-        OnChange = CheckBox5Change
       end
       object Panel8: TPanel
         Left = 508

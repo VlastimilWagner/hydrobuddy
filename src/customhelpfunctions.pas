@@ -5,13 +5,56 @@ unit CustomHelpFunctions;
 interface
 
 uses
-  Classes, SysUtils, DOM, XMLRead, XMLWrite;
+  Classes, Objects, SysUtils, DOM, XMLRead, XMLWrite, Grids, db_settings;
 
+procedure SaveStringGridToDBSettings(var SG: TStringGrid; Group: string);
+procedure LoadToStringGridFromDBSettings(var SG: TStringGrid; Group: string);
 procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
 procedure AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
 function StrtoFloatAnySeparator(s:string):extended;
 
 implementation
+
+procedure SaveStringGridToDBSettings(var SG: TStringGrid; Group: string);
+var i,j: integer;
+    c: TStrings;
+begin
+  DBsettings.SaveSettingsValue(Group,'COLCOUNT',IntToStr(SG.ColCount));
+  DBsettings.SaveSettingsValue(Group,'ROWCOUNT',IntToStr(SG.RowCount));
+  DBsettings.SaveSettingsValue(Group,'FIXEDCOLS',IntToStr(SG.FixedCols));
+  DBsettings.SaveSettingsValue(Group,'FIXEDROWS',IntToStr(SG.FixedRows));
+  for i := SG.FixedCols to SG.ColCount-1 do begin
+//     c := SG.Cols[i];// ColumnFromGridColumn(i);
+//     DBsettings.SaveSettingsValue(Group,'Title_'+IntToStr(i),c.ValueFromIndex[0]);
+     for j := SG.FixedRows to SG.RowCount-1 do begin
+         DBsettings.SaveSettingsValue(Group,'Value_'+IntToStr(i)+'_'+IntToStr(j),SG.Cells[i,j]);
+     end;
+  end;
+end;
+
+procedure LoadToStringGridFromDBSettings(var SG: TStringGrid; Group: string);
+var i,j: integer;
+    c: TStrings;
+    sgcolums, sgrows: integer;
+    fixedcols, fixedrows: integer;
+begin
+  sgcolums := StrToInt(DBsettings.LoadSettingsValue(Group,'COLCOUNT','0'));
+  sgrows := StrToInt(DBsettings.LoadSettingsValue(Group,'ROWCOUNT','0'));
+  fixedcols := StrToInt(DBsettings.LoadSettingsValue(Group,'FIXEDCOLS','0'));
+  fixedrows := StrToInt(DBsettings.LoadSettingsValue(Group,'FIXEDROWS','0'));
+  while SG.ColCount<sgcolums do SG.ColCount:= SG.ColCount + 1;
+  while SG.RowCount<sgrows do SG.RowCount:= SG.RowCount + 1;
+  //AddObject(TStringColumn.Create(SG));
+//  for i:=1 to sgcolums do SG.InsertColRow(True,0);
+//  for i:=1 to sgrows do SG.InsertColRow(False,0);
+  for i := fixedcols to sgcolums-1 do begin
+      for j := fixedrows to sgrows-1 do begin
+            SG.Cells[i,j] := DBsettings.LoadSettingsValue(Group,'Value_'+IntToStr(i)+'_'+IntToStr(j),'');
+      end;
+  end;
+
+//  SG.CreateTable();
+end;
 
 procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
 var Node: TDOMNode;

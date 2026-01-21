@@ -55,7 +55,7 @@ object AddWeightForm: TAddWeightForm
   end
   object CancelButton: TBitBtn
     Left = 152
-    Height = 27
+    Height = 25
     Top = 133
     Width = 136
     DefaultCaption = True
