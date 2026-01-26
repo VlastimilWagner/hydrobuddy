@@ -242,7 +242,7 @@ begin
     DBSubstancesUsed.Delete('NAME', SubstancesUsedListBox.Items[selected_items[i]]);
   end;
 
-  MainForm.Button10.Enabled := false ;
+  MainForm.CopyWeightButton.Enabled := false ;
 
   For i := 0 to Length(selected_items)-1 do begin
      SubstancesUsedListBox.Items.Delete(selected_items[i]);
@@ -272,7 +272,7 @@ begin
     DBSubstancesUsed.Delete('NAME', SubstancesUsedListBox.Items[selected_items[i]]);
   end;
 
-  MainForm.Button10.Enabled := false ;
+  MainForm.CopyWeightButton.Enabled := false ;
 
   For i := 0 to Length(selected_items)-1 do begin
      SubstancesUsedListBox.Items.Delete(selected_items[i]);
@@ -341,8 +341,8 @@ begin
    AddWeightForm.MassEdit.text := floattostr(DBSubstancesUsed.WEIGHT);
    AddWeightForm.is_liquid := DBSubstancesUsed.IsLiquid;
 
-  if (not AddWeightForm.is_liquid) and (MainForm.RadioButton9.checked) then AddWeightForm.MassLabel.Caption := 'Mass of substance (oz)';
-  if (not AddWeightForm.is_liquid) and (MainForm.RadioButton8.checked) then AddWeightForm.MassLabel.Caption := 'Mass of substance (g)';
+  if (not AddWeightForm.is_liquid) and (MainForm.MassUnitsRadioGroup.ItemIndex=1) then AddWeightForm.MassLabel.Caption := 'Mass of substance (oz)';
+  if (not AddWeightForm.is_liquid) and (MainForm.MassUnitsRadioGroup.ItemIndex=0) then AddWeightForm.MassLabel.Caption := 'Mass of substance (g)';
   if (AddWeightForm.is_liquid) then AddWeightForm.MassLabel.Caption := 'Volume of substance (mL)';
 
   AddWeightForm.SubstanceNameLabel.Caption := SubstancesUsedListBox.Items[selected_item] ;

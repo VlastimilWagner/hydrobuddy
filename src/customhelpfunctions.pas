@@ -24,8 +24,6 @@ begin
   DBsettings.SaveSettingsValue(Group,'FIXEDCOLS',IntToStr(SG.FixedCols));
   DBsettings.SaveSettingsValue(Group,'FIXEDROWS',IntToStr(SG.FixedRows));
   for i := SG.FixedCols to SG.ColCount-1 do begin
-//     c := SG.Cols[i];// ColumnFromGridColumn(i);
-//     DBsettings.SaveSettingsValue(Group,'Title_'+IntToStr(i),c.ValueFromIndex[0]);
      for j := SG.FixedRows to SG.RowCount-1 do begin
          DBsettings.SaveSettingsValue(Group,'Value_'+IntToStr(i)+'_'+IntToStr(j),SG.Cells[i,j]);
      end;
@@ -44,16 +42,11 @@ begin
   fixedrows := StrToInt(DBsettings.LoadSettingsValue(Group,'FIXEDROWS','0'));
   while SG.ColCount<sgcolums do SG.ColCount:= SG.ColCount + 1;
   while SG.RowCount<sgrows do SG.RowCount:= SG.RowCount + 1;
-  //AddObject(TStringColumn.Create(SG));
-//  for i:=1 to sgcolums do SG.InsertColRow(True,0);
-//  for i:=1 to sgrows do SG.InsertColRow(False,0);
   for i := fixedcols to sgcolums-1 do begin
       for j := fixedrows to sgrows-1 do begin
             SG.Cells[i,j] := DBsettings.LoadSettingsValue(Group,'Value_'+IntToStr(i)+'_'+IntToStr(j),'');
       end;
   end;
-
-//  SG.CreateTable();
 end;
 
 procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);

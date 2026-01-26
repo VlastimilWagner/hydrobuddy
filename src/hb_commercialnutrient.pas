@@ -117,7 +117,7 @@ for i := 1 to 16 do
     end;
 
     MainForm.cleanresults ;
-    MainForm.RadioButton10.Checked := true ;
+    MainForm.ConcUnitsRadioGroup.ItemIndex := 0 ;
 
 
     // finally copy values to edit boxes
