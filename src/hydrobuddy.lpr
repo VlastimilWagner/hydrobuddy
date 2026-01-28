@@ -12,7 +12,9 @@ uses
   hb_newcustomsalt, densesolver, hb_addweight, hb_commercialnutrient,
   hb_waterquality, hb_insprecision, hb_stockanalysis, Dbf, db, hb_persubstance,
   hb_datasetname, hb_analysis, hb_freedom, dbf_fields, hb_ph, hb_ratios,
-  hb_comparison, hb_tissue_analysis, customhelpfunctions, db_formulations, db_substances, db_tissue_analysis, db_watterquality, db_substances_used;
+  hb_comparison, hb_tissue_analysis, customhelpfunctions, db_formulations,
+  db_substances, db_tissue_analysis, db_watterquality, db_substances_used,
+  hb_constants;
 
 procedure AssignValues ;
 begin
@@ -50,7 +52,7 @@ procedure SetActiveTab;
 begin
 
     // set active tab and ensure all forms are visible
-    MainForm.PageControl1.ActivePage := MainForm.TabSheet4 ;
+    MainForm.PageControl.ActivePage := MainForm.TabSheet4 ;
     SubstanceSelectionForm.Position := poMainFormCenter;
     CustomSaltForm.Position := poMainFormCenter;
     AddWeightForm.Position := poMainFormCenter;
@@ -128,7 +130,7 @@ begin
   Application.CreateForm(TAnalysisForm, AnalysisForm);
   Application.CreateForm(TFreedomForm, FreedomForm);
   Application.CreateForm(TAlkalinityForm, AlkalinityForm);
-  Application.CreateForm(TForm14, Form14);
+  Application.CreateForm(TRatioForm, RatioForm);
   Application.CreateForm(TComparisonForm, ComparisonForm);
 
   SetActiveTab  ;

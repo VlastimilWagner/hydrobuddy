@@ -13,6 +13,7 @@ object CustomSaltForm: TCustomSaltForm
   ClientWidth = 461
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
+  LCLVersion = '4.2.0.0'
   object N_NO3Label: TLabel
     Left = 15
     Height = 15

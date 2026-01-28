@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 401
   Height = 670
   Top = 496
-  Width = 831
+  Width = 839
   HorzScrollBar.Page = 841
   HorzScrollBar.Range = 824
   VertScrollBar.Page = 691
@@ -11,7 +11,7 @@ object MainForm: TMainForm
   BorderStyle = bsSingle
   Caption = 'HydroBuddy v1.100- Programmed and Designed by Dr. Daniel Fernandez Ph.D at http://scienceinhydroponics.com'
   ClientHeight = 670
-  ClientWidth = 831
+  ClientWidth = 839
   DragKind = dkDock
   Icon.Data = {
     DE2800000000010001003232000001002000C828000016000000280000003200
@@ -358,16 +358,7 @@ object MainForm: TMainForm
     ParentColor = False
     Visible = False
   end
-  object RadioButton3: TRadioButton
-    Left = 31
-    Height = 19
-    Hint = 'Changes volume input to cubic meters ( one cubic meter is 1000 Liters)'
-    Top = 80
-    Width = 88
-    Caption = 'Cubic Meters'
-    TabOrder = 0
-  end
-  object PageControl1: TPageControl
+  object PageControl: TPageControl
     Left = 8
     Height = 673
     Top = 0
@@ -375,24 +366,25 @@ object MainForm: TMainForm
     ActivePage = TabSheet1
     ParentFont = False
     TabIndex = 1
-    TabOrder = 1
-    OnExit = PageControl1Exit
+    TabOrder = 0
+    OnExit = PageControlExit
     object TabSheet4: TTabSheet
       Caption = 'Welcome'
       ClientHeight = 645
       ClientWidth = 826
-      object PageControl2: TPageControl
-        Left = 8
+      object HelpPageControl: TPageControl
+        Left = 0
         Height = 648
         Top = 0
-        Width = 828
-        ActivePage = TabSheet12
-        TabIndex = 8
+        Width = 820
+        ActivePage = TabSheet5
+        RaggedRight = True
+        TabIndex = 0
         TabOrder = 0
         object TabSheet5: TTabSheet
           Caption = 'Introduction'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image1: TImage
             Left = 0
             Height = 627
@@ -1510,7 +1502,7 @@ object MainForm: TMainForm
         object TabSheet6: TTabSheet
           Caption = 'Types of Calculations'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image2: TImage
             Left = 3
             Height = 606
@@ -3489,7 +3481,7 @@ object MainForm: TMainForm
         object TabSheet7: TTabSheet
           Caption = 'Selecting Chemicals'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image3: TImage
             Left = -20
             Height = 608
@@ -5615,7 +5607,7 @@ object MainForm: TMainForm
         object TabSheet8: TTabSheet
           Caption = 'Substance Properties'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image4: TImage
             Left = -20
             Height = 610
@@ -8189,7 +8181,7 @@ object MainForm: TMainForm
         object TabSheet9: TTabSheet
           Caption = 'Configuration Parameters'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image5: TImage
             Left = 4
             Height = 618
@@ -9973,7 +9965,7 @@ object MainForm: TMainForm
         object TabSheet10: TTabSheet
           Caption = 'Results'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image6: TImage
             Left = 4
             Height = 610
@@ -11826,7 +11818,7 @@ object MainForm: TMainForm
         object TabSheet11: TTabSheet
           Caption = 'Formulations'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image7: TImage
             Left = -4
             Height = 616
@@ -13854,7 +13846,7 @@ object MainForm: TMainForm
         object TabSheet13: TTabSheet
           Caption = 'Correct Preparation'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image9: TImage
             Left = 4
             Height = 610
@@ -20776,7 +20768,7 @@ object MainForm: TMainForm
         object TabSheet12: TTabSheet
           Caption = 'Go Ahead !'
           ClientHeight = 620
-          ClientWidth = 820
+          ClientWidth = 812
           object Image8: TImage
             Left = -4
             Height = 616
@@ -22532,7 +22524,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label26: TLabel
+      object TargetLabel: TLabel
         Left = 140
         Height = 15
         Top = 40
@@ -22667,7 +22659,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label27: TLabel
+      object ResultLabel: TLabel
         Left = 244
         Height = 15
         Top = 40
@@ -22676,7 +22668,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label29: TLabel
+      object ConcLabel: TLabel
         Left = 140
         Height = 15
         Top = 60
@@ -22685,7 +22677,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label32: TLabel
+      object UnitsLabel: TLabel
         Left = 243
         Height = 15
         Top = 60
@@ -22736,7 +22728,7 @@ object MainForm: TMainForm
         Top = 96
         Width = 88
         ParentFont = False
-        TabOrder = 0
+        TabOrder = 1
         Text = '210'
       end
       object Edit3: TEdit
@@ -22745,7 +22737,7 @@ object MainForm: TMainForm
         Top = 160
         Width = 88
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 3
         Text = '31'
       end
       object Edit4: TEdit
@@ -22754,7 +22746,7 @@ object MainForm: TMainForm
         Top = 192
         Width = 88
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 4
         Text = '235'
       end
       object Edit5: TEdit
@@ -22763,7 +22755,7 @@ object MainForm: TMainForm
         Top = 224
         Width = 88
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 5
         Text = '48'
       end
       object Edit6: TEdit
@@ -22772,7 +22764,7 @@ object MainForm: TMainForm
         Top = 256
         Width = 88
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 6
         Text = '200'
       end
       object Edit7: TEdit
@@ -22781,7 +22773,7 @@ object MainForm: TMainForm
         Top = 288
         Width = 88
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 7
         Text = '64'
       end
       object Edit8: TEdit
@@ -22790,7 +22782,7 @@ object MainForm: TMainForm
         Top = 320
         Width = 88
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 8
         Text = '2.9'
       end
       object Edit9: TEdit
@@ -22799,7 +22791,7 @@ object MainForm: TMainForm
         Top = 352
         Width = 88
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 9
         Text = '0.5'
       end
       object Edit10: TEdit
@@ -22808,7 +22800,7 @@ object MainForm: TMainForm
         Top = 384
         Width = 88
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 10
         Text = '0.05'
       end
       object Edit12: TEdit
@@ -22817,7 +22809,7 @@ object MainForm: TMainForm
         Top = 448
         Width = 88
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 18
         Text = '0.02'
       end
       object Edit13: TEdit
@@ -22826,7 +22818,7 @@ object MainForm: TMainForm
         Top = 480
         Width = 88
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 20
         Text = '0.0'
       end
       object Edit14: TEdit
@@ -22835,7 +22827,7 @@ object MainForm: TMainForm
         Top = 512
         Width = 88
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 21
         Text = '0.05'
       end
       object Edit15: TEdit
@@ -22844,7 +22836,7 @@ object MainForm: TMainForm
         Top = 544
         Width = 88
         ParentFont = False
-        TabOrder = 14
+        TabOrder = 22
         Text = '0'
       end
       object Edit16: TEdit
@@ -22853,7 +22845,7 @@ object MainForm: TMainForm
         Top = 576
         Width = 88
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 23
         Text = '0'
       end
       object Panel1: TPanel
@@ -22874,7 +22866,7 @@ object MainForm: TMainForm
           Width = 222
           Caption = 'Copy Weight Results to DB'
           Enabled = False
-          TabOrder = 0
+          TabOrder = 2
           OnClick = CopyWeightButtonClick
         end
         object CarryOutCalcButton: TBitBtn
@@ -23027,7 +23019,7 @@ object MainForm: TMainForm
             'Input Desired Concentrations'
             'Concentrations from  Weights'
           )
-          TabOrder = 2
+          TabOrder = 0
           OnClick = CalcTypeRadioGroupChangeBounds
         end
       end
@@ -23040,18 +23032,18 @@ object MainForm: TMainForm
         ClientHeight = 98
         ClientWidth = 481
         ParentFont = False
-        TabOrder = 17
-        object Edit17: TEdit
+        TabOrder = 15
+        object ConcentrationFactorEdit: TEdit
           Left = 250
           Height = 23
           Hint = 'This value determines how concentrated stock solutions are when compared to the final reservoir concentrations'
           Top = 40
           Width = 222
           Enabled = False
-          TabOrder = 0
+          TabOrder = 1
           Text = '100'
         end
-        object Label30: TLabel
+        object ConcentrationFactorLabel: TLabel
           Left = 248
           Height = 15
           Hint = 'Measures the concentration ratio between the stock and final solutions'
@@ -23081,7 +23073,7 @@ object MainForm: TMainForm
             'Concentrated A + B Solutions'
             'Direct Addition'
           )
-          TabOrder = 1
+          TabOrder = 0
           OnClick = SolPrepTypeRadioGroupClick
         end
       end
@@ -23094,8 +23086,8 @@ object MainForm: TMainForm
         ClientHeight = 51
         ClientWidth = 481
         ParentFont = False
-        TabOrder = 18
-        object Label17: TLabel
+        TabOrder = 11
+        object VolumeLabel: TLabel
           Left = 8
           Height = 15
           Top = 0
@@ -23103,7 +23095,7 @@ object MainForm: TMainForm
           Caption = 'Volume'
           ParentColor = False
         end
-        object Edit18: TEdit
+        object VolumeEdit: TEdit
           Left = 8
           Height = 23
           Hint = 'Volume used within the calculation (this can be reservoir or stock solution volume depending on the calculation type)'
@@ -23144,7 +23136,7 @@ object MainForm: TMainForm
         Top = 416
         Width = 88
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 17
         Text = '0.5'
       end
       object Edit2: TEdit
@@ -23153,7 +23145,7 @@ object MainForm: TMainForm
         Top = 128
         Width = 88
         ParentFont = False
-        TabOrder = 1
+        TabOrder = 2
         Text = '0'
       end
       object Panel4: TPanel
@@ -23165,7 +23157,7 @@ object MainForm: TMainForm
         ClientHeight = 104
         ClientWidth = 153
         ParentFont = False
-        TabOrder = 19
+        TabOrder = 14
         object MassUnitsRadioGroup: TRadioGroup
           Left = 8
           Height = 89
@@ -23200,14 +23192,14 @@ object MainForm: TMainForm
         ClientHeight = 197
         ClientWidth = 481
         ParentFont = False
-        TabOrder = 20
+        TabOrder = 27
         object SubstanceAnalysisButton: TButton
           Left = 250
           Height = 25
           Top = 46
           Width = 222
           Caption = 'Substance Analysis'
-          TabOrder = 0
+          TabOrder = 6
           OnClick = SubstanceAnalysisButtonClick
         end
         object SetWQParamsButton: TButton
@@ -23217,7 +23209,7 @@ object MainForm: TMainForm
           Top = 76
           Width = 222
           Caption = 'Set Water Quality Parameters'
-          TabOrder = 1
+          TabOrder = 7
           OnClick = SetWQParamsButtonClick
         end
         object AddFormulationButton: TButton
@@ -23238,7 +23230,7 @@ object MainForm: TMainForm
           Top = 46
           Width = 216
           Caption = 'Delete Formulation From DB'
-          TabOrder = 3
+          TabOrder = 1
           OnClick = DeleteForulationButtonClick
         end
         object FormulationComboBox: TComboBox
@@ -23259,7 +23251,7 @@ object MainForm: TMainForm
           Top = 106
           Width = 222
           Caption = 'Set Instrument Precision Values'
-          TabOrder = 5
+          TabOrder = 8
           OnClick = SetIPValuesButtonClick
         end
         object SubstanceSelectionButton: TButton
@@ -23274,7 +23266,7 @@ object MainForm: TMainForm
           ParentFont = False
           ParentShowHint = False
           ShowHint = True
-          TabOrder = 6
+          TabOrder = 5
           OnClick = SubstanceSelectionButtonClick
         end
         object FormulationNameEdit: TEdit
@@ -23283,7 +23275,7 @@ object MainForm: TMainForm
           Hint = 'Write the name you want the formulation to have here'
           Top = 16
           Width = 216
-          TabOrder = 8
+          TabOrder = 0
           Text = 'Input Formulation Name Here'
         end
         object CurrValuesToDefaultButton: TButton
@@ -23292,7 +23284,7 @@ object MainForm: TMainForm
           Top = 106
           Width = 216
           Caption = 'Set current values to default'
-          TabOrder = 7
+          TabOrder = 3
           OnClick = CurrValuesToDefaultButtonClick
         end
         object TissueAnalysisButton: TButton
@@ -23305,7 +23297,7 @@ object MainForm: TMainForm
           TabOrder = 9
           OnClick = TissueAnalysisButtonClick
         end
-        object Button22: TButton
+        object ChoseDegreeOfFreedomButton: TButton
           Left = 250
           Height = 25
           Hint = 'Choose the element used as a degree of freedom within the calculations'
@@ -23313,10 +23305,10 @@ object MainForm: TMainForm
           Width = 222
           Caption = 'Choose Degree of Freedom'
           TabOrder = 10
-          OnClick = Button22Click
+          OnClick = ChoseDegreeOfFreedomButtonClick
         end
       end
-      object CheckBox3: TCheckBox
+      object DisablePopUpsCheckBox: TCheckBox
         Left = 328
         Height = 19
         Hint = 'Checking this box will cause all calculation-related informative pop-ups to be switched off'
@@ -23324,16 +23316,16 @@ object MainForm: TMainForm
         Width = 104
         Caption = 'Disable Pop-ups'
         ParentFont = False
-        TabOrder = 21
+        TabOrder = 24
       end
-      object CheckBox5: TCheckBox
+      object SmallWindowCheckBox: TCheckBox
         Left = 448
         Height = 19
         Hint = 'When checked the program will be started on a small window (great for netbooks)'
         Top = 44
         Width = 94
         Caption = 'Small Window'
-        TabOrder = 22
+        TabOrder = 25
       end
       object Panel8: TPanel
         Left = 312
@@ -23343,7 +23335,7 @@ object MainForm: TMainForm
         BevelOuter = bvNone
         ClientHeight = 104
         ClientWidth = 168
-        TabOrder = 23
+        TabOrder = 12
         object ConcUnitsRadioGroup: TRadioGroup
           Left = 8
           Height = 89
@@ -23384,11 +23376,11 @@ object MainForm: TMainForm
           'SiO2'
         )
         Style = csDropDownList
-        TabOrder = 24
+        TabOrder = 19
         Text = 'Si'
         OnChange = SiSiO2ComboBoxChange
       end
-      object Button26: TBitBtn
+      object PayPalDonateButton: TBitBtn
         Left = 721
         Height = 40
         Top = 23
@@ -23638,8 +23630,8 @@ object MainForm: TMainForm
           FFFF0099FFFF0099FFFF039AFFFF0099FFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFF
           FFFF
         }
-        TabOrder = 25
-        OnClick = Button26Click
+        TabOrder = 26
+        OnClick = PayPalDonateButtonClick
       end
       object ZeroAllTargetsButton: TButton
         Left = 132
@@ -23647,7 +23639,7 @@ object MainForm: TMainForm
         Top = 8
         Width = 144
         Caption = 'Zero all targets'
-        TabOrder = 26
+        TabOrder = 0
         OnClick = ZeroAllTargetsButtonClick
       end
       object Panel9: TPanel
@@ -23659,7 +23651,7 @@ object MainForm: TMainForm
         ClientHeight = 103
         ClientWidth = 161
         ParentFont = False
-        TabOrder = 27
+        TabOrder = 13
         object ECModelRadioGroup: TRadioGroup
           Left = 8
           Height = 89
@@ -23691,7 +23683,7 @@ object MainForm: TMainForm
       ClientWidth = 826
       Font.Height = -11
       ParentFont = False
-      object Label20: TLabel
+      object AnyObservationLabel: TLabel
         Left = 452
         Height = 104
         Top = 320
@@ -23707,7 +23699,7 @@ object MainForm: TMainForm
         ParentFont = False
         WordWrap = True
       end
-      object Label21: TLabel
+      object PredictedECValueLabel: TLabel
         Left = 469
         Height = 13
         Top = 448
@@ -23715,7 +23707,7 @@ object MainForm: TMainForm
         Caption = 'Predicted EC Value '
         ParentColor = False
       end
-      object Panel6: TPanel
+      object PredictedECValuePanel: TPanel
         Left = 456
         Height = 56
         Hint = 'This EC value has an accuracy of +/- 10%'
@@ -23732,9 +23724,9 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
-        OnClick = Panel6Click
+        OnClick = PredictedECValuePanelClick
       end
-      object Button13: TBitBtn
+      object ExportToCSVButton: TBitBtn
         Left = 56
         Height = 32
         Hint = 'This button exports all the data within this page to a CSV for easy access and printing  using any spreadsheet program'
@@ -23859,9 +23851,9 @@ object MainForm: TMainForm
           00000000000000000000
         }
         TabOrder = 1
-        OnClick = Button13Click
+        OnClick = ExportToCSVButtonClick
       end
-      object Button14: TBitBtn
+      object DetailedPerSubstAnalysisButton: TBitBtn
         Left = 452
         Height = 33
         Hint = 'Click here to see a detailed analysis of the contributions of each substance to the overall solution composition'
@@ -23871,9 +23863,9 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 2
-        OnClick = Button14Click
+        OnClick = DetailedPerSubstAnalysisButtonClick
       end
-      object Button12: TBitBtn
+      object StockSolutionAnalysisButton: TBitBtn
         Left = 633
         Height = 25
         Hint = 'Click here to see the % compositions analysis of the stock solutions '
@@ -23884,9 +23876,9 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 3
-        OnClick = Button12Click
+        OnClick = StockSolutionAnalysisButtonClick
       end
-      object Button25: TButton
+      object NutrientRateAnalysisButton: TButton
         Left = 633
         Height = 24
         Top = 504
@@ -23895,7 +23887,7 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 4
-        OnClick = Button25Click
+        OnClick = NutrientRateAnalysisButtonClick
       end
       object StringGrid1: TStringGrid
         Left = 54
@@ -23983,7 +23975,7 @@ object MainForm: TMainForm
         OnEditButtonClick = StringGrid2EditButtonClick
         OnEditingDone = StringGrid2EditingDone
       end
-      object Label18: TLabel
+      object TotalCostLabel: TLabel
         Left = 452
         Height = 18
         Top = 277
@@ -23995,7 +23987,7 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Button16: TButton
+      object PlusButton: TButton
         Left = 592
         Height = 25
         Top = 472
@@ -24009,9 +24001,9 @@ object MainForm: TMainForm
         Font.Quality = fqDraft
         ParentFont = False
         TabOrder = 7
-        OnClick = Button16Click
+        OnClick = PlusButtonClick
       end
-      object Button17: TButton
+      object MinusButton: TButton
         Left = 592
         Height = 25
         Top = 503
@@ -24025,9 +24017,9 @@ object MainForm: TMainForm
         Font.Quality = fqDraft
         ParentFont = False
         TabOrder = 8
-        OnClick = Button17Click
+        OnClick = MinusButtonClick
       end
-      object Button19: TBitBtn
+      object InputMixAnalysisButton: TBitBtn
         Left = 632
         Height = 25
         Hint = 'Shows the % composition of the mixture of solids used'
@@ -24038,9 +24030,9 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 9
-        OnClick = Button19Click
+        OnClick = InputMixAnalysisButtonClick
       end
-      object Button20: TButton
+      object CopyResultToTargetsButton: TButton
         Left = 200
         Height = 32
         Hint = 'Copies the "Result (ppm)" fields to the targets on the Main Page'
@@ -24050,7 +24042,7 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 10
-        OnClick = Button20Click
+        OnClick = CopyResultToTargetsButtonClick
       end
     end
     object TabSheet3: TTabSheet
@@ -24065,7 +24057,7 @@ object MainForm: TMainForm
         ClientHeight = 336
         ClientWidth = 376
         TabOrder = 0
-        object Image10: TImage
+        object AboutBoxImage: TImage
           Left = 144
           Height = 376
           Top = -184
@@ -26842,18 +26834,18 @@ object MainForm: TMainForm
           Top = 176
           Width = 345
           AutoSize = False
-          Caption = 'HydroBuddy was built using Lazarus v1.0.6, the code uses the limiting molar conductivity values found at http://www.currentseparations.com/issues/18-3/cs18-3c.pdf and the powerful linear equation system solving libraries of ALGLIB which can be obtained for free at http://www.alglib.net.'
+          Caption = 'HydroBuddy was built using Lazarus v4.2, the code uses the limiting molar conductivity values found at http://www.currentseparations.com/issues/18-3/cs18-3c.pdf and the powerful linear equation system solving libraries of ALGLIB which can be obtained for free at http://www.alglib.net.'
           ParentColor = False
           WordWrap = True
         end
-        object Button11: TButton
+        object OKAboutButton: TButton
           Left = 160
           Height = 25
           Top = 296
           Width = 75
           Caption = 'OK'
           TabOrder = 0
-          OnClick = Button11Click
+          OnClick = OKAboutButtonClick
         end
       end
     end

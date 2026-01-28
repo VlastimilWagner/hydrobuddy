@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, hb_comparison, db_substances;
+  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, hb_comparison, db_substances, customhelpfunctions;
 
 type
 
@@ -81,7 +81,6 @@ uses HB_Main ;
 procedure TCommercialNutrientForm.Button1Click(Sender: TObject);
 var
 i : integer ;
-j : integer ;
 varnames : array of string ;
 result : array of double ;
 test : double ;
@@ -112,7 +111,7 @@ for i := 1 to 16 do
     begin
 
       test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-      result[i - 1] := MainForm.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
+      result[i - 1] := round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
 
     end;
 
@@ -229,7 +228,7 @@ for i := 1 to 16 do
     begin
 
     test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-    result[i - 1] := MainForm.round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
+    result[i - 1] := round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
 
     end;
 

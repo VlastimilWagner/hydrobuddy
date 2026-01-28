@@ -237,9 +237,9 @@ begin
    currentVal := ComboBox1.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-           PEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
+           PEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
         else
-           PEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
+           PEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox2Change(Sender: TObject);
@@ -249,9 +249,9 @@ begin
    currentVal := ComboBox2.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-            KEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
+            KEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
         else
-            KEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
+            KEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
 end;
 
 procedure TCustomSaltForm.ComboBox3Change(Sender: TObject);
@@ -261,9 +261,9 @@ begin
    currentVal := ComboBox2.ItemIndex;
    if EditMode then
         if currentVal = 1 then
-             SiEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
+             SiEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
         else
-             SiEdit.Text := FloattoStr(MainForm.round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3));
+             SiEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(SiEdit.Text)*(1/2.1348), 3));
 end;
 
 

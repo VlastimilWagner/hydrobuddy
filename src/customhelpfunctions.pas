@@ -5,13 +5,14 @@ unit CustomHelpFunctions;
 interface
 
 uses
-  Classes, Objects, SysUtils, DOM, XMLRead, XMLWrite, Grids, db_settings;
+  Classes, Objects, SysUtils, DOM, XMLRead, XMLWrite, Grids, db_settings, math;
 
 procedure SaveStringGridToDBSettings(var SG: TStringGrid; Group: string);
 procedure LoadToStringGridFromDBSettings(var SG: TStringGrid; Group: string);
 procedure AddNodeWithAttributeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string; AtribName: string; AtribValue: string);
 procedure AddNodeToXML(var ObjXML: TXMLDocument; var ParentNode:TDOMNode; NodeName: string; NodeValue: string);
 function StrtoFloatAnySeparator(s:string):extended;
+function round2(const Number: extended; const Places: longint): extended;
 
 implementation
 
@@ -87,6 +88,15 @@ begin
   end;
   StrtoFloatAnySeparator := x;
 end;
+
+function round2(const Number: extended; const Places: longint): extended;
+var
+  t: extended;
+begin
+  t      := power(10, places);
+  round2 := round(Number * t) / t;
+end;
+
 
 end.
 
