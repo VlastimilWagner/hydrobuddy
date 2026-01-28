@@ -184,41 +184,35 @@ type
     procedure SetWQParamsButtonClick(Sender: TObject);
     procedure SetIPValuesButtonClick(Sender: TObject);
     procedure FormulationComboBoxSelect(Sender: TObject);
-    procedure SiSiO2ComboBoxChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormWindowStateChange(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
-    procedure PageControlExit(Sender: TObject);
-    procedure PredictedECValuePanelClick(Sender: TObject);
-    procedure StringGrid2DrawCell(Sender: TObject; aCol, aRow: Integer;
-      aRect: TRect; aState: TGridDrawState);
     procedure StringGrid2EditButtonClick(Sender: TObject);
     procedure StringGrid2EditingDone(Sender: TObject);
-    procedure TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
     procedure ToggleBox1Change(Sender: TObject);
   private
     { private declarations }
     procedure GridShowHint(Sender: TObject; HintInfo: PHintInfo);
     procedure ConcUnitsRadioGroupSetTexts(ConcLabelCaption, UnitsLabelCaption, SGCells, PerSubstanceFormSGCells, RatioFormSGCells: string);
+    procedure weightFineTunning;
+    procedure replaceNullWithZeroes();
   public
     { public declarations }
+    procedure CleanResults;
+    procedure UpdateComboBox;
+    procedure LoadValues();
+
     const
-    NAME_IDX     : integer = 0;
-    FORMULA_IDX  : integer = 1;
-    AMOUNT_IDX   : integer = 2;
-    UNIT_IDX     : integer = 3;
-    COST_IDX     : integer = 4;
-    SOURCE_IDX   : integer = 5;
+      NAME_IDX     : integer = 0;
+      FORMULA_IDX  : integer = 1;
+      AMOUNT_IDX   : integer = 2;
+      UNIT_IDX     : integer = 3;
+      COST_IDX     : integer = 4;
+      SOURCE_IDX   : integer = 5;
 
     var
-        IsLiquid: array of array of double ;
-        procedure weightFineTunning;
-        procedure UpdateComboBox;
-        procedure cleanresults;
-        procedure replaceNullWithZeroes();
-        procedure LoadValues();
+      IsLiquid: array of array of double ;
   end;
 
 var
@@ -235,10 +229,8 @@ procedure TMainForm.replaceNullWithZeroes();
 var
   j: integer;
 begin
-    for j := 1 to NumOfElements do
-    begin
-        if (FindComponent('Edit' + IntToStr(j)) as TEdit).Text = '' then (FindComponent('Edit' + IntToStr(j)) as TEdit).Text := '0';
-    end;
+  for j := 1 to NumOfElements do
+    if (FindComponent('Edit' + IntToStr(j)) as TEdit).Text = '' then (FindComponent('Edit' + IntToStr(j)) as TEdit).Text := '0';
 end;
 
 procedure TMainForm.UpdateComboBox;
@@ -260,7 +252,7 @@ procedure TMainForm.CopyResultToTargetsButtonClick(Sender: TObject);
 var
   i: integer;
 begin
-    for i := 1 to NumOfElements do (FindComponent('Edit' + IntToStr(i)) as TEdit).Text := StringGrid1.cells[1,i];
+  for i := 1 to NumOfElements do (FindComponent('Edit' + IntToStr(i)) as TEdit).Text := StringGrid1.cells[1,i];
 end;
 
 procedure TMainForm.TissueAnalysisButtonClick(Sender: TObject);
@@ -273,8 +265,6 @@ procedure TMainForm.ChoseDegreeOfFreedomButtonClick(Sender: TObject);
 begin
   FreedomForm.Visible := true ;;
 end;
-
-
 
 procedure TMainForm.NutrientRateAnalysisButtonClick(Sender: TObject);
 begin
@@ -325,8 +315,7 @@ var
 begin
   replaceNullWithZeroes;
 
-   // clear listbox to get rid of old solutions
-
+  // clear listbox to get rid of old solutions
   RatioForm.StringGrid.Clean;
   RatioForm.StringGrid.RowCount := 1 ;
   PerSubstanceForm.StringGrid.Clean;
@@ -345,23 +334,15 @@ begin
   InputMixAnalysisButton.Enabled := False ;
 
   // set instrument precision values
-
   volume_error := StrtoFloatAnySeparator(InsPrecisionForm.VolumePrecEdit.Text) * 0.001;
-
   weight_error := StrtoFloatAnySeparator(InsPrecisionForm.WeightPrecEdit.Text);
 
   // set weight factor (g) or (oz)
-
-  if MassUnitsRadioGroup.ItemIndex=0 then
-    weight_factor := 1;
-
-  if MassUnitsRadioGroup.ItemIndex=1 then
-    weight_factor := 0.0352739619;
+  if MassUnitsRadioGroup.ItemIndex=0 then weight_factor := 1;
+  if MassUnitsRadioGroup.ItemIndex=1 then weight_factor := 0.0352739619;
 
   // update list to get matrix size from used substances
-
   SubstanceSelectionForm.UpdateLists;
-
   arraysize := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   // define volume taking into account radio box setting for units
@@ -372,30 +353,21 @@ begin
   Volume := StrtoFloatAnySeparator(VolumeEdit.Text);
 
   // liter conversion
-  if VolumeUnitsRadioGroup.ItemIndex=0 then
-    Volume := Volume / 1000;
-
+  if VolumeUnitsRadioGroup.ItemIndex=0 then Volume := Volume / 1000;
   // gallon conversion
-  if VolumeUnitsRadioGroup.ItemIndex=1 then
-    Volume := Volume * 3.78541178 / 1000;
+  if VolumeUnitsRadioGroup.ItemIndex=1 then Volume := Volume * 3.78541178 / 1000;
 
   // correct volume if using concentrated solutions.
-  if SolPrepTypeRadioGroup.ItemIndex = 0then
-  Volume := Volume * StrtoFloatAnySeparator(ConcentrationFactorEdit.Text);
-
+  if SolPrepTypeRadioGroup.ItemIndex = 0 then Volume := Volume * StrtoFloatAnySeparator(ConcentrationFactorEdit.Text);
   array_size := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
   // define concentration conversion factor array
-
   SetLength(conc_factor, 16) ;
 
   // set size of string grid for solutions
-
   StringGrid2.RowCount := arraysize + 1 ;
 
-
   // set values for the concentration factor according to selected units
-
 
   // conversion factor for ppm is 1 for all values (no conversion needed)
   if ConcUnitsRadioGroup.ItemIndex=0 then begin
@@ -589,18 +561,14 @@ begin
     for i := 0 to NumOfElements-1 do begin
       elementInSolutionB[i] := 100 * elementInSolutionB[i] * StrtoFloatAnySeparator(ConcentrationFactorEdit.Text) / (1000*1000);
 
-      if (ElementsVarNames[i] <> 'P') and (ElementsVarNames[i] <> 'K') then begin
+      if (ElementsVarNames[i] <> 'P') and (ElementsVarNames[i] <> 'K') then
         StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (FloattoStr(round2(elementInSolutionB[i], 5)));
-      end;
 
-      if ElementsVarNames[i] = 'P' then begin
+      if ElementsVarNames[i] = 'P' then
         StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (FloattoStr(round2(elementInSolutionB[i] * 2.2915, 3)));
-      end;
 
-      if ElementsVarNames[i] = 'K' then begin
+      if ElementsVarNames[i] = 'K' then
         StockAnalysisForm.StringGrid.Cells[2, i+ 1] := (FloattoStr(round2(elementInSolutionB[i] * 1.2047, 3)));
-      end;
-
     end;
   end;
 
@@ -657,81 +625,55 @@ var
 begin
 
   with TStringList.Create do
-
     try
 
       Add(AnyObservationLabel.Caption);
-
       Add(' , , , , ');
       Add('Name, Formula, Amount, Units, Amount, Units, Cost');
 
-      for i := 0 to StringGrid2.RowCount - 1 do
+      for i := 0 to StringGrid2.RowCount - 1 do begin
 
-      begin
+        if StringGrid2.Cells[UNIT_IDX,i] = 'oz' then
+          Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
+              StringGrid2.Cells[FORMULA_IDX,i] + ',' +
+              StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
+              StringGrid2.Cells[UNIT_IDX,i]    + ',' +
+              FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/16)  + ',' + 'lb'    + ',' +
+              StringGrid2.Cells[COST_IDX,i]);
 
-      if StringGrid2.Cells[UNIT_IDX,i] = 'oz' then
-      begin
-        Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
-            StringGrid2.Cells[FORMULA_IDX,i] + ',' +
-            StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
-            StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/16)  + ',' +
-            'lb'    + ',' +
-            StringGrid2.Cells[COST_IDX,i]);
-      end;
+        if StringGrid2.Cells[UNIT_IDX,i] = 'g' then
+          Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
+              StringGrid2.Cells[FORMULA_IDX,i] + ',' +
+              StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
+              StringGrid2.Cells[UNIT_IDX,i]    + ',' +
+              FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' + 'kg'    + ',' + StringGrid2.Cells[COST_IDX,i]);
 
-      if StringGrid2.Cells[UNIT_IDX,i] = 'g' then
-      begin
-        Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
-            StringGrid2.Cells[FORMULA_IDX,i] + ',' +
-            StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
-            StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
-            'kg'    + ',' +
-            StringGrid2.Cells[COST_IDX,i]);
-      end;
-
-      if StringGrid2.Cells[UNIT_IDX,i] = 'mL' then
-      begin
-        Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
-            StringGrid2.Cells[FORMULA_IDX,i] + ',' +
-            StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
-            StringGrid2.Cells[UNIT_IDX,i]    + ',' +
-            FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' +
-            'L'    + ',' +
-            StringGrid2.Cells[COST_IDX,i]);
-      end;
-
-
+        if StringGrid2.Cells[UNIT_IDX,i] = 'mL' then
+          Add(StringGrid2.Cells[NAME_IDX,i]    + ',' +
+              StringGrid2.Cells[FORMULA_IDX,i] + ',' +
+              StringGrid2.Cells[AMOUNT_IDX,i]  + ',' +
+              StringGrid2.Cells[UNIT_IDX,i]    + ',' +
+              FloatToStr(StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX,i])/1000)   + ',' + 'L'    + ',' + StringGrid2.Cells[COST_IDX,i]);
       end;
 
       Add(' , , , , ');
       Add('Element, Results(ppm), GE, IE, Water (ppm)');
 
       for i := 0 to StringGrid1.RowCount - 1 do
-
-      begin
-
         Add(StringGrid1.Cells[0,i] + ',' +
             StringGrid1.Cells[1,i] + ',' +
             StringGrid1.Cells[2,i] + ',' +
             StringGrid1.Cells[3,i] + ',' +
             StringGrid1.Cells[4,i]);
 
-      end;
-
       Add(' , , , ,');
       Add(PredictedECValuePanel.Caption + ' +/- 10%');
 
-      if SaveDialog1.Execute then
-        SaveToFile(SaveDialog1.filename);
+      if SaveDialog1.Execute then SaveToFile(SaveDialog1.filename);
 
     finally
-
       Free;
-
     end;
-
 end;
 
 procedure TMainForm.DetailedPerSubstAnalysisButtonClick(Sender: TObject);
@@ -768,8 +710,7 @@ var
 begin
   If StringGrid2.RowCount < 2 then exit;
 
-  for i := 1 to StringGrid2.RowCount-1 do
-  begin
+  for i := 1 to StringGrid2.RowCount-1 do begin
     current_weight := StrtoFloatAnySeparator(StringGrid2.Cells[AMOUNT_IDX, i]);
     StringGrid2.Cells[AMOUNT_IDX, i] := FloatToStr(round2(current_weight*0.95, 4));
   end;
@@ -791,7 +732,7 @@ end;
 
 procedure TMainForm.InputMixAnalysisButtonClick(Sender: TObject);
 begin
-      AnalysisForm.visible := True ;
+  AnalysisForm.visible := True ;
 end;
 
 
@@ -1310,42 +1251,33 @@ begin
     CopyWeightButton.Enabled := True;
 
     // calculation of EC by empirical model
-    if ECModelRadioGroup.ItemIndex=1 then
-    begin
+    if ECModelRadioGroup.ItemIndex=1 then begin
         predicted_ec := 0;
         for i := 1 to NumOfElements do
-        begin
-            predicted_ec := conc_factor[i-1]*StrtoFloatAnySeparator(
-              (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) *
-              ec_contribution[ECModelRadioGroup.ItemIndex, i - 1] + predicted_ec;
-        end;
+            predicted_ec := conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) * ec_contribution[ECModelRadioGroup.ItemIndex, i - 1] + predicted_ec;
+
         predicted_ec := round2(predicted_ec+0.39661671, 3);
     end;
 
     // Calculation of EC by LMCv2 model
-    if ECModelRadioGroup.ItemIndex=0 then
-    begin
-
+    if ECModelRadioGroup.ItemIndex=0 then begin
         // calculate ionic strength used for conductivity model
         ionic_strength := 0;
         for i := 1 to NumOfElements do ionic_strength := zi[i-1]*zi[i-1]*(StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption) /(1000*molar_mass[i-1])) + ionic_strength;
-
         predicted_ec := 0;
         for i := 1 to NumOfElements do
-        begin
             predicted_ec := conc_factor[i-1]
                             * (StrtoFloatAnySeparator((FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption)/(1000*molar_mass[i-1]))
                             * ec_contribution[ECModelRadioGroup.ItemIndex, i - 1]
                             * exp(-0.7025187*sqrt(ionic_strength)*power(zi[i-1],1.5))
                             + predicted_ec;
-        end;
+
         predicted_ec := round2(predicted_ec, 3);
     end;
 
     PredictedECValuePanel.Caption := 'EC=' + FloattoStr(predicted_ec) + ' mS/cm';
 
     // analysis of stock solutions
-
     if SolPrepTypeRadioGroup.ItemIndex=0 then begin
 
       //first analyze A solution      23.0  158.5   30.3  284.6  146.2   58.0  28.3
@@ -1460,7 +1392,6 @@ begin
 
   // SECOND IMPORTANT IF STATEMENT
   if CalcTypeRadioGroup.Itemindex=1 then begin
-
     varnames := nil ;
     Result := nil ;
     name_array := nil ;
@@ -1538,9 +1469,7 @@ begin
           StringGrid1.Cells[1,i] :=(FloatToStrF((1/conc_factor[j])*(Result[j] + waterquality[i - 1]), ffExponent, 4, 2));
           (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption := FloatToStrF((1/conc_factor[j])*(Result[j] + waterquality[i - 1]), ffExponent,4, 2);
         end;
-
       end;
-
     end;
 
 
@@ -1628,9 +1557,7 @@ end;
 
 procedure TMainForm.AddFormulationButtonClick(Sender: TObject);
 begin
-
-  if FormulationNameEdit.Text = 'Input Formulation Name Here' then
-  begin
+  if FormulationNameEdit.Text = 'Input Formulation Name Here' then begin
     ShowMessage('Please input a name within the name input field') ;
     Exit;
   end;
@@ -1663,7 +1590,7 @@ begin
   DBFormulations.Insert;
 
   if FormulationNameEdit.Text <> 'DEFAULT' then
-  ShowMessage('Formulation named ' + FormulationNameEdit.Text + ' has been saved to the Database');
+    ShowMessage('Formulation named ' + FormulationNameEdit.Text + ' has been saved to the Database');
 
   MainForm.UpdateComboBox;
 
@@ -1681,8 +1608,7 @@ end;
 procedure TMainForm.DeleteForulationButtonClick(Sender: TObject);
 begin
 
-  if FormulationComboBox.Text = 'Select formulation from DB' then
-  begin
+  if FormulationComboBox.Text = 'Select formulation from DB' then begin
     ShowMessage('Please select a formulation to delete from the drop down menu') ;
     Exit;
   end;
@@ -1701,9 +1627,7 @@ end;
 
 procedure TMainForm.SubstanceAnalysisButtonClick(Sender: TObject);
 begin
-
   CommercialNutrientForm.ComboBox4.Items.Clear;
-
   DBSubstances.SearchFirst;
 
   while not DBSubstances.EOF do
@@ -1718,23 +1642,18 @@ end;
 
 procedure TMainForm.SetWQParamsButtonClick(Sender: TObject);
 begin
-
   WatterQualityForm.Visible := True;
-
   WatterQualityForm.UpdateComboBox;
 
   if WatterQualityForm.ComboBox1.Items.Count = 0 then begin
     WatterQualityForm.ComboBox1.Text  := 'Select Water Quality Data From DB';
     WatterQualityForm.Button2.Enabled := False;
   end;
-
 end;
 
 procedure TMainForm.SetIPValuesButtonClick(Sender: TObject);
 begin
-
   InsPrecisionForm.Visible := True;
-
 end;
 
 
@@ -1742,8 +1661,7 @@ procedure TMainForm.FormulationComboBoxSelect(Sender: TObject);
 var
   Units : string ;
 begin
-  if DBFormulations.SearchByField('NAME',FormulationComboBox.Items[FormulationComboBox.ItemIndex], True) then
-  begin
+  if DBFormulations.SearchByField('NAME',FormulationComboBox.Items[FormulationComboBox.ItemIndex], True) then begin
     Units := DBFormulations.UNITS;
     if Units = 'ppm' then ConcUnitsRadioGroup.ItemIndex := 0;
     if Units = 'M' then ConcUnitsRadioGroup.ItemIndex := 1;
@@ -1769,10 +1687,6 @@ begin
   end;
 end;
 
-procedure TMainForm.SiSiO2ComboBoxChange(Sender: TObject);
-begin
-
-end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 var
@@ -1837,7 +1751,6 @@ begin
 
     SiSiO2ComboBox.ItemIndex := StrToInt(DBsettings.LoadSettingsValue('Main', 'MainForm.SiSiO2ComboBox', IntToStr(SiSiO2ComboBox.ItemIndex)));
 
-
     LoadToStringGridFromDBSettings(ComparisonForm.StringGrid, 'hb_comparison');
     LoadToStringGridFromDBSettings(StockAnalysisForm.StringGrid, 'hb_stockanalysis');
     LoadToStringGridFromDBSettings(PerSubstanceForm.StringGrid, 'hb_persubstance');
@@ -1885,32 +1798,14 @@ begin
   StringGrid2.CopyToClipboard ;
 end;
 
-procedure TMainForm.PageControlExit(Sender: TObject);
-begin
 
-end;
-
-procedure TMainForm.PredictedECValuePanelClick(Sender: TObject);
-begin
-
-end;
-
-procedure TMainForm.cleanresults;
+procedure TMainForm.CleanResults;
 var
   i: integer ;
 begin
-
-StringGrid1.Clean ;
-StringGrid2.Clean ;
-{
-RatioForm.StringGrid1.Clean;
-PerSubstanceForm.StringGrid1.Clean;
-StockAnalysisForm.StringGrid1.Clean;
-}
-
-for i := 1 to NumOfElements do
-(FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption := '0' ;
-
+  StringGrid1.Clean ;
+  StringGrid2.Clean ;
+  for i := 1 to NumOfElements do (FindComponent('RLabel' + IntToStr(i)) as TLabel).Caption := '0' ;
 end;
 
 procedure TMainForm.ConcUnitsRadioGroupSetTexts(ConcLabelCaption, UnitsLabelCaption, SGCells, PerSubstanceFormSGCells, RatioFormSGCells: string);
@@ -2025,45 +1920,21 @@ begin
 end;
 
 
-procedure TMainForm.StringGrid2DrawCell(Sender: TObject; aCol, aRow: Integer;
-  aRect: TRect; aState: TGridDrawState);
-begin
-
-end;
-
 procedure TMainForm.StringGrid2EditButtonClick(Sender: TObject);
-var
-  i, j: integer;
 begin
-
-     i := StringGrid2.Row;
-     j := StringGrid2.Col;
-
-     if StringGrid2.Cells[SOURCE_IDX,i] <> '' then
-     begin
-         OpenURL(StringGrid2.Cells[SOURCE_IDX,i]);
-     end;
-
+  if StringGrid2.Cells[SOURCE_IDX,StringGrid2.Row] <> '' then OpenURL(StringGrid2.Cells[SOURCE_IDX,StringGrid2.Row]);
 end;
 
 procedure TMainForm.StringGrid2EditingDone(Sender: TObject);
 begin
-weightFineTunning;
+  weightFineTunning;
 end;
 
-procedure TMainForm.TabSheet1ContextPopup(Sender: TObject; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-
-end;
 
 procedure TMainForm.ToggleBox1Change(Sender: TObject);
 begin
   DatasetNameForm.Visible := true;
 end;
-
-
-
 
 
 initialization

@@ -367,7 +367,6 @@ object MainForm: TMainForm
     ParentFont = False
     TabIndex = 1
     TabOrder = 0
-    OnExit = PageControlExit
     object TabSheet4: TTabSheet
       Caption = 'Welcome'
       ClientHeight = 645
@@ -22396,7 +22395,6 @@ object MainForm: TMainForm
       ClientWidth = 826
       ParentShowHint = False
       ShowHint = True
-      OnContextPopup = TabSheet1ContextPopup
       object Label1: TLabel
         Left = 44
         Height = 15
@@ -23378,7 +23376,6 @@ object MainForm: TMainForm
         Style = csDropDownList
         TabOrder = 19
         Text = 'Si'
-        OnChange = SiSiO2ComboBoxChange
       end
       object PayPalDonateButton: TBitBtn
         Left = 721
@@ -23724,7 +23721,6 @@ object MainForm: TMainForm
         ParentShowHint = False
         ShowHint = True
         TabOrder = 0
-        OnClick = PredictedECValuePanelClick
       end
       object ExportToCSVButton: TBitBtn
         Left = 56
