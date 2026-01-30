@@ -42,8 +42,6 @@ type
     procedure SaveToFileButtonClick(Sender: TObject);
     procedure LoadFromFileButtonClick(Sender: TObject);
     procedure SummaryPopupsCheckBoxChange(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure ListBox1Click(Sender: TObject);
     procedure SubstanceDatabaseListBoxSelectionChange(Sender: TObject);
     procedure SubstancesUsedListBoxSelectionChange(Sender: TObject);
   private
@@ -62,16 +60,6 @@ uses HB_Main, hb_addweight, hb_analysis ;
 
 { TSubstanceSelectionForm }
 
-procedure TSubstanceSelectionForm.FormCreate(Sender: TObject);
-begin
-
-end;
-
-procedure TSubstanceSelectionForm.ListBox1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TSubstanceSelectionForm.SubstanceDatabaseListBoxSelectionChange(Sender: TObject);
 var
   i,selected_idx : integer ;
@@ -79,20 +67,19 @@ var
 begin
   item_selected := false ;
 
-  for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+  for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
     if (SubstanceDatabaseListBox.Selected [i]) then begin
        selected_idx := i;
        item_selected := true ;
     end;
-  end ;
 
-  if item_selected then  begin
-    for i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
-        if (SubstancesUsedListBox.Selected [i]) then SubstancesUsedListBox.Selected [i] := false ;
-    end ;
+  if item_selected then begin
+    for i := 0 to SubstancesUsedListBox.Items.Count - 1 do
+      if (SubstancesUsedListBox.Selected [i]) then SubstancesUsedListBox.Selected [i] := false ;
+
     DBSubstances.SearchByField('NAME', SubstanceDatabaseListBox.Items[selected_idx], True);
-
     PopupNotifier.Title := SubstanceDatabaseListBox.Items[selected_idx] + ' - '+ 'ConcType ' + DBSubstances.CONCTYPE;
+
     if DBSubstances.ISLIQUID then PopupNotifier.Text := 'Liquid, composition is in %W/V'
      else PopupNotifier.Text := 'Solid, composition is in %W/W';
 
@@ -134,18 +121,15 @@ var
 begin
   item_selected := false ;
 
-  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
+  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do
     if (SubstancesUsedListBox.Selected [i]) then begin
         item_selected := true ;
         selected_idx := i;
     end;
-  end ;
 
   if item_selected then begin
-     for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
-        if (SubstanceDatabaseListBox.Selected [i]) then
-        SubstanceDatabaseListBox.Selected [i] := false ;
-     end ;
+    for i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
+      if (SubstanceDatabaseListBox.Selected [i]) then SubstanceDatabaseListBox.Selected [i] := false ;
 
     DBSubstancesUsed.SearchByField('NAME', SubstancesUsedListBox.Items[selected_idx], True);
     PopupNotifier.Title := SubstancesUsedListBox.Items[selected_idx] + ' - '+ 'ConcType ' + DBSubstancesUsed.CONCTYPE ;
@@ -254,8 +238,8 @@ end;
 
 procedure TSubstanceSelectionForm.DoNotUseButtonClick(Sender: TObject);
 var
-i, j : integer ;
-selected_items : array of integer ;
+  i, j : integer ;
+  selected_items : array of integer ;
 begin
   if SubstancesUsedListBox.SelCount = 0 then Exit; // No ítems selected
 
@@ -325,11 +309,10 @@ end;
 
 procedure TSubstanceSelectionForm.SetAmountButtonClick(Sender: TObject);
 var
-i : integer ;
-selected_item : integer ;
+  i : integer ;
+  selected_item : integer ;
 begin
-
-   if SubstancesUsedListBox.SelCount = 0 then // No ítems selected
+  if SubstancesUsedListBox.SelCount = 0 then // No ítems selected
      Exit;
 
    For i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
@@ -376,19 +359,17 @@ var
 begin
    saltList := TStringList.Create;
 
-   if SubstancesUsedListBox.Items.Count = 0 then
-   begin
+   if SubstancesUsedListBox.Items.Count = 0 then begin
       ShowMessage('No substances have been loaded');
       exit;
    end;
 
    For i := 0 to SubstancesUsedListBox.Items.Count - 1 do saltList.Add(SubstancesUsedListBox.Items[i]);
 
-   if SaveDialog.Execute then
-     begin
+   if SaveDialog.Execute then begin
          ShowMessage(SaveDialog.FileName) ;
          saltList.SaveToFile(SaveDialog.FileName);
-     end;
+   end;
 
    saltList.Free();
 end;
@@ -399,34 +380,23 @@ var
   i, j : integer ;
   selected_items : array of integer ;
 begin
- if OpenDialog.Execute then
-   begin
-     saltList := TStringList.Create;
-     saltList.LoadFromFile(OpenDialog.FileName);
+  if OpenDialog.Execute then begin
+    saltList := TStringList.Create;
+    saltList.LoadFromFile(OpenDialog.FileName);
 
-     DoNotUseAllButtonClick(Sender);
+    DoNotUseAllButtonClick(Sender);
 
+    For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do SubstanceDatabaseListBox.Selected [j] := False;
 
-    For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
-    begin
-        SubstanceDatabaseListBox.Selected [j] := False;
-    end;
+    For i := 0 to saltList.Count - 1 do
+       For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
+         if SubstanceDatabaseListBox.Items[j] = saltList[i] then begin
+             SetLength(selected_items, Length(selected_items)+1);
+             selected_items[Length(selected_items)-1] := j ;
+         end;
+  end;
 
-     For i := 0 to saltList.Count - 1 do
-     begin
-          For j := 0 to SubstanceDatabaseListBox.Items.Count - 1 do
-          begin
-               if SubstanceDatabaseListBox.Items[j] = saltList[i] then
-               begin
-                   SetLength(selected_items, Length(selected_items)+1);
-                   selected_items[Length(selected_items)-1] := j ;
-               end;
-          end;
-     end;
-
-
-  For i := 0 to Length(selected_items)-1 do
-  begin
+  For i := 0 to Length(selected_items)-1 do begin
     DBSubstances.SearchByField('NAME', SubstanceDatabaseListBox.Items[i], True);
     DBSubstancesUsed.NAME := DBSubstances.NAME;
     DBSubstancesUsed.FORMULA  := DBSubstances.FORMULA;
@@ -454,21 +424,14 @@ begin
     DBSubstancesUsed.Insert;
   end;
 
-  For i := 0 to Length(selected_items)-1 do
-  begin
-       SubstancesUsedListBox.Items.Add(SubstanceDatabaseListBox.Items[selected_items[i]]);
-       SubstanceDatabaseListBox.Items.Delete(selected_items[i]);
-       For j := 0 to Length(selected_items)-1 do
-       begin
-            if (j > i) and (selected_items[j] > selected_items[i]) then
-               selected_items[j] := selected_items[j] - 1;
-       end;
-
+  For i := 0 to Length(selected_items)-1 do begin
+    SubstancesUsedListBox.Items.Add(SubstanceDatabaseListBox.Items[selected_items[i]]);
+    SubstanceDatabaseListBox.Items.Delete(selected_items[i]);
+    For j := 0 to Length(selected_items)-1 do
+      if (j > i) and (selected_items[j] > selected_items[i]) then selected_items[j] := selected_items[j] - 1;
   end;
 
    saltList.Free();
-end;
-
 end;
 
 procedure TSubstanceSelectionForm.SummaryPopupsCheckBoxChange(Sender: TObject);
@@ -498,13 +461,10 @@ begin
     DBSubstancesUsed.Next;
   end;
 
-  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do
-  begin
+  for i := 0 to SubstancesUsedListBox.Items.Count - 1 do begin
     j := 0;
-    while j <= SubstanceDatabaseListBox.Items.Count - 1 do
-    begin
-      if (SubstanceDatabaseListBox.Items[j] = SubstancesUsedListBox.Items[i]) then
-      begin
+    while j <= SubstanceDatabaseListBox.Items.Count - 1 do begin
+      if (SubstanceDatabaseListBox.Items[j] = SubstancesUsedListBox.Items[i]) then begin
         SubstanceDatabaseListBox.Items.Delete(j);
         j := j + 1;
       end;

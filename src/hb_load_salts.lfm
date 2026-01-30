@@ -13,7 +13,6 @@ object SubstanceSelectionForm: TSubstanceSelectionForm
   ClientWidth = 689
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  OnCreate = FormCreate
   object SubstanceDatabaseLabel: TLabel
     Left = 66
     Height = 21

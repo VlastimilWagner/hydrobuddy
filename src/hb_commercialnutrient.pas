@@ -6,25 +6,19 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, hb_comparison, db_substances, customhelpfunctions;
+  ComCtrls, StdCtrls, Menus, ExtCtrls, Buttons, hb_comparison, db_substances, customhelpfunctions, hb_constants;
 
 type
 
   { TCommercialNutrientForm }
 
   TCommercialNutrientForm = class(TForm)
-    Button1: TBitBtn;
-    Button2: TButton;
-    Button3: TButton;
-    ComboBox4: TComboBox;
+    CalculateButton: TBitBtn;
+    AddProductButton: TButton;
+    VolumeRadioGroup: TRadioGroup;
+    SeeAllComparedButton: TButton;
+    SubstancesComboBox: TComboBox;
     Edit1: TEdit;
-    Edit11: TEdit;
-    Edit12: TEdit;
-    Edit13: TEdit;
-    Edit15: TEdit;
-    Edit16: TEdit;
-    Edit17: TEdit;
-    Edit14: TEdit;
     Edit2: TEdit;
     Edit4: TEdit;
     Edit3: TEdit;
@@ -34,33 +28,38 @@ type
     Edit8: TEdit;
     Edit9: TEdit;
     Edit10: TEdit;
+    Edit11: TEdit;
+    Edit12: TEdit;
+    Edit13: TEdit;
+    Edit14: TEdit;
+    Edit15: TEdit;
+    Edit16: TEdit;
+    VolumeEdit: TEdit;
     Label1: TLabel;
-    Label12: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label13: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label29: TLabel;
-    Label9: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    Label20: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
     Label10: TLabel;
     Label11: TLabel;
-    Panel1: TPanel ;
-    CheckBox1: TCheckBox;
-    RadioButton3: TRadioButton;
-    RadioButton4: TRadioButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure ComboBox4Change(Sender: TObject);
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    SelectSubstanceLabel: TLabel;
+    CompositionValuesLabel: TLabel;
+    VolumeLabel: TLabel;
+    VolumePanel: TPanel ;
+    AddToCurrentCheckBox: TCheckBox;
+    procedure CalculateButtonClick(Sender: TObject);
+    procedure AddProductButtonClick(Sender: TObject);
+    procedure SeeAllComparedButtonClick(Sender: TObject);
+    procedure SubstancesComboBoxChange(Sender: TObject);
   private
     { private declarations }
   public
@@ -78,202 +77,95 @@ uses HB_Main ;
 { TCommercialNutrientForm }
 
 
-procedure TCommercialNutrientForm.Button1Click(Sender: TObject);
+procedure TCommercialNutrientForm.CalculateButtonClick(Sender: TObject);
 var
-i : integer ;
-varnames : array of string ;
-result : array of double ;
-test : double ;
-Volume : double ;
+  i : integer ;
+  varnames : array[0..NumOfElements-1] of string ;
+  result : array[0..NumOfElements-1] of double ;
+  test : double ;
+  Volume : double ;
 begin
+  if VolumeRadioGroup.ItemIndex = 0 then Volume := 1      ;
+  if VolumeRadioGroup.ItemIndex = 1 then Volume := GaltoLConstant ;
 
-SetLength (varnames, 16) ;
-SetLength (result, 16) ;
+  for i := 1 to NumOfElements do begin
+    // load all element names (this time we don't need to discriminate as
+    // we simply calculate for everyone
+    varnames[ i - 1 ] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption ;
+  end;
 
-if  RadioButton3.Checked then
-Volume := 1      ;
-
-if RadioButton4.Checked then
-Volume := 3.78541178 ;
-
-for i := 1 to 16 do
- begin
-
- // load all element names (this time we don't need to discriminate as
- // we simply calculate for everyone
- varnames[ i - 1 ] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption ;
-
- end;
-
-
-    for i := 1 to 16 do
-
-    begin
-
-      test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-      result[i - 1] := round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
-
-    end;
-
-    MainForm.cleanresults ;
-    MainForm.ConcUnitsRadioGroup.ItemIndex := 0 ;
-
-
-    // finally copy values to edit boxes
-
-
-
-           if CheckBox1.Checked = false then
-
-           begin
-
-          MainForm.Edit1.Text := FloattoStr(result[0]) ;
-          MainForm.Edit3.Text := FloattoStr(result[2]) ;
-          MainForm.Edit2.Text := FloattoStr(result[1]) ;
-          MainForm.Edit14.Text := FloattoStr(result[13]) ;
-          MainForm.Edit4.Text := FloattoStr(result[3]) ;
-          MainForm.Edit5.Text := FloattoStr(result[4]) ;
-          MainForm.Edit6.Text := FloattoStr(result[5]) ;
-          MainForm.Edit7.Text := FloattoStr(result[6]) ;
-          MainForm.Edit8.Text := FloattoStr(result[7]) ;
-          MainForm.Edit9.Text := FloattoStr(result[8]) ;
-          MainForm.Edit10.Text := FloattoStr(result[9]) ;
-          MainForm.Edit11.Text := FloattoStr(result[10]) ;
-          MainForm.Edit12.Text := FloattoStr(result[11]) ;
-          MainForm.Edit13.Text := FloattoStr(result[12]) ;
-          MainForm.Edit15.Text := FloattoStr(result[14]) ;
-          MainForm.Edit16.Text := FloattoStr(result[15]) ;
-
-          end ;
-
-
-
-
-          if CheckBox1.Checked then
-
-          begin
-
-          MainForm.Edit1.Text := FloattoStr(result[0]+ StrtoFloat(MainForm.Edit1.Text)) ;
-
-          MainForm.Edit3.Text := FloattoStr(result[2]+ StrtoFloat(MainForm.Edit3.Text)) ;
-
-          MainForm.Edit2.Text := FloattoStr(result[1]+ StrtoFloat(MainForm.Edit2.Text)) ;  ;
-
-          MainForm.Edit13.Text := FloattoStr(result[13]+ StrtoFloat(MainForm.Edit13.Text)) ;
-
-
-
-
-          MainForm.Edit4.Text := FloattoStr(result[3]+ StrtoFloat(MainForm.Edit4.Text)) ;
-          MainForm.Edit5.Text := FloattoStr(result[4]+ StrtoFloat(MainForm.Edit5.Text)) ;
-          MainForm.Edit6.Text := FloattoStr(result[5]+ StrtoFloat(MainForm.Edit6.Text)) ;
-          MainForm.Edit7.Text := FloattoStr(result[6]+ StrtoFloat(MainForm.Edit7.Text)) ;
-          MainForm.Edit8.Text := FloattoStr(result[7]+ StrtoFloat(MainForm.Edit8.Text)) ;
-          MainForm.Edit9.Text := FloattoStr(result[8]+ StrtoFloat(MainForm.Edit9.Text)) ;
-          MainForm.Edit10.Text := FloattoStr(result[9]+ StrtoFloat(MainForm.Edit10.Text)) ;
-          MainForm.Edit11.Text := FloattoStr(result[10]+ StrtoFloat(MainForm.Edit11.Text));
-          MainForm.Edit12.Text := FloattoStr(result[11]+ StrtoFloat(MainForm.Edit12.Text));
-          MainForm.Edit13.Text := FloattoStr(result[12]+ StrtoFloat(MainForm.Edit13.Text));
-          MainForm.Edit14.Text := FloattoStr(result[13]+ StrtoFloat(MainForm.Edit14.Text));
-          MainForm.Edit15.Text := FloattoStr(result[14]+ StrtoFloat(MainForm.Edit15.Text));
-          MainForm.Edit16.Text :=FloattoStr(result[15]+ StrtoFloat(MainForm.Edit16.Text));
-
-          end ;
-
-
-          CommercialNutrientForm.Visible := false ;
-
-
-          end ;
-
-procedure TCommercialNutrientForm.Button2Click(Sender: TObject);
-var
-i : integer ;
-varnames : array of string ;
-result : array of double ;
-test : double ;
-Volume : double ;
-colCount: integer;
-addition_units: string;
-s:TTextStyle;
-begin
-
-
-SetLength (varnames, 16) ;
-SetLength (result, 16) ;
-
-if (is_liquid = True) and (RadioButton4.Checked) then addition_units := 'mL/gal' ;
-if (is_liquid = False) and (RadioButton4.Checked) then addition_units := 'g/gal' ;
-if (is_liquid = True) and (RadioButton3.Checked) then addition_units := 'mL/L'   ;
-if (is_liquid = False) and (RadioButton3.Checked) then addition_units := 'g/L'   ;
-
-if  RadioButton3.Checked then
-Volume := 1      ;
-
-if RadioButton4.Checked then
-Volume := 3.78541178 ;
-
-for i := 1 to 16 do
- begin
-
- // load all element names (this time we don't need to discriminate as
- // we simply calculate for everyone
- varnames[ i - 1 ] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption ;
-
- end;
-
-
-    for i := 1 to 16 do
-
-    begin
-
+  for i := 1 to NumOfElements do begin
     test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
-    result[i - 1] := round2((0.01 * test * StrtoFloat(Edit17.Text) * 1000 )/Volume, 2) ;
+    result[i - 1] := round2((0.01 * test * StrtoFloat(VolumeEdit.Text) * 1000 )/Volume, 2) ;
+  end;
 
-    end;
+  MainForm.cleanresults ;
+  MainForm.ConcUnitsRadioGroup.ItemIndex := 0 ;
 
+  // finally copy values to edit boxes
+  for i := 1 to NumOfElements do
+    if AddToCurrentCheckBox.Checked then
+      (FindComponent('MainForm.Edit' + IntToStr(i)) as TEdit).Text := FloattoStr(result[i-1] + StrtoFloat((FindComponent('MainForm.Edit' + IntToStr(i)) as TEdit).Text))
+    else
+      (FindComponent('MainForm.Edit' + IntToStr(i)) as TEdit).Text := FloattoStr(result[i-1]) ;
 
-    // finally copy values for comparison
+  CommercialNutrientForm.Visible := false ;
+end ;
 
-    ComparisonForm.StringGrid.ColCount:= ComparisonForm.StringGrid.ColCount + 1 ;
+procedure TCommercialNutrientForm.AddProductButtonClick(Sender: TObject);
+var
+  i : integer ;
+  varnames : array[0..NumOfElements-1] of string ;
+  result : array[0..NumOfElements-1] of double ;
+  test : double ;
+  Volume : double ;
+  colCount: integer;
+  addition_units: string;
+  s:TTextStyle;
+begin
+  if (is_liquid = True) and (VolumeRadioGroup.ItemIndex = 1) then addition_units := 'mL/gal' ;
+  if (is_liquid = False) and (VolumeRadioGroup.ItemIndex = 1) then addition_units := 'g/gal' ;
+  if (is_liquid = True) and (VolumeRadioGroup.ItemIndex = 0) then addition_units := 'mL/L'   ;
+  if (is_liquid = False) and (VolumeRadioGroup.ItemIndex = 0) then addition_units := 'g/L'   ;
 
-    colCount := ComparisonForm.StringGrid.ColCount ;
+  if VolumeRadioGroup.ItemIndex = 0 then Volume := 1;
+  if VolumeRadioGroup.ItemIndex = 1 then Volume := GaltoLConstant ;
 
-    ComparisonForm.StringGrid.Cells[ColCount-1, 0] := ComboBox4.Items[ComboBox4.ItemIndex] ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 1] := FloattoStr(result[0]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 2] := FloattoStr(result[1]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 3] := FloattoStr(result[2]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 4] := FloattoStr(result[3]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 5] := FloattoStr(result[4]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 6] := FloattoStr(result[5]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 7] := FloattoStr(result[6]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 8] := FloattoStr(result[7]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 9] := FloattoStr(result[8]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 10] := FloattoStr(result[9]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 11] := FloattoStr(result[10]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 12] := FloattoStr(result[11]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 13] := FloattoStr(result[12]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 14] := FloattoStr(result[13]);
-    ComparisonForm.StringGrid.Cells[ColCount-1, 15] := FloattoStr(result[14]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 16] := FloattoStr(result[15]) ;
-    ComparisonForm.StringGrid.Cells[ColCount-1, 17] := Edit17.Text + addition_units ;
+  // load all element names (this time we don't need to discriminate as
+  // we simply calculate for everyone
+  for i := 1 to NumOfElements do varnames[ i - 1 ] := (FindComponent('Label' + IntToStr(i)) as TLabel).Caption ;
+  for i := 1 to NumOfElements do begin
+    test := StrtoFloat(((FindComponent('Edit' + IntToStr(i)) as TEdit).Text)) ;
+    result[i - 1] := round2((0.01 * test * StrtoFloat(VolumeEdit.Text) * 1000 )/Volume, 2) ;
+  end;
 
-    ShowMessage('Product final ppm values added to comparison chart') ;
-    ComparisonForm.StringGrid.AutoSizeColumn(colCount-1);
-    s := ComparisonForm.StringGrid.DefaultTextStyle;
-    s.Alignment:=taCenter;
-    ComparisonForm.StringGrid.DefaultTextStyle := s;
+  // finally copy values for comparison
+  ComparisonForm.StringGrid.ColCount:= ComparisonForm.StringGrid.ColCount + 1 ;
+
+  colCount := ComparisonForm.StringGrid.ColCount ;
+
+  ComparisonForm.StringGrid.Cells[ColCount-1, 0] := SubstancesComboBox.Items[SubstancesComboBox.ItemIndex] ;
+
+  for i := 1 to NumOfElements do
+    ComparisonForm.StringGrid.Cells[ColCount-1, i] := FloattoStr(result[i-1]);
+
+  ComparisonForm.StringGrid.Cells[ColCount-1, 17] := VolumeEdit.Text + addition_units ;
+
+  ShowMessage('Product final ppm values added to comparison chart') ;
+  ComparisonForm.StringGrid.AutoSizeColumn(colCount-1);
+  s := ComparisonForm.StringGrid.DefaultTextStyle;
+  s.Alignment:=taCenter;
+  ComparisonForm.StringGrid.DefaultTextStyle := s;
 end;
 
-procedure TCommercialNutrientForm.Button3Click(Sender: TObject);
+procedure TCommercialNutrientForm.SeeAllComparedButtonClick(Sender: TObject);
 begin
   ComparisonForm.Visible := true ;
 end;
 
-procedure TCommercialNutrientForm.ComboBox4Change(Sender: TObject);
+procedure TCommercialNutrientForm.SubstancesComboBoxChange(Sender: TObject);
 begin
-
-  DBSubstances.SearchByField('Name', ComboBox4.Items[ComboBox4.ItemIndex], True);
+  DBSubstances.SearchByField('Name', SubstancesComboBox.Items[SubstancesComboBox.ItemIndex], True);
 
   Edit1.text := FloatToStr(DBSubstances.N_NO3);
   Edit2.text := FloatToStr(DBSubstances.N_NH4);
@@ -292,17 +184,13 @@ begin
   Edit15.text := FloatToStr(DBSubstances.Na);
   Edit16.text := FloatToStr(DBSubstances.Cl);
 
-
-    if DBSubstances.IsLiquid then
-    begin
-         is_liquid := True ;
-         Label20.Caption := 'Volume of addition (mL)'
-    end else begin
-         is_liquid := False ;
-         Label20.Caption := 'Mass of addition (g)'
-    end;
-
-
+  if DBSubstances.IsLiquid then begin
+     is_liquid := True ;
+     VolumeLabel.Caption := 'Volume of addition (mL)'
+  end else begin
+     is_liquid := False ;
+     VolumeLabel.Caption := 'Mass of addition (g)'
+  end;
 end;
 
 

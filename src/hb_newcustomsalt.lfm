@@ -13,7 +13,6 @@ object CustomSaltForm: TCustomSaltForm
   ClientWidth = 461
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '4.2.0.0'
   object N_NO3Label: TLabel
     Left = 15
     Height = 15
@@ -154,7 +153,7 @@ object CustomSaltForm: TCustomSaltForm
     Left = 280
     Height = 15
     Top = 24
-    Width = 99
+    Width = 100
     Caption = 'Concentrated Type'
     ParentColor = False
   end
@@ -332,7 +331,7 @@ object CustomSaltForm: TCustomSaltForm
     TabOrder = 25
     Text = '100'
   end
-  object CheckBox2: TCheckBox
+  object AddSubstanceCheckBox: TCheckBox
     Left = 24
     Height = 19
     Top = 120
@@ -347,7 +346,7 @@ object CustomSaltForm: TCustomSaltForm
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 4
-    OnChange = CheckBox2Change
+    OnChange = AddSubstanceCheckBoxChange
   end
   object OKButton: TBitBtn
     Left = 24
@@ -371,7 +370,7 @@ object CustomSaltForm: TCustomSaltForm
     TabOrder = 27
     OnClick = CancelButtonClick
   end
-  object ComboBox3: TComboBox
+  object SiComboBox: TComboBox
     Left = 301
     Height = 23
     Top = 168
@@ -385,9 +384,9 @@ object CustomSaltForm: TCustomSaltForm
     Style = csDropDownList
     TabOrder = 19
     Text = 'Si'
-    OnChange = ComboBox3Change
+    OnChange = SiComboBoxChange
   end
-  object ComboBox1: TComboBox
+  object PComboBox: TComboBox
     Left = 15
     Height = 23
     Top = 232
@@ -401,9 +400,9 @@ object CustomSaltForm: TCustomSaltForm
     Style = csDropDownList
     TabOrder = 7
     Text = 'P'
-    OnChange = ComboBox1Change
+    OnChange = PComboBoxChange
   end
-  object ComboBox2: TComboBox
+  object KComboBox: TComboBox
     Left = 16
     Height = 23
     Top = 264
@@ -417,7 +416,7 @@ object CustomSaltForm: TCustomSaltForm
     Style = csDropDownList
     TabOrder = 9
     Text = 'K'
-    OnChange = ComboBox2Change
+    OnChange = KComboBoxChange
   end
   object SaveToXMLButton: TSpeedButton
     Left = 396

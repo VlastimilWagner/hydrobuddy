@@ -365,10 +365,1662 @@ object MainForm: TMainForm
     Width = 834
     ActivePage = TabSheet1
     ParentFont = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Main Page'
+      ClientHeight = 645
+      ClientWidth = 826
+      ParentShowHint = False
+      ShowHint = True
+      object Label1: TLabel
+        Left = 44
+        Height = 15
+        Top = 100
+        Width = 49
+        Caption = 'N (NO3-)'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 86
+        Height = 15
+        Top = 196
+        Width = 7
+        Caption = 'K'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 87
+        Height = 15
+        Top = 164
+        Width = 7
+        Caption = 'P'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label5: TLabel
+        Left = 75
+        Height = 15
+        Top = 228
+        Width = 18
+        Caption = 'Mg'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 79
+        Height = 15
+        Top = 260
+        Width = 14
+        Caption = 'Ca'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label7: TLabel
+        Left = 87
+        Height = 15
+        Top = 292
+        Width = 6
+        Caption = 'S'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 81
+        Height = 15
+        Top = 324
+        Width = 12
+        Caption = 'Fe'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label10: TLabel
+        Left = 81
+        Height = 15
+        Top = 388
+        Width = 14
+        Caption = 'Zn'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 86
+        Height = 15
+        Top = 424
+        Width = 7
+        Caption = 'B'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 78
+        Height = 15
+        Top = 452
+        Width = 15
+        Caption = 'Cu'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label14: TLabel
+        Left = 80
+        Height = 15
+        Top = 516
+        Width = 18
+        Caption = 'Mo'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label15: TLabel
+        Left = 81
+        Height = 15
+        Top = 548
+        Width = 15
+        Caption = 'Na'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label13: TLabel
+        Left = 82
+        Height = 15
+        Top = 484
+        Width = 9
+        Caption = 'Si'
+        ParentColor = False
+        ParentFont = False
+        Visible = False
+      end
+      object Label16: TLabel
+        Left = 82
+        Height = 15
+        Top = 580
+        Width = 11
+        Caption = 'Cl'
+        ParentColor = False
+        ParentFont = False
+      end
+      object TargetLabel: TLabel
+        Left = 140
+        Height = 15
+        Top = 40
+        Width = 36
+        Caption = 'Target '
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel1: TLabel
+        Left = 254
+        Height = 15
+        Top = 100
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel3: TLabel
+        Left = 254
+        Height = 15
+        Top = 164
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel4: TLabel
+        Left = 254
+        Height = 15
+        Top = 196
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel5: TLabel
+        Left = 254
+        Height = 15
+        Top = 228
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel6: TLabel
+        Left = 254
+        Height = 15
+        Top = 260
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel7: TLabel
+        Left = 254
+        Height = 15
+        Top = 292
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel8: TLabel
+        Left = 254
+        Height = 15
+        Top = 324
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel9: TLabel
+        Left = 254
+        Height = 15
+        Top = 356
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel10: TLabel
+        Left = 254
+        Height = 15
+        Top = 388
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel12: TLabel
+        Left = 254
+        Height = 15
+        Top = 452
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel13: TLabel
+        Left = 254
+        Height = 15
+        Top = 484
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel14: TLabel
+        Left = 254
+        Height = 15
+        Top = 516
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel15: TLabel
+        Left = 254
+        Height = 15
+        Top = 548
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel16: TLabel
+        Left = 254
+        Height = 15
+        Top = 580
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object ResultLabel: TLabel
+        Left = 244
+        Height = 15
+        Top = 40
+        Width = 32
+        Caption = 'Result'
+        ParentColor = False
+        ParentFont = False
+      end
+      object ConcLabel: TLabel
+        Left = 140
+        Height = 15
+        Top = 60
+        Width = 67
+        Caption = 'Conc. (ppm)'
+        ParentColor = False
+        ParentFont = False
+      end
+      object UnitsLabel: TLabel
+        Left = 243
+        Height = 15
+        Top = 60
+        Width = 33
+        Caption = '(ppm)'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 72
+        Height = 15
+        Top = 356
+        Width = 18
+        Caption = 'Mn'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel11: TLabel
+        Left = 254
+        Height = 15
+        Top = 420
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 44
+        Height = 15
+        Top = 132
+        Width = 52
+        Caption = 'N (NH4+)'
+        ParentColor = False
+        ParentFont = False
+      end
+      object RLabel2: TLabel
+        Left = 254
+        Height = 15
+        Top = 132
+        Width = 6
+        Caption = '0'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Edit1: TEdit
+        Left = 132
+        Height = 23
+        Top = 96
+        Width = 88
+        ParentFont = False
+        TabOrder = 1
+        Text = '210'
+      end
+      object Edit3: TEdit
+        Left = 132
+        Height = 23
+        Top = 160
+        Width = 88
+        ParentFont = False
+        TabOrder = 3
+        Text = '31'
+      end
+      object Edit4: TEdit
+        Left = 132
+        Height = 23
+        Top = 192
+        Width = 88
+        ParentFont = False
+        TabOrder = 4
+        Text = '235'
+      end
+      object Edit5: TEdit
+        Left = 132
+        Height = 23
+        Top = 224
+        Width = 88
+        ParentFont = False
+        TabOrder = 5
+        Text = '48'
+      end
+      object Edit6: TEdit
+        Left = 132
+        Height = 23
+        Top = 256
+        Width = 88
+        ParentFont = False
+        TabOrder = 6
+        Text = '200'
+      end
+      object Edit7: TEdit
+        Left = 132
+        Height = 23
+        Top = 288
+        Width = 88
+        ParentFont = False
+        TabOrder = 7
+        Text = '64'
+      end
+      object Edit8: TEdit
+        Left = 132
+        Height = 23
+        Top = 320
+        Width = 88
+        ParentFont = False
+        TabOrder = 8
+        Text = '2.9'
+      end
+      object Edit9: TEdit
+        Left = 132
+        Height = 23
+        Top = 352
+        Width = 88
+        ParentFont = False
+        TabOrder = 9
+        Text = '0.5'
+      end
+      object Edit10: TEdit
+        Left = 132
+        Height = 23
+        Top = 384
+        Width = 88
+        ParentFont = False
+        TabOrder = 10
+        Text = '0.05'
+      end
+      object Edit12: TEdit
+        Left = 132
+        Height = 23
+        Top = 448
+        Width = 88
+        ParentFont = False
+        TabOrder = 18
+        Text = '0.02'
+      end
+      object Edit13: TEdit
+        Left = 132
+        Height = 23
+        Top = 480
+        Width = 88
+        ParentFont = False
+        TabOrder = 20
+        Text = '0.0'
+      end
+      object Edit14: TEdit
+        Left = 132
+        Height = 23
+        Top = 512
+        Width = 88
+        ParentFont = False
+        TabOrder = 21
+        Text = '0.05'
+      end
+      object Edit15: TEdit
+        Left = 132
+        Height = 23
+        Top = 544
+        Width = 88
+        ParentFont = False
+        TabOrder = 22
+        Text = '0'
+      end
+      object Edit16: TEdit
+        Left = 132
+        Height = 23
+        Top = 576
+        Width = 88
+        ParentFont = False
+        TabOrder = 23
+        Text = '0'
+      end
+      object Panel1: TPanel
+        Left = 312
+        Height = 102
+        Top = 516
+        Width = 481
+        BevelOuter = bvNone
+        ClientHeight = 102
+        ClientWidth = 481
+        ParentFont = False
+        TabOrder = 16
+        object CopyWeightButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Copy weights resulting from a formulation calculation to the database (to use within a weights to formulation calculation)'
+          Top = 64
+          Width = 222
+          Caption = 'Copy Weight Results to DB'
+          Enabled = False
+          TabOrder = 2
+          OnClick = CopyWeightButtonClick
+        end
+        object CarryOutCalcButton: TBitBtn
+          Left = 250
+          Height = 32
+          Hint = 'Press this button to run your calculation !'
+          Top = 20
+          Width = 222
+          Caption = 'Carry Out Calculation'
+          Font.Style = [fsBold]
+          Glyph.Data = {
+            460E0000424D460E00000000000036000000280000001E0000001E0000000100
+            200000000000100E000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000005110910170300030B00000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00040806082108420CE41223134B000000060000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000010101030400001711421BC00345
+            0FFF0E4117D80000001300000002000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000402000016124723AF04511BFF05501CFE04511BFF1440
+            22950000000F0101010000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000060800
+            032116512FBB085D2CFF095C2DFF095C2DFF095C2DFE0B5C2DFE19211D490000
+            0009000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000010000000C0A06072D15643FDE0B6B3DFF0B6A
+            3DFE136E42FF1D754BFF0F6D3FFF0B6A3DFF0E6B3FF50B100E2E000000050000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0006000000131B322A5C12794EEC0F7D4EFF0F7D4EFE178154FF36926BFF5091
+            76E92C8D63FF107E4FFE0F7D4EFF176A4AD50900001B02020203000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000061722203824775CAB1995
+            67FF12915FFE12915FFE149161FF269A6DFE41A37DF12E24293840A57FFF1E96
+            66FE12915FFE129360FF1A664CAC000000130000000200000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000002612170948AC91D029B389FE30B48CFF23A87AFE1BA4
+            74FF22A779FF22A87AFF24735A7E000000082C9D7ABD25A97BFF19A374FF16A2
+            71FF16A675FF1F5A4C9800000014000000020000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000007000005465F593A61C4ACEF6BD0B4FF48C19EFE3FBD99FE21A6
+            81E300000008000000004A40453028B991FF28B68DFF19B186FF18B186FE19B0
+            86FF234B438A0000001300000002000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000002B020D0D5FA7987A76D8C2FF4DCFAFFF20866F73000000020000
+            00000000000038A0899B2DC29CFF23BF98FF1ABC94FF1ABD94FE1ABB95FF215E
+            528E000000130101010300000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000003917201F43B6A0AE0000000400000000000000001D242300434B
+            4D212ABE9BFE2EC19BFF1EBC93FF19BB91FF19BB91FE19BE95FF1F715EA50700
+            0020000000090000000100000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000011161500000000000000000000000000000000014673695E2FB6
+            8EFF29B38AFE1AAE82FF18AE81FF18AE81FF18B184FF1D8A6DE310231E430204
+            0410000000010000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000E1816000A05060A36A383D42EA87CFF21A3
+            75FF159F6DFF159E6DFF159E6DFE159F6EFF169B6CFC1C665042000000010000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000003D1623192C986FEF309B70FE1B9162FF138C
+            5CFF128C5CFF128C5CFE138E5EFF1F1F211D0000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000002110C0244766353298B60FF2A885FFE177D50FF107A4BFF0F79
+            4AFF16744CED0900000A00000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000141755E6A3B8963FF287951FF136C40FF0B6639FF16613BDB0000
+            0008000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00044A79617E50926BFF448861FE177242FF155F37E300000009000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000000000000000002467A
+            5B82639672FF578E69FE156734F8110002100000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000006178645C83A5
+            88F530783FFF1907141900000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000236373617618A63C31E30
+            1E1C000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000E000D00000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000
+          }
+          ParentFont = False
+          TabOrder = 1
+          OnClick = CarryOutCalcButtonClick
+        end
+        object CalcTypeRadioGroup: TRadioGroup
+          Left = 8
+          Height = 73
+          Top = 16
+          Width = 216
+          AutoFill = True
+          Caption = 'Calculation Type'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 53
+          ClientWidth = 212
+          ItemIndex = 0
+          Items.Strings = (
+            'Input Desired Concentrations'
+            'Concentrations from  Weights'
+          )
+          TabOrder = 0
+          OnClick = CalcTypeRadioGroupChangeBounds
+        end
+      end
+      object Panel2: TPanel
+        Left = 312
+        Height = 98
+        Top = 424
+        Width = 481
+        BevelOuter = bvNone
+        ClientHeight = 98
+        ClientWidth = 481
+        ParentFont = False
+        TabOrder = 15
+        object ConcentrationFactorEdit: TEdit
+          Left = 250
+          Height = 23
+          Hint = 'This value determines how concentrated stock solutions are when compared to the final reservoir concentrations'
+          Top = 40
+          Width = 222
+          Enabled = False
+          TabOrder = 1
+          Text = '100'
+        end
+        object ConcentrationFactorLabel: TLabel
+          Left = 248
+          Height = 15
+          Hint = 'Measures the concentration ratio between the stock and final solutions'
+          Top = 24
+          Width = 112
+          Caption = 'Concentration Factor'
+          ParentColor = False
+        end
+        object SolPrepTypeRadioGroup: TRadioGroup
+          Left = 8
+          Height = 73
+          Top = 16
+          Width = 216
+          AutoFill = True
+          Caption = 'Solution Preparation type'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 53
+          ClientWidth = 212
+          ItemIndex = 0
+          Items.Strings = (
+            'Concentrated A + B Solutions'
+            'Direct Addition'
+          )
+          TabOrder = 0
+          OnClick = SolPrepTypeRadioGroupClick
+        end
+      end
+      object Panel3: TPanel
+        Left = 312
+        Height = 51
+        Top = 272
+        Width = 481
+        BevelOuter = bvNone
+        ClientHeight = 51
+        ClientWidth = 481
+        ParentFont = False
+        TabOrder = 11
+        object VolumeLabel: TLabel
+          Left = 8
+          Height = 15
+          Top = 0
+          Width = 40
+          Caption = 'Volume'
+          ParentColor = False
+        end
+        object VolumeEdit: TEdit
+          Left = 8
+          Height = 23
+          Hint = 'Volume used within the calculation (this can be reservoir or stock solution volume depending on the calculation type)'
+          Top = 17
+          Width = 153
+          TabOrder = 0
+          Text = '100'
+        end
+        object VolumeUnitsRadioGroup: TRadioGroup
+          Left = 176
+          Height = 40
+          Top = 0
+          Width = 297
+          AutoFill = True
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 3
+          ClientHeight = 20
+          ClientWidth = 293
+          Columns = 3
+          ItemIndex = 1
+          Items.Strings = (
+            'Liters'
+            'Gallons'
+            'Cubic Meters'
+          )
+          TabOrder = 1
+          OnDblClick = VolumeUnitsRadioGroupDblClick
+        end
+      end
+      object Edit11: TEdit
+        Left = 132
+        Height = 23
+        Top = 416
+        Width = 88
+        ParentFont = False
+        TabOrder = 17
+        Text = '0.5'
+      end
+      object Edit2: TEdit
+        Left = 132
+        Height = 23
+        Top = 128
+        Width = 88
+        ParentFont = False
+        TabOrder = 2
+        Text = '0'
+      end
+      object Panel4: TPanel
+        Left = 640
+        Height = 104
+        Top = 323
+        Width = 153
+        BevelOuter = bvNone
+        ClientHeight = 104
+        ClientWidth = 153
+        ParentFont = False
+        TabOrder = 14
+        object MassUnitsRadioGroup: TRadioGroup
+          Left = 8
+          Height = 89
+          Top = 9
+          Width = 137
+          AutoFill = True
+          Caption = 'Mass Units'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 69
+          ClientWidth = 133
+          ItemIndex = 0
+          Items.Strings = (
+            'Grams'
+            'Ounces'
+          )
+          TabOrder = 0
+          OnClick = MassUnitsRadioGroupClick
+        end
+      end
+      object Panel5: TPanel
+        Left = 312
+        Height = 197
+        Top = 67
+        Width = 481
+        BevelOuter = bvNone
+        ClientHeight = 197
+        ClientWidth = 481
+        ParentFont = False
+        TabOrder = 27
+        object SubstanceAnalysisButton: TButton
+          Left = 250
+          Height = 25
+          Top = 46
+          Width = 222
+          Caption = 'Substance Analysis'
+          TabOrder = 6
+          OnClick = SubstanceAnalysisButtonClick
+        end
+        object SetWQParamsButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Click this button to open up the Water Quality parameters dialogue'
+          Top = 76
+          Width = 222
+          Caption = 'Set Water Quality Parameters'
+          TabOrder = 7
+          OnClick = SetWQParamsButtonClick
+        end
+        object AddFormulationButton: TButton
+          Left = 8
+          Height = 25
+          Hint = 'Saves the current concentration inputs as a formulations within the database'
+          Top = 76
+          Width = 216
+          Caption = 'Add Formulation to DB'
+          TabOrder = 2
+          OnClick = AddFormulationButtonClick
+          OnResize = AddFormulationButtonResize
+        end
+        object DeleteForulationButton: TButton
+          Left = 8
+          Height = 25
+          Hint = 'Deletes the selected formulation from the database'
+          Top = 46
+          Width = 216
+          Caption = 'Delete Formulation From DB'
+          TabOrder = 1
+          OnClick = DeleteForulationButtonClick
+        end
+        object FormulationComboBox: TComboBox
+          Left = 8
+          Height = 23
+          Top = 136
+          Width = 216
+          ItemHeight = 15
+          Sorted = True
+          TabOrder = 4
+          Text = 'Select formulation from DB'
+          OnSelect = FormulationComboBoxSelect
+        end
+        object SetIPValuesButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Click this button to open up the instrument precision settings dialogue'
+          Top = 106
+          Width = 222
+          Caption = 'Set Instrument Precision Values'
+          TabOrder = 8
+          OnClick = SetIPValuesButtonClick
+        end
+        object SubstanceSelectionButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Select the substances which will be used for the calculations'
+          Top = 16
+          Width = 222
+          Caption = 'Substance Selection'
+          Color = clInactiveBorder
+          Font.Style = [fsBold]
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 5
+          OnClick = SubstanceSelectionButtonClick
+        end
+        object FormulationNameEdit: TEdit
+          Left = 8
+          Height = 23
+          Hint = 'Write the name you want the formulation to have here'
+          Top = 16
+          Width = 216
+          TabOrder = 0
+          Text = 'Input Formulation Name Here'
+        end
+        object CurrValuesToDefaultButton: TButton
+          Left = 8
+          Height = 25
+          Top = 106
+          Width = 216
+          Caption = 'Set current values to default'
+          TabOrder = 3
+          OnClick = CurrValuesToDefaultButtonClick
+        end
+        object TissueAnalysisButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Click this button to open up the instrument precision settings dialogue'
+          Top = 136
+          Width = 222
+          Caption = 'Tissue Analysis'
+          TabOrder = 9
+          OnClick = TissueAnalysisButtonClick
+        end
+        object ChoseDegreeOfFreedomButton: TButton
+          Left = 250
+          Height = 25
+          Hint = 'Choose the element used as a degree of freedom within the calculations'
+          Top = 166
+          Width = 222
+          Caption = 'Choose Degree of Freedom'
+          TabOrder = 10
+          OnClick = ChoseDegreeOfFreedomButtonClick
+        end
+      end
+      object DisablePopUpsCheckBox: TCheckBox
+        Left = 328
+        Height = 19
+        Hint = 'Checking this box will cause all calculation-related informative pop-ups to be switched off'
+        Top = 44
+        Width = 104
+        Caption = 'Disable Pop-ups'
+        ParentFont = False
+        TabOrder = 24
+      end
+      object SmallWindowCheckBox: TCheckBox
+        Left = 448
+        Height = 19
+        Hint = 'When checked the program will be started on a small window (great for netbooks)'
+        Top = 44
+        Width = 94
+        Caption = 'Small Window'
+        TabOrder = 25
+      end
+      object Panel8: TPanel
+        Left = 312
+        Height = 104
+        Top = 323
+        Width = 168
+        BevelOuter = bvNone
+        ClientHeight = 104
+        ClientWidth = 168
+        TabOrder = 12
+        object ConcUnitsRadioGroup: TRadioGroup
+          Left = 8
+          Height = 89
+          Top = 9
+          Width = 153
+          AutoFill = True
+          Caption = 'Concentration Units'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 2
+          ClientHeight = 69
+          ClientWidth = 149
+          Columns = 2
+          ItemIndex = 0
+          Items.Strings = (
+            'ppm'
+            'M'
+            'mM'
+            'mN'
+          )
+          TabOrder = 0
+          OnClick = ConcUnitsRadioGroupClick
+        end
+      end
+      object SiSiO2ComboBox: TComboBox
+        Left = 44
+        Height = 23
+        Top = 480
+        Width = 53
+        ItemHeight = 15
+        ItemIndex = 0
+        Items.Strings = (
+          'Si'
+          'SiO2'
+        )
+        Style = csDropDownList
+        TabOrder = 19
+        Text = 'Si'
+      end
+      object PayPalDonateButton: TBitBtn
+        Left = 721
+        Height = 40
+        Top = 23
+        Width = 76
+        Glyph.Data = {
+          3E1E0000424D3E1E00000000000036000000280000003E0000001F0000000100
+          200000000000081E000064000000640000000000000000000000FFFFFFFFFFFF
+          FFFFF5FBFFFFFFFFFFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFFFFFFFFFFF5FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0099FFFF5FBF
+          FFFF91D4FFFFA5DBFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
+          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA5DBFFFF91D4FFFF5FBFFFFF0099
+          FFFFFFFFFFFFFFFFFFFFEFF9FFFF0099FFFF95D5FEFFBEE6FFFFC9EAFFFFCDEB
+          FFFFCEEDFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
+          FFFFCDEBFFFFCEEDFFFFCDEBFFFFC9EAFFFFBEE6FFFF95D5FEFF0099FFFFEFF9
+          FFFFFFFFFFFF57BCFFFFB5E2FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
+          FFFFBCE4FFFFBCE4FFFFBCE4FFFFB5E2FFFF57BCFFFFFFFFFFFF0099FFFF87CF
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
+          FFFFA5DBFFFFA5DBFFFF87CFFFFF0099FFFF0099FFFF87CFFFFF8ED2FFFF8ED2
+          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
+          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF663312FF663312FF6633
+          12FF663312FF8ED2FFFF8ED2FFFF8ED2FFFF663312FF663312FF8ED2FFFF8ED2
+          FFFF663312FF8ED2FFFF8ED2FFFF663312FF8ED2FFFF663312FF663312FF6633
+          12FF663312FF8ED2FFFF663312FF663312FF8ED2FFFF8ED2FFFF663312FF6633
+          12FF663312FF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
+          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
+          FFFF87CFFFFF0099FFFF0099FFFF76CAFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
+          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
+          FFFF7BCBFFFF7BCBFFFF7BCBFFFF663312FF7BCBFFFF7BCBFFFF7BCBFFFF6633
+          12FF7BCBFFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCBFFFF663312FF7BCB
+          FFFF7BCBFFFF663312FF7BCBFFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCB
+          FFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
+          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
+          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF76CAFFFF0099
+          FFFF0099FFFF66C3FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
+          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
+          FFFF6AC4FFFF663312FF6AC4FFFF6AC4FFFF6AC4FFFF663312FF6AC4FFFF6633
+          12FF6AC4FFFF6AC4FFFF663312FF6AC4FFFF663312FF6AC4FFFF6AC4FFFF6633
+          12FF6AC4FFFF6AC4FFFF663312FF663312FF663312FF6AC4FFFF663312FF6AC4
+          FFFF6AC4FFFF663312FF663312FF663312FF663312FF6AC4FFFF6AC4FFFF6AC4
+          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
+          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF66C3FFFF0099FFFF0099FFFF57BC
+          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
+          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF6633
+          12FF59BDFFFF59BDFFFF59BDFFFF663312FF59BDFFFF663312FF59BDFFFF59BD
+          FFFF663312FF59BDFFFF663312FF59BDFFFF59BDFFFF663312FF59BDFFFF59BD
+          FFFF59BDFFFF59BDFFFF663312FF59BDFFFF663312FF59BDFFFF59BDFFFF6633
+          12FF59BDFFFF59BDFFFF663312FF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
+          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
+          FFFF59BDFFFF59BDFFFF57BCFFFF0099FFFF0099FFFF44B6FFFF49B7FFFF49B7
+          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
+          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF663312FF49B7FFFF49B7
+          FFFF49B7FFFF663312FF49B7FFFF49B7FFFF663312FF663312FF49B7FFFF49B7
+          FFFF663312FF663312FF663312FF663312FF49B7FFFF663312FF663312FF6633
+          12FF663312FF663312FF663312FF663312FF49B7FFFF49B7FFFF663312FF6633
+          12FF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
+          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
+          FFFF44B6FFFF0099FFFF0099FFFF39B2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
+          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
+          FFFF3CB2FFFF3CB2FFFF3CB2FFFF663312FF663312FF663312FF663312FF3CB2
+          FFFF3CB2FFFF3CB2FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3
+          FFFF3EB3FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
+          FFFF663312FF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
+          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
+          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF39B2FFFF0099
+          FFFF0099FFFF2DADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF35B1FFFF35B1FFFF3CB2FFFF3AB4FFFF39B2FFFF39B2FFFF35B1FFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
+          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF2DADFFFF0099FFFF0099FFFF26A9
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF28ABFFFF2BACFFFF2FAEFFFF35B1
+          FFFF3AB4FFFF3DB5FFFF3DB5FFFF3AB4FFFF32B0FFFF2FAEFFFF28ABFFFF27AA
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
+          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
+          FFFF27AAFFFF27AAFFFF26A9FFFF0099FFFF0099FFFF22A7FFFF23A8FFFF23A8
+          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF27AA
+          FFFF26AAFFFF26A9FFFF26A9FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF28AB
+          FFFF2BACFFFF2BACFFFF2BACFFFF2FAEFFFF35B1FFFF3DB5FFFF44BAFFFF44BA
+          FFFF44BAFFFF3DB5FFFF3DB5FFFF32B0FFFF2BACFFFF27AAFFFF26AAFFFF26A9
+          FFFF26A9FFFF23A8FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF28ABFFFF2BAC
+          FFFF2BACFFFF2BACFFFF28ABFFFF28ABFFFF27AAFFFF27AAFFFF26AAFFFF26A9
+          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8
+          FFFF22A7FFFF0099FFFF0099FFFF22A7FFFF23A8FFFF23A8FFFF23A8FFFF23A8
+          FFFF23A8FFFF26A9FFFF28ABFFFF2BACFFFF2FAEFFFF2FAEFFFF2DADFFFF2BAC
+          FFFF28ABFFFF27AAFFFF28ABFFFF2DADFFFF32B0FFFF35B1FFFF39B2FFFF3AB4
+          FFFF3AB4FFFF3DB5FFFF44BAFFFF44B6FFFF776B62FF673C23FF7D7C78FF60C7
+          FDFF4CBDFFFF3DB5FFFF35B1FFFF2FAEFFFF2FAEFFFF2DADFFFF2BACFFFF28AB
+          FFFF27AAFFFF28ABFFFF2DADFFFF32B0FFFF35B1FFFF39B2FFFF39B2FFFF39B2
+          FFFF39B2FFFF35B1FFFF32B0FFFF32B0FFFF2FAEFFFF2BACFFFF28ABFFFF26A9
+          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF22A7FFFF0099
+          FFFF0099FFFF22A7FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF26A9FFFF28AB
+          FFFF2FAEFFFF35B1FFFF3AB4FFFF3DB5FFFF3AB4FFFF35B1FFFF2FAEFFFF2DAD
+          FFFF2FAEFFFF35B1FFFF3DB5FFFF44BAFFFF4ABDFFFF4CBDFFFF4CBDFFFF4CBD
+          FFFF55C2FEFF60C7FDFF6AA1BAFF64361BFF673C23FF5FB3E0FF60C7FDFF55C2
+          FEFF44BAFFFF3DB5FFFF3DB5FFFF39B2FFFF32B0FFFF2FAEFFFF2DADFFFF2FAE
+          FFFF35B1FFFF3DB5FFFF44BAFFFF4CBDFFFF4CBDFFFF4CBDFFFF4ABDFFFF44BA
+          FFFF44BAFFFF44BAFFFF3AB4FFFF35B1FFFF2FAEFFFF28ABFFFF26A9FFFF23A8
+          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF22A7FFFF0099FFFF0099FFFF22A8
+          FFFF26AAFFFF49B7FFFF5FBFFFFF66C3FFFF6AC6FFFF6FC8FFFF76CAFFFF78CD
+          FFFF83CDF7FF83CDF7FF82D2FEFF7DCFFFFF78CDFFFF78CDFFFF78CDFFFF7DCF
+          FFFF82D2FEFF8DCCECFF8CC2DDFF95D9FBFF95DCFFFF93D5F5FF98DEFFFFA1E2
+          FFFFA2D7EDFF776B62FF64361BFF776B62FF9EE1FFFF95DCFFFF8DD7FEFF88D2
+          FAFF88D2FAFF7DCFFFFF7DCFFFFF78CDFFFF78CDFFFF78CDFFFF7DCFFFFF86D4
+          FFFF8DCCECFF94CCE5FF95DCFFFF95DCFFFF95D9FBFF94D9FFFF8DD7FEFF88D2
+          FAFF82D2FEFF7DCFFFFF76CAFFFF6FC8FFFF6AC6FFFF6AC4FFFF66C3FFFF59BD
+          FFFF44B6FFFF23A8FFFF22A8FFFF0099FFFF0099FFFF39B2FFFF72C8FEFF7ECD
+          FEFF84CFFEFF84CFFEFF86D1FEFF8ED2FFFF94D9FFFF9CDBFEFF7B6353FF6E48
+          32FF8A9699FFA2DCF9FF9DDCFEFF9CDBFEFF9DDCFEFFA1DDFEFF92A8B1FF734D
+          37FF6C4229FF755847FF827469FF755847FF8F918DFFBBEAFFFFB8E1F0FF9481
+          73FF64361BFF673C23FFADBDC1FFBBEAFFFFB2E5FEFFA29A87FF9F7D56FFA9B9
+          B7FFA3DBF8FF9DDCFEFF9CDBFEFF9DDCFEFFA1DDFEFFA4AFA8FFA47D52FFA070
+          3EFFA48A67FFA48E6EFF9F7D56FFB5BAB5FFAECACFFF9F7D56FFA29A87FF9ED8
+          F6FF94D9FFFF91D4FFFF86D1FEFF84CFFEFF84CFFEFF84CFFEFF7ECDFEFF66C3
+          FFFF2DADFFFF0099FFFF0099FFFF7BCBFFFF95D5FEFF95D5FEFF95D5FEFF95D5
+          FEFF95D5FEFF9BD8FEFFA1DDFEFFB0E2FFFF75533EFF64361BFF886C5AFFB0D5
+          E6FFB7E7FEFFB2E5FEFFB7E7FEFFB0D5E6FF87786DFF64361BFF80604CFFA7A3
+          9DFF886C5AFF64361BFF7B5A45FFCBF0FEFFCAE5ECFF816552FF64361BFF6436
+          1BFF816552FFCBF0FEFFC6EEFFFFA99578FF9B6732FFA99578FFB8E1F0FFB7E7
+          FEFFB2E5FEFFB2E5FEFFB8E1F0FFA48A67FF9B6732FFAC916FFFB7B4A3FFA685
+          5EFF9B6732FFB1A48CFFBDC8C6FF9F7140FFA47D52FFAECCD5FFA9E0FEFFA1DD
+          FEFF9BD8FEFF95D5FEFF95D5FEFF95D5FEFF95D5FEFF91D4FFFF72C8FEFF0099
+          FFFF0099FFFF9BD8FEFFA2DBFEFFA2DBFEFFA2DBFEFFA2DBFEFFA4DCFEFFA9E0
+          FEFFB0E2FFFFBBEAFFFF87786DFF6C4229FF6E462EFFADBDC1FFCBF0FEFFC8EE
+          FFFFC6EEFFFFC6EBFBFF87786DFF64361BFF867263FFD6F6FFFFC3D1D3FF6E46
+          2EFF6E4832FFC6DDE1FFD1E8EFFF734D37FF64361BFF64361BFF673C23FFABB0
+          ACFFD6F6FFFFBCB6A4FF9E6C3AFFA47647FFC6DDE1FFCBF0FEFFC6EEFFFFC6EE
+          FFFFC8EEFFFFA6855EFF9B6732FFB8AA93FFD6F6FFFFC5CBC2FF9F7140FFAC8D
+          68FFC5CBC2FFAC8D68FF9E6C3AFFB5BAB5FFB7E7FEFFB0E2FFFFA8DCFFFFA4DC
+          FEFFA2DBFEFFA2DBFEFFA2DBFEFFA2DBFEFF99D7FEFF0099FFFF0099FFFFA8DC
+          FFFFAFE0FFFFAFE0FFFFAFE0FFFFAFE0FFFFB0E2FFFFB5E2FFFFBBEAFFFFC2E9
+          FFFFA7A39DFF795641FF64361BFF765440FF816552FF867263FFA89B92FFCAE5
+          ECFFC3D1D3FF7F5E4AFF673C23FF846755FF89705FFF673C23FF6E462EFFB5BA
+          B5FFD1E8EFFF64361BFF6C4229FF948173FF64361BFF765440FFD8F1F8FFCED9
+          D4FFA0703EFF9C6935FFA6855EFFAC8962FFB29674FFBCB6A4FFD6F1F9FFC5CB
+          C2FFA68055FF9E6C3AFFAC916FFFAC8D68FF9C6935FFA68055FFC9C7BAFFBBA8
+          8EFF9B6732FFB8AA93FFC6EEFFFFBEE6FFFFB5E5FEFFB0E2FFFFAFE0FFFFAFE0
+          FFFFAFE0FFFFAFE0FFFFA8DCFFFF0099FFFF0099FFFFB5E2FFFFBBE5FFFFBBE5
+          FFFFBBE5FFFFBBE5FFFFBBE5FFFFBEE6FFFFC7E9FFFFCEEDFFFFBDC8C6FF8467
+          55FF64361BFF673C23FF6E462EFF64361BFF64361BFF89705FFFC3CAC8FFD0DD
+          E0FFB2ACA4FFA09084FF948173FF7B5A45FF673C23FFA09084FFCBD3D3FF6436
+          1BFF734D37FFD0DDE0FF795641FF64361BFFA7A39DFFE1F5FEFFA57A4CFF9B67
+          32FF9C6935FFA17242FF9B6732FF9E6C3AFFB29674FFD5E0DCFFD5E0DCFFC5BA
+          A9FFBBA88EFFB89F80FFA57A4CFF9E6C3AFFC3B9A7FFC3B9A7FF9B6732FFB296
+          74FFD0F0FFFFC9EAFFFFC2E9FFFFBEE6FFFFBBE5FFFFBBE5FFFFBBE5FFFFBBE5
+          FFFFB5E2FFFF0099FFFF0099FFFFBEE6FFFFC7E9FFFFC7E9FFFFC7E9FFFFC7E9
+          FFFFC7E9FFFFC9EAFFFFCEEDFFFFD4F0FFFFD1E8EFFF948173FF64361BFF886C
+          5AFFBFBEBAFFB9B4AEFF7F5E4AFF64361BFF967F70FFCBD3D3FFB2ACA4FFBEBB
+          B6FFB2ACA4FF80604CFF64361BFF886C5AFFB9B4AEFF64361BFF7F5E4AFFE6F9
+          FFFFB6B3ADFF64361BFF6E462EFFD6E6E9FFB2916BFF9B6732FFB29674FFCFCC
+          C0FFC9C1B0FFA57A4CFF9B6732FFC3B099FFD5D2C7FFC9C7BAFFCFCCC0FFCABD
+          ABFFA88055FF9B6732FFB8AA93FFCFCCC0FF9B6732FFAB865EFFD6EAF2FFD4F0
+          FFFFCEEDFFFFC9EAFFFFC7E9FFFFC7E9FFFFC7E9FFFFC7E9FFFFBEE6FFFF0099
+          FFFF0099FFFFC9EAFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EE
+          FFFFD4F0FFFFDDF2FFFFE1F5FEFFA89B92FF64361BFF886C5AFFE4F1F3FFEEFA
+          FFFFB2ACA4FF64361BFF7B5A45FFA59488FF80604CFF75533EFF795641FF673C
+          23FF734D37FFA89B92FFA89B92FF64361BFF947A6AFFE6F9FFFFE1F2F8FF8467
+          55FF64361BFFA59488FFBCA68BFF9C6935FFB29674FFEEFAFFFFEEFAFFFFBCA6
+          8BFF9B6732FFAC8D68FFBCA68BFFAB865EFFA88055FFA47D52FF9C6935FFA57A
+          4CFFD1C9BCFFDDDCD5FF9F7140FFA57A4CFFD2D5D0FFDDF2FFFFD9F1FFFFD5EF
+          FFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFC9EAFFFF0099FFFF0099FFFFD5EF
+          FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFE1F5
+          FEFFE9F6FFFFBEBBB6FF6E462EFF6C4229FFA89B92FFC5C1BDFF967F70FF6436
+          1BFF795641FFC2BBB6FFB6B3ADFF9C8576FF967F70FFA09084FFBDB7B2FFE3EB
+          EEFFC5C1BDFF9E8C80FFC6C6C4FFE7F7FFFFE9F6FFFFCDCFCFFFA09084FFA7A3
+          9DFFC5BAA9FFA0703EFFA0703EFFCFC2AFFFD4CEC6FFB2916BFF9B6732FFAB86
+          5EFFD4CEC6FFCABDABFFB89F80FFB99B7AFFBBA88EFFD1C9BCFFE9F5F8FFE0E4
+          E0FFAB865EFF9E6C3AFFCABDABFFE5F5FFFFE5F5FFFFDDF2FFFFDDF2FFFFDDF2
+          FFFFDDF2FFFFDDF2FFFFD2EEFFFF0099FFFF0099FFFFDDF2FFFFE8F6FFFFE8F6
+          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFEAF7FFFFECF9FFFFD9DA
+          DAFF816552FF64361BFF673C23FF673C23FF64361BFF6E462EFF9C8576FFEBF1
+          F3FFEEFAFFFFEEFAFFFFEDF9FFFFEDF9FFFFEDF9FFFFEDF9FFFFECF9FFFFECF9
+          FFFFECF9FFFFEAF8FFFFECF9FFFFECF9FFFFEDF9FFFFEEFAFFFFE3E1DBFFA476
+          47FF9B6732FF9E6C3AFF9E6C3AFF9B6732FFA17242FFC3B099FFEBF1F3FFF0FA
+          FFFFEEFAFFFFEDF9FFFFEDF9FFFFEEFAFFFFEEFAFFFFE8EEEFFFBDA284FF9B67
+          32FFBDA284FFE3EBEEFFEAF8FFFFE9F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6
+          FFFFDDF2FFFF0099FFFF0099FFFFD2EEFFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9
+          FFFFEFF9FFFFEFF9FFFFEFF9FFFFF0FAFFFFF1FAFFFFEBF1F3FF9C8576FF6E46
+          2EFF6E462EFF6C4229FF734D37FF947A6AFFD4CEC6FFF1FAFFFFF5FBFFFFF1FA
+          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FA
+          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF5FBFFFFF0F5F6FFB38F68FFA47647FFA070
+          3EFFA0703EFFA57A4CFFB99B7AFFE3E1DBFFF1FAFFFFF5FBFFFFF1FAFFFFF1FA
+          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF2F9FCFFCABDABFFA47647FFBDA284FFDDDC
+          D5FFF1FAFFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9FFFFCEEDFFFF0099
+          FFFFFFFFFFFF95D5FEFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FB
+          FFFFF5FBFFFFF5FBFFFFF6FCFFFFF6FCFFFFF6FCFFFFF8FDFFFFF8FDFFFFF8FD
+          FFFFF8FDFFFFF8FDFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FB
+          FFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FB
+          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF8FDFFFFF8FDFFFFF8FDFFFFF8FD
+          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FBFFFFF6FC
+          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FB
+          FFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFF92D3FFFFFFFFFFFFFFFFFFFF0099
+          FFFFCEEBFFFFEDF9FFFFF8FDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
+          FFFFFAFDFFFFFBFDFFFFFBFDFFFFFBFDFFFFFBFEFFFFFBFEFFFFFBFEFFFFFBFD
+          FFFFFBFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
+          FFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
+          FFFFFBFDFFFFFBFDFFFFFBFDFFFFFBFEFFFFFBFEFFFFFBFEFFFFFBFDFFFFFBFD
+          FFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
+          FFFFFBFDFFFFFBFDFFFFFBFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFF8FD
+          FFFFEDF9FFFFCEEBFFFF0099FFFFFBFEFFFFFFFFFFFFFFFFFFFF0099FFFF95D5
+          FEFFC9EAFFFFE5F5FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6
+          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6
+          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6
+          FFFFE9F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6
+          FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE8F6FFFFE8F6
+          FFFFE9F6FFFFE9F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6
+          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE5F5FFFFC9EAFFFF95D5FEFF0099
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
+          FFFF0099FFFF0099FFFF039AFFFF0099FFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFF
+          FFFF
+        }
+        TabOrder = 26
+        OnClick = PayPalDonateButtonClick
+      end
+      object ZeroAllTargetsButton: TButton
+        Left = 132
+        Height = 20
+        Top = 8
+        Width = 144
+        Caption = 'Zero all targets'
+        TabOrder = 0
+        OnClick = ZeroAllTargetsButtonClick
+      end
+      object Panel9: TPanel
+        Left = 480
+        Height = 103
+        Top = 324
+        Width = 161
+        BevelOuter = bvNone
+        ClientHeight = 103
+        ClientWidth = 161
+        ParentFont = False
+        TabOrder = 13
+        object ECModelRadioGroup: TRadioGroup
+          Left = 8
+          Height = 89
+          Top = 8
+          Width = 144
+          AutoFill = True
+          Caption = 'EC Model'
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 69
+          ClientWidth = 140
+          ItemIndex = 0
+          Items.Strings = (
+            'LMCv2'
+            'Empirical'
+          )
+          TabOrder = 0
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Results'
+      ClientHeight = 645
+      ClientWidth = 826
+      Font.Height = -11
+      ParentFont = False
+      object AnyObservationLabel: TLabel
+        Left = 452
+        Height = 104
+        Top = 320
+        Width = 324
+        AutoSize = False
+        Caption = 'Any observations about the calculations will be posted here'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -16
+        Font.Name = 'Times New Roman'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentColor = False
+        ParentFont = False
+        WordWrap = True
+      end
+      object PredictedECValueLabel: TLabel
+        Left = 469
+        Height = 13
+        Top = 448
+        Width = 98
+        Caption = 'Predicted EC Value '
+        ParentColor = False
+      end
+      object PredictedECValuePanel: TPanel
+        Left = 456
+        Height = 56
+        Hint = 'This EC value has an accuracy of +/- 10%'
+        Top = 472
+        Width = 132
+        Caption = 'EC = 0'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Times New Roman'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+      object ExportToCSVButton: TBitBtn
+        Left = 56
+        Height = 32
+        Hint = 'This button exports all the data within this page to a CSV for easy access and printing  using any spreadsheet program'
+        Top = 600
+        Width = 132
+        Caption = 'Export To Csv'
+        Glyph.Data = {
+          460E0000424D460E00000000000036000000280000001E0000001E0000000100
+          200000000000100E000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000040000000E1000101B00000013000000090000
+          0002000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000040000
+          00110405042919311B8A053D07FB123814C11A1C1A4601020122000000100000
+          0005000000010000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000000000040000001112000A211038179C044610F82151
+          28D303460FFF1F4C25C8265B2DE813521EF30C3514A420091B32000000150000
+          000C000000030000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000010101030000
+          000F1709112D0D411E98296339F83A6E47B14D66523E16000F272E6D3FFF1141
+          1F85000000027C867F364777538D2E653CDF19562CD210391E7A140A0F1E0000
+          0002000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000011016131B19492E8E146033F94D81
+          60B04431401A00000000000000001F0D18291F6C3FFF144B2A86000000080000
+          000900000007000000005544502F1B683AEB114F2A8100000003000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000023D604E5917633DD10400011400000007000000100000
+          000E00000004200B1529106E40FF18543888040C08221B4B3596150B10390000
+          001D000000181C7148D31454357F000000030000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00033E63555A137049C30000001716000024156948B11660429E000000141E06
+          102C148253FF19563D8E1F62459D287554C03E8D6DE61F815AE7155039961C77
+          51DE155C3F830000000D00000002000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000008405E575D2183
+          61D41C71539E2E8A69DB387D636C319671D318634AA01300043E179565FF2167
+          4FBC169262FB0A1D16160000000067847B45479E7EAD54AA8AF42E8768D41447
+          38671200001D0000000500000000000000000000000000000000000000000000
+          0000000000000000000600000014122D2638428975B96EC6AAF04A8475680000
+          0002000804013800000F35A684E1235447AF1AA576FF199B70FF2B5448590000
+          00030000000000000000000000000000000263827C652FA47FEC1C906FF62300
+          000A000000000000000000000000000000000000000000000000000101031200
+          00232C8B77BB3ABB9DF4517D7353202C290B0000000100000000000000040000
+          001313070A3C24AA86F618B285FF1D9775E8150001420000001B0000000D0000
+          00030000000000000002000000153FAA8EE82A4F463F00000001000000010000
+          000000000000000000000000000000000000000000024C90846740C6AAFF1300
+          003B000000090405050100000004000000100C00002F1E816DA61DB08EF41ABD
+          95FF1ABD95FE1ABF96FF1CB490FF1D9E82D61E544A830A000026000000120000
+          00121F89728D25A789C300000013000000120000001100000009030504000000
+          000000000000000000000000000000000000729A92625FBCA8FB162825420000
+          0015110B0D33277665912FB99AFD21C29AFF19B98FFE19BA90FF19BA90FF19BA
+          90FF19BA90FE19BA90FE1AC095FF1DA181FB1D6F5BA1182E2A6321A888F11717
+          1857156551781C846AB8289A80EB290009150000000000000000000000000000
+          00000000000000000000000000015168644934B093FC295A4E9E2DB592FF2CBD
+          96FF2BBC95FE2CBC95FF27B88FFF18AC7FFF17AC7EFF17AC7EFF17AC7EFF18AC
+          7FFF18AC7FFF18AC7FFE18AC7FFF1AB082FF28A985F840AC90F04FA68FF146A0
+          8CA52100000D0000000103040400000000000000000000000000000000000000
+          00004259550000000006414B4A5D34B68CFF47B993FF51BB97FF4DB994FF43B6
+          8FFF37B289FF2BAF83FF19A171FF149B69FF189D6CFF20A171FF2FA67AFE41B1
+          87FF54AF8FF03A524C76378E71D84C8E7A8F3C655B1B00000002000000000000
+          0000000000000000000000000000000000000000000000000000020202010000
+          00143A9473C56BA78FB377A5967475B29CCB76C0A4FF70BD9FFF62B595FE4DAD
+          89FE42A983FF3FA57EFF3C9F78FE48A781FF56967ED8406B5CA3217152BC2C84
+          6494366053250000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000092542365858A384F81B09
+          111800000000000000002E04141B699C888575B298D570B094F968AD8FFF70B2
+          95FF72B196FC62957FE22F845FD42A8A62AE4C0C2416000000002C3632000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000011212122641916EFC2C4E3F5600000008000000010000
+          000000000000000000010000000B2327245473A68BFF3C373A3D0A0003100000
+          0006000000030000000100000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00004C795F7370A787FF4B6C58AA08000438000000160000000E000000050102
+          0203030A0621699A7DF055776268000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000023362A00000000006467
+          642C8BA693866D967ADC5E876ADC355C40880F090E34000000182F593B944B7E
+          5AD7000000080000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000493E4527859F89A7609168F258745BCE6D9973FF2A2D2923000000010000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000002030300000000000000
+          0002191C19085054512B5B745B5F000000030000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000FFFFFF000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000000
+        }
+        TabOrder = 1
+        OnClick = ExportToCSVButtonClick
+      end
+      object DetailedPerSubstAnalysisButton: TBitBtn
+        Left = 452
+        Height = 33
+        Hint = 'Click here to see a detailed analysis of the contributions of each substance to the overall solution composition'
+        Top = 544
+        Width = 324
+        Caption = 'Detailed Per Substance Contribution Analysis'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        OnClick = DetailedPerSubstAnalysisButtonClick
+      end
+      object StockSolutionAnalysisButton: TBitBtn
+        Left = 633
+        Height = 25
+        Hint = 'Click here to see the % compositions analysis of the stock solutions '
+        Top = 472
+        Width = 143
+        Caption = 'Stock Solution Analysis'
+        Enabled = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 3
+        OnClick = StockSolutionAnalysisButtonClick
+      end
+      object NutrientRateAnalysisButton: TButton
+        Left = 633
+        Height = 24
+        Top = 504
+        Width = 143
+        Caption = 'Nutrient Ratio Analysis'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 4
+        OnClick = NutrientRateAnalysisButtonClick
+      end
+      object StringGrid1: TStringGrid
+        Left = 54
+        Height = 312
+        Top = 277
+        Width = 386
+        Columns = <        
+          item
+            Title.Caption = 'Element'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Result (ppm)'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'GE'
+            Width = 60
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'IE'
+            Width = 60
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Water (ppm)'
+          end>
+        DefaultColWidth = 85
+        DefaultRowHeight = 18
+        FixedCols = 0
+        RowCount = 17
+        TabOrder = 5
+        TitleFont.Height = -11
+      end
+      object StringGrid2: TStringGrid
+        Left = 54
+        Height = 253
+        Top = 8
+        Width = 722
+        ColCount = 6
+        Columns = <        
+          item
+            ButtonStyle = cbsButtonColumn
+            ReadOnly = True
+            Title.Caption = 'Substance Name [click for url]'
+          end        
+          item
+            Alignment = taCenter
+            ReadOnly = True
+            Title.Alignment = taCenter
+            Title.Caption = 'Formula'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Amount [Edit to fine-tune]'
+          end        
+          item
+            Alignment = taCenter
+            Title.Caption = 'Units'
+            Width = 35
+          end        
+          item
+            Alignment = taCenter
+            ReadOnly = True
+            Title.Alignment = taCenter
+            Title.Caption = 'Preparation Cost'
+          end        
+          item
+            Title.Caption = 'Source'
+            Visible = False
+          end>
+        DefaultColWidth = 170
+        DefaultRowHeight = 20
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+        RowCount = 1
+        TabOrder = 6
+        TitleFont.Height = -11
+        OnEditButtonClick = StringGrid2EditButtonClick
+        OnEditingDone = StringGrid2EditingDone
+      end
+      object TotalCostLabel: TLabel
+        Left = 452
+        Height = 18
+        Top = 277
+        Width = 72
+        Caption = 'Total Cost'
+        Font.Height = -15
+        Font.Name = 'Sans'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object PlusButton: TButton
+        Left = 592
+        Height = 25
+        Top = 472
+        Width = 27
+        Caption = '+'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -21
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 7
+        OnClick = PlusButtonClick
+      end
+      object MinusButton: TButton
+        Left = 592
+        Height = 25
+        Top = 503
+        Width = 27
+        Caption = '-'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -21
+        Font.Name = 'Segoe UI'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 8
+        OnClick = MinusButtonClick
+      end
+      object InputMixAnalysisButton: TBitBtn
+        Left = 632
+        Height = 25
+        Hint = 'Shows the % composition of the mixture of solids used'
+        Top = 440
+        Width = 144
+        Caption = 'Input mix analysis'
+        Enabled = False
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 9
+        OnClick = InputMixAnalysisButtonClick
+      end
+      object CopyResultToTargetsButton: TButton
+        Left = 200
+        Height = 32
+        Hint = 'Copies the "Result (ppm)" fields to the targets on the Main Page'
+        Top = 600
+        Width = 144
+        Caption = 'Copy results to targets'
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 10
+        OnClick = CopyResultToTargetsButtonClick
+      end
+    end
     object TabSheet4: TTabSheet
-      Caption = 'Welcome'
+      Caption = 'Help'
       ClientHeight = 645
       ClientWidth = 826
       object HelpPageControl: TPageControl
@@ -22387,1658 +24039,6 @@ object MainForm: TMainForm
             }
           end
         end
-      end
-    end
-    object TabSheet1: TTabSheet
-      Caption = 'Main Page'
-      ClientHeight = 645
-      ClientWidth = 826
-      ParentShowHint = False
-      ShowHint = True
-      object Label1: TLabel
-        Left = 44
-        Height = 15
-        Top = 100
-        Width = 49
-        Caption = 'N (NO3-)'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label4: TLabel
-        Left = 86
-        Height = 15
-        Top = 196
-        Width = 7
-        Caption = 'K'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label3: TLabel
-        Left = 87
-        Height = 15
-        Top = 164
-        Width = 7
-        Caption = 'P'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label5: TLabel
-        Left = 75
-        Height = 15
-        Top = 228
-        Width = 18
-        Caption = 'Mg'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label6: TLabel
-        Left = 79
-        Height = 15
-        Top = 260
-        Width = 14
-        Caption = 'Ca'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label7: TLabel
-        Left = 87
-        Height = 15
-        Top = 292
-        Width = 6
-        Caption = 'S'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label8: TLabel
-        Left = 81
-        Height = 15
-        Top = 324
-        Width = 12
-        Caption = 'Fe'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label10: TLabel
-        Left = 81
-        Height = 15
-        Top = 388
-        Width = 14
-        Caption = 'Zn'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label11: TLabel
-        Left = 86
-        Height = 15
-        Top = 424
-        Width = 7
-        Caption = 'B'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label12: TLabel
-        Left = 78
-        Height = 15
-        Top = 452
-        Width = 15
-        Caption = 'Cu'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label14: TLabel
-        Left = 80
-        Height = 15
-        Top = 516
-        Width = 18
-        Caption = 'Mo'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label15: TLabel
-        Left = 81
-        Height = 15
-        Top = 548
-        Width = 15
-        Caption = 'Na'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label13: TLabel
-        Left = 82
-        Height = 15
-        Top = 484
-        Width = 9
-        Caption = 'Si'
-        ParentColor = False
-        ParentFont = False
-        Visible = False
-      end
-      object Label16: TLabel
-        Left = 82
-        Height = 15
-        Top = 580
-        Width = 11
-        Caption = 'Cl'
-        ParentColor = False
-        ParentFont = False
-      end
-      object TargetLabel: TLabel
-        Left = 140
-        Height = 15
-        Top = 40
-        Width = 36
-        Caption = 'Target '
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel1: TLabel
-        Left = 254
-        Height = 15
-        Top = 100
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel3: TLabel
-        Left = 254
-        Height = 15
-        Top = 164
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel4: TLabel
-        Left = 254
-        Height = 15
-        Top = 196
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel5: TLabel
-        Left = 254
-        Height = 15
-        Top = 228
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel6: TLabel
-        Left = 254
-        Height = 15
-        Top = 260
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel7: TLabel
-        Left = 254
-        Height = 15
-        Top = 292
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel8: TLabel
-        Left = 254
-        Height = 15
-        Top = 324
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel9: TLabel
-        Left = 254
-        Height = 15
-        Top = 356
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel10: TLabel
-        Left = 254
-        Height = 15
-        Top = 388
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel12: TLabel
-        Left = 254
-        Height = 15
-        Top = 452
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel13: TLabel
-        Left = 254
-        Height = 15
-        Top = 484
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel14: TLabel
-        Left = 254
-        Height = 15
-        Top = 516
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel15: TLabel
-        Left = 254
-        Height = 15
-        Top = 548
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel16: TLabel
-        Left = 254
-        Height = 15
-        Top = 580
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object ResultLabel: TLabel
-        Left = 244
-        Height = 15
-        Top = 40
-        Width = 32
-        Caption = 'Result'
-        ParentColor = False
-        ParentFont = False
-      end
-      object ConcLabel: TLabel
-        Left = 140
-        Height = 15
-        Top = 60
-        Width = 67
-        Caption = 'Conc. (ppm)'
-        ParentColor = False
-        ParentFont = False
-      end
-      object UnitsLabel: TLabel
-        Left = 243
-        Height = 15
-        Top = 60
-        Width = 33
-        Caption = '(ppm)'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label9: TLabel
-        Left = 72
-        Height = 15
-        Top = 356
-        Width = 18
-        Caption = 'Mn'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel11: TLabel
-        Left = 254
-        Height = 15
-        Top = 420
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Label2: TLabel
-        Left = 44
-        Height = 15
-        Top = 132
-        Width = 52
-        Caption = 'N (NH4+)'
-        ParentColor = False
-        ParentFont = False
-      end
-      object RLabel2: TLabel
-        Left = 254
-        Height = 15
-        Top = 132
-        Width = 6
-        Caption = '0'
-        ParentColor = False
-        ParentFont = False
-      end
-      object Edit1: TEdit
-        Left = 132
-        Height = 23
-        Top = 96
-        Width = 88
-        ParentFont = False
-        TabOrder = 1
-        Text = '210'
-      end
-      object Edit3: TEdit
-        Left = 132
-        Height = 23
-        Top = 160
-        Width = 88
-        ParentFont = False
-        TabOrder = 3
-        Text = '31'
-      end
-      object Edit4: TEdit
-        Left = 132
-        Height = 23
-        Top = 192
-        Width = 88
-        ParentFont = False
-        TabOrder = 4
-        Text = '235'
-      end
-      object Edit5: TEdit
-        Left = 132
-        Height = 23
-        Top = 224
-        Width = 88
-        ParentFont = False
-        TabOrder = 5
-        Text = '48'
-      end
-      object Edit6: TEdit
-        Left = 132
-        Height = 23
-        Top = 256
-        Width = 88
-        ParentFont = False
-        TabOrder = 6
-        Text = '200'
-      end
-      object Edit7: TEdit
-        Left = 132
-        Height = 23
-        Top = 288
-        Width = 88
-        ParentFont = False
-        TabOrder = 7
-        Text = '64'
-      end
-      object Edit8: TEdit
-        Left = 132
-        Height = 23
-        Top = 320
-        Width = 88
-        ParentFont = False
-        TabOrder = 8
-        Text = '2.9'
-      end
-      object Edit9: TEdit
-        Left = 132
-        Height = 23
-        Top = 352
-        Width = 88
-        ParentFont = False
-        TabOrder = 9
-        Text = '0.5'
-      end
-      object Edit10: TEdit
-        Left = 132
-        Height = 23
-        Top = 384
-        Width = 88
-        ParentFont = False
-        TabOrder = 10
-        Text = '0.05'
-      end
-      object Edit12: TEdit
-        Left = 132
-        Height = 23
-        Top = 448
-        Width = 88
-        ParentFont = False
-        TabOrder = 18
-        Text = '0.02'
-      end
-      object Edit13: TEdit
-        Left = 132
-        Height = 23
-        Top = 480
-        Width = 88
-        ParentFont = False
-        TabOrder = 20
-        Text = '0.0'
-      end
-      object Edit14: TEdit
-        Left = 132
-        Height = 23
-        Top = 512
-        Width = 88
-        ParentFont = False
-        TabOrder = 21
-        Text = '0.05'
-      end
-      object Edit15: TEdit
-        Left = 132
-        Height = 23
-        Top = 544
-        Width = 88
-        ParentFont = False
-        TabOrder = 22
-        Text = '0'
-      end
-      object Edit16: TEdit
-        Left = 132
-        Height = 23
-        Top = 576
-        Width = 88
-        ParentFont = False
-        TabOrder = 23
-        Text = '0'
-      end
-      object Panel1: TPanel
-        Left = 312
-        Height = 102
-        Top = 516
-        Width = 481
-        BevelOuter = bvNone
-        ClientHeight = 102
-        ClientWidth = 481
-        ParentFont = False
-        TabOrder = 16
-        object CopyWeightButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Copy weights resulting from a formulation calculation to the database (to use within a weights to formulation calculation)'
-          Top = 64
-          Width = 222
-          Caption = 'Copy Weight Results to DB'
-          Enabled = False
-          TabOrder = 2
-          OnClick = CopyWeightButtonClick
-        end
-        object CarryOutCalcButton: TBitBtn
-          Left = 250
-          Height = 32
-          Hint = 'Press this button to run your calculation !'
-          Top = 20
-          Width = 222
-          Caption = 'Carry Out Calculation'
-          Font.Style = [fsBold]
-          Glyph.Data = {
-            460E0000424D460E00000000000036000000280000001E0000001E0000000100
-            200000000000100E000064000000640000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000005110910170300030B00000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00040806082108420CE41223134B000000060000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000000000000000000000010101030400001711421BC00345
-            0FFF0E4117D80000001300000002000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000402000016124723AF04511BFF05501CFE04511BFF1440
-            22950000000F0101010000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000060800
-            032116512FBB085D2CFF095C2DFF095C2DFF095C2DFE0B5C2DFE19211D490000
-            0009000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000010000000C0A06072D15643FDE0B6B3DFF0B6A
-            3DFE136E42FF1D754BFF0F6D3FFF0B6A3DFF0E6B3FF50B100E2E000000050000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0006000000131B322A5C12794EEC0F7D4EFF0F7D4EFE178154FF36926BFF5091
-            76E92C8D63FF107E4FFE0F7D4EFF176A4AD50900001B02020203000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000000000000000000000000000061722203824775CAB1995
-            67FF12915FFE12915FFE149161FF269A6DFE41A37DF12E24293840A57FFF1E96
-            66FE12915FFE129360FF1A664CAC000000130000000200000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000002612170948AC91D029B389FE30B48CFF23A87AFE1BA4
-            74FF22A779FF22A87AFF24735A7E000000082C9D7ABD25A97BFF19A374FF16A2
-            71FF16A675FF1F5A4C9800000014000000020000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000007000005465F593A61C4ACEF6BD0B4FF48C19EFE3FBD99FE21A6
-            81E300000008000000004A40453028B991FF28B68DFF19B186FF18B186FE19B0
-            86FF234B438A0000001300000002000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000002B020D0D5FA7987A76D8C2FF4DCFAFFF20866F73000000020000
-            00000000000038A0899B2DC29CFF23BF98FF1ABC94FF1ABD94FE1ABB95FF215E
-            528E000000130101010300000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000003917201F43B6A0AE0000000400000000000000001D242300434B
-            4D212ABE9BFE2EC19BFF1EBC93FF19BB91FF19BB91FE19BE95FF1F715EA50700
-            0020000000090000000100000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000011161500000000000000000000000000000000014673695E2FB6
-            8EFF29B38AFE1AAE82FF18AE81FF18AE81FF18B184FF1D8A6DE310231E430204
-            0410000000010000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000000E1816000A05060A36A383D42EA87CFF21A3
-            75FF159F6DFF159E6DFF159E6DFE159F6EFF169B6CFC1C665042000000010000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000003D1623192C986FEF309B70FE1B9162FF138C
-            5CFF128C5CFF128C5CFE138E5EFF1F1F211D0000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000002110C0244766353298B60FF2A885FFE177D50FF107A4BFF0F79
-            4AFF16744CED0900000A00000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000141755E6A3B8963FF287951FF136C40FF0B6639FF16613BDB0000
-            0008000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00044A79617E50926BFF448861FE177242FF155F37E300000009000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000000000000000000000000000000000000000000002467A
-            5B82639672FF578E69FE156734F8110002100000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000000000000000000000000000000000006178645C83A5
-            88F530783FFF1907141900000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000236373617618A63C31E30
-            1E1C000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            000000000000000000000000000000000000000000000E000D00000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            0000000000000000000000000000000000000000000000000000000000000000
-            00000000000000000000
-          }
-          ParentFont = False
-          TabOrder = 1
-          OnClick = CarryOutCalcButtonClick
-        end
-        object CalcTypeRadioGroup: TRadioGroup
-          Left = 8
-          Height = 73
-          Top = 16
-          Width = 216
-          AutoFill = True
-          Caption = 'Calculation Type'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 53
-          ClientWidth = 212
-          ItemIndex = 0
-          Items.Strings = (
-            'Input Desired Concentrations'
-            'Concentrations from  Weights'
-          )
-          TabOrder = 0
-          OnClick = CalcTypeRadioGroupChangeBounds
-        end
-      end
-      object Panel2: TPanel
-        Left = 312
-        Height = 98
-        Top = 424
-        Width = 481
-        BevelOuter = bvNone
-        ClientHeight = 98
-        ClientWidth = 481
-        ParentFont = False
-        TabOrder = 15
-        object ConcentrationFactorEdit: TEdit
-          Left = 250
-          Height = 23
-          Hint = 'This value determines how concentrated stock solutions are when compared to the final reservoir concentrations'
-          Top = 40
-          Width = 222
-          Enabled = False
-          TabOrder = 1
-          Text = '100'
-        end
-        object ConcentrationFactorLabel: TLabel
-          Left = 248
-          Height = 15
-          Hint = 'Measures the concentration ratio between the stock and final solutions'
-          Top = 24
-          Width = 112
-          Caption = 'Concentration Factor'
-          ParentColor = False
-        end
-        object SolPrepTypeRadioGroup: TRadioGroup
-          Left = 8
-          Height = 73
-          Top = 16
-          Width = 216
-          AutoFill = True
-          Caption = 'Solution Preparation type'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 53
-          ClientWidth = 212
-          ItemIndex = 0
-          Items.Strings = (
-            'Concentrated A + B Solutions'
-            'Direct Addition'
-          )
-          TabOrder = 0
-          OnClick = SolPrepTypeRadioGroupClick
-        end
-      end
-      object Panel3: TPanel
-        Left = 312
-        Height = 51
-        Top = 272
-        Width = 481
-        BevelOuter = bvNone
-        ClientHeight = 51
-        ClientWidth = 481
-        ParentFont = False
-        TabOrder = 11
-        object VolumeLabel: TLabel
-          Left = 8
-          Height = 15
-          Top = 0
-          Width = 40
-          Caption = 'Volume'
-          ParentColor = False
-        end
-        object VolumeEdit: TEdit
-          Left = 8
-          Height = 23
-          Hint = 'Volume used within the calculation (this can be reservoir or stock solution volume depending on the calculation type)'
-          Top = 17
-          Width = 153
-          TabOrder = 0
-          Text = '100'
-        end
-        object VolumeUnitsRadioGroup: TRadioGroup
-          Left = 176
-          Height = 40
-          Top = 0
-          Width = 297
-          AutoFill = True
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 3
-          ClientHeight = 20
-          ClientWidth = 293
-          Columns = 3
-          ItemIndex = 1
-          Items.Strings = (
-            'Liters'
-            'Gallons'
-            'Cubic Meters'
-          )
-          TabOrder = 1
-          OnDblClick = VolumeUnitsRadioGroupDblClick
-        end
-      end
-      object Edit11: TEdit
-        Left = 132
-        Height = 23
-        Top = 416
-        Width = 88
-        ParentFont = False
-        TabOrder = 17
-        Text = '0.5'
-      end
-      object Edit2: TEdit
-        Left = 132
-        Height = 23
-        Top = 128
-        Width = 88
-        ParentFont = False
-        TabOrder = 2
-        Text = '0'
-      end
-      object Panel4: TPanel
-        Left = 640
-        Height = 104
-        Top = 323
-        Width = 153
-        BevelOuter = bvNone
-        ClientHeight = 104
-        ClientWidth = 153
-        ParentFont = False
-        TabOrder = 14
-        object MassUnitsRadioGroup: TRadioGroup
-          Left = 8
-          Height = 89
-          Top = 9
-          Width = 137
-          AutoFill = True
-          Caption = 'Mass Units'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 69
-          ClientWidth = 133
-          ItemIndex = 0
-          Items.Strings = (
-            'Grams'
-            'Ounces'
-          )
-          TabOrder = 0
-          OnClick = MassUnitsRadioGroupClick
-        end
-      end
-      object Panel5: TPanel
-        Left = 312
-        Height = 197
-        Top = 67
-        Width = 481
-        BevelOuter = bvNone
-        ClientHeight = 197
-        ClientWidth = 481
-        ParentFont = False
-        TabOrder = 27
-        object SubstanceAnalysisButton: TButton
-          Left = 250
-          Height = 25
-          Top = 46
-          Width = 222
-          Caption = 'Substance Analysis'
-          TabOrder = 6
-          OnClick = SubstanceAnalysisButtonClick
-        end
-        object SetWQParamsButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Click this button to open up the Water Quality parameters dialogue'
-          Top = 76
-          Width = 222
-          Caption = 'Set Water Quality Parameters'
-          TabOrder = 7
-          OnClick = SetWQParamsButtonClick
-        end
-        object AddFormulationButton: TButton
-          Left = 8
-          Height = 25
-          Hint = 'Saves the current concentration inputs as a formulations within the database'
-          Top = 76
-          Width = 216
-          Caption = 'Add Formulation to DB'
-          TabOrder = 2
-          OnClick = AddFormulationButtonClick
-          OnResize = AddFormulationButtonResize
-        end
-        object DeleteForulationButton: TButton
-          Left = 8
-          Height = 25
-          Hint = 'Deletes the selected formulation from the database'
-          Top = 46
-          Width = 216
-          Caption = 'Delete Formulation From DB'
-          TabOrder = 1
-          OnClick = DeleteForulationButtonClick
-        end
-        object FormulationComboBox: TComboBox
-          Left = 8
-          Height = 23
-          Top = 136
-          Width = 216
-          ItemHeight = 15
-          Sorted = True
-          TabOrder = 4
-          Text = 'Select formulation from DB'
-          OnSelect = FormulationComboBoxSelect
-        end
-        object SetIPValuesButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Click this button to open up the instrument precision settings dialogue'
-          Top = 106
-          Width = 222
-          Caption = 'Set Instrument Precision Values'
-          TabOrder = 8
-          OnClick = SetIPValuesButtonClick
-        end
-        object SubstanceSelectionButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Select the substances which will be used for the calculations'
-          Top = 16
-          Width = 222
-          Caption = 'Substance Selection'
-          Color = clInactiveBorder
-          Font.Style = [fsBold]
-          ParentFont = False
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 5
-          OnClick = SubstanceSelectionButtonClick
-        end
-        object FormulationNameEdit: TEdit
-          Left = 8
-          Height = 23
-          Hint = 'Write the name you want the formulation to have here'
-          Top = 16
-          Width = 216
-          TabOrder = 0
-          Text = 'Input Formulation Name Here'
-        end
-        object CurrValuesToDefaultButton: TButton
-          Left = 8
-          Height = 25
-          Top = 106
-          Width = 216
-          Caption = 'Set current values to default'
-          TabOrder = 3
-          OnClick = CurrValuesToDefaultButtonClick
-        end
-        object TissueAnalysisButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Click this button to open up the instrument precision settings dialogue'
-          Top = 136
-          Width = 222
-          Caption = 'Tissue Analysis'
-          TabOrder = 9
-          OnClick = TissueAnalysisButtonClick
-        end
-        object ChoseDegreeOfFreedomButton: TButton
-          Left = 250
-          Height = 25
-          Hint = 'Choose the element used as a degree of freedom within the calculations'
-          Top = 166
-          Width = 222
-          Caption = 'Choose Degree of Freedom'
-          TabOrder = 10
-          OnClick = ChoseDegreeOfFreedomButtonClick
-        end
-      end
-      object DisablePopUpsCheckBox: TCheckBox
-        Left = 328
-        Height = 19
-        Hint = 'Checking this box will cause all calculation-related informative pop-ups to be switched off'
-        Top = 44
-        Width = 104
-        Caption = 'Disable Pop-ups'
-        ParentFont = False
-        TabOrder = 24
-      end
-      object SmallWindowCheckBox: TCheckBox
-        Left = 448
-        Height = 19
-        Hint = 'When checked the program will be started on a small window (great for netbooks)'
-        Top = 44
-        Width = 94
-        Caption = 'Small Window'
-        TabOrder = 25
-      end
-      object Panel8: TPanel
-        Left = 312
-        Height = 104
-        Top = 323
-        Width = 168
-        BevelOuter = bvNone
-        ClientHeight = 104
-        ClientWidth = 168
-        TabOrder = 12
-        object ConcUnitsRadioGroup: TRadioGroup
-          Left = 8
-          Height = 89
-          Top = 9
-          Width = 153
-          AutoFill = True
-          Caption = 'Concentration Units'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 2
-          ClientHeight = 69
-          ClientWidth = 149
-          Columns = 2
-          ItemIndex = 0
-          Items.Strings = (
-            'ppm'
-            'M'
-            'mM'
-            'mN'
-          )
-          TabOrder = 0
-          OnClick = ConcUnitsRadioGroupClick
-        end
-      end
-      object SiSiO2ComboBox: TComboBox
-        Left = 44
-        Height = 23
-        Top = 480
-        Width = 53
-        ItemHeight = 15
-        ItemIndex = 0
-        Items.Strings = (
-          'Si'
-          'SiO2'
-        )
-        Style = csDropDownList
-        TabOrder = 19
-        Text = 'Si'
-      end
-      object PayPalDonateButton: TBitBtn
-        Left = 721
-        Height = 40
-        Top = 23
-        Width = 76
-        Glyph.Data = {
-          3E1E0000424D3E1E00000000000036000000280000003E0000001F0000000100
-          200000000000081E000064000000640000000000000000000000FFFFFFFFFFFF
-          FFFFF5FBFFFFFFFFFFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFFFFFFFFFFF5FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0099FFFF5FBF
-          FFFF91D4FFFFA5DBFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DC
-          FFFFA8DCFFFFA8DCFFFFA8DCFFFFA8DCFFFFA5DBFFFF91D4FFFF5FBFFFFF0099
-          FFFFFFFFFFFFFFFFFFFFEFF9FFFF0099FFFF95D5FEFFBEE6FFFFC9EAFFFFCDEB
-          FFFFCEEDFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEBFFFFCDEB
-          FFFFCDEBFFFFCEEDFFFFCDEBFFFFC9EAFFFFBEE6FFFF95D5FEFF0099FFFFEFF9
-          FFFFFFFFFFFF57BCFFFFB5E2FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4FFFFBCE4
-          FFFFBCE4FFFFBCE4FFFFBCE4FFFFB5E2FFFF57BCFFFFFFFFFFFF0099FFFF87CF
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DBFFFFA5DB
-          FFFFA5DBFFFFA5DBFFFF87CFFFFF0099FFFF0099FFFF87CFFFFF8ED2FFFF8ED2
-          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
-          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF663312FF663312FF6633
-          12FF663312FF8ED2FFFF8ED2FFFF8ED2FFFF663312FF663312FF8ED2FFFF8ED2
-          FFFF663312FF8ED2FFFF8ED2FFFF663312FF8ED2FFFF663312FF663312FF6633
-          12FF663312FF8ED2FFFF663312FF663312FF8ED2FFFF8ED2FFFF663312FF6633
-          12FF663312FF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
-          FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2FFFF8ED2
-          FFFF87CFFFFF0099FFFF0099FFFF76CAFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
-          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
-          FFFF7BCBFFFF7BCBFFFF7BCBFFFF663312FF7BCBFFFF7BCBFFFF7BCBFFFF6633
-          12FF7BCBFFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCBFFFF663312FF7BCB
-          FFFF7BCBFFFF663312FF7BCBFFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCB
-          FFFF663312FF7BCBFFFF7BCBFFFF663312FF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
-          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCB
-          FFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF7BCBFFFF76CAFFFF0099
-          FFFF0099FFFF66C3FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
-          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
-          FFFF6AC4FFFF663312FF6AC4FFFF6AC4FFFF6AC4FFFF663312FF6AC4FFFF6633
-          12FF6AC4FFFF6AC4FFFF663312FF6AC4FFFF663312FF6AC4FFFF6AC4FFFF6633
-          12FF6AC4FFFF6AC4FFFF663312FF663312FF663312FF6AC4FFFF663312FF6AC4
-          FFFF6AC4FFFF663312FF663312FF663312FF663312FF6AC4FFFF6AC4FFFF6AC4
-          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4
-          FFFF6AC4FFFF6AC4FFFF6AC4FFFF6AC4FFFF66C3FFFF0099FFFF0099FFFF57BC
-          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
-          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF6633
-          12FF59BDFFFF59BDFFFF59BDFFFF663312FF59BDFFFF663312FF59BDFFFF59BD
-          FFFF663312FF59BDFFFF663312FF59BDFFFF59BDFFFF663312FF59BDFFFF59BD
-          FFFF59BDFFFF59BDFFFF663312FF59BDFFFF663312FF59BDFFFF59BDFFFF6633
-          12FF59BDFFFF59BDFFFF663312FF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
-          FFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BDFFFF59BD
-          FFFF59BDFFFF59BDFFFF57BCFFFF0099FFFF0099FFFF44B6FFFF49B7FFFF49B7
-          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
-          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF663312FF49B7FFFF49B7
-          FFFF49B7FFFF663312FF49B7FFFF49B7FFFF663312FF663312FF49B7FFFF49B7
-          FFFF663312FF663312FF663312FF663312FF49B7FFFF663312FF663312FF6633
-          12FF663312FF663312FF663312FF663312FF49B7FFFF49B7FFFF663312FF6633
-          12FF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
-          FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7FFFF49B7
-          FFFF44B6FFFF0099FFFF0099FFFF39B2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
-          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
-          FFFF3CB2FFFF3CB2FFFF3CB2FFFF663312FF663312FF663312FF663312FF3CB2
-          FFFF3CB2FFFF3CB2FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3FFFF3EB3
-          FFFF3EB3FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
-          FFFF663312FF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
-          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2
-          FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF3CB2FFFF39B2FFFF0099
-          FFFF0099FFFF2DADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF35B1FFFF35B1FFFF3CB2FFFF3AB4FFFF39B2FFFF39B2FFFF35B1FFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF30AD
-          FFFF30ADFFFF30ADFFFF30ADFFFF30ADFFFF2DADFFFF0099FFFF0099FFFF26A9
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF28ABFFFF2BACFFFF2FAEFFFF35B1
-          FFFF3AB4FFFF3DB5FFFF3DB5FFFF3AB4FFFF32B0FFFF2FAEFFFF28ABFFFF27AA
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
-          FFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AAFFFF27AA
-          FFFF27AAFFFF27AAFFFF26A9FFFF0099FFFF0099FFFF22A7FFFF23A8FFFF23A8
-          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF27AA
-          FFFF26AAFFFF26A9FFFF26A9FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF28AB
-          FFFF2BACFFFF2BACFFFF2BACFFFF2FAEFFFF35B1FFFF3DB5FFFF44BAFFFF44BA
-          FFFF44BAFFFF3DB5FFFF3DB5FFFF32B0FFFF2BACFFFF27AAFFFF26AAFFFF26A9
-          FFFF26A9FFFF23A8FFFF23A8FFFF26A9FFFF26A9FFFF27AAFFFF28ABFFFF2BAC
-          FFFF2BACFFFF2BACFFFF28ABFFFF28ABFFFF27AAFFFF27AAFFFF26AAFFFF26A9
-          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8
-          FFFF22A7FFFF0099FFFF0099FFFF22A7FFFF23A8FFFF23A8FFFF23A8FFFF23A8
-          FFFF23A8FFFF26A9FFFF28ABFFFF2BACFFFF2FAEFFFF2FAEFFFF2DADFFFF2BAC
-          FFFF28ABFFFF27AAFFFF28ABFFFF2DADFFFF32B0FFFF35B1FFFF39B2FFFF3AB4
-          FFFF3AB4FFFF3DB5FFFF44BAFFFF44B6FFFF776B62FF673C23FF7D7C78FF60C7
-          FDFF4CBDFFFF3DB5FFFF35B1FFFF2FAEFFFF2FAEFFFF2DADFFFF2BACFFFF28AB
-          FFFF27AAFFFF28ABFFFF2DADFFFF32B0FFFF35B1FFFF39B2FFFF39B2FFFF39B2
-          FFFF39B2FFFF35B1FFFF32B0FFFF32B0FFFF2FAEFFFF2BACFFFF28ABFFFF26A9
-          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF22A7FFFF0099
-          FFFF0099FFFF22A7FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF26A9FFFF28AB
-          FFFF2FAEFFFF35B1FFFF3AB4FFFF3DB5FFFF3AB4FFFF35B1FFFF2FAEFFFF2DAD
-          FFFF2FAEFFFF35B1FFFF3DB5FFFF44BAFFFF4ABDFFFF4CBDFFFF4CBDFFFF4CBD
-          FFFF55C2FEFF60C7FDFF6AA1BAFF64361BFF673C23FF5FB3E0FF60C7FDFF55C2
-          FEFF44BAFFFF3DB5FFFF3DB5FFFF39B2FFFF32B0FFFF2FAEFFFF2DADFFFF2FAE
-          FFFF35B1FFFF3DB5FFFF44BAFFFF4CBDFFFF4CBDFFFF4CBDFFFF4ABDFFFF44BA
-          FFFF44BAFFFF44BAFFFF3AB4FFFF35B1FFFF2FAEFFFF28ABFFFF26A9FFFF23A8
-          FFFF23A8FFFF23A8FFFF23A8FFFF23A8FFFF22A7FFFF0099FFFF0099FFFF22A8
-          FFFF26AAFFFF49B7FFFF5FBFFFFF66C3FFFF6AC6FFFF6FC8FFFF76CAFFFF78CD
-          FFFF83CDF7FF83CDF7FF82D2FEFF7DCFFFFF78CDFFFF78CDFFFF78CDFFFF7DCF
-          FFFF82D2FEFF8DCCECFF8CC2DDFF95D9FBFF95DCFFFF93D5F5FF98DEFFFFA1E2
-          FFFFA2D7EDFF776B62FF64361BFF776B62FF9EE1FFFF95DCFFFF8DD7FEFF88D2
-          FAFF88D2FAFF7DCFFFFF7DCFFFFF78CDFFFF78CDFFFF78CDFFFF7DCFFFFF86D4
-          FFFF8DCCECFF94CCE5FF95DCFFFF95DCFFFF95D9FBFF94D9FFFF8DD7FEFF88D2
-          FAFF82D2FEFF7DCFFFFF76CAFFFF6FC8FFFF6AC6FFFF6AC4FFFF66C3FFFF59BD
-          FFFF44B6FFFF23A8FFFF22A8FFFF0099FFFF0099FFFF39B2FFFF72C8FEFF7ECD
-          FEFF84CFFEFF84CFFEFF86D1FEFF8ED2FFFF94D9FFFF9CDBFEFF7B6353FF6E48
-          32FF8A9699FFA2DCF9FF9DDCFEFF9CDBFEFF9DDCFEFFA1DDFEFF92A8B1FF734D
-          37FF6C4229FF755847FF827469FF755847FF8F918DFFBBEAFFFFB8E1F0FF9481
-          73FF64361BFF673C23FFADBDC1FFBBEAFFFFB2E5FEFFA29A87FF9F7D56FFA9B9
-          B7FFA3DBF8FF9DDCFEFF9CDBFEFF9DDCFEFFA1DDFEFFA4AFA8FFA47D52FFA070
-          3EFFA48A67FFA48E6EFF9F7D56FFB5BAB5FFAECACFFF9F7D56FFA29A87FF9ED8
-          F6FF94D9FFFF91D4FFFF86D1FEFF84CFFEFF84CFFEFF84CFFEFF7ECDFEFF66C3
-          FFFF2DADFFFF0099FFFF0099FFFF7BCBFFFF95D5FEFF95D5FEFF95D5FEFF95D5
-          FEFF95D5FEFF9BD8FEFFA1DDFEFFB0E2FFFF75533EFF64361BFF886C5AFFB0D5
-          E6FFB7E7FEFFB2E5FEFFB7E7FEFFB0D5E6FF87786DFF64361BFF80604CFFA7A3
-          9DFF886C5AFF64361BFF7B5A45FFCBF0FEFFCAE5ECFF816552FF64361BFF6436
-          1BFF816552FFCBF0FEFFC6EEFFFFA99578FF9B6732FFA99578FFB8E1F0FFB7E7
-          FEFFB2E5FEFFB2E5FEFFB8E1F0FFA48A67FF9B6732FFAC916FFFB7B4A3FFA685
-          5EFF9B6732FFB1A48CFFBDC8C6FF9F7140FFA47D52FFAECCD5FFA9E0FEFFA1DD
-          FEFF9BD8FEFF95D5FEFF95D5FEFF95D5FEFF95D5FEFF91D4FFFF72C8FEFF0099
-          FFFF0099FFFF9BD8FEFFA2DBFEFFA2DBFEFFA2DBFEFFA2DBFEFFA4DCFEFFA9E0
-          FEFFB0E2FFFFBBEAFFFF87786DFF6C4229FF6E462EFFADBDC1FFCBF0FEFFC8EE
-          FFFFC6EEFFFFC6EBFBFF87786DFF64361BFF867263FFD6F6FFFFC3D1D3FF6E46
-          2EFF6E4832FFC6DDE1FFD1E8EFFF734D37FF64361BFF64361BFF673C23FFABB0
-          ACFFD6F6FFFFBCB6A4FF9E6C3AFFA47647FFC6DDE1FFCBF0FEFFC6EEFFFFC6EE
-          FFFFC8EEFFFFA6855EFF9B6732FFB8AA93FFD6F6FFFFC5CBC2FF9F7140FFAC8D
-          68FFC5CBC2FFAC8D68FF9E6C3AFFB5BAB5FFB7E7FEFFB0E2FFFFA8DCFFFFA4DC
-          FEFFA2DBFEFFA2DBFEFFA2DBFEFFA2DBFEFF99D7FEFF0099FFFF0099FFFFA8DC
-          FFFFAFE0FFFFAFE0FFFFAFE0FFFFAFE0FFFFB0E2FFFFB5E2FFFFBBEAFFFFC2E9
-          FFFFA7A39DFF795641FF64361BFF765440FF816552FF867263FFA89B92FFCAE5
-          ECFFC3D1D3FF7F5E4AFF673C23FF846755FF89705FFF673C23FF6E462EFFB5BA
-          B5FFD1E8EFFF64361BFF6C4229FF948173FF64361BFF765440FFD8F1F8FFCED9
-          D4FFA0703EFF9C6935FFA6855EFFAC8962FFB29674FFBCB6A4FFD6F1F9FFC5CB
-          C2FFA68055FF9E6C3AFFAC916FFFAC8D68FF9C6935FFA68055FFC9C7BAFFBBA8
-          8EFF9B6732FFB8AA93FFC6EEFFFFBEE6FFFFB5E5FEFFB0E2FFFFAFE0FFFFAFE0
-          FFFFAFE0FFFFAFE0FFFFA8DCFFFF0099FFFF0099FFFFB5E2FFFFBBE5FFFFBBE5
-          FFFFBBE5FFFFBBE5FFFFBBE5FFFFBEE6FFFFC7E9FFFFCEEDFFFFBDC8C6FF8467
-          55FF64361BFF673C23FF6E462EFF64361BFF64361BFF89705FFFC3CAC8FFD0DD
-          E0FFB2ACA4FFA09084FF948173FF7B5A45FF673C23FFA09084FFCBD3D3FF6436
-          1BFF734D37FFD0DDE0FF795641FF64361BFFA7A39DFFE1F5FEFFA57A4CFF9B67
-          32FF9C6935FFA17242FF9B6732FF9E6C3AFFB29674FFD5E0DCFFD5E0DCFFC5BA
-          A9FFBBA88EFFB89F80FFA57A4CFF9E6C3AFFC3B9A7FFC3B9A7FF9B6732FFB296
-          74FFD0F0FFFFC9EAFFFFC2E9FFFFBEE6FFFFBBE5FFFFBBE5FFFFBBE5FFFFBBE5
-          FFFFB5E2FFFF0099FFFF0099FFFFBEE6FFFFC7E9FFFFC7E9FFFFC7E9FFFFC7E9
-          FFFFC7E9FFFFC9EAFFFFCEEDFFFFD4F0FFFFD1E8EFFF948173FF64361BFF886C
-          5AFFBFBEBAFFB9B4AEFF7F5E4AFF64361BFF967F70FFCBD3D3FFB2ACA4FFBEBB
-          B6FFB2ACA4FF80604CFF64361BFF886C5AFFB9B4AEFF64361BFF7F5E4AFFE6F9
-          FFFFB6B3ADFF64361BFF6E462EFFD6E6E9FFB2916BFF9B6732FFB29674FFCFCC
-          C0FFC9C1B0FFA57A4CFF9B6732FFC3B099FFD5D2C7FFC9C7BAFFCFCCC0FFCABD
-          ABFFA88055FF9B6732FFB8AA93FFCFCCC0FF9B6732FFAB865EFFD6EAF2FFD4F0
-          FFFFCEEDFFFFC9EAFFFFC7E9FFFFC7E9FFFFC7E9FFFFC7E9FFFFBEE6FFFF0099
-          FFFF0099FFFFC9EAFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EE
-          FFFFD4F0FFFFDDF2FFFFE1F5FEFFA89B92FF64361BFF886C5AFFE4F1F3FFEEFA
-          FFFFB2ACA4FF64361BFF7B5A45FFA59488FF80604CFF75533EFF795641FF673C
-          23FF734D37FFA89B92FFA89B92FF64361BFF947A6AFFE6F9FFFFE1F2F8FF8467
-          55FF64361BFFA59488FFBCA68BFF9C6935FFB29674FFEEFAFFFFEEFAFFFFBCA6
-          8BFF9B6732FFAC8D68FFBCA68BFFAB865EFFA88055FFA47D52FF9C6935FFA57A
-          4CFFD1C9BCFFDDDCD5FF9F7140FFA57A4CFFD2D5D0FFDDF2FFFFD9F1FFFFD5EF
-          FFFFD2EEFFFFD2EEFFFFD2EEFFFFD2EEFFFFC9EAFFFF0099FFFF0099FFFFD5EF
-          FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFDDF2FFFFE1F5
-          FEFFE9F6FFFFBEBBB6FF6E462EFF6C4229FFA89B92FFC5C1BDFF967F70FF6436
-          1BFF795641FFC2BBB6FFB6B3ADFF9C8576FF967F70FFA09084FFBDB7B2FFE3EB
-          EEFFC5C1BDFF9E8C80FFC6C6C4FFE7F7FFFFE9F6FFFFCDCFCFFFA09084FFA7A3
-          9DFFC5BAA9FFA0703EFFA0703EFFCFC2AFFFD4CEC6FFB2916BFF9B6732FFAB86
-          5EFFD4CEC6FFCABDABFFB89F80FFB99B7AFFBBA88EFFD1C9BCFFE9F5F8FFE0E4
-          E0FFAB865EFF9E6C3AFFCABDABFFE5F5FFFFE5F5FFFFDDF2FFFFDDF2FFFFDDF2
-          FFFFDDF2FFFFDDF2FFFFD2EEFFFF0099FFFF0099FFFFDDF2FFFFE8F6FFFFE8F6
-          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFEAF7FFFFECF9FFFFD9DA
-          DAFF816552FF64361BFF673C23FF673C23FF64361BFF6E462EFF9C8576FFEBF1
-          F3FFEEFAFFFFEEFAFFFFEDF9FFFFEDF9FFFFEDF9FFFFEDF9FFFFECF9FFFFECF9
-          FFFFECF9FFFFEAF8FFFFECF9FFFFECF9FFFFEDF9FFFFEEFAFFFFE3E1DBFFA476
-          47FF9B6732FF9E6C3AFF9E6C3AFF9B6732FFA17242FFC3B099FFEBF1F3FFF0FA
-          FFFFEEFAFFFFEDF9FFFFEDF9FFFFEEFAFFFFEEFAFFFFE8EEEFFFBDA284FF9B67
-          32FFBDA284FFE3EBEEFFEAF8FFFFE9F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6
-          FFFFDDF2FFFF0099FFFF0099FFFFD2EEFFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9
-          FFFFEFF9FFFFEFF9FFFFEFF9FFFFF0FAFFFFF1FAFFFFEBF1F3FF9C8576FF6E46
-          2EFF6E462EFF6C4229FF734D37FF947A6AFFD4CEC6FFF1FAFFFFF5FBFFFFF1FA
-          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FAFFFFF1FA
-          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF5FBFFFFF0F5F6FFB38F68FFA47647FFA070
-          3EFFA0703EFFA57A4CFFB99B7AFFE3E1DBFFF1FAFFFFF5FBFFFFF1FAFFFFF1FA
-          FFFFF1FAFFFFF1FAFFFFF1FAFFFFF2F9FCFFCABDABFFA47647FFBDA284FFDDDC
-          D5FFF1FAFFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9FFFFEFF9FFFFCEEDFFFF0099
-          FFFFFFFFFFFF95D5FEFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FB
-          FFFFF5FBFFFFF5FBFFFFF6FCFFFFF6FCFFFFF6FCFFFFF8FDFFFFF8FDFFFFF8FD
-          FFFFF8FDFFFFF8FDFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FB
-          FFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FB
-          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF8FDFFFFF8FDFFFFF8FDFFFFF8FD
-          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FBFFFFF6FC
-          FFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF6FCFFFFF5FBFFFFF5FB
-          FFFFF5FBFFFFF5FBFFFFF5FBFFFFF5FBFFFF92D3FFFFFFFFFFFFFFFFFFFF0099
-          FFFFCEEBFFFFEDF9FFFFF8FDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
-          FFFFFAFDFFFFFBFDFFFFFBFDFFFFFBFDFFFFFBFEFFFFFBFEFFFFFBFEFFFFFBFD
-          FFFFFBFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
-          FFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
-          FFFFFBFDFFFFFBFDFFFFFBFDFFFFFBFEFFFFFBFEFFFFFBFEFFFFFBFDFFFFFBFD
-          FFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFD
-          FFFFFBFDFFFFFBFDFFFFFBFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFFAFDFFFFF8FD
-          FFFFEDF9FFFFCEEBFFFF0099FFFFFBFEFFFFFFFFFFFFFFFFFFFF0099FFFF95D5
-          FEFFC9EAFFFFE5F5FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6
-          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6
-          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6
-          FFFFE9F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE9F6
-          FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6FFFFE8F6FFFFE8F6
-          FFFFE9F6FFFFE9F6FFFFE8F6FFFFE9F6FFFFE9F6FFFFE8F6FFFFE8F6FFFFE9F6
-          FFFFE8F6FFFFE8F6FFFFE8F6FFFFE8F6FFFFE5F5FFFFC9EAFFFF95D5FEFF0099
-          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099FFFF0099
-          FFFF0099FFFF0099FFFF039AFFFF0099FFFFFFFFFFFFFEFFFFFFFFFFFFFFFFFF
-          FFFF
-        }
-        TabOrder = 26
-        OnClick = PayPalDonateButtonClick
-      end
-      object ZeroAllTargetsButton: TButton
-        Left = 132
-        Height = 20
-        Top = 8
-        Width = 144
-        Caption = 'Zero all targets'
-        TabOrder = 0
-        OnClick = ZeroAllTargetsButtonClick
-      end
-      object Panel9: TPanel
-        Left = 480
-        Height = 103
-        Top = 324
-        Width = 161
-        BevelOuter = bvNone
-        ClientHeight = 103
-        ClientWidth = 161
-        ParentFont = False
-        TabOrder = 13
-        object ECModelRadioGroup: TRadioGroup
-          Left = 8
-          Height = 89
-          Top = 8
-          Width = 144
-          AutoFill = True
-          Caption = 'EC Model'
-          ChildSizing.LeftRightSpacing = 6
-          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
-          ChildSizing.EnlargeVertical = crsHomogenousChildResize
-          ChildSizing.ShrinkHorizontal = crsScaleChilds
-          ChildSizing.ShrinkVertical = crsScaleChilds
-          ChildSizing.Layout = cclLeftToRightThenTopToBottom
-          ChildSizing.ControlsPerLine = 1
-          ClientHeight = 69
-          ClientWidth = 140
-          ItemIndex = 0
-          Items.Strings = (
-            'LMCv2'
-            'Empirical'
-          )
-          TabOrder = 0
-        end
-      end
-    end
-    object TabSheet2: TTabSheet
-      Caption = 'Results'
-      ClientHeight = 645
-      ClientWidth = 826
-      Font.Height = -11
-      ParentFont = False
-      object AnyObservationLabel: TLabel
-        Left = 452
-        Height = 104
-        Top = 320
-        Width = 324
-        AutoSize = False
-        Caption = 'Any observations about the calculations will be posted here'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = 'Times New Roman'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentColor = False
-        ParentFont = False
-        WordWrap = True
-      end
-      object PredictedECValueLabel: TLabel
-        Left = 469
-        Height = 13
-        Top = 448
-        Width = 98
-        Caption = 'Predicted EC Value '
-        ParentColor = False
-      end
-      object PredictedECValuePanel: TPanel
-        Left = 456
-        Height = 56
-        Hint = 'This EC value has an accuracy of +/- 10%'
-        Top = 472
-        Width = 132
-        Caption = 'EC = 0'
-        Font.CharSet = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -16
-        Font.Name = 'Times New Roman'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentFont = False
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 0
-      end
-      object ExportToCSVButton: TBitBtn
-        Left = 56
-        Height = 32
-        Hint = 'This button exports all the data within this page to a CSV for easy access and printing  using any spreadsheet program'
-        Top = 600
-        Width = 132
-        Caption = 'Export To Csv'
-        Glyph.Data = {
-          460E0000424D460E00000000000036000000280000001E0000001E0000000100
-          200000000000100E000064000000640000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000000000040000000E1000101B00000013000000090000
-          0002000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000040000
-          00110405042919311B8A053D07FB123814C11A1C1A4601020122000000100000
-          0005000000010000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000000000040000001112000A211038179C044610F82151
-          28D303460FFF1F4C25C8265B2DE813521EF30C3514A420091B32000000150000
-          000C000000030000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000010101030000
-          000F1709112D0D411E98296339F83A6E47B14D66523E16000F272E6D3FFF1141
-          1F85000000027C867F364777538D2E653CDF19562CD210391E7A140A0F1E0000
-          0002000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000011016131B19492E8E146033F94D81
-          60B04431401A00000000000000001F0D18291F6C3FFF144B2A86000000080000
-          000900000007000000005544502F1B683AEB114F2A8100000003000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000023D604E5917633DD10400011400000007000000100000
-          000E00000004200B1529106E40FF18543888040C08221B4B3596150B10390000
-          001D000000181C7148D31454357F000000030000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00033E63555A137049C30000001716000024156948B11660429E000000141E06
-          102C148253FF19563D8E1F62459D287554C03E8D6DE61F815AE7155039961C77
-          51DE155C3F830000000D00000002000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000008405E575D2183
-          61D41C71539E2E8A69DB387D636C319671D318634AA01300043E179565FF2167
-          4FBC169262FB0A1D16160000000067847B45479E7EAD54AA8AF42E8768D41447
-          38671200001D0000000500000000000000000000000000000000000000000000
-          0000000000000000000600000014122D2638428975B96EC6AAF04A8475680000
-          0002000804013800000F35A684E1235447AF1AA576FF199B70FF2B5448590000
-          00030000000000000000000000000000000263827C652FA47FEC1C906FF62300
-          000A000000000000000000000000000000000000000000000000000101031200
-          00232C8B77BB3ABB9DF4517D7353202C290B0000000100000000000000040000
-          001313070A3C24AA86F618B285FF1D9775E8150001420000001B0000000D0000
-          00030000000000000002000000153FAA8EE82A4F463F00000001000000010000
-          000000000000000000000000000000000000000000024C90846740C6AAFF1300
-          003B000000090405050100000004000000100C00002F1E816DA61DB08EF41ABD
-          95FF1ABD95FE1ABF96FF1CB490FF1D9E82D61E544A830A000026000000120000
-          00121F89728D25A789C300000013000000120000001100000009030504000000
-          000000000000000000000000000000000000729A92625FBCA8FB162825420000
-          0015110B0D33277665912FB99AFD21C29AFF19B98FFE19BA90FF19BA90FF19BA
-          90FF19BA90FE19BA90FE1AC095FF1DA181FB1D6F5BA1182E2A6321A888F11717
-          1857156551781C846AB8289A80EB290009150000000000000000000000000000
-          00000000000000000000000000015168644934B093FC295A4E9E2DB592FF2CBD
-          96FF2BBC95FE2CBC95FF27B88FFF18AC7FFF17AC7EFF17AC7EFF17AC7EFF18AC
-          7FFF18AC7FFF18AC7FFE18AC7FFF1AB082FF28A985F840AC90F04FA68FF146A0
-          8CA52100000D0000000103040400000000000000000000000000000000000000
-          00004259550000000006414B4A5D34B68CFF47B993FF51BB97FF4DB994FF43B6
-          8FFF37B289FF2BAF83FF19A171FF149B69FF189D6CFF20A171FF2FA67AFE41B1
-          87FF54AF8FF03A524C76378E71D84C8E7A8F3C655B1B00000002000000000000
-          0000000000000000000000000000000000000000000000000000020202010000
-          00143A9473C56BA78FB377A5967475B29CCB76C0A4FF70BD9FFF62B595FE4DAD
-          89FE42A983FF3FA57EFF3C9F78FE48A781FF56967ED8406B5CA3217152BC2C84
-          6494366053250000000000000000000000000000000000000000000000000000
-          000000000000000000000000000000000000000000092542365858A384F81B09
-          111800000000000000002E04141B699C888575B298D570B094F968AD8FFF70B2
-          95FF72B196FC62957FE22F845FD42A8A62AE4C0C2416000000002C3632000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          000000000000000000011212122641916EFC2C4E3F5600000008000000010000
-          000000000000000000010000000B2327245473A68BFF3C373A3D0A0003100000
-          0006000000030000000100000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00004C795F7370A787FF4B6C58AA08000438000000160000000E000000050102
-          0203030A0621699A7DF055776268000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000023362A00000000006467
-          642C8BA693866D967ADC5E876ADC355C40880F090E34000000182F593B944B7E
-          5AD7000000080000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000493E4527859F89A7609168F258745BCE6D9973FF2A2D2923000000010000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000002030300000000000000
-          0002191C19085054512B5B745B5F000000030000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000FFFFFF000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          0000000000000000000000000000000000000000000000000000000000000000
-          00000000000000000000
-        }
-        TabOrder = 1
-        OnClick = ExportToCSVButtonClick
-      end
-      object DetailedPerSubstAnalysisButton: TBitBtn
-        Left = 452
-        Height = 33
-        Hint = 'Click here to see a detailed analysis of the contributions of each substance to the overall solution composition'
-        Top = 544
-        Width = 324
-        Caption = 'Detailed Per Substance Contribution Analysis'
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 2
-        OnClick = DetailedPerSubstAnalysisButtonClick
-      end
-      object StockSolutionAnalysisButton: TBitBtn
-        Left = 633
-        Height = 25
-        Hint = 'Click here to see the % compositions analysis of the stock solutions '
-        Top = 472
-        Width = 143
-        Caption = 'Stock Solution Analysis'
-        Enabled = False
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 3
-        OnClick = StockSolutionAnalysisButtonClick
-      end
-      object NutrientRateAnalysisButton: TButton
-        Left = 633
-        Height = 24
-        Top = 504
-        Width = 143
-        Caption = 'Nutrient Ratio Analysis'
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 4
-        OnClick = NutrientRateAnalysisButtonClick
-      end
-      object StringGrid1: TStringGrid
-        Left = 54
-        Height = 312
-        Top = 277
-        Width = 386
-        Columns = <        
-          item
-            Title.Caption = 'Element'
-          end        
-          item
-            Alignment = taCenter
-            Title.Alignment = taCenter
-            Title.Caption = 'Result (ppm)'
-          end        
-          item
-            Alignment = taCenter
-            Title.Alignment = taCenter
-            Title.Caption = 'GE'
-            Width = 60
-          end        
-          item
-            Alignment = taCenter
-            Title.Alignment = taCenter
-            Title.Caption = 'IE'
-            Width = 60
-          end        
-          item
-            Alignment = taCenter
-            Title.Alignment = taCenter
-            Title.Caption = 'Water (ppm)'
-          end>
-        DefaultColWidth = 85
-        DefaultRowHeight = 18
-        FixedCols = 0
-        RowCount = 17
-        TabOrder = 5
-        TitleFont.Height = -11
-      end
-      object StringGrid2: TStringGrid
-        Left = 54
-        Height = 253
-        Top = 8
-        Width = 722
-        ColCount = 6
-        Columns = <        
-          item
-            ButtonStyle = cbsButtonColumn
-            ReadOnly = True
-            Title.Caption = 'Substance Name [click for url]'
-          end        
-          item
-            Alignment = taCenter
-            ReadOnly = True
-            Title.Alignment = taCenter
-            Title.Caption = 'Formula'
-          end        
-          item
-            Alignment = taCenter
-            Title.Alignment = taCenter
-            Title.Caption = 'Amount [Edit to fine-tune]'
-          end        
-          item
-            Alignment = taCenter
-            Title.Caption = 'Units'
-            Width = 35
-          end        
-          item
-            Alignment = taCenter
-            ReadOnly = True
-            Title.Alignment = taCenter
-            Title.Caption = 'Preparation Cost'
-          end        
-          item
-            Title.Caption = 'Source'
-            Visible = False
-          end>
-        DefaultColWidth = 170
-        DefaultRowHeight = 20
-        FixedCols = 0
-        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
-        RowCount = 1
-        TabOrder = 6
-        TitleFont.Height = -11
-        OnEditButtonClick = StringGrid2EditButtonClick
-        OnEditingDone = StringGrid2EditingDone
-      end
-      object TotalCostLabel: TLabel
-        Left = 452
-        Height = 18
-        Top = 277
-        Width = 72
-        Caption = 'Total Cost'
-        Font.Height = -15
-        Font.Name = 'Sans'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-      end
-      object PlusButton: TButton
-        Left = 592
-        Height = 25
-        Top = 472
-        Width = 27
-        Caption = '+'
-        Font.CharSet = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -21
-        Font.Name = 'Segoe UI'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentFont = False
-        TabOrder = 7
-        OnClick = PlusButtonClick
-      end
-      object MinusButton: TButton
-        Left = 592
-        Height = 25
-        Top = 503
-        Width = 27
-        Caption = '-'
-        Font.CharSet = ANSI_CHARSET
-        Font.Color = clBlack
-        Font.Height = -21
-        Font.Name = 'Segoe UI'
-        Font.Pitch = fpVariable
-        Font.Quality = fqDraft
-        ParentFont = False
-        TabOrder = 8
-        OnClick = MinusButtonClick
-      end
-      object InputMixAnalysisButton: TBitBtn
-        Left = 632
-        Height = 25
-        Hint = 'Shows the % composition of the mixture of solids used'
-        Top = 440
-        Width = 144
-        Caption = 'Input mix analysis'
-        Enabled = False
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 9
-        OnClick = InputMixAnalysisButtonClick
-      end
-      object CopyResultToTargetsButton: TButton
-        Left = 200
-        Height = 32
-        Hint = 'Copies the "Result (ppm)" fields to the targets on the Main Page'
-        Top = 600
-        Width = 144
-        Caption = 'Copy results to targets'
-        ParentShowHint = False
-        ShowHint = True
-        TabOrder = 10
-        OnClick = CopyResultToTargetsButtonClick
       end
     end
     object TabSheet3: TTabSheet

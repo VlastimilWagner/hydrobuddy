@@ -13,11 +13,11 @@ type
   { TFreedomForm }
 
   TFreedomForm = class(TForm)
-    Button1: TButton;
-    ComboBox1: TComboBox;
+    OKButton: TButton;
+    ElementComboBox: TComboBox;
     InputLabel: TLabel;
     InstructionsLabel: TLabel;
-    procedure Button1Click(Sender: TObject);
+    procedure OKButtonClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -31,7 +31,7 @@ implementation
 
 { TFreedomForm }
 
-procedure TFreedomForm.Button1Click(Sender: TObject);
+procedure TFreedomForm.OKButtonClick(Sender: TObject);
 begin
   FreedomForm.Visible := false ;
 end;

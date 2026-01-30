@@ -14,11 +14,11 @@ LazarusResources.Add('TFreedomForm','FORMDATA',[
   +' to "adjust" to arrive at better values for other elements. Sulfur is usual'
   +'ly used as a degree of freedom as it commonly allows for the best results t'
   +'o be achieved since many elements are usually provided as sulfates.'#11'Par'
-  +'entColor'#8#8'WordWrap'#9#0#0#7'TButton'#7'Button1'#4'Left'#2#24#6'Height'#2
-  +#25#3'Top'#3#240#0#5'Width'#2'h'#7'Caption'#6#2'OK'#8'TabOrder'#2#1#7'OnClic'
-  +'k'#7#12'Button1Click'#0#0#9'TComboBox'#9'ComboBox1'#4'Left'#2#24#6'Height'#2
-  +#23#3'Top'#3#208#0#5'Width'#2'h'#10'ItemHeight'#2#15#9'ItemIndex'#2#0#13'Ite'
-  +'ms.Strings'#1#6#1'S'#6#1'P'#6#1'K'#6#8'N (NO3-)'#6#8'N (NH4+)'#6#2'Mg'#6#2
-  +'Ca'#6#2'Cu'#6#2'Fe'#6#2'Mo'#6#2'Si'#6#2'Na'#6#2'Cl'#6#2'Mn'#6#1'B'#6#2'Zn'#0
-  +#5'Style'#7#14'csDropDownList'#8'TabOrder'#2#0#4'Text'#6#1'S'#0#0#0
+  +'entColor'#8#8'WordWrap'#9#0#0#7'TButton'#8'OKButton'#4'Left'#2#24#6'Height'
+  +#2#25#3'Top'#3#240#0#5'Width'#2'h'#7'Caption'#6#2'OK'#8'TabOrder'#2#1#7'OnCl'
+  +'ick'#7#13'OKButtonClick'#0#0#9'TComboBox'#15'ElementComboBox'#4'Left'#2#24#6
+  +'Height'#2#23#3'Top'#3#208#0#5'Width'#2'h'#10'ItemHeight'#2#15#9'ItemIndex'#2
+  +#0#13'Items.Strings'#1#6#1'S'#6#1'P'#6#1'K'#6#8'N (NO3-)'#6#8'N (NH4+)'#6#2
+  +'Mg'#6#2'Ca'#6#2'Cu'#6#2'Fe'#6#2'Mo'#6#2'Si'#6#2'Na'#6#2'Cl'#6#2'Mn'#6#1'B'#6
+  +#2'Zn'#0#5'Style'#7#14'csDropDownList'#8'TabOrder'#2#0#4'Text'#6#1'S'#0#0#0
 ]);

@@ -105,6 +105,11 @@ const
   ElementsVarNames : array[0..NumOfElements-1] of string =
      ('N_NO3','N_NH4','P','K','Mg','Ca','S','Fe','Mn','Zn','B','Cu','Si','Mo','Na','Cl');
 
+  P2O5toPConstant: double = 0.4364;
+  K2OtoKConstant: double = 0.8301;
+  SiO2toSiConstant: double = 0.4684;
+  GaltoLConstant: double = 3.78541178;
+  GramtoOunceCounstant: double = 0.0352739619;
 
 implementation
 

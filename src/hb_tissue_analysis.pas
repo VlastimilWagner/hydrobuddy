@@ -63,8 +63,6 @@ type
     procedure CopyToTargetsButtonClick(Sender: TObject);
     procedure AddNewButtonClick(Sender: TObject);
     procedure UpdateValuesButtonClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure TADatabaseListBoxClick(Sender: TObject);
     procedure TADatabaseListBoxSelectionChange(Sender: TObject; User: boolean);
   private
 
@@ -87,21 +85,10 @@ begin
   TADatabaseListBox.Items.Clear;
 
   DBTissueAnalysis.SearchFirst;
-  while not DBTissueAnalysis.EOF do
-  begin
+  while not DBTissueAnalysis.EOF do begin
     TADatabaseListBox.Items.Add(DBTissueAnalysis.Name);
     DBTissueAnalysis.Next;
   end;
-
-end;
-
-procedure TTissueAnalysisForm.FormCreate(Sender: TObject);
-begin
-
-end;
-
-procedure TTissueAnalysisForm.TADatabaseListBoxClick(Sender: TObject);
-begin
 
 end;
 

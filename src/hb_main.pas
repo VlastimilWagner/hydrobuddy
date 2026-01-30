@@ -237,8 +237,10 @@ procedure TMainForm.UpdateComboBox;
 begin
    FormulationComboBox.Items.Clear;
    DBformulations.SearchFirst;
-   FormulationComboBox.Items.Add(DBformulations.Name);
-   while DBformulations.Next do FormulationComboBox.Items.Add(DBformulations.Name);
+   while not DBformulations.EOF do begin
+     FormulationComboBox.Items.Add(DBformulations.Name);
+     DBformulations.Next;
+   end;
 end;
 
 
@@ -339,7 +341,7 @@ begin
 
   // set weight factor (g) or (oz)
   if MassUnitsRadioGroup.ItemIndex=0 then weight_factor := 1;
-  if MassUnitsRadioGroup.ItemIndex=1 then weight_factor := 0.0352739619;
+  if MassUnitsRadioGroup.ItemIndex=1 then weight_factor := GramtoOunceCounstant;
 
   // update list to get matrix size from used substances
   SubstanceSelectionForm.UpdateLists;
@@ -355,7 +357,7 @@ begin
   // liter conversion
   if VolumeUnitsRadioGroup.ItemIndex=0 then Volume := Volume / 1000;
   // gallon conversion
-  if VolumeUnitsRadioGroup.ItemIndex=1 then Volume := Volume * 3.78541178 / 1000;
+  if VolumeUnitsRadioGroup.ItemIndex=1 then Volume := Volume * GaltoLConstant / 1000;
 
   // correct volume if using concentrated solutions.
   if SolPrepTypeRadioGroup.ItemIndex = 0 then Volume := Volume * StrtoFloatAnySeparator(ConcentrationFactorEdit.Text);
@@ -817,15 +819,13 @@ begin
   weight_error := StrtoFloatAnySeparator(InsPrecisionForm.WeightPrecEdit.Text);
 
   // set weight factor (g) or (oz)
-  if MassUnitsRadioGroup.ItemIndex=0 then
-  begin
+  if MassUnitsRadioGroup.ItemIndex=0 then begin
     weight_factor := 1;
     mass_unit := 'g';
   end;
 
-  if MassUnitsRadioGroup.ItemIndex=1 then
-  begin
-    weight_factor := 0.0352739619;
+  if MassUnitsRadioGroup.ItemIndex=1 then begin
+    weight_factor := GramtoOunceCounstant;
     mass_unit := 'oz';
   end;
 
@@ -847,7 +847,7 @@ begin
 
   // gallon conversion
   if VolumeUnitsRadioGroup.ItemIndex=1 then
-    Volume := Volume * 3.78541178 / 1000;
+    Volume := Volume * GaltoLConstant / 1000;
 
   array_size := SubstanceSelectionForm.SubstancesUsedListBox.Items.Count;
 
@@ -909,7 +909,7 @@ begin
     for i := 0 to arraysize - 1 do for j := 0 to NumOfElements-1 do all_element_contributions[j][i] := 0;
 
     // choose element to use as degree of freedom
-    degree_of_freedom := FreedomForm.ComboBox1.Items[FreedomForm.ComboBox1.ItemIndex] ;
+    degree_of_freedom := FreedomForm.ElementComboBox.Items[FreedomForm.ElementComboBox.ItemIndex] ;
 
     // assign all element names to all_element_names array
     for i := 1 to NumOfElements do begin
@@ -922,7 +922,7 @@ begin
          all_element_targets[i - 1] := (conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
 
       if (all_element_names[i - 1] = 'Si') and (SiSiO2ComboBox.ItemIndex = 1) then
-         all_element_targets[i - 1] := 0.4684*(conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
+         all_element_targets[i - 1] := SiO2toSiConstant * (conc_factor[i-1])*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text ) ;
     end ;
 
     // load the database in order to get the weights and find the resulting ppm values
@@ -986,7 +986,7 @@ begin
           vartargetvalue[j] := conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
 
         if (varnames[j] = 'Si') and (SiSiO2ComboBox.ItemIndex = 1) then
-          vartargetvalue[j] := 0.4684*conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
+          vartargetvalue[j] := SiO2toSiConstant * conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text) - waterquality[i - 1] - temp3;
 
         SetLength(temp, j + 1);
         SetLength(temp2, j + 1);
@@ -998,7 +998,7 @@ begin
     for i := 1 to NumOfElements do begin
       all_element_targets[i - 1] := conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
       if (i=13) and (SiSiO2ComboBox.ItemIndex = 1) then
-        all_element_targets[i - 1] := 0.4684*conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
+        all_element_targets[i - 1] := SiO2toSiConstant * conc_factor[i-1]*StrtoFloatAnySeparator((FindComponent('Edit' + IntToStr(i)) as TEdit).Text )  ;
     end ;
 
     // definition of arrays which require varcount
@@ -1214,10 +1214,10 @@ begin
       (FindComponent('RLabel' + IntToStr(i+1)) as TLabel).Caption := FloattoStrF((1/conc_factor[i])*Result[i] + test, ffExponent, 4, 2) ;
 
       if (prev_conc = 'ppm') and (i=12) and (SiSiO2ComboBox.ItemIndex = 1) then
-      (FindComponent('RLabel' + IntToStr(i+1)) as TLabel).Caption := FloattoStr(round2((1/0.4684)*(1/conc_factor[i])*Result[i] + test, 3)) ;
+      (FindComponent('RLabel' + IntToStr(i+1)) as TLabel).Caption := FloattoStr(round2((1/SiO2toSiConstant)*(1/conc_factor[i])*Result[i] + test, 3)) ;
 
       if (prev_conc <> 'ppm') and (i=12) and (SiSiO2ComboBox.ItemIndex = 1) then
-      (FindComponent('RLabel' + IntToStr(i+1)) as TLabel).Caption := FloattoStrF((1/0.4684)*(1/conc_factor[i])*Result[i] + test, ffExponent, 4, 2) ;
+      (FindComponent('RLabel' + IntToStr(i+1)) as TLabel).Caption := FloattoStrF((1/SiO2toSiConstant)*(1/conc_factor[i])*Result[i] + test, ffExponent, 4, 2) ;
 
     end;
 
@@ -1446,6 +1446,8 @@ begin
         end;
       end;
 
+      StringGrid2.RowCount := i+2 ;
+
       StringGrid2.Cells[NAME_IDX,i+1] := (name_array[i][0]);
       StringGrid2.Cells[FORMULA_IDX,i+1] := (name_array[i][1]);
       StringGrid2.Cells[COST_IDX,i+1] := (FloattoStr(round2(DBSubstancesUsed.Weight * DBSubstancesUsed.Cost * 0.001 *(1 / weight_factor), 1)));
@@ -1627,16 +1629,16 @@ end;
 
 procedure TMainForm.SubstanceAnalysisButtonClick(Sender: TObject);
 begin
-  CommercialNutrientForm.ComboBox4.Items.Clear;
+  CommercialNutrientForm.SubstancesComboBox.Items.Clear;
   DBSubstances.SearchFirst;
 
   while not DBSubstances.EOF do
   begin
-    CommercialNutrientForm.ComboBox4.Items.Add(DBSubstances.Name);
+    CommercialNutrientForm.SubstancesComboBox.Items.Add(DBSubstances.Name);
     DBSubstances.Next;                                     // use .next here NOT .findnext!
   end;
 
-  CommercialNutrientForm.ComboBox4.Sorted := true ;
+  CommercialNutrientForm.SubstancesComboBox.Sorted := true ;
   CommercialNutrientForm.Visible := True;
 end;
 

@@ -8,7 +8,6 @@ object TissueAnalysisForm: TTissueAnalysisForm
   ClientHeight = 717
   ClientWidth = 549
   Position = poMainFormCenter
-  OnCreate = FormCreate
   object NLabel: TLabel
     Left = 33
     Height = 15
@@ -287,14 +286,13 @@ object TissueAnalysisForm: TTissueAnalysisForm
     ItemHeight = 0
     Sorted = True
     TabOrder = 17
-    OnClick = TADatabaseListBoxClick
     OnSelectionChange = TADatabaseListBoxSelectionChange
   end
   object TaDatabaseLabel: TLabel
     Left = 24
     Height = 15
     Top = 296
-    Width = 126
+    Width = 127
     Caption = 'Tissue analysis database'
     ParentColor = False
   end

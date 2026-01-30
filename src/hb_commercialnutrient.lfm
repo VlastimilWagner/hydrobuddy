@@ -140,7 +140,7 @@ object CommercialNutrientForm: TCommercialNutrientForm
     Caption = 'N (NH4+)'
     ParentColor = False
   end
-  object Label29: TLabel
+  object CompositionValuesLabel: TLabel
     Left = 24
     Height = 15
     Top = 24
@@ -276,23 +276,24 @@ object CommercialNutrientForm: TCommercialNutrientForm
     TabOrder = 15
     Text = '0'
   end
-  object Panel1: TPanel
+  object VolumePanel: TPanel
     Left = 475
     Height = 160
     Top = 71
     Width = 264
+    BevelOuter = bvNone
     ClientHeight = 160
     ClientWidth = 264
     TabOrder = 16
-    object Label20: TLabel
+    object VolumeLabel: TLabel
       Left = 16
       Height = 15
-      Top = 32
+      Top = 36
       Width = 132
       Caption = 'Volume of addition (mL) '
       ParentColor = False
     end
-    object Edit17: TEdit
+    object VolumeEdit: TEdit
       Left = 176
       Height = 23
       Top = 32
@@ -300,34 +301,39 @@ object CommercialNutrientForm: TCommercialNutrientForm
       TabOrder = 0
       Text = '0'
     end
-    object RadioButton3: TRadioButton
-      Left = 16
-      Height = 19
-      Top = 89
-      Width = 58
-      Caption = 'Per liter'
-      Checked = True
-      TabOrder = 1
-      TabStop = True
-    end
-    object RadioButton4: TRadioButton
-      Left = 88
-      Height = 19
-      Top = 89
-      Width = 71
-      Caption = 'Per gallon'
-      TabOrder = 2
-    end
-    object CheckBox1: TCheckBox
+    object AddToCurrentCheckBox: TCheckBox
       Left = 16
       Height = 19
       Top = 121
       Width = 159
       Caption = 'Add to current ppm values'
-      TabOrder = 3
+      TabOrder = 2
+    end
+    object VolumeRadioGroup: TRadioGroup
+      Left = 16
+      Height = 48
+      Top = 64
+      Width = 240
+      AutoFill = True
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 2
+      ClientHeight = 28
+      ClientWidth = 236
+      Columns = 2
+      ItemIndex = 0
+      Items.Strings = (
+        'Per liter'
+        'Per gallon'
+      )
+      TabOrder = 1
     end
   end
-  object Button1: TBitBtn
+  object CalculateButton: TBitBtn
     Left = 472
     Height = 42
     Top = 271
@@ -491,27 +497,27 @@ object CommercialNutrientForm: TCommercialNutrientForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 17
-    OnClick = Button1Click
+    OnClick = CalculateButtonClick
   end
-  object Button2: TButton
+  object AddProductButton: TButton
     Left = 48
     Height = 42
     Top = 271
     Width = 184
     Caption = 'Add product for comparison'
     TabOrder = 18
-    OnClick = Button2Click
+    OnClick = AddProductButtonClick
   end
-  object Button3: TButton
+  object SeeAllComparedButton: TButton
     Left = 248
     Height = 41
     Top = 272
     Width = 187
     Caption = 'See all compared products'
     TabOrder = 19
-    OnClick = Button3Click
+    OnClick = SeeAllComparedButtonClick
   end
-  object ComboBox4: TComboBox
+  object SubstancesComboBox: TComboBox
     Left = 480
     Height = 23
     Top = 32
@@ -519,9 +525,9 @@ object CommercialNutrientForm: TCommercialNutrientForm
     ItemHeight = 15
     Style = csDropDownList
     TabOrder = 20
-    OnChange = ComboBox4Change
+    OnChange = SubstancesComboBoxChange
   end
-  object Label17: TLabel
+  object SelectSubstanceLabel: TLabel
     Left = 481
     Height = 15
     Top = 10

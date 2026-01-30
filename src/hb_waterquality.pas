@@ -69,7 +69,8 @@ type
   public
     { public declarations }
     procedure UpdateComboBox ;
-  end; 
+    procedure SelectByName(WQName:string);
+  end;
 
 var
   WatterQualityForm: TWatterQualityForm;
@@ -154,27 +155,33 @@ begin
 
 end;
 
+procedure TWatterQualityForm.SelectByName(WQName:string);
+begin
+  if DBWatterQuality.SearchByField('Name', WQName, True) then begin
+    Edit25.text := DBWatterQuality.Name;
+    Edit1.text := floattostr(DBWatterQuality.N_NO3);
+    Edit2.text := floattostr(DBWatterQuality.N_NH4);
+    Edit3.text := floattostr(DBWatterQuality.P);
+    Edit4.text := floattostr(DBWatterQuality.K);
+    Edit5.text := floattostr(DBWatterQuality.Mg);
+    Edit6.text := floattostr(DBWatterQuality.Ca);
+    Edit7.text := floattostr(DBWatterQuality.S);
+    Edit8.text := floattostr(DBWatterQuality.Fe);
+    Edit9.text := floattostr(DBWatterQuality.Mn);
+    Edit10.text := floattostr(DBWatterQuality.Zn);
+    Edit11.text := floattostr(DBWatterQuality.B);
+    Edit12.text := floattostr(DBWatterQuality.Cu);
+    Edit13.text := floattostr(DBWatterQuality.Si);
+    Edit14.text := floattostr(DBWatterQuality.Mo);
+    Edit15.text := floattostr(DBWatterQuality.Na);
+    Edit16.text := floattostr(DBWatterQuality.Cl);
+  end;
+end;
+
 
 procedure TWatterQualityForm.ComboBox1Select(Sender: TObject);
 begin
-  DBWatterQuality.SearchByField('Name', ComboBox1.Items[ComboBox1.ItemIndex], True);
-  Edit25.text := DBWatterQuality.Name;
-  Edit1.text := floattostr(DBWatterQuality.N_NO3);
-  Edit2.text := floattostr(DBWatterQuality.N_NH4);
-  Edit3.text := floattostr(DBWatterQuality.P);
-  Edit4.text := floattostr(DBWatterQuality.K);
-  Edit5.text := floattostr(DBWatterQuality.Mg);
-  Edit6.text := floattostr(DBWatterQuality.Ca);
-  Edit7.text := floattostr(DBWatterQuality.S);
-  Edit8.text := floattostr(DBWatterQuality.Fe);
-  Edit9.text := floattostr(DBWatterQuality.Mn);
-  Edit10.text := floattostr(DBWatterQuality.Zn);
-  Edit11.text := floattostr(DBWatterQuality.B);
-  Edit12.text := floattostr(DBWatterQuality.Cu);
-  Edit13.text := floattostr(DBWatterQuality.Si);
-  Edit14.text := floattostr(DBWatterQuality.Mo);
-  Edit15.text := floattostr(DBWatterQuality.Na);
-  Edit16.text := floattostr(DBWatterQuality.Cl);
+  SelectByName(ComboBox1.Items[ComboBox1.ItemIndex]);
   Button3.Enabled := True ;
 end;
 
@@ -211,6 +218,7 @@ begin
   end;
 
 end ;
+
 
 initialization
   {$I hb_waterquality.lrs}

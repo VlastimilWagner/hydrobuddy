@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, LResources, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, Buttons, Dbf, DOM, XMLRead, XMLWrite, CustomHelpFunctions, db_substances;
+  StdCtrls, Buttons, Dbf, DOM, XMLRead, XMLWrite, CustomHelpFunctions, db_substances, hb_constants;
 
 type
 
@@ -15,10 +15,10 @@ type
   TCustomSaltForm = class(TForm)
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
-    CheckBox2: TCheckBox;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
+    AddSubstanceCheckBox: TCheckBox;
+    PComboBox: TComboBox;
+    KComboBox: TComboBox;
+    SiComboBox: TComboBox;
     ConcentratedTypeComboBox: TComboBox;
     SourceEdit: TEdit;
     SourceLabel: TLabel;
@@ -66,10 +66,10 @@ type
     SaveToXMLButton: TSpeedButton;
     procedure OKButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
-    procedure CheckBox2Change(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
-    procedure ComboBox2Change(Sender: TObject);
-    procedure ComboBox3Change(Sender: TObject);
+    procedure AddSubstanceCheckBoxChange(Sender: TObject);
+    procedure PComboBoxChange(Sender: TObject);
+    procedure KComboBoxChange(Sender: TObject);
+    procedure SiComboBoxChange(Sender: TObject);
     procedure SaveToXMLButtonClick(Sender: TObject);
     procedure InsertPrepare;
     procedure UpdatePrepare(ItemName: string);
@@ -92,10 +92,10 @@ uses HB_Main ;
 
 procedure TCustomSaltForm.InsertPrepare;
 begin
-    ComboBox1.ItemIndex := 0;
-    ComboBox2.ItemIndex := 0 ;
-    ComboBox3.ItemIndex := 0 ;
-    CheckBox2.Checked := false;
+    PComboBox.ItemIndex := 0;
+    KComboBox.ItemIndex := 0 ;
+    SiComboBox.ItemIndex := 0 ;
+    AddSubstanceCheckBox.Checked := false;
     OKButton.Enabled := True ;
     NameEdit.Text := '';
     FormulaEdit.Text := '';
@@ -148,13 +148,13 @@ begin
    ClEdit.text := floattostr(DBSubstances.Cl);
    CostEdit.text := floattostr(DBSubstances.Cost);
    ConcentratedTypeComboBox.text := DBSubstances.CONCTYPE;
-   CheckBox2.Checked := DBSubstances.ISLIQUID;
+   AddSubstanceCheckBox.Checked := DBSubstances.ISLIQUID;
 
    SaltDBName := ItemName;
 
-   ComboBox1.ItemIndex := 0 ;
-   ComboBox2.ItemIndex := 0 ;
-   ComboBox3.ItemIndex := 0 ;
+   PComboBox.ItemIndex := 0 ;
+   KComboBox.ItemIndex := 0 ;
+   SiComboBox.ItemIndex := 0 ;
 
    EditMode := True;
 end;
@@ -165,22 +165,22 @@ begin
   DBSubstances.FORMULA := FormulaEdit.Text;
   DBSubstances.PURITY := StrtoFloatAnySeparator(PurityEdit.Text)/100;
 
-  if ComboBox1.ItemIndex = 0 then
+  if PComboBox.ItemIndex = 0 then
        DBSubstances.P := StrtoFloatAnySeparator(PEdit.Text)
   else
-       DBSubstances.P := StrtoFloatAnySeparator(PEdit.Text)*0.4364;
+       DBSubstances.P := StrtoFloatAnySeparator(PEdit.Text) * P2O5toPConstant;
 
-  if ComboBox2.ItemIndex = 0 then
+  if KComboBox.ItemIndex = 0 then
        DBSubstances.K := StrtoFloatAnySeparator(KEdit.Text)
   else
-       DBSubstances.K := StrtoFloatAnySeparator(KEdit.Text)*0.8301;
+       DBSubstances.K := StrtoFloatAnySeparator(KEdit.Text) * K2OtoKConstant;
 
-  if ComboBox3.ItemIndex = 0 then
+  if SiComboBox.ItemIndex = 0 then
        DBSubstances.Si := StrtoFloatAnySeparator(SiEdit.Text)
   else
-       DBSubstances.Si := StrtoFloatAnySeparator(SiEdit.Text)*0.4684;
+       DBSubstances.Si := StrtoFloatAnySeparator(SiEdit.Text) * SiO2toSiConstant;
 
-  DBSubstances.ISLIQUID := CheckBox2.Checked;
+  DBSubstances.ISLIQUID := AddSubstanceCheckBox.Checked;
   DBSubstances.N_NO3 := StrtoFloatAnySeparator(N_NO3Edit.Text);
   DBSubstances.N_NH4 := StrtoFloatAnySeparator(N_NH4Edit.Text);
   DBSubstances.Mg := StrtoFloatAnySeparator(MgEdit.Text);
@@ -197,13 +197,13 @@ begin
   DBSubstances.COST := StrtoFloatAnySeparator(CostEdit.Text);
   DBSubstances.CONCTYPE := ConcentratedTypeComboBox.Text;
 
-  if ComboBox1.ItemIndex = 1  then
+  if PComboBox.ItemIndex = 1  then
      ShowMessage('P will be converted and saved as P%, to see P2O5 again in the future simply select it from the dropbox for automatic conversion');
 
-  if ComboBox2.ItemIndex = 1  then
+  if KComboBox.ItemIndex = 1  then
      ShowMessage('K will be converted and saved as K%, to see K2O again in the future simply select it from the dropbox for automatic conversion');
 
-  if ComboBox2.ItemIndex = 1  then
+  if KComboBox.ItemIndex = 1  then
      ShowMessage('Si will be converted and saved as Si%, to see SiO2 again in the future simply select it from the dropbox for automatic conversion');
 
   if EditMode then DBSubstances.Update('NAME',SaltDBName) else DBSubstances.Insert;
@@ -219,10 +219,10 @@ begin
 end;
 
 
-procedure TCustomSaltForm.CheckBox2Change(Sender: TObject);
+procedure TCustomSaltForm.AddSubstanceCheckBoxChange(Sender: TObject);
 begin
 
-if Checkbox2.Checked
+if AddSubstanceCheckBox.Checked
    then
        PleaseLabel.Caption := 'Please input values as W/V%'
    else
@@ -230,11 +230,11 @@ if Checkbox2.Checked
 
 end;
 
-procedure TCustomSaltForm.ComboBox1Change(Sender: TObject);
+procedure TCustomSaltForm.PComboBoxChange(Sender: TObject);
 var
    currentVal: integer;
 begin
-   currentVal := ComboBox1.ItemIndex;
+   currentVal := PComboBox.ItemIndex;
    if EditMode then
         if currentVal = 1 then
            PEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(PEdit.Text)*2.2915, 3))
@@ -242,11 +242,11 @@ begin
            PEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(PEdit.Text)*(1/2.2915), 3));
 end;
 
-procedure TCustomSaltForm.ComboBox2Change(Sender: TObject);
+procedure TCustomSaltForm.KComboBoxChange(Sender: TObject);
 var
    currentVal: integer;
 begin
-   currentVal := ComboBox2.ItemIndex;
+   currentVal := KComboBox.ItemIndex;
    if EditMode then
         if currentVal = 1 then
             KEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(KEdit.Text)*1.2047, 3))
@@ -254,11 +254,11 @@ begin
             KEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(KEdit.Text)*(1/1.2047), 3));
 end;
 
-procedure TCustomSaltForm.ComboBox3Change(Sender: TObject);
+procedure TCustomSaltForm.SiComboBoxChange(Sender: TObject);
 var
    currentVal: integer;
 begin
-   currentVal := ComboBox2.ItemIndex;
+   currentVal := KComboBox.ItemIndex;
    if EditMode then
         if currentVal = 1 then
              SiEdit.Text := FloattoStr(round2(StrtoFloatAnySeparator(SiEdit.Text)*2.1348, 3))
@@ -283,16 +283,16 @@ begin
         AddNodeToXML(MyXML, RootNode, 'N_NO3', N_NO3Edit.Text);
         AddNodeToXML(MyXML, RootNode, 'N_NH4', N_NH4Edit.Text);
 
-        if ComboBox1.ItemIndex=0 then currentValP := 'P' else currentValP := 'P2O5';
+        if PComboBox.ItemIndex=0 then currentValP := 'P' else currentValP := 'P2O5';
         AddNodeWithAttributeToXML(MyXML, RootNode, 'P', PEdit.Text, 'Val', currentValP);
 
-        if ComboBox2.ItemIndex=0 then currentValK := 'K' else currentValK := 'K2O';
+        if KComboBox.ItemIndex=0 then currentValK := 'K' else currentValK := 'K2O';
         AddNodeWithAttributeToXML(MyXML, RootNode, 'K', KEdit.Text, 'Val', currentValK);
 
-        if ComboBox3.ItemIndex=0 then currentValSi := 'Si' else currentValSi := 'SiO2';
+        if SiComboBox.ItemIndex=0 then currentValSi := 'Si' else currentValSi := 'SiO2';
         AddNodeWithAttributeToXML(MyXML, RootNode, 'Si', SiEdit.Text, 'Val', currentValSi);
 
-        if CheckBox2.Checked = false
+        if AddSubstanceCheckBox.Checked = false
            then TDOMElement(RootNode).SetAttribute('IsLiquid', '0')
            else TDOMElement(RootNode).SetAttribute('IsLiquid', '1');
 
@@ -313,7 +313,7 @@ begin
 
        AddNodeToXML(MyXML, RootNode, 'ConcType', ConcentratedTypeComboBox.Text);
 
-        writeXMLFile(MyXML, 'test.xml');
+        writeXMLFile(MyXML, NameEdit.Text+'.xml');
      finally
        MyXML.Free;
      end;

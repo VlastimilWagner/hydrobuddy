@@ -53,8 +53,7 @@
       <Unit0>
         <Filename Value="hydrobuddy.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="107"/>
-        <CursorPos X="12" Y="140"/>
+        <CursorPos X="11" Y="20"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -68,12 +67,12 @@
         <UnitName Value="HB_Main"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="1894"/>
-        <CursorPos X="18" Y="1922"/>
+        <TopLine Value="211"/>
+        <CursorPos Y="242"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="2">
-          <Item0 X="89" Y="384"/>
-          <Item1 Y="779" ID="1"/>
+          <Item0 X="89" Y="386"/>
+          <Item1 Y="781" ID="1"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -84,7 +83,9 @@
         <ComponentName Value="SubstanceSelectionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="259"/>
+        <CursorPos Y="62"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -95,9 +96,8 @@
         <ComponentName Value="CustomSaltForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="31"/>
-        <TopLine Value="246"/>
-        <CursorPos X="33" Y="258"/>
+        <EditorIndex Value="25"/>
+        <CursorPos X="32" Y="9"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -115,7 +115,7 @@
         <ComponentName Value="AddWeightForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="30"/>
+        <EditorIndex Value="24"/>
         <TopLine Value="3"/>
         <CursorPos X="8" Y="38"/>
         <UsageCount Value="230"/>
@@ -128,9 +128,9 @@
         <ComponentName Value="CommercialNutrientForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="13"/>
-        <TopLine Value="100"/>
-        <CursorPos X="14" Y="118"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="7"/>
+        <CursorPos Y="21"/>
         <UsageCount Value="224"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -141,9 +141,8 @@
         <ComponentName Value="WatterQualityForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="28"/>
-        <TopLine Value="131"/>
-        <CursorPos X="23" Y="149"/>
+        <EditorIndex Value="22"/>
+        <CursorPos Y="36"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -154,7 +153,7 @@
         <ComponentName Value="InsPrecisionForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="27"/>
+        <EditorIndex Value="21"/>
         <TopLine Value="10"/>
         <CursorPos X="3" Y="30"/>
         <UsageCount Value="202"/>
@@ -167,7 +166,7 @@
         <ComponentName Value="StockAnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="26"/>
+        <EditorIndex Value="20"/>
         <CursorPos X="13" Y="9"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
@@ -179,7 +178,7 @@
         <ComponentName Value="PerSubstanceForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="25"/>
+        <EditorIndex Value="19"/>
         <CursorPos X="19" Y="26"/>
         <UsageCount Value="216"/>
         <Loaded Value="True"/>
@@ -191,7 +190,7 @@
         <ComponentName Value="DatasetNameForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="24"/>
+        <EditorIndex Value="18"/>
         <CursorPos X="18" Y="27"/>
         <UsageCount Value="209"/>
         <Loaded Value="True"/>
@@ -203,7 +202,7 @@
         <ComponentName Value="AnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="23"/>
+        <EditorIndex Value="17"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -214,7 +213,8 @@
         <ComponentName Value="FreedomForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="22"/>
+        <EditorIndex Value="16"/>
+        <TopLine Value="7"/>
         <CursorPos X="19" Y="13"/>
         <UsageCount Value="204"/>
         <Loaded Value="True"/>
@@ -234,9 +234,7 @@
         <ComponentName Value="AlkalinityForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="29"/>
-        <TopLine Value="37"/>
-        <CursorPos X="35" Y="51"/>
+        <EditorIndex Value="23"/>
         <UsageCount Value="248"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -259,8 +257,8 @@
         <ComponentName Value="ComparisonForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="12"/>
-        <CursorPos X="51" Y="19"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="140" Y="31"/>
         <UsageCount Value="229"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -271,25 +269,24 @@
         <ComponentName Value="TissueAnalysisForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="21"/>
-        <CursorPos X="5" Y="93"/>
+        <EditorIndex Value="15"/>
+        <CursorPos Y="90"/>
         <UsageCount Value="218"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit18>
       <Unit19>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="4592"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4526"/>
         <CursorPos Y="4650"/>
-        <UsageCount Value="109"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="108"/>
       </Unit19>
       <Unit20>
         <Filename Value="customhelpfunctions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CustomHelpFunctions"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="13"/>
         <CursorPos Y="16"/>
         <UsageCount Value="219"/>
         <Loaded Value="True"/>
@@ -298,7 +295,7 @@
         <Filename Value="C:\lazarus\fpc\3.2.2\source\packages\fcl-db\src\dbase\dbf.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="21" Y="48"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="60"/>
       </Unit21>
       <Unit22>
         <Filename Value="db_watterquality.pas"/>
@@ -356,171 +353,167 @@
       <Unit29>
         <Filename Value="C:\lazarus\lcl\lresources.pp"/>
         <UnitName Value="LResources"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5328"/>
         <CursorPos Y="5350"/>
         <UsageCount Value="130"/>
-        <Loaded Value="True"/>
       </Unit29>
       <Unit30>
         <Filename Value="C:\lazarus\lcl\grids.pas"/>
         <UnitName Value="Grids"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="10320"/>
         <CursorPos Y="10339"/>
         <UsageCount Value="129"/>
-        <Loaded Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="127"/>
-        <Loaded Value="True"/>
       </Unit31>
       <Unit32>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
         <UnitName Value="Controls"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1169"/>
         <CursorPos X="3" Y="1188"/>
         <UsageCount Value="126"/>
-        <Loaded Value="True"/>
       </Unit32>
       <Unit33>
         <Filename Value="C:\lazarus\lcl\lclclasses.pp"/>
         <UnitName Value="LCLClasses"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="3" Y="45"/>
         <UsageCount Value="126"/>
-        <Loaded Value="True"/>
       </Unit33>
       <Unit34>
         <Filename Value="hb_constants.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="57"/>
-        <CursorPos Y="105"/>
-        <UsageCount Value="70"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="80"/>
+        <CursorPos X="55" Y="99"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit34>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="206" TopLine="189"/>
+        <Filename Value="hb_waterquality.pas"/>
+        <Caret Line="157" TopLine="151"/>
       </Position1>
       <Position2>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="222" Column="7" TopLine="189"/>
+        <Filename Value="hb_waterquality.pas"/>
+        <Caret Line="72" TopLine="38"/>
       </Position2>
       <Position3>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="212" TopLine="189"/>
+        <Filename Value="hydrobuddy.lpr"/>
+        <Caret Line="66" Column="21" TopLine="35"/>
       </Position3>
       <Position4>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="209" Column="21" TopLine="189"/>
+        <Filename Value="hb_waterquality.pas"/>
+        <Caret Line="72" Column="26" TopLine="56"/>
       </Position4>
       <Position5>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="1894" Column="47" TopLine="1877"/>
+        <Filename Value="hb_waterquality.pas"/>
+        <Caret Line="160" Column="50" TopLine="157"/>
       </Position5>
       <Position6>
-        <Filename Value="hb_main.pas"/>
+        <Filename Value="hb_waterquality.pas"/>
+        <Caret Line="36"/>
       </Position6>
       <Position7>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="193" Column="41" TopLine="164"/>
+        <Filename Value="hydrobuddy.lpr"/>
+        <Caret Line="67" Column="21" TopLine="35"/>
       </Position7>
       <Position8>
-        <Filename Value="hb_main.pas"/>
-        <Caret Line="1893" TopLine="1873"/>
+        <Filename Value="hydrobuddy.lpr"/>
+        <Caret Line="20" Column="11"/>
       </Position8>
       <Position9>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="192" Column="24" TopLine="175"/>
+        <Caret Line="203" Column="15" TopLine="184"/>
       </Position9>
       <Position10>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1890" Column="3" TopLine="1887"/>
+        <Caret Line="241" Column="10" TopLine="234"/>
       </Position10>
       <Position11>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="192" Column="27" TopLine="175"/>
+        <Caret Line="408" Column="31" TopLine="379"/>
       </Position11>
       <Position12>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1888" TopLine="1858"/>
       </Position12>
       <Position13>
         <Filename Value="hb_main.pas"/>
+        <Caret Line="239" Column="4" TopLine="211"/>
       </Position13>
       <Position14>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1695" Column="41" TopLine="1673"/>
+        <Caret Line="240" Column="10" TopLine="211"/>
       </Position14>
       <Position15>
         <Filename Value="hb_main.pas"/>
+        <Caret Line="407" Column="11" TopLine="378"/>
       </Position15>
       <Position16>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="187" Column="35" TopLine="158"/>
       </Position16>
       <Position17>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1695" TopLine="1665"/>
+        <Caret Line="240" Column="10" TopLine="210"/>
       </Position17>
       <Position18>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="181" Column="23" TopLine="169"/>
+        <Caret Line="407" Column="11" TopLine="378"/>
       </Position18>
       <Position19>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1951" Column="3" TopLine="1934"/>
+        <Caret Line="929" Column="11" TopLine="900"/>
       </Position19>
       <Position20>
         <Filename Value="hb_main.pas"/>
+        <Caret Line="1014" Column="11" TopLine="985"/>
       </Position20>
       <Position21>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="195" TopLine="166"/>
+        <Caret Line="1410" Column="11" TopLine="1381"/>
       </Position21>
       <Position22>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1937" Column="7" TopLine="1913"/>
+        <Caret Line="1632" Column="9" TopLine="1602"/>
       </Position22>
       <Position23>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1941" Column="56" TopLine="1913"/>
+        <Caret Line="20" Column="15"/>
       </Position23>
       <Position24>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1930" Column="50" TopLine="1917"/>
+        <Caret Line="240" Column="10" TopLine="210"/>
       </Position24>
       <Position25>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1932" Column="60" TopLine="1917"/>
+        <Caret Line="426" Column="11" TopLine="391"/>
       </Position25>
       <Position26>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1934" Column="4" TopLine="1917"/>
+        <Caret Line="929" Column="11" TopLine="900"/>
       </Position26>
       <Position27>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1937" TopLine="1917"/>
+        <Caret Line="1014" Column="11" TopLine="985"/>
       </Position27>
       <Position28>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="1926" Column="40" TopLine="1908"/>
+        <Caret Line="1410" Column="11" TopLine="1381"/>
       </Position28>
       <Position29>
         <Filename Value="hb_main.pas"/>
-        <Caret Column="5"/>
+        <Caret Line="1635" TopLine="1602"/>
       </Position29>
       <Position30>
         <Filename Value="hb_main.pas"/>
-        <Caret Line="191" TopLine="162"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

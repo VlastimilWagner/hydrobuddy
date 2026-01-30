@@ -26,16 +26,16 @@ object FreedomForm: TFreedomForm
     ParentColor = False
     WordWrap = True
   end
-  object Button1: TButton
+  object OKButton: TButton
     Left = 24
     Height = 25
     Top = 240
     Width = 104
     Caption = 'OK'
     TabOrder = 1
-    OnClick = Button1Click
+    OnClick = OKButtonClick
   end
-  object ComboBox1: TComboBox
+  object ElementComboBox: TComboBox
     Left = 24
     Height = 23
     Top = 208
