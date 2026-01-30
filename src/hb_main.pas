@@ -1647,9 +1647,9 @@ begin
   WatterQualityForm.Visible := True;
   WatterQualityForm.UpdateComboBox;
 
-  if WatterQualityForm.ComboBox1.Items.Count = 0 then begin
-    WatterQualityForm.ComboBox1.Text  := 'Select Water Quality Data From DB';
-    WatterQualityForm.Button2.Enabled := False;
+  if WatterQualityForm.SelectWQDataComboBox.Items.Count = 0 then begin
+    WatterQualityForm.SelectWQDataComboBox.Text  := 'Select Water Quality Data From DB';
+    WatterQualityForm.RemoveFromDBButton.Enabled := False;
   end;
 end;
 

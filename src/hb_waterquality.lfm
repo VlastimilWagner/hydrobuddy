@@ -12,7 +12,6 @@ object WatterQualityForm: TWatterQualityForm
   ClientHeight = 416
   ClientWidth = 448
   FormStyle = fsStayOnTop
-  LCLVersion = '4.2.0.0'
   object Label1: TLabel
     Left = 19
     Height = 15
@@ -141,7 +140,7 @@ object WatterQualityForm: TWatterQualityForm
     Caption = 'N (NH4+)'
     ParentColor = False
   end
-  object Label26: TLabel
+  object NameLabel: TLabel
     Left = 16
     Height = 15
     Top = 31
@@ -149,7 +148,7 @@ object WatterQualityForm: TWatterQualityForm
     Caption = 'Name'
     ParentColor = False
   end
-  object Label25: TLabel
+  object InputLabel: TLabel
     Left = 16
     Height = 15
     Top = 64
@@ -293,7 +292,7 @@ object WatterQualityForm: TWatterQualityForm
     TabOrder = 16
     Text = 'Input Water Quality Data Name Here'
   end
-  object ComboBox1: TComboBox
+  object SelectWQDataComboBox: TComboBox
     Left = 19
     Height = 23
     Top = 312
@@ -301,8 +300,8 @@ object WatterQualityForm: TWatterQualityForm
     ItemHeight = 15
     TabOrder = 17
     Text = 'Select Water Quality Data from DB'
-    OnChange = ComboBox1Change
-    OnSelect = ComboBox1Select
+    OnChange = SelectWQDataComboBoxChange
+    OnSelect = SelectWQDataComboBoxSelect
   end
   object Button4: TButton
     Left = 304
@@ -313,7 +312,7 @@ object WatterQualityForm: TWatterQualityForm
     TabOrder = 18
     OnClick = Button4Click
   end
-  object Button1: TBitBtn
+  object SaveToDBButton: TBitBtn
     Left = 16
     Height = 49
     Top = 344
@@ -402,9 +401,9 @@ object WatterQualityForm: TWatterQualityForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 19
-    OnClick = Button1Click
+    OnClick = SaveToDBButtonClick
   end
-  object Button2: TBitBtn
+  object RemoveFromDBButton: TBitBtn
     Left = 152
     Height = 49
     Top = 344
@@ -493,9 +492,9 @@ object WatterQualityForm: TWatterQualityForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 20
-    OnClick = Button2Click
+    OnClick = RemoveFromDBButtonClick
   end
-  object Button3: TBitBtn
+  object SetAsDefaultButton: TBitBtn
     Left = 304
     Height = 49
     Top = 344
@@ -585,7 +584,7 @@ object WatterQualityForm: TWatterQualityForm
       000000000000000000000000000000000000000000000000000000000000
     }
     TabOrder = 21
-    OnClick = Button3Click
+    OnClick = SetAsDefaultButtonClick
   end
   object Button5: TButton
     Left = 301

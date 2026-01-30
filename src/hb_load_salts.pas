@@ -281,13 +281,15 @@ var
 begin
   if SubstanceDatabaseListBox.SelCount = 0 then Exit; // No ítems selected
 
-  For i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
-    if SubstanceDatabaseListBox.Selected [i] then selected_item := i;
+  if  MessageDlg('Do you want to delete '+inttostr(SubstanceDatabaseListBox.SelCount)+' selected item ?',mtCustom,[mbYes, mbNo], 0) = mrYes then begin
+    while SubstanceDatabaseListBox.SelCount>0 do begin
+      For i := 0 to SubstanceDatabaseListBox.Items.Count - 1 do begin
+        if SubstanceDatabaseListBox.Selected [i] then selected_item := i;
+      end;
+      DBSubstances.Delete('NAME', SubstanceDatabaseListBox.Items[selected_item]);
+      SubstanceDatabaseListBox.Items.Delete(selected_item);
+    end;
   end;
-
-  DBSubstances.Delete('NAME', SubstanceDatabaseListBox.Items[selected_item]);
-
-  SubstanceDatabaseListBox.Items.Delete(selected_item);
 end;
 
 procedure TSubstanceSelectionForm.EditSelectButtonClick(Sender: TObject);

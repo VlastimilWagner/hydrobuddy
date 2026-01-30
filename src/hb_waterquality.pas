@@ -13,12 +13,12 @@ type
   { TWatterQualityForm }
 
   TWatterQualityForm = class(TForm)
-    Button1: TBitBtn;
-    Button2: TBitBtn;
-    Button3: TBitBtn;
+    SaveToDBButton: TBitBtn;
+    RemoveFromDBButton: TBitBtn;
+    SetAsDefaultButton: TBitBtn;
     Button4: TButton;
     Button5: TButton;
-    ComboBox1: TComboBox;
+    SelectWQDataComboBox: TComboBox;
     Edit1: TEdit;
     Edit12: TEdit;
     Edit14: TEdit;
@@ -42,8 +42,8 @@ type
     Label12: TLabel;
     Label13: TLabel;
     Label14: TLabel;
-    Label26: TLabel;
-    Label25: TLabel;
+    NameLabel: TLabel;
+    InputLabel: TLabel;
     Label15: TLabel;
     Label16: TLabel;
     Label2: TLabel;
@@ -56,20 +56,22 @@ type
     Label9: TLabel;
     SaveToXMLButton: TSpeedButton;
     LoadFromXMLButton: TSpeedButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure SaveToDBButtonClick(Sender: TObject);
+    procedure RemoveFromDBButtonClick(Sender: TObject);
+    procedure SetAsDefaultButtonClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
-    procedure ComboBox1Select(Sender: TObject);
+    procedure SelectWQDataComboBoxChange(Sender: TObject);
+    procedure SelectWQDataComboBoxSelect(Sender: TObject);
     procedure SaveToXMLButtonClick(Sender: TObject);
   private
     { private declarations }
+    procedure LoadFromDB;
   public
     { public declarations }
     procedure UpdateComboBox ;
     procedure SelectByName(WQName:string);
+    procedure SelectDefault;
   end;
 
 var
@@ -79,7 +81,7 @@ implementation
 
 uses HB_Main;
 
-procedure TWatterQualityForm.Button1Click(Sender: TObject);
+procedure TWatterQualityForm.SaveToDBButtonClick(Sender: TObject);
 begin
   DBWatterQuality.Name := Edit25.Text ;
   DBWatterQuality.N_NO3 := StrtoFloatAnySeparator(Edit1.Text);
@@ -105,34 +107,34 @@ begin
 
   WatterQualityForm.UpdateComboBox ;
 
-  Button3.Enabled := True ;
-  Button2.Enabled := true ;
+  SetAsDefaultButton.Enabled := True ;
+  RemoveFromDBButton.Enabled := true ;
 end;
 
-procedure TWatterQualityForm.Button2Click(Sender: TObject);
+procedure TWatterQualityForm.RemoveFromDBButtonClick(Sender: TObject);
 begin
-  DBWatterQuality.Delete('Name', ComboBox1.Items[ComboBox1.ItemIndex]);
-  ComboBox1.Items.Delete(ComboBox1.ItemIndex) ;
+  DBWatterQuality.Delete('Name', SelectWQDataComboBox.Items[SelectWQDataComboBox.ItemIndex]);
+  SelectWQDataComboBox.Items.Delete(SelectWQDataComboBox.ItemIndex) ;
 
-  if ComboBox1.Items.Count = 0 then begin
-     ComboBox1.Text := 'Select Water Quality Data From DB' ;
-     Button2.Enabled := false ;
+  if SelectWQDataComboBox.Items.Count = 0 then begin
+     SelectWQDataComboBox.Text := 'Select Water Quality Data From DB' ;
+     RemoveFromDBButton.Enabled := false ;
   end;
 
 end;
 
-procedure TWatterQualityForm.Button3Click(Sender: TObject);
+procedure TWatterQualityForm.SetAsDefaultButtonClick(Sender: TObject);
 begin
   DBWatterQuality.SearchFirst;
 
   while not DBWatterQuality.EOF do begin
     DBWatterQuality.Default := 0;
     DBWatterQuality.Update('Name',DBWatterQuality.Name);
-    DBWatterQuality.next;                                   // use .next here NOT .findnext!
+    DBWatterQuality.next;
   end;
 
   DBWatterQuality.SearchByField('Name', Edit25.Text, True);
-  DBWatterQuality.Default := 0 ;
+  DBWatterQuality.Default := 1 ;
   DBWatterQuality.Update('Name', Edit25.Text);
 
   ShowMessage(Edit25.Text + ' set as default water quality set') ;
@@ -150,14 +152,14 @@ begin
   hb_ph.AlkalinityForm.Visible := true ;
 end;
 
-procedure TWatterQualityForm.ComboBox1Change(Sender: TObject);
+procedure TWatterQualityForm.SelectWQDataComboBoxChange(Sender: TObject);
 begin
 
 end;
 
-procedure TWatterQualityForm.SelectByName(WQName:string);
+procedure TWatterQualityForm.LoadFromDB;
 begin
-  if DBWatterQuality.SearchByField('Name', WQName, True) then begin
+  if not DBWatterQuality.EOF then begin
     Edit25.text := DBWatterQuality.Name;
     Edit1.text := floattostr(DBWatterQuality.N_NO3);
     Edit2.text := floattostr(DBWatterQuality.N_NH4);
@@ -179,10 +181,25 @@ begin
 end;
 
 
-procedure TWatterQualityForm.ComboBox1Select(Sender: TObject);
+procedure TWatterQualityForm.SelectByName(WQName:string);
 begin
-  SelectByName(ComboBox1.Items[ComboBox1.ItemIndex]);
-  Button3.Enabled := True ;
+  if DBWatterQuality.SearchByField('Name', WQName, True) then begin
+    LoadFromDB;
+  end;
+end;
+
+
+procedure TWatterQualityForm.SelectDefault;
+begin
+  if DBWatterQuality.SearchByField('Default', '1', True) then begin
+    LoadFromDB;
+  end;
+end;
+
+procedure TWatterQualityForm.SelectWQDataComboBoxSelect(Sender: TObject);
+begin
+  SelectByName(SelectWQDataComboBox.Items[SelectWQDataComboBox.ItemIndex]);
+  SetAsDefaultButton.Enabled := True ;
 end;
 
 procedure TWatterQualityForm.SaveToXMLButtonClick(Sender: TObject);
@@ -209,11 +226,11 @@ end;
 procedure TWatterQualityForm.UpdateComboBox ;
 begin
 
-  ComboBox1.Items.Clear ;
+  SelectWQDataComboBox.Items.Clear ;
 
   DBWatterQuality.SearchFirst;
   while not DBWatterQuality.EOF do begin
-    ComboBox1.Items.Add(DBWatterQuality.Name);
+    SelectWQDataComboBox.Items.Add(DBWatterQuality.Name);
     DBWatterQuality.Next;
   end;
 

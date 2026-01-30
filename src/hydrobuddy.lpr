@@ -63,7 +63,7 @@ begin
   Application.CreateForm(TComparisonForm, ComparisonForm);
 
   SetActiveTab;
-  WatterQualityForm.SelectByName('DEFAULT');
+  WatterQualityForm.SelectDefault;
   UpdateComboBoxes ;
   MainForm.LoadValues;
   Application.CreateForm(TTissueAnalysisForm, TissueAnalysisForm);
